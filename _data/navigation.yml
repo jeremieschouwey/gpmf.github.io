@@ -1,0 +1,8 @@
+- name: Accueil
+  link: /
+- name: Mission
+  link: /mission/
+- name: Comité
+  link: /comite/
+- name: Contact
+  link: /contact/
