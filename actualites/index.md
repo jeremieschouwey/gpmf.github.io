@@ -5,10 +5,11 @@ permalink: /actualites/
 ---
 
 # Actualités
+
 <ul>
-{% raw %}{% for post in site.posts %}{% endraw %}
+{% for post in site.posts %}
   <li>
-    {% raw %}{{ post.date | date: "%d.%m.%Y" }} — <a href="{{ post.url }}">{{ post.title }}</a>{% endraw %}
+    {{ post.date | date: "%d.%m.%Y" }} — <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
   </li>
-{% raw %}{% endfor %}{% endraw %}
+{% endfor %}
 </ul>
