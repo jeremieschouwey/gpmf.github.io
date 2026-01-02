@@ -10,10 +10,12 @@
   <header>
     <h1><a href="/">{{ site.title }}</a></h1>
     <nav>
-      <a href="/">Accueil</a> |
-      <a href="/mission/">Mission</a> |
-      <a href="/contact/">Contact</a>
-    </nav>
+  {% raw %}{% for item in site.data.navigation %}{% endraw %}
+    <a href="{% raw %}{{ item.url }}{% endraw %}">{% raw %}{{ item.title }}{% endraw %}</a>
+  {% raw %}{% unless forloop.last %} | {% endraw %}{% endunless %}
+  {% raw %}{% endfor %}{% endraw %}
+</nav>
+
     <hr>
   </header>
 
