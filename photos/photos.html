@@ -159,13 +159,10 @@ permalink: /photos/
     lbCaption.textContent = filename;
 
     lbDownload.onclick = () => {
-      const a = document.createElement("a");
-      a.href = imgUrl;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const downloadUrl = encodeURI(`${R2_BASE}/download/${file.key}`);
+      window.location.href = downloadUrl;
     };
+
 
     lb.classList.add("open");
     lb.setAttribute("aria-hidden", "false");
