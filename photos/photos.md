@@ -15,6 +15,10 @@ permalink: /photos/
 <!-- Lightbox -->
 <div id="lightbox" class="lb" aria-hidden="true">
   <button id="lb-close" class="lb-close" aria-label="Fermer">×</button>
+  <button id="lb-download" class="lb-download" aria-label="Télécharger">
+  ⬇ Télécharger
+  </button>
+
   <button id="lb-prev" class="lb-nav lb-prev" aria-label="Photo précédente">‹</button>
   <img id="lb-img" class="lb-img" alt="">
   <button id="lb-next" class="lb-nav lb-next" aria-label="Photo suivante">›</button>
@@ -84,6 +88,23 @@ permalink: /photos/
     padding: 0 18px;
     word-break: break-word;
   }
+  .lb-download {
+  position: absolute;
+  top: 16px;
+  right: 70px; /* à côté du bouton fermer */
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.lb-download:hover {
+  background: rgba(255,255,255,0.15);
+}
+
 </style>
 
 
@@ -121,6 +142,8 @@ permalink: /photos/
   const menuEl = document.getElementById("photo-menu");
   const statusEl = document.getElementById("photo-status");
   const galleryEl = document.getElementById("photo-gallery");
+  const lbDownload = document.getElementById("lb-download");
+
 
   function setStatus(msg) {
     statusEl.textContent = msg || "";
@@ -144,18 +167,31 @@ permalink: /photos/
   const lbNext = document.getElementById("lb-next");
 
   function openLightbox(index) {
-    currentIndex = index;
-    const file = currentFiles[currentIndex];
-    const filename = file.key.split("/").pop();
+  currentIndex = index;
+  const file = currentFiles[currentIndex];
+  const filename = file.key.split("/").pop();
 
-    lbImg.src = encodeURI(`${R2_BASE}/${file.key}`);
-    lbImg.alt = filename;
-    lbCaption.textContent = filename;
+  const imgUrl = encodeURI(`${R2_BASE}/${file.key}`);
 
-    lb.classList.add("open");
-    lb.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
+  lbImg.src = imgUrl;
+  lbImg.alt = filename;
+  lbCaption.textContent = filename;
+
+  // Prépare le lien de téléchargement
+  lbDownload.onclick = () => {
+    const a = document.createElement("a");
+    a.href = imgUrl;
+    a.download = filename; // force le téléchargement
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  lb.classList.add("open");
+  lb.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
 
   function closeLightbox() {
     lb.classList.remove("open");
