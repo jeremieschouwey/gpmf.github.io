@@ -12,6 +12,81 @@ permalink: /photos/
 
 <div id="photo-gallery" class="gallery"></div>
 
+<!-- Lightbox -->
+<div id="lightbox" class="lb" aria-hidden="true">
+  <button id="lb-close" class="lb-close" aria-label="Fermer">×</button>
+  <button id="lb-prev" class="lb-nav lb-prev" aria-label="Photo précédente">‹</button>
+  <img id="lb-img" class="lb-img" alt="">
+  <button id="lb-next" class="lb-nav lb-next" aria-label="Photo suivante">›</button>
+  <div id="lb-caption" class="lb-caption"></div>
+</div>
+
+<style>
+  .lb {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+  }
+  .lb.open { display: flex; }
+
+  .lb-img {
+    max-width: min(1200px, 95vw);
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    background: #111;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 34px;
+    line-height: 1;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px 10px;
+  }
+
+  .lb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    line-height: 1;
+    border: 0;
+    background: rgba(0,0,0,0.25);
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+  .lb-prev { left: 14px; }
+  .lb-next { right: 14px; }
+
+  .lb-caption {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    padding: 0 18px;
+    word-break: break-word;
+  }
+</style>
+
+
 <style>
   #photo-menu a {
     display: inline-block;
@@ -57,16 +132,83 @@ permalink: /photos/
     }
   }
 
+  // Lightbox state
+  let currentFiles = [];
+  let currentIndex = 0;
+
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lb-img");
+  const lbCaption = document.getElementById("lb-caption");
+  const lbClose = document.getElementById("lb-close");
+  const lbPrev = document.getElementById("lb-prev");
+  const lbNext = document.getElementById("lb-next");
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const file = currentFiles[currentIndex];
+    const filename = file.key.split("/").pop();
+
+    lbImg.src = encodeURI(`${R2_BASE}/${file.key}`);
+    lbImg.alt = filename;
+    lbCaption.textContent = filename;
+
+    lb.classList.add("open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("open");
+    lb.setAttribute("aria-hidden", "true");
+    lbImg.src = ""; // libère mémoire
+    document.body.style.overflow = "";
+  }
+
+  function prevLightbox() {
+    if (!currentFiles.length) return;
+    const nextIndex = (currentIndex - 1 + currentFiles.length) % currentFiles.length;
+    openLightbox(nextIndex);
+  }
+
+  function nextLightbox() {
+    if (!currentFiles.length) return;
+    const nextIndex = (currentIndex + 1) % currentFiles.length;
+    openLightbox(nextIndex);
+  }
+
   function renderGallery(files) {
+    currentFiles = files || [];
     galleryEl.innerHTML = "";
-    for (const f of files) {
+
+    currentFiles.forEach((f, idx) => {
       const img = document.createElement("img");
       img.src = encodeURI(`${R2_BASE}/${f.key}`);
       img.loading = "lazy";
       img.alt = f.key.split("/").pop();
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => openLightbox(idx));
       galleryEl.appendChild(img);
-    }
+    });
   }
+
+  // Lightbox events
+  lbClose.addEventListener("click", closeLightbox);
+  lbPrev.addEventListener("click", prevLightbox);
+  lbNext.addEventListener("click", nextLightbox);
+
+  // clic sur fond noir pour fermer (mais pas sur l’image)
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+
+  // clavier
+  document.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") prevLightbox();
+    if (e.key === "ArrowRight") nextLightbox();
+  });
+
 
   async function fetchJson(path) {
     const res = await fetch(`${R2_BASE}${path}`);
