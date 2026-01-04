@@ -30,3 +30,6 @@ nav a { text-decoration: none; margin-right: 10px; }
 .site-nav {
   margin-top: 10px;
 }
+
+.map { margin: 1.5rem 0; }
+.map h2 { margin: 0 0 .75rem 0; }
