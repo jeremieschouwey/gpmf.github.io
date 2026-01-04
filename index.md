@@ -83,9 +83,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function list(prefix) {
-    const url = `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(prefix)}`;
-    return safeFetchJSON(url);
-  }
+  const p = (prefix && prefix.trim().length) ? prefix : "GPMF 2025/"; // fallback
+  const url = `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(p)}`;
+  return safeFetchJSON(url);
+}
+
 
   // IMPORTANT: on essaie d’utiliser une URL directe renvoyée par ton API.
   // Si ton /api/list ne renvoie pas d’URL, il faudra utiliser l’endpoint réel de service d’image.
