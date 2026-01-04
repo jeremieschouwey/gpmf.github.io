@@ -1,3 +1,32 @@
 body { max-width: 900px; margin: 0 auto; padding: 20px; font-family: system-ui, Arial, sans-serif; line-height: 1.6; }
 header h1 a { text-decoration: none; }
 nav a { text-decoration: none; margin-right: 10px; }
+
+.site-header {
+  margin-bottom: 20px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.site-logo img {
+  height: 60px;
+  width: auto;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-nav {
+  margin-top: 10px;
+}
