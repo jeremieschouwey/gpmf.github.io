@@ -5,3 +5,15 @@ title: Accueil
 
 # Association GPMF
 Bienvenue sur notre site.
+
+<section class="map">
+  <h2>Point de rendez-vous</h2>
+
+  <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=7.1167775988578805%2C46.79710875898322%2C7.1209242939949045%2C46.79935805339469&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a></small>
+
+  <p style="margin-top: .5rem;">
+    <a href="https://www.openstreetmap.org/?mlat=46.8050&mlon=7.1600#map=16/46.8050/7.1600" target="_blank" rel="noopener">
+      Ouvrir la carte
+    </a>
+  </p>
+</section>
