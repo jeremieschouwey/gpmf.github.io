@@ -75,3 +75,23 @@ nav a { text-decoration: none; margin-right: 10px; }
   text-decoration: underline;
   white-space: nowrap;
 }
+
+.calendar .btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+}
+
+.calendar-item {
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+.calendar-item .meta {
+  color: #555;
+  margin-top: 6px;
+}
