@@ -128,11 +128,85 @@ permalink: /programme/
   }
 
   function showDetails(key) {
-    const ev = byDate.get(key);
-    if (!ev) {
-      elDetails.innerHTML = `<p>Aucune séance le ${key}.</p>`;
-      return;
-    }
+  const ev = byDate.get(key);
+  if (!ev) {
+    elDetails.innerHTML = `<p>Aucune séance le ${key}.</p>`;
+    return;
+  }
+
+  const meta = ev.meta || {};
+  const levels = Array.isArray(meta.levels) ? meta.levels : [];
+  const intensity = meta.intensity || null;
+  const mercredi = meta.mercredi || {};
+  const supplementaires = meta.supplementaires || {};
+  const conseil = meta.conseil || "";
+
+  const intensityLine = (intensity && (intensity.I || intensity.percent))
+    ? `<div class="badge-row">
+         <span class="badge">Semaine ${escapeHtml(ev.week)}</span>
+         <span class="badge badge-soft">Intensité: ${[
+           intensity.I ? `I ${escapeHtml(intensity.I)}` : "",
+           intensity.percent ? escapeHtml(intensity.percent) : ""
+         ].filter(Boolean).join(" — ")}</span>
+       </div>`
+    : `<div class="badge-row"><span class="badge">Semaine ${escapeHtml(ev.week)}</span></div>`;
+
+  // Cartes par niveau
+  const levelCards = levels.length
+    ? levels.map(lvl => {
+        const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+        const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+
+        return `
+          <div class="level-card">
+            <div class="level-title">${escapeHtml(lvl.label)}</div>
+
+            <div class="block">
+              <div class="block-title">Séance du mercredi</div>
+              <div class="block-body">${formatMultiline(wTxt || "À définir")}</div>
+            </div>
+
+            <div class="block">
+              <div class="block-title">Séances supplémentaires</div>
+              <div class="block-body">${formatMultiline(sTxt || "À définir")}</div>
+            </div>
+          </div>
+        `;
+      }).join("")
+    : "";
+
+  // Conseil
+  const conseilHtml = conseil
+    ? `
+      <div class="advice">
+        <div class="advice-title">Conseil</div>
+        <div class="advice-body">${formatMultiline(conseil)}</div>
+      </div>
+    `
+    : "";
+
+  // Fallback si jamais meta est absent (ou vide)
+  const fallbackDescription = (!levels.length && ev.description)
+    ? `<div class="block"><div class="block-title">Détails</div><div class="block-body">${formatMultiline(ev.description)}</div></div>`
+    : "";
+
+  elDetails.innerHTML = `
+    <h2>${escapeHtml(ev.title)}</h2>
+
+    ${intensityLine}
+
+    <div class="details-meta">
+      <div><strong>${escapeHtml(ev.date_human)}</strong></div>
+      <div>${escapeHtml(ev.time)} (${escapeHtml(String(ev.duration_minutes))} min)</div>
+      <div>${escapeHtml(ev.location || "")}</div>
+    </div>
+
+    ${levelCards ? `<div class="levels-grid">${levelCards}</div>` : ""}
+    ${conseilHtml}
+    ${fallbackDescription}
+  `;
+}
+
 
     const prog = (ev.program || []).filter(Boolean);
     elDetails.innerHTML = `
@@ -160,4 +234,16 @@ permalink: /programme/
 
   render();
 })();
+
+function formatMultiline(text) {
+  // Convertit les retours ligne en <br> et échappe le HTML
+  return escapeHtml(String(text)).replace(/\r?\n/g, "<br/>");
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+}
+
 </script>
