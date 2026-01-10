@@ -6,6 +6,7 @@ Ajouter des photos :
 
 
 Ajouter des actualités : 
+  ajouter un fichier dans _posts (possible de cloner)
   
 
 Modifier le programme :
