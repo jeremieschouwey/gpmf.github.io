@@ -37,7 +37,7 @@ Bienvenue sur notre site.
   </div>
 
   <p>
-    <a class="btn" href="https://TON_WORKER.workers.dev/api/calendar.ics" download>
+    <a class="btn" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
       Télécharger le calendrier (.ics)
     </a>
   </p>
@@ -48,7 +48,7 @@ Bienvenue sur notre site.
   const container = document.getElementById("calendarUpcoming");
 
   try {
-    const res = await fetch("https://TON_WORKER.workers.dev/api/calendar.json", { cache: "no-store" });
+    const res = await fetch("https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.json", { cache: "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
 
@@ -72,6 +72,7 @@ Bienvenue sur notre site.
   }
 })();
 </script>
+
 
 
 <section class="slideshow">
