@@ -29,6 +29,51 @@ Bienvenue sur notre site.
   </p>
 </section>
 
+<section class="calendar">
+  <h2>Calendrier</h2>
+
+  <div id="calendarUpcoming">
+    <p>Chargement…</p>
+  </div>
+
+  <p>
+    <a class="btn" href="https://TON_WORKER.workers.dev/api/calendar.ics" download>
+      Télécharger le calendrier (.ics)
+    </a>
+  </p>
+</section>
+
+<script>
+(async () => {
+  const container = document.getElementById("calendarUpcoming");
+
+  try {
+    const res = await fetch("https://TON_WORKER.workers.dev/api/calendar.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+
+    const items = data.upcoming || [];
+    if (!items.length) {
+      container.innerHTML = "<p>Aucune séance à afficher dans la période à venir.</p>";
+      return;
+    }
+
+    container.innerHTML = items.map(ev => `
+      <article class="calendar-item">
+        <h3>${ev.title}</h3>
+        <div class="meta">
+          <strong>${ev.date_human}</strong> — ${ev.time} (${ev.duration_minutes} min)<br/>
+          ${ev.location}
+        </div>
+      </article>
+    `).join("");
+  } catch (e) {
+    container.innerHTML = "<p>Impossible de charger le calendrier.</p>";
+  }
+})();
+</script>
+
+
 <section class="slideshow">
   <h2>Photos</h2>
 
