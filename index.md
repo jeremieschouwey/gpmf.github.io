@@ -30,7 +30,7 @@ Bienvenue sur notre site.
 </section>
 
 <section class="calendar">
-  <h2>Calendrier</h2>
+  <h2>Prochaine séance</h2>
 
   <div id="calendarUpcoming">
     <p>Chargement…</p>
