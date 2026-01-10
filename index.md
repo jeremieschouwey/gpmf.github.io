@@ -36,11 +36,6 @@ Bienvenue sur notre site.
     <p>Chargement…</p>
   </div>
 
-  <p>
-    <a class="btn" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
-      Télécharger le calendrier (.ics)
-    </a>
-  </p>
 </section>
 
 <script>
