@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       imgEl.src = photo.url;
       metaEl.textContent = photo.folder.replace(/\/$/, "");
-      linkEl.href = "/photos/";
+      linkEl.href = "{{ '/photos/' | relative_url }}";
 
       const next = photos[(idx + 1) % photos.length];
       if (next?.url) preload(next.url);
