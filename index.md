@@ -53,20 +53,17 @@ Bienvenue sur notre site.
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
   const WORKER_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";
-  const ROOT_PREFIX = "";          // mets "GPMF 2025/" si tu veux limiter
   const INTERVAL_MS = 6000;
-  const MAX_PHOTOS = 250;
+  const MAX_PHOTOS = 300;
 
   const imgEl  = document.getElementById("slideshowImg");
   const linkEl = document.getElementById("slideshowLink");
   const metaEl = document.getElementById("slideshowMeta");
 
   if (!imgEl || !linkEl) {
-    console.error("[slideshow] éléments DOM introuvables (slideshowImg/slideshowLink).");
+    console.error("[slideshow] éléments DOM introuvables");
     return;
   }
-
-  const isImageKey = (k) => /\.(jpe?g|png|webp|gif)$/i.test(k || "");
 
   const shuffle = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -76,141 +73,87 @@ document.addEventListener("DOMContentLoaded", async () => {
     return arr;
   };
 
-  async function safeFetchJSON(url) {
+  async function fetchJSON(url) {
     const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status} – ${url}`);
     return r.json();
   }
 
-  async function list(prefix) {
-  const p = (prefix && prefix.trim().length) ? prefix : "GPMF 2025/"; // fallback
-  const url = `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(p)}`;
-  return safeFetchJSON(url);
-}
+  try {
+    metaEl.textContent = "Chargement des photos…";
 
+    /* 1) Récupération des dossiers (EXACTEMENT comme la page Photos) */
+    const folders = await fetchJSON(`${WORKER_BASE}/api/folders`);
+    console.log("[slideshow] folders:", folders);
 
-  // IMPORTANT: on essaie d’utiliser une URL directe renvoyée par ton API.
-  // Si ton /api/list ne renvoie pas d’URL, il faudra utiliser l’endpoint réel de service d’image.
-  function extractPhoto(it) {
-    if (!it) return null;
-
-    if (typeof it === "string") {
-      if (isImageKey(it)) return { key: it, url: null };
-      return null;
-    }
-
-    const key = it.key || it.Key || it.name || it.path || null;
-    const url = it.url || it.URL || it.publicUrl || it.downloadUrl || it.directUrl || null;
-
-    if (key && isImageKey(key)) return { key, url };
-    return null;
-  }
-
-  async function loadPhotos() {
-    const root = await list(ROOT_PREFIX);
-    const items = root.items || root.objects || root.prefixes || root || [];
-
-    let prefixes = [];
     let photos = [];
 
-    // 1) si le root contient déjà des photos
-    if (Array.isArray(items)) {
-      for (const it of items) {
-        // prefixes
-        const p = (typeof it === "object" && (it.prefix || it.Prefix)) ? (it.prefix || it.Prefix) : null;
-        if (typeof it === "string" && it.endsWith("/")) prefixes.push(it);
-        if (p) prefixes.push(p);
+    /* 2) Pour chaque dossier → récupération des photos */
+    for (const folder of folders) {
+      const res = await fetchJSON(
+        `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`
+      );
 
-        // photos
-        const ph = extractPhoto(it);
-        if (ph) photos.push(ph);
-      }
-    }
-
-    // 2) si on a des dossiers, on liste chaque dossier
-    for (const p of prefixes) {
-      const res = await list(p);
-      const subItems = res.items || res.objects || res.prefixes || res || [];
-      if (Array.isArray(subItems)) {
-        for (const it of subItems) {
-          const ph = extractPhoto(it);
-          if (ph) photos.push(ph);
-          if (photos.length >= MAX_PHOTOS) break;
+      if (Array.isArray(res.files)) {
+        for (const file of res.files) {
+          if (file.url) {
+            photos.push({
+              url: file.url,
+              name: file.name || "",
+              folder
+            });
+          }
         }
       }
+
       if (photos.length >= MAX_PHOTOS) break;
     }
 
-    // dédoublonne
-    const seen = new Set();
-    photos = photos.filter(ph => {
-      const id = ph.url || ph.key;
-      if (!id || seen.has(id)) return false;
-      seen.add(id);
-      return true;
-    });
-
-    shuffle(photos);
-    console.log("[slideshow] root JSON =", root);
-    return photos.slice(0, MAX_PHOTOS);
-  }
-
-  function preload(url) {
-    const i = new Image();
-    i.decoding = "async";
-    i.src = url;
-  }
-
-  let playlist = [];
-  let idx = 0;
-
-  async function setSlide(photo) {
-    // Si ton API renvoie une URL, on l’utilise.
-    // Sinon, on est bloqué et il faudra brancher l’endpoint exact qui sert l’image.
-    const url = photo.url;
-
-    if (!url) {
-      metaEl.textContent = "Impossible de charger les URLs des photos (API list sans champ url).";
-      console.error("[slideshow] Pas d'URL pour la photo:", photo);
-      return;
-    }
-
-    imgEl.classList.add("is-fading");
-    await new Promise(r => setTimeout(r, 250));
-
-    imgEl.src = url;
-    metaEl.textContent = (photo.key || "").split("/").pop() || "";
-
-    const next = playlist[(idx + 1) % playlist.length];
-    if (next?.url) preload(next.url);
-
-    requestAnimationFrame(() => imgEl.classList.remove("is-fading"));
-  }
-
-  try {
-    metaEl.textContent = "Chargement…";
-    playlist = await loadPhotos();
-
-    console.log("[slideshow] photos chargées:", playlist.length, playlist[0]);
-
-    if (!playlist.length) {
+    if (!photos.length) {
       metaEl.textContent = "Aucune photo trouvée.";
       return;
     }
 
-    await setSlide(playlist[idx]);
+    shuffle(photos);
+    console.log("[slideshow] photos chargées:", photos.length);
+
+    /* 3) Slideshow */
+    let idx = 0;
+
+    const preload = (url) => {
+      const i = new Image();
+      i.decoding = "async";
+      i.src = url;
+    };
+
+    const show = async (photo) => {
+      imgEl.classList.add("is-fading");
+      await new Promise(r => setTimeout(r, 250));
+
+      imgEl.src = photo.url;
+      metaEl.textContent = photo.folder.replace(/\/$/, "");
+      linkEl.href = "/photos/";
+
+      const next = photos[(idx + 1) % photos.length];
+      if (next?.url) preload(next.url);
+
+      requestAnimationFrame(() => imgEl.classList.remove("is-fading"));
+    };
+
+    await show(photos[idx]);
 
     setInterval(async () => {
-      idx = (idx + 1) % playlist.length;
-      await setSlide(playlist[idx]);
+      idx = (idx + 1) % photos.length;
+      await show(photos[idx]);
     }, INTERVAL_MS);
 
   } catch (e) {
     console.error("[slideshow] erreur:", e);
-    metaEl.textContent = "Erreur de chargement (voir console).";
+    metaEl.textContent = "Erreur de chargement du diaporama.";
   }
 });
 </script>
+
 
 
 
