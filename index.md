@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function normalizeFiles(payload) {
-    // Ton worker renvoie souvent { prefix: "...", files: [...] }
     if (payload && typeof payload === "object") {
       if (Array.isArray(payload.files)) return payload.files;
       if (Array.isArray(payload.items)) return payload.items;
@@ -90,16 +89,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     return [];
   }
 
+  function extractKey(file, folderFallback) {
+    // On veut construire: "<folder>/<filename>" (URL path)
+    // Certains objets auront "key" complet; d'autres juste "name".
+    if (!file) return null;
+
+    if (typeof file === "string") return file;
+
+    const key =
+      file.key || file.Key || file.path || file.pathname || file.object || null;
+
+    const name =
+      file.name || file.Name || file.filename || file.file || null;
+
+    // Si l'API donne déjà un chemin complet, on l'utilise
+    if (key) return key;
+
+    // Sinon on reconstruit: folder + name
+    if (folderFallback && name) return `${folderFallback}${name}`;
+
+    return null;
+  }
+
+  function buildPublicUrlFromKey(key) {
+    // L’URL image est directement: WORKER_BASE + "/" + key
+    // key peut contenir des espaces; encodeURI conserve les "/" mais encode les espaces.
+    const base = WORKER_BASE.replace(/\/$/, "");
+    const path = key.startsWith("/") ? key : `/${key}`;
+    return base + encodeURI(path);
+  }
+
   try {
     metaEl.textContent = "Chargement des dossiers…";
 
-    // 1) Liste des dossiers (comme la page Photos)
     const foldersRaw = await fetchJSON(`${WORKER_BASE}/api/folders`);
     console.log("[slideshow] /api/folders raw =", foldersRaw);
 
-    // 2) Normalisation robuste: folders doit être un tableau
     let folders = [];
-
     if (Array.isArray(foldersRaw)) {
       folders = foldersRaw;
     } else if (foldersRaw && typeof foldersRaw === "object") {
@@ -111,10 +137,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         foldersRaw.results ||
         [];
     }
-
     if (!Array.isArray(folders)) folders = [];
 
-    // Si éléments objets -> extraction du champ utile
     folders = folders
       .map(f => (typeof f === "string" ? f : (f.prefix || f.name || f.folder || "")))
       .filter(Boolean);
@@ -128,7 +152,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     metaEl.textContent = "Chargement des photos…";
 
-    // 3) Pour chaque dossier -> liste des fichiers
     let photos = [];
 
     for (const folder of folders) {
@@ -141,19 +164,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       const files = normalizeFiles(listRaw);
 
       for (const file of files) {
-        // On attend au minimum une URL exploitable
-        const url = (file && typeof file === "object")
-          ? (file.url || file.downloadUrl || file.publicUrl || file.directUrl)
-          : null;
+        const key = extractKey(file, folder);
+        if (!key) continue;
 
-        const name = (file && typeof file === "object")
-          ? (file.name || file.key || file.Key || "")
-          : "";
+        const url = buildPublicUrlFromKey(key);
 
-        if (url) {
-          photos.push({ url, name, folder });
-          if (photos.length >= MAX_PHOTOS) break;
-        }
+        photos.push({
+          url,
+          folder,
+          name: (typeof file === "object" ? (file.name || file.key || "") : "")
+        });
+
+        if (photos.length >= MAX_PHOTOS) break;
       }
 
       if (photos.length >= MAX_PHOTOS) break;
@@ -168,7 +190,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     shuffle(photos);
 
-    // 4) Slideshow
     let idx = 0;
 
     const preload = (url) => {
@@ -204,7 +225,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 </script>
-
 
 
 
