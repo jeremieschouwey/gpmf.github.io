@@ -1,0 +1,7 @@
+{
+  "weeks": [
+    { "week": 1, "title": "Séance 1", "program": ["Accueil", "Échauffement", "Footing + éducatifs", "Retour au calme"] },
+    { "week": 2, "title": "Séance 2", "program": ["Accueil", "Échauffement", "Fractionné court", "Retour au calme"] },
+    { "week": 3, "title": "Séance 3", "program": [] }
+  ]
+}
