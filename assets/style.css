@@ -189,3 +189,79 @@ nav a { text-decoration: none; margin-right: 10px; }
   margin: 12px 0 6px;
 }
 
+/* Détails Programme */
+.details-meta {
+  margin: 10px 0 14px;
+  color: #555;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 6px 0 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.badge-soft {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.level-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.level-title {
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.block {
+  margin-top: 10px;
+}
+
+.block-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.block-body {
+  color: #333;
+  line-height: 1.45;
+}
+
+.advice {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fafafa;
+  margin-top: 10px;
+}
+
+.advice-title {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
