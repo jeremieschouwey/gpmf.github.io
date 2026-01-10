@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     shuffle(photos);
+    console.log("[slideshow] root JSON =", root);
     return photos.slice(0, MAX_PHOTOS);
   }
 
