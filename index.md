@@ -54,21 +54,64 @@ Bienvenue sur notre site.
 
     const items = data.upcoming || [];
     if (!items.length) {
-      container.innerHTML = "<p>Aucune séance à afficher dans la période à venir.</p>";
+      container.innerHTML = "<p>Aucune séance à afficher.</p>";
       return;
     }
 
-    container.innerHTML = items.map(ev => `
+    // On n'affiche que la prochaine séance
+    const ev = items[0];
+    const meta = ev.meta || {};
+    const levels = Array.isArray(meta.levels) ? meta.levels : [];
+
+    const intensity = meta.intensity || null;
+    const mercredi = meta.mercredi || {};
+    const conseil = meta.conseil || "";
+
+    const intensityHtml = intensity && (intensity.I || intensity.percent)
+      ? `<p><strong>Intensité :</strong> ${[intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""].filter(Boolean).join(" — ")}</p>`
+      : "";
+
+    const seanceMercrediHtml = levels.length
+      ? `
+        <h4>Séance du mercredi</h4>
+        <ul>
+          ${levels.map(lvl => {
+            const txt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+            return `<li><strong>${escapeHtml(lvl.label)} :</strong> ${escapeHtml(txt || "À définir")}</li>`;
+          }).join("")}
+        </ul>
+      `
+      : "";
+
+    const conseilHtml = conseil
+      ? `<p><strong>Conseil :</strong> ${escapeHtml(conseil)}</p>`
+      : "";
+
+    container.innerHTML = `
       <article class="calendar-item">
-        <h3>${ev.title}</h3>
+        <h3>${escapeHtml(ev.title || "Prochaine séance")}</h3>
         <div class="meta">
-          <strong>${ev.date_human}</strong> — ${ev.time} (${ev.duration_minutes} min)<br/>
-          ${ev.location}
+          <strong>${escapeHtml(ev.date_human)}</strong> — ${escapeHtml(ev.time)} (${escapeHtml(String(ev.duration_minutes))} min)<br/>
+          ${escapeHtml(ev.location || "")}
         </div>
+
+        ${intensityHtml}
+        ${seanceMercrediHtml}
+        ${conseilHtml}
+
+        <p style="margin-top:10px;">
+          <a class="btn" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
+            Télécharger le calendrier (.ics)
+          </a>
+        </p>
       </article>
-    `).join("");
+    `;
   } catch (e) {
-    container.innerHTML = "<p>Impossible de charger le calendrier.</p>";
+    container.innerHTML = "<p>Impossible de charger la prochaine séance.</p>";
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c]));
   }
 })();
 </script>
