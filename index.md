@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const linkEl = document.getElementById("slideshowLink");
   const metaEl = document.getElementById("slideshowMeta");
 
-  if (!imgEl || !linkEl) {
-    console.error("[slideshow] éléments DOM introuvables");
+  if (!imgEl || !linkEl || !metaEl) {
+    console.error("[slideshow] DOM manquant (slideshowImg/slideshowLink/slideshowMeta).");
     return;
   }
 
@@ -79,45 +79,96 @@ document.addEventListener("DOMContentLoaded", async () => {
     return r.json();
   }
 
+  function normalizeFiles(payload) {
+    // Ton worker renvoie souvent { prefix: "...", files: [...] }
+    if (payload && typeof payload === "object") {
+      if (Array.isArray(payload.files)) return payload.files;
+      if (Array.isArray(payload.items)) return payload.items;
+      if (Array.isArray(payload.objects)) return payload.objects;
+      if (Array.isArray(payload.data)) return payload.data;
+    }
+    return [];
+  }
+
   try {
+    metaEl.textContent = "Chargement des dossiers…";
+
+    // 1) Liste des dossiers (comme la page Photos)
+    const foldersRaw = await fetchJSON(`${WORKER_BASE}/api/folders`);
+    console.log("[slideshow] /api/folders raw =", foldersRaw);
+
+    // 2) Normalisation robuste: folders doit être un tableau
+    let folders = [];
+
+    if (Array.isArray(foldersRaw)) {
+      folders = foldersRaw;
+    } else if (foldersRaw && typeof foldersRaw === "object") {
+      folders =
+        foldersRaw.folders ||
+        foldersRaw.prefixes ||
+        foldersRaw.items ||
+        foldersRaw.data ||
+        foldersRaw.results ||
+        [];
+    }
+
+    if (!Array.isArray(folders)) folders = [];
+
+    // Si éléments objets -> extraction du champ utile
+    folders = folders
+      .map(f => (typeof f === "string" ? f : (f.prefix || f.name || f.folder || "")))
+      .filter(Boolean);
+
+    console.log("[slideshow] folders normalized =", folders);
+
+    if (!folders.length) {
+      metaEl.textContent = "Aucun dossier retourné par /api/folders (voir console).";
+      return;
+    }
+
     metaEl.textContent = "Chargement des photos…";
 
-    /* 1) Récupération des dossiers (EXACTEMENT comme la page Photos) */
-    const folders = await fetchJSON(`${WORKER_BASE}/api/folders`);
-    console.log("[slideshow] folders:", folders);
-
+    // 3) Pour chaque dossier -> liste des fichiers
     let photos = [];
 
-    /* 2) Pour chaque dossier → récupération des photos */
     for (const folder of folders) {
-      const res = await fetchJSON(
+      const listRaw = await fetchJSON(
         `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`
       );
 
-      if (Array.isArray(res.files)) {
-        for (const file of res.files) {
-          if (file.url) {
-            photos.push({
-              url: file.url,
-              name: file.name || "",
-              folder
-            });
-          }
+      console.log("[slideshow] list raw for", folder, "=", listRaw);
+
+      const files = normalizeFiles(listRaw);
+
+      for (const file of files) {
+        // On attend au minimum une URL exploitable
+        const url = (file && typeof file === "object")
+          ? (file.url || file.downloadUrl || file.publicUrl || file.directUrl)
+          : null;
+
+        const name = (file && typeof file === "object")
+          ? (file.name || file.key || file.Key || "")
+          : "";
+
+        if (url) {
+          photos.push({ url, name, folder });
+          if (photos.length >= MAX_PHOTOS) break;
         }
       }
 
       if (photos.length >= MAX_PHOTOS) break;
     }
 
+    console.log("[slideshow] photos chargées =", photos.length, photos[0]);
+
     if (!photos.length) {
-      metaEl.textContent = "Aucune photo trouvée.";
+      metaEl.textContent = "Aucune photo trouvée (voir logs /api/list en console).";
       return;
     }
 
     shuffle(photos);
-    console.log("[slideshow] photos chargées:", photos.length);
 
-    /* 3) Slideshow */
+    // 4) Slideshow
     let idx = 0;
 
     const preload = (url) => {
@@ -149,7 +200,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (e) {
     console.error("[slideshow] erreur:", e);
-    metaEl.textContent = "Erreur de chargement du diaporama.";
+    metaEl.textContent = "Erreur diaporama (voir console).";
   }
 });
 </script>
