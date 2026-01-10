@@ -33,7 +33,8 @@ Bienvenue sur notre site.
   <h2>Photos</h2>
 
   <div class="slideshow-frame">
-    <a id="slideshowLink" href="/photos/" title="Voir la galerie">
+    <a id="slideshowLink" href="{{ '/photos/' | relative_url }}" title="Voir la galerie">
+
       <img
         id="slideshowImg"
         alt="Diaporama photos GPMF"
@@ -44,7 +45,7 @@ Bienvenue sur notre site.
 
     <div class="slideshow-caption">
       <span id="slideshowMeta">Chargement des photos…</span>
-      <a class="slideshow-cta" href="/photos/">Voir la galerie</a>
+      <a class="slideshow-cta" href="{{ '/photos/' | relative_url }}">Voir la galerie</a>
     </div>
   </div>
 </section>
