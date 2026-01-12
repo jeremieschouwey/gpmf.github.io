@@ -66,11 +66,15 @@ title: Accueil
         RDV estival ici chaque mercredi à 18h15.
       </p>
 
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=7.1167775988578805%2C46.79710875898322%2C7.1209242939949045%2C46.79935805339469&layer=mapnik&marker=46.798062%2C7.118103"
-        style="height:360px;"
-        loading="lazy">
-      </iframe>
+      <section class="map">
+  <h2>Point de rendez-vous</h2>
+
+  <div id="map-rdv" style="height:360px; border:1px solid #ccc; border-radius:8px;"></div>
+
+  <p style="margin:8px 0 0; color:#667085;">
+    RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte.
+  </p>
+</section>
 
       <div class="hr"></div>
 
@@ -80,6 +84,38 @@ title: Accueil
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Coordonnées
+    const rdv = [46.798062, 7.118103];
+    const parking = [46.79922141625063, 7.120181928613235];
+
+    // Centre: milieu entre les 2 points
+    const center = [(rdv[0] + parking[0]) / 2, (rdv[1] + parking[1]) / 2];
+
+    const map = L.map("map-rdv", { scrollWheelZoom: false }).setView(center, 17);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const m1 = L.marker(rdv).addTo(map)
+      .bindPopup("<b>Point de rendez-vous</b><br>RDV estival chaque mercredi à 18h15 !");
+
+    const m2 = L.marker(parking).addTo(map)
+      .bindPopup("<b>Parking à disposition</b><br>Accès proche du RDV.");
+
+    // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
+    const bounds = L.latLngBounds([rdv, parking]);
+    map.fitBounds(bounds, { padding: [30, 30] });
+
+    // Optionnel: ouvre la popup RDV par défaut
+    // m1.openPopup();
+  });
+</script>
 
 
 
