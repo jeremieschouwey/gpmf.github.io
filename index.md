@@ -3,40 +3,89 @@ layout: default
 title: Accueil
 ---
 
-# Association GPMF
-Bienvenue sur notre site.
-<!-- Leaflet CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
+<div class="hero">
+  <div class="badge">Chaque mercredi • 18h15 • RDV estival</div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<section class="map">
-  <h2>Point de rendez-vous</h2>
-
-  <div id="map"
-       style="width:100%; height:360px; border-radius:8px; border:1px solid #ccc;">
-  </div>
-
-  <p style="margin-top: .5rem;">
-    <a href="https://www.openstreetmap.org/?mlat=46.798062&amp;mlon=7.118103#map=19/46.798062/7.118103"
-       target="_blank" rel="noopener">
-      Ouvrir la carte
-    </a>
+  <h1>Association GPMF</h1>
+  <p class="subtitle">
+    Groupe de course à pied. Entraînements, calendrier des séances, photos et actualités du club.
   </p>
-</section>
 
-<section class="calendar">
-  <h2>Prochaine séance</h2>
-
-  <div id="calendarUpcoming">
-    <p>Chargement…</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="{{ '/calendrier' | relative_url }}">Voir la prochaine séance</a>
+    <a class="btn btn-ghost" href="{{ '/photos' | relative_url }}">Voir les photos</a>
   </div>
 
-</section>
+  <div class="kpi">
+    <span class="badge">Ambiance club</span>
+    <span class="badge">Programme progressif</span>
+    <span class="badge">Ouvert à tous niveaux</span>
+  </div>
+</div>
+
+<div class="grid" style="margin-top:16px;">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-title">
+        <h3>Prochaine séance</h3>
+        <a class="card-link" href="{{ '/calendrier' | relative_url }}">Détails</a>
+      </div>
+      <p class="muted">
+        Consulte la séance à venir et l’ensemble du programme semaine par semaine.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-title">
+        <h3>Calendrier</h3>
+        <a class="card-link" href="{{ '/calendrier' | relative_url }}">Ouvrir</a>
+      </div>
+      <p class="muted">
+        Toutes les séances dans un format simple. Idéal pour planifier tes semaines.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-title">
+        <h3>Actualités</h3>
+        <a class="card-link" href="{{ '/actualites' | relative_url }}">Lire</a>
+      </div>
+      <p class="muted">
+        Annonces, événements et informations importantes du club.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-title">
+        <h2 style="margin:0;">Point de rendez-vous</h2>
+      </div>
+
+      <p class="muted" style="margin-top:6px;">
+        RDV estival ici chaque mercredi à 18h15.
+      </p>
+
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=7.1167775988578805%2C46.79710875898322%2C7.1209242939949045%2C46.79935805339469&layer=mapnik&marker=46.798062%2C7.118103"
+        style="height:360px;"
+        loading="lazy">
+      </iframe>
+
+      <div class="hr"></div>
+
+      <small>
+        <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
+      </small>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 (async () => {
