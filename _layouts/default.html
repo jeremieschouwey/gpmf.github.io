@@ -8,35 +8,30 @@
 </head>
 <body>
   <header class="site-header">
-  <div class="header-top">
-    <a href="{{ '/' | relative_url }}" class="site-logo">
-      <img src="{{ '/assets/images/logoGPMF_orig.png' | relative_url }}"
-           alt="Logo {{ site.title }}">
-    </a>
+    <div class="container header-inner">
+      <div class="brand">
+        {%- if site.logo -%}
+          <img src="{{ site.logo | relative_url }}" alt="Logo {{ site.title }}">
+        {%- endif -%}
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      </div>
 
-    <h1 class="site-title">
-      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    </h1>
-  </div>
+      <nav class="site-nav">
+        {% for item in site.data.navigation %}
+          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
 
-  <nav class="site-nav">
-    {% for item in site.data.navigation %}
-      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-      {% unless forloop.last %} | {% endunless %}
-    {% endfor %}
-  </nav>
-
-  <hr>
-</header>
-
-
-  <main>
+  <main class="container">
     {{ content }}
   </main>
 
   <footer>
-    <hr>
-    <small>© {{ site.time | date: "%Y" }} {{ site.title }}</small>
+    <div class="container">
+      <small>© {{ site.time | date: "%Y" }} {{ site.title }}</small>
+    </div>
   </footer>
 </body>
 </html>
