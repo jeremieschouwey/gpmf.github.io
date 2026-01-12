@@ -68,6 +68,16 @@ a:hover{ text-decoration: underline; }
   width:auto;
   display:block;
 }
+/* Forcer la taille du logo dans le header, même si d'autres règles existent */
+.site-header .brand img{
+  height: 34px !important;
+  width: auto !important;
+  max-height: 34px !important;
+  max-width: 160px !important;  /* limite la largeur si le logo est très horizontal */
+  object-fit: contain;
+  display: block;
+}
+
 
 .site-nav{
   display:flex;
