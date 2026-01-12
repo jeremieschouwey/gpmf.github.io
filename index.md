@@ -90,7 +90,7 @@ title: Accueil
   document.addEventListener("DOMContentLoaded", () => {
     // Coordonnées
     const rdv = [46.798062, 7.118103];
-    const parking = [46.79922141625063, 7.120181928613235];
+    const parking = [446.799089633236605, 7.120852356673644];
 
     // Centre: milieu entre les 2 points
     const center = [(rdv[0] + parking[0]) / 2, (rdv[1] + parking[1]) / 2];
@@ -106,7 +106,7 @@ title: Accueil
       .bindPopup("<b>Point de rendez-vous</b><br>RDV estival chaque mercredi à 18h15 !");
 
     const m2 = L.marker(parking).addTo(map)
-      .bindPopup("<b>Parking à disposition</b><br>Accès proche du RDV.");
+      .bindPopup("<b>Parking à disposition</b><br>Places limitées !");
 
     // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
     const bounds = L.latLngBounds([rdv, parking]);
