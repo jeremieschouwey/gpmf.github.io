@@ -8,7 +8,7 @@ title: Accueil
 
   <h1>Association GPMF</h1>
   <p class="subtitle">
-    Groupe de course à pied. Entraînements, calendrier des séances, photos et actualités du club.
+    20 semaines pour préparer Morat Fribourg !
   </p>
 
   <div class="actions">
