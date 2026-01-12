@@ -3,13 +3,17 @@
   --card: #ffffff;
   --text: #101828;
   --muted: #667085;
-  --primary: #2563eb;
-  --primary-2: #16a34a;
+
+  /* Nouvelle palette GPMF */
+  --primary: #d93200;     /* rouge */
+  --secondary: #d1e8f6;   /* bleu clair */
+
   --border: rgba(16,24,40,0.10);
   --shadow: 0 10px 25px rgba(16,24,40,0.08);
   --radius: 16px;
   --radius-sm: 12px;
 }
+
 
 *{ box-sizing: border-box; }
 html,body{ margin:0; padding:0; }
@@ -17,12 +21,13 @@ html,body{ margin:0; padding:0; }
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   background:
-    radial-gradient(1200px 520px at 10% 0%, rgba(37,99,235,0.12), transparent 55%),
-    radial-gradient(900px 450px at 90% 10%, rgba(22,163,74,0.10), transparent 50%),
+    radial-gradient(1200px 520px at 10% 0%, rgba(217,50,0,0.12), transparent 55%),
+    radial-gradient(900px 450px at 90% 10%, rgba(209,232,246,0.85), transparent 55%),
     var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
+
 
 img{ max-width: 100%; height: auto; }
 
@@ -93,9 +98,10 @@ a:hover{ text-decoration: underline; }
   text-decoration: none;
 }
 .site-nav a:hover{
-  background: rgba(37,99,235,0.10);
-  border-color: rgba(37,99,235,0.18);
+  background: rgba(217,50,0,0.10);
+  border-color: rgba(217,50,0,0.20);
 }
+
 
 main{
   padding: 26px 0 50px;
@@ -144,12 +150,13 @@ p{ margin: 10px 0; }
   padding: 22px;
   border-radius: calc(var(--radius) + 6px);
   background:
-    radial-gradient(900px 420px at 10% 10%, rgba(37,99,235,0.16), transparent 60%),
-    radial-gradient(900px 420px at 90% 10%, rgba(22,163,74,0.14), transparent 60%),
+    radial-gradient(900px 420px at 10% 10%, rgba(217,50,0,0.18), transparent 60%),
+    radial-gradient(900px 420px at 90% 10%, rgba(209,232,246,0.90), transparent 60%),
     var(--card);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
+
 
 .hero .subtitle{
   font-size: 16px;
@@ -175,8 +182,9 @@ p{ margin: 10px 0; }
 .btn-primary{
   background: var(--primary);
   color: white !important;
-  box-shadow: 0 10px 20px rgba(37,99,235,0.18);
+  box-shadow: 0 10px 20px rgba(217,50,0,0.25);
 }
+
 .btn-primary:hover{ filter: brightness(0.98); }
 .btn-ghost{
   background: rgba(16,24,40,0.02);
