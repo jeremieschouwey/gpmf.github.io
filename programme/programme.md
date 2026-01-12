@@ -9,9 +9,9 @@ permalink: /programme/
 <p>Navigue mois par mois et clique sur une date pour afficher le détail de la séance.</p>
 
 <div class="cal-toolbar">
-  <button id="calPrev" class="btn" type="button">◀ Mois précédent</button>
+  <button id="calPrev" class="btn btn-ghost" type="button">◀ Mois précédent</button>
   <div id="calTitle" class="cal-title"></div>
-  <button id="calNext" class="btn" type="button">Mois suivant ▶</button>
+  <button id="calNext" class="btn btn-ghost" type="button">Mois suivant ▶</button>
 </div>
 
 <div id="calGrid" class="cal-grid"></div>
