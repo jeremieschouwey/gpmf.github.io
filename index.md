@@ -11,24 +11,20 @@ title: Accueil
     20 semaines pour préparer Morat Fribourg !
   </p>
 
-  <div class="actions">
-    <a class="btn btn-primary" href="{{ '/calendrier' | relative_url }}">Voir la prochaine séance</a>
-    <a class="btn btn-ghost" href="{{ '/photos' | relative_url }}">Voir les photos</a>
-  </div>
-
   <div class="kpi">
     <span class="badge">Ambiance club</span>
     <span class="badge">Programme progressif</span>
     <span class="badge">Ouvert à tous niveaux</span>
   </div>
 </div>
+<div class="hr"></div>
 
 <div class="grid" style="margin-top:16px;">
   <div class="col-4">
     <div class="card">
       <div class="card-title">
         <h3>Prochaine séance</h3>
-        <a class="card-link" href="{{ '/calendrier' | relative_url }}">Détails</a>
+        <a class="card-link" href="{{ '/programme' | relative_url }}">Détails</a>
       </div>
       <p class="muted">
         Consulte la séance à venir et l’ensemble du programme semaine par semaine.
@@ -40,7 +36,7 @@ title: Accueil
     <div class="card">
       <div class="card-title">
         <h3>Calendrier</h3>
-        <a class="card-link" href="{{ '/calendrier' | relative_url }}">Ouvrir</a>
+        <a class="card-link" href="{{ '/programme' | relative_url }}">Ouvrir</a>
       </div>
       <p class="muted">
         Toutes les séances dans un format simple. Idéal pour planifier tes semaines.
