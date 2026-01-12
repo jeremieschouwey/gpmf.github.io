@@ -436,3 +436,64 @@ button.cal-day:hover{
 }
 
 
+.training-notes {
+  margin-top: 18px;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.note-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.note-card h3 {
+  margin-top: 0;
+}
+
+.quote {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-left: 4px solid #ddd;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+}
+
+table.borg {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+table.borg th,
+table.borg td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+table.borg thead th {
+  background: #fafafa;
+  font-weight: 800;
+}
+
+table.borg tr:last-child td {
+  border-bottom: none;
+}
+
+
+
