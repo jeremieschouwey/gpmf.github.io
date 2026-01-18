@@ -511,3 +511,43 @@ table.borg tr:last-child td {
 }
 
 
+.sponsors-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.sponsor-card{
+  margin: 0;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+}
+
+.sponsor-card a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-card img{
+  max-width: 180px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.sponsor-card figcaption{
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.sponsor-card a:hover img{
+  transform: scale(1.03);
+  transition: transform 0.2s ease;
+}
+
