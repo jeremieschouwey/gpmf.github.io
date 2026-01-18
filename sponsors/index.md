@@ -53,7 +53,7 @@ permalink: /sponsors/
 
    <figure class="sponsor-card">
     <a href="https://soutien-loro.ch/fr" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/LoterieRomande.jpg | relative_url }}"
+      <img src="{{ '/assets/sponsors/logos/LoterieRomande.jpg' | relative_url }}"
            alt="Loterie Romande" />
     </a>
     <figcaption>Loterie Romande</figcaption>
@@ -62,7 +62,7 @@ permalink: /sponsors/
 
    <figure class="sponsor-card">
     <a href="https://demoncor.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/RestaurantDeMoncor.jpg | relative_url }}"
+      <img src="{{ '/assets/sponsors/logos/RestaurantDeMoncor.jpg' | relative_url }}"
            alt="Restaurant De Moncor" />
     </a>
     <figcaption>Restaurant De Moncor</figcaption>
@@ -70,7 +70,7 @@ permalink: /sponsors/
 
    <figure class="sponsor-card">
     <a href="https://www.villars-sur-glane.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/VillarsSurGlane.png | relative_url }}"
+      <img src="{{ '/assets/sponsors/logos/VillarsSurGlane.png' | relative_url }}"
            alt="Commune de Villars-sur-Glâne" />
     </a>
     <figcaption>Commune de Villars-sur-Glâne</figcaption>
