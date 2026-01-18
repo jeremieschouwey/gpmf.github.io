@@ -9,27 +9,27 @@ permalink: /sponsors/
 <div class="sponsors-grid">
 
   <figure class="sponsor-card">
-    <a href="https://www.aktivbike.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/aktivbike.png' | relative_url }}"
-           alt="AktivBike – magasin de sport et vélo" />
+    <a href="https://afc10000.ch/" target="_blank" rel="noopener noreferrer">
+      <img src="{{ '/assets/sponsors/logos/AFC10000.jpg' | relative_url }}"
+           alt="Amicale fribourgeoise des coureurs de 10'000m" />
     </a>
-    <figcaption>AktivBike</figcaption>
+    <figcaption>afc10000</figcaption>
   </figure>
 
   <figure class="sponsor-card">
     <a href="https://www.trilogiesport.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/trilogie-sport.png' | relative_url }}"
+      <img src="{{ '/assets/sponsors/logos/TrilogieSport.jpg' | relative_url }}"
            alt="Trilogie Sport Belfaux" />
     </a>
     <figcaption>Trilogie Sport Belfaux</figcaption>
   </figure>
 
   <figure class="sponsor-card">
-    <a href="https://www.physiomed.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/physiomed.png' | relative_url }}"
-           alt="Cabinet Physiomed – physiothérapie" />
+    <a href="https://www.givisiez.ch" target="_blank" rel="noopener noreferrer">
+      <img src="{{ '/assets/sponsors/logos/CommuneGivisiez.jpg' | relative_url }}"
+           alt="Commune de Givisiez" />
     </a>
-    <figcaption>Physiomed</figcaption>
+    <figcaption>Commune de Givisiez</figcaption>
   </figure>
 
 </div>
