@@ -4,11 +4,11 @@ title: Accueil
 ---
 
 <div class="hero">
-  <div class="badge">Chaque mercredi • 18h15 • Préparation Morat Fribourg</div>
+  <div class="badge">Chaque mercredi • 18h15 • Préparation Morat-Fribourg</div>
 
-  <h1>Association GPMF</h1>
+  <h1>Groupes Préparer Morat Fribourg</h1>
   <p class="subtitle">
-    20 semaines pour préparer Morat Fribourg !
+    20 semaines pour préparer Morat-Fribourg !
   </p>
 
   <div class="kpi">
