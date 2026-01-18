@@ -22,11 +22,6 @@ permalink: /contact/
   </li>
 
   <li>
-    <strong>Cabinet Physiomed – Gilles Clément</strong><br>
-    SMS ou tél. <a href="http://www.etumas.sitew.ch/#Accueil.A">079 960 89 23</a>
-  </li>
-
-  <li>
     <strong>CarpeDiem – Massages thérapeutiques</strong> (Quentin Gillard)<br>
     Tél. <a href="https://www.carpediem-wellness.ch/">077 462 84 92</a>
   </li>
@@ -51,19 +46,7 @@ permalink: /contact/
   </li>
 
   <li>
-    <a href="http://www.ffa-flv.ch/index.html" target="_blank" rel="noopener">Site de la FFA – Fédération fribourgeoise d’athlétisme</a>
-  </li>
-
-  <li>
     <a href="http://www.morat-fribourg.ch/francais/default.aspx" target="_blank" rel="noopener">Site du Morat–Fribourg</a>
-  </li>
-
-  <li>
-    <a href="http://www.ffa-flv.ch/calendrier.html" target="_blank" rel="noopener">Calendrier FFA</a>
-  </li>
-
-  <li>
-    <a href="http://www.ffa-flv.ch/coupe-fribourgeoise.html" target="_blank" rel="noopener">Résultats des courses de la Coupe fribourgeoise</a>
   </li>
 
   <li>
