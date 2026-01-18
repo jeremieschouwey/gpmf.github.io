@@ -1,3 +1,8 @@
+---
+layout: default
+title: 2025-12-30-AdieuDuWebmaster
+---
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
