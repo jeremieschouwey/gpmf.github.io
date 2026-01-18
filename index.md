@@ -26,9 +26,7 @@ title: Accueil
         <h3>Prochain entrainement</h3>
         <a class="card-link" href="{{ '/programme' | relative_url }}">Détails</a>
       </div>
-      <p class="muted">
-        Consulte les détails du prochain entrainement.
-      </p>
+      <p class="muted">Consulte les détails du prochain entrainement.</p>
     </div>
   </div>
 
@@ -38,9 +36,7 @@ title: Accueil
         <h3>Programme</h3>
         <a class="card-link" href="{{ '/programme' | relative_url }}">Ouvrir</a>
       </div>
-      <p class="muted">
-        Le programme entier des 20 semaines. 
-      </p>
+      <p class="muted">Le programme entier des 20 semaines.</p>
     </div>
   </div>
 
@@ -50,15 +46,12 @@ title: Accueil
         <h3>Actualités</h3>
         <a class="card-link" href="{{ '/actualites' | relative_url }}">Lire</a>
       </div>
-      <p class="muted">
-        Annonces, informations et divers de l'association
-      </p>
+      <p class="muted">Annonces, informations et divers de l'association</p>
     </div>
   </div>
+</div>
 
- 
-
-      <section class="map">
+<section class="map" style="margin-top:16px;">
   <h2>Point de rendez-vous</h2>
 
   <div id="map-rdv" style="height:360px; border:1px solid #ccc; border-radius:8px;"></div>
@@ -66,16 +59,13 @@ title: Accueil
   <p style="margin:8px 0 0; color:#667085;">
     RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte.
   </p>
+
+  <div class="hr"></div>
+
+  <small>
+    <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
+  </small>
 </section>
-
-      <div class="hr"></div>
-
-      <small>
-        <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
-      </small>
-    </div>
-  </div>
-</div>
 
 
 <script>
