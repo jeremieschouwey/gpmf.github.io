@@ -4,7 +4,7 @@ title: Accueil
 ---
 
 <div class="hero">
-  <div class="badge">Chaque mercredi • 18h15 • RDV estival</div>
+  <div class="badge">Chaque mercredi • 18h15 • Préparation Morat Fribourg</div>
 
   <h1>Association GPMF</h1>
   <p class="subtitle">
@@ -12,9 +12,9 @@ title: Accueil
   </p>
 
   <div class="kpi">
-    <span class="badge">Ambiance club</span>
-    <span class="badge">Programme progressif</span>
     <span class="badge">Ouvert à tous niveaux</span>
+    <span class="badge">Programme progressif</span>
+    <span class="badge">Gratuit et sans inscription</span>
   </div>
 </div>
 <div class="hr"></div>
@@ -23,11 +23,11 @@ title: Accueil
   <div class="col-4">
     <div class="card">
       <div class="card-title">
-        <h3>Prochaine séance</h3>
+        <h3>Prochain entrainement</h3>
         <a class="card-link" href="{{ '/programme' | relative_url }}">Détails</a>
       </div>
       <p class="muted">
-        Consulte la séance à venir et l’ensemble du programme semaine par semaine.
+        Consulte les détails du prochain entrainement.
       </p>
     </div>
   </div>
@@ -35,11 +35,11 @@ title: Accueil
   <div class="col-4">
     <div class="card">
       <div class="card-title">
-        <h3>Calendrier</h3>
+        <h3>Programme</h3>
         <a class="card-link" href="{{ '/programme' | relative_url }}">Ouvrir</a>
       </div>
       <p class="muted">
-        Toutes les séances dans un format simple. Idéal pour planifier tes semaines.
+        Le programme entier des 20 semaines. 
       </p>
     </div>
   </div>
@@ -51,20 +51,12 @@ title: Accueil
         <a class="card-link" href="{{ '/actualites' | relative_url }}">Lire</a>
       </div>
       <p class="muted">
-        Annonces, événements et informations importantes du club.
+        Annonces, informations et divers de l'association
       </p>
     </div>
   </div>
 
-  <div class="col-12">
-    <div class="card">
-      <div class="card-title">
-        <h2 style="margin:0;">Point de rendez-vous</h2>
-      </div>
-
-      <p class="muted" style="margin-top:6px;">
-        RDV estival ici chaque mercredi à 18h15.
-      </p>
+ 
 
       <section class="map">
   <h2>Point de rendez-vous</h2>
