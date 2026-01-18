@@ -4,10 +4,11 @@
   url: /mission/
 - title: Programme
   url: /programme/  
-- title: Contact
-  url: /contact/
 - title: Actualités 
   url: /actualites/
 - title: Photos
   url: /photos/
-
+- title: Contact
+  url: /contact/
+- title: Sponsors
+  url: /sponsors/
