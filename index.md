@@ -90,7 +90,7 @@ title: Accueil
   document.addEventListener("DOMContentLoaded", () => {
     // Coordonnées
     const rdv = [46.798062, 7.118103];
-    const parking = [446.799089633236605, 7.120852356673644];
+    const parking = [46.799089633236605, 7.120852356673644];
 
     // Centre: milieu entre les 2 points
     const center = [(rdv[0] + parking[0]) / 2, (rdv[1] + parking[1]) / 2];
