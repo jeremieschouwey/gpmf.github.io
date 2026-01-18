@@ -495,5 +495,19 @@ table.borg tr:last-child td {
   border-bottom: none;
 }
 
+.article-hero{
+  margin: 16px 0 20px;
+}
+.article-hero img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.article-hero figcaption{
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
 
 
