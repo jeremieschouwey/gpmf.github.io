@@ -37,11 +37,6 @@ permalink: /contact/
   </li>
 
   <li>
-    <strong>AktivBike</strong><br>
-    Tél. <a href="https://www.activebike.ch/">026 436 50 40</a>
-  </li>
-
-  <li>
     <a href='http://www.freikaufmann.ch/' target="_blank" rel="noopener"> Bureau d’avocats Frei / Kaufmann</strong></a>
   </li>
 
