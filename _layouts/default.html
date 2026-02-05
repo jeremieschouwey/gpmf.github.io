@@ -30,11 +30,23 @@
         <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
       </div>
 
-      <nav class="site-nav">
-        {% for item in site.data.navigation %}
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        {% endfor %}
-      </nav>
+     <nav class="site-nav">
+  {% for item in site.data.navigation %}
+    {% if item.children %}
+      <div class="nav-item has-dropdown">
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        <div class="dropdown">
+          {% for child in item.children %}
+            <a href="{{ child.url | relative_url }}">{{ child.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    {% endif %}
+  {% endfor %}
+</nav>
+
     </div>
   </header>
 
