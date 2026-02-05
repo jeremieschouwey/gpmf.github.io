@@ -7,7 +7,7 @@ permalink: /contact/
 # Contacts et liens
 <ul class="liste-contacts">
   <li><strong>Mail à l’association GPMF</strong></li>
-   <a href="mailto:gpmf.fribourg@gmail.com">cgpmf.fribourg@gmail.com</a><br>
+   <a href="mailto:gpmf.fribourg@gmail.com">gpmf.fribourg@gmail.com</a><br>
 
   <li>
     <strong>Augustin Berset – Coach sportif</strong><br>
