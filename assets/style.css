@@ -551,3 +551,55 @@ table.borg tr:last-child td {
   transition: transform 0.2s ease;
 }
 
+/* Navigation */
+.site-nav{
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+/* Items */
+.site-nav a{
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:10px;
+  color: var(--text);
+}
+.site-nav a:hover{
+  background: rgba(16,24,40,0.06);
+}
+
+/* Dropdown */
+.nav-item{
+  position:relative;
+}
+
+.has-dropdown .dropdown{
+  display:none;
+  position:absolute;
+  top: calc(100% + 8px);
+  left:0;
+  min-width:200px;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow: var(--shadow);
+  padding:6px;
+  z-index:100;
+}
+
+.has-dropdown:hover .dropdown{
+  display:block;
+}
+
+.dropdown a{
+  display:block;
+  padding:10px;
+  border-radius:8px;
+  white-space:nowrap;
+}
+
+.dropdown a:hover{
+  background: rgba(16,24,40,0.06);
+}
+
