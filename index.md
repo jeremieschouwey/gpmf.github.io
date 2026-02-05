@@ -203,6 +203,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const WORKER_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";
   const INTERVAL_MS = 6000;
   const MAX_PHOTOS = 300;
+  const PER_FOLDER = 12;   // nb max de photos prises par dossier
+const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
+
 
   const imgEl  = document.getElementById("slideshowImg");
   const linkEl = document.getElementById("slideshowLink");
@@ -300,43 +303,52 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     metaEl.textContent = "Chargement des photos…";
 
-    let photos = [];
+let photos = [];
 
-    for (const folder of folders) {
-      const listRaw = await fetchJSON(
-        `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`
-      );
+// Optionnel: mélanger l’ordre des dossiers pour varier encore plus
+const foldersWork = SHUFFLE_FOLDERS ? shuffle([...folders]) : [...folders];
 
-      console.log("[slideshow] list raw for", folder, "=", listRaw);
+for (const folder of foldersWork) {
+  const listRaw = await fetchJSON(
+    `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`
+  );
 
-      const files = normalizeFiles(listRaw);
+  const files = normalizeFiles(listRaw);
 
-      for (const file of files) {
-        const key = extractKey(file, folder);
-        if (!key) continue;
+  // 1) transforme les fichiers en URLs
+  let folderPhotos = [];
+  for (const file of files) {
+    const key = extractKey(file, folder);
+    if (!key) continue;
 
-        const url = buildPublicUrlFromKey(key);
+    folderPhotos.push({
+      url: buildPublicUrlFromKey(key),
+      folder,
+      name: (typeof file === "object" ? (file.name || file.key || "") : "")
+    });
+  }
 
-        photos.push({
-          url,
-          folder,
-          name: (typeof file === "object" ? (file.name || file.key || "") : "")
-        });
+  // 2) échantillonnage aléatoire dans le dossier
+  shuffle(folderPhotos);
+  folderPhotos = folderPhotos.slice(0, PER_FOLDER);
 
-        if (photos.length >= MAX_PHOTOS) break;
-      }
+  // 3) ajoute au pool global
+  photos.push(...folderPhotos);
 
-      if (photos.length >= MAX_PHOTOS) break;
-    }
+  // 4) garde-fou global
+  if (photos.length >= MAX_PHOTOS) break;
+}
 
-    console.log("[slideshow] photos chargées =", photos.length, photos[0]);
+console.log("[slideshow] photos chargées =", photos.length, photos[0]);
 
-    if (!photos.length) {
-      metaEl.textContent = "Aucune photo trouvée (voir logs /api/list en console).";
-      return;
-    }
+if (!photos.length) {
+  metaEl.textContent = "Aucune photo trouvée (voir logs /api/list en console).";
+  return;
+}
 
-    shuffle(photos);
+// Mélange global final
+shuffle(photos);
+
 
     let idx = 0;
 
