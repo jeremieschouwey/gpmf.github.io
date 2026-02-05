@@ -12,3 +12,8 @@
   url: /contact/
 - title: Sponsors
   url: /sponsors/
+- title: Autres
+  url: "#"
+  children:
+    - title: Tracés hiver
+      url: /traces-hiver/
