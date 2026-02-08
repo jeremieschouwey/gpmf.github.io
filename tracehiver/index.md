@@ -41,10 +41,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-<!-- GPX loader (CDN jsDelivr) -->
-<script src="https://unpkg.com/leaflet-gpx@1.7.0/leaflet-gpx.js"></script>
-
-
 <script>
   const TRACES = {{ site.data.gpx_traces | jsonify }};
 
@@ -53,7 +49,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   const elMeta  = document.getElementById('traceMeta');
   const elDl    = document.getElementById('downloadBtn');
 
-  const map = L.map('map');
+  const map = L.map('map', { zoomAnimation: false, fadeAnimation: false });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
@@ -73,43 +69,26 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     buttonEl.classList.add('is-active');
   }
 
-  // === TEST 1: scan GPX for invalid points (robust XML parser) ===
-  async function scanGpxForInvalidPoints(url) {
-    const res = await fetch(url, { cache: 'no-store' });
-    console.log('[GPX scan] fetch', url, '->', res.status);
-
-    const txt = await res.text();
-    console.log('[GPX scan] first chars:', txt.slice(0, 120));
-
-    const xml = new DOMParser().parseFromString(txt, "application/xml");
+  function parseGpxToLatLngs(gpxText) {
+    const xml = new DOMParser().parseFromString(gpxText, "application/xml");
     const parseError = xml.querySelector("parsererror");
-    if (parseError) {
-      console.error('[GPX scan] XML parse error:', parseError.textContent);
-      return;
-    }
+    if (parseError) throw new Error("GPX XML parse error");
 
+    // Prend trkpt (tracks) et rtept (routes)
     const pts = [
       ...xml.getElementsByTagName("trkpt"),
       ...xml.getElementsByTagName("rtept")
     ];
 
-    let total = 0, bad = 0;
-    const samples = [];
-
+    const latlngs = [];
     for (const p of pts) {
-      total++;
       const lat = parseFloat(p.getAttribute("lat"));
       const lon = parseFloat(p.getAttribute("lon"));
-      const ok = Number.isFinite(lat) && Number.isFinite(lon);
-      if (!ok) {
-        bad++;
-        if (samples.length < 5) samples.push(p.outerHTML.slice(0, 160) + "...");
+      if (Number.isFinite(lat) && Number.isFinite(lon)) {
+        latlngs.push([lat, lon]);
       }
     }
-
-    console.log('[GPX scan] points:', total, 'bad:', bad);
-    if (bad) console.warn('[GPX scan] bad samples:', samples);
-    if (!total) console.warn('[GPX scan] no trkpt/rtept found at all');
+    return latlngs;
   }
 
   async function loadTrace(trace, buttonEl) {
@@ -119,6 +98,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     elMeta.textContent = '';
 
     const url = gpxUrl(trace.file);
+
     elDl.href = url;
     elDl.style.pointerEvents = 'auto';
     elDl.style.opacity = '1';
@@ -128,40 +108,24 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
       currentLayer = null;
     }
 
-    // === TEST 1 execution ===
-    try {
-      await scanGpxForInvalidPoints(url);
-    } catch (e) {
-      console.error('[GPX scan] failed:', e);
+    console.log('[GPX] fetch:', url);
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) {
+      alert("Impossible de charger le GPX (HTTP " + res.status + ")");
+      return;
     }
 
-    // Debug plugin presence
-    console.log('[DEBUG] Leaflet version:', L && L.version);
-    console.log('[DEBUG] typeof L.GPX:', typeof (L && L.GPX));
+    const txt = await res.text();
+    const latlngs = parseGpxToLatLngs(txt);
 
-    currentLayer = new L.GPX(url, {
-      async: true,
-      marker_options: {
-        startIconUrl: null,
-        endIconUrl: null,
-        shadowUrl: null
-      },
-      polyline_options: {
-        opacity: 0.9,
-        weight: 5
-      }
-    })
-    .on('loaded', function(e) {
-      const bounds = e.target.getBounds();
-      if (bounds && bounds.isValid && bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [20, 20], animate: false });
-      }
-    })
-    .on('error', function(err) {
-      console.error('GPX parse/load error', err);
-      alert("Impossible de charger ce GPX. Vérifie le fichier et la console.");
-    })
-    .addTo(map);
+    console.log('[GPX] points valid:', latlngs.length);
+    if (latlngs.length < 2) {
+      alert("GPX chargé mais aucun point exploitable (trkpt/rtept).");
+      return;
+    }
+
+    currentLayer = L.polyline(latlngs, { weight: 5, opacity: 0.9 }).addTo(map);
+    map.fitBounds(currentLayer.getBounds(), { padding: [20, 20], animate: false });
   }
 
   function renderList() {
@@ -206,9 +170,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     .traces-panel{ position:static; }
   }
 
-  .traces-panel-header{
-    margin-bottom:10px;
-  }
+  .traces-panel-header{ margin-bottom:10px; }
 
   .traces-list{
     display:flex;
@@ -230,15 +192,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     outline: 2px solid rgba(217,50,0,0.25);
     border-color: rgba(217,50,0,0.35);
   }
-  .trace-title{
-    font-weight: 700;
-    color: var(--text);
-  }
-  .trace-meta{
-    margin-top:6px;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
+  .trace-title{ font-weight: 700; color: var(--text); }
 
   .traces-map-header{
     display:flex;
