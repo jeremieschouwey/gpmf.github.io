@@ -128,6 +128,22 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   const txt = await res.text();
   const latlngs = parseGpxToLatLngs(txt);
   console.log('[GPX] points valid:', latlngs.length);
+   // IMPORTANT: ne pas appeler invalidateSize ici (ça déclenche des pans/animations)
+const cleaned = sanitizeForLeafletProjection(latlngs);
+
+if (cleaned.length < 2) {
+  alert("Après nettoyage, il ne reste pas assez de points affichables.");
+  return;
+}
+
+currentLayer = L.polyline(cleaned, {
+  weight: 5,
+  opacity: 0.9,
+  noClip: true
+}).addTo(map);
+
+map.fitBounds(currentLayer.getBounds(), { padding: [20, 20], animate: false });
+
 
   if (latlngs.length < 2) {
     alert("GPX chargé mais aucun point exploitable (trkpt/rtept).");
@@ -145,6 +161,37 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     setTimeout(() => loadTrace(trace, buttonEl), 200);
     return;
   }
+
+
+   function isFinitePoint(p) {
+  return p && Number.isFinite(p.x) && Number.isFinite(p.y);
+}
+
+function sanitizeForLeafletProjection(latlngs) {
+  const good = [];
+  const badSamples = [];
+
+  for (let i = 0; i < latlngs.length; i++) {
+    const ll = latlngs[i];
+    try {
+      const p = map.latLngToLayerPoint(ll); // projection Leaflet
+      if (isFinitePoint(p)) {
+        good.push(ll);
+      } else {
+        if (badSamples.length < 5) badSamples.push({ i, ll, projected: p });
+      }
+    } catch (e) {
+      if (badSamples.length < 5) badSamples.push({ i, ll, error: String(e) });
+    }
+  }
+
+  if (badSamples.length) {
+    console.warn('[GPX] Dropped invalid projected points:', badSamples);
+  }
+  console.log('[GPX] sanitize: in=', latlngs.length, 'out=', good.length);
+
+  return good;
+}
 
   // Dessin: noClip évite certains soucis de clipping
   currentLayer = L.polyline(latlngs, {
