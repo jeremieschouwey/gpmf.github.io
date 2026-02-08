@@ -72,51 +72,43 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     buttonEl.classList.add('is-active');
   }
 
-  // === TEST 1: scan GPX for invalid points (lat/lon missing or non numeric) ===
+  // === TEST 1: scan GPX for invalid points (robust XML parser) ===
   async function scanGpxForInvalidPoints(url) {
-  const res = await fetch(url, { cache: 'no-store' });
-  console.log('[GPX scan] fetch', url, '->', res.status);
+    const res = await fetch(url, { cache: 'no-store' });
+    console.log('[GPX scan] fetch', url, '->', res.status);
 
-  const txt = await res.text();
-  console.log('[GPX scan] first chars:', txt.slice(0, 120));
+    const txt = await res.text();
+    console.log('[GPX scan] first chars:', txt.slice(0, 120));
 
-  const xml = new DOMParser().parseFromString(txt, "application/xml");
-  const parseError = xml.querySelector("parsererror");
-  if (parseError) {
-    console.error('[GPX scan] XML parse error:', parseError.textContent);
-    return;
-  }
-
-  const pts = [...xml.getElementsByTagName("trkpt"), ...xml.getElementsByTagName("rtept")];
-
-  let total = 0, bad = 0;
-  const samples = [];
-  for (const p of pts) {
-    total++;
-    const lat = parseFloat(p.getAttribute("lat"));
-    const lon = parseFloat(p.getAttribute("lon"));
-    const ok = Number.isFinite(lat) && Number.isFinite(lon);
-    if (!ok) {
-      bad++;
-      if (samples.length < 5) samples.push(p.outerHTML.slice(0, 140) + "...");
+    const xml = new DOMParser().parseFromString(txt, "application/xml");
+    const parseError = xml.querySelector("parsererror");
+    if (parseError) {
+      console.error('[GPX scan] XML parse error:', parseError.textContent);
+      return;
     }
-  }
 
-  console.log('[GPX scan] points:', total, 'bad:', bad);
-  if (bad) console.warn('[GPX scan] bad samples:', samples);
-  if (!total) console.warn('[GPX scan] no trkpt/rtept found at all');
-}
+    const pts = [
+      ...xml.getElementsByTagName("trkpt"),
+      ...xml.getElementsByTagName("rtept")
+    ];
 
+    let total = 0, bad = 0;
+    const samples = [];
+
+    for (const p of pts) {
+      total++;
+      const lat = parseFloat(p.getAttribute("lat"));
+      const lon = parseFloat(p.getAttribute("lon"));
+      const ok = Number.isFinite(lat) && Number.isFinite(lon);
+      if (!ok) {
+        bad++;
+        if (samples.length < 5) samples.push(p.outerHTML.slice(0, 160) + "...");
+      }
+    }
 
     console.log('[GPX scan] points:', total, 'bad:', bad);
     if (bad) console.warn('[GPX scan] bad samples:', samples);
-
-    if (!total) {
-      console.warn('[GPX scan] no trkpt/rtept found (GPX format different?)');
-    }
-
-    // keep a tiny preview to ensure we really fetched GPX
-    console.log('[GPX scan] first chars:', txt.slice(0, 120));
+    if (!total) console.warn('[GPX scan] no trkpt/rtept found at all');
   }
 
   async function loadTrace(trace, buttonEl) {
@@ -141,6 +133,10 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     } catch (e) {
       console.error('[GPX scan] failed:', e);
     }
+
+    // Debug plugin presence
+    console.log('[DEBUG] Leaflet version:', L && L.version);
+    console.log('[DEBUG] typeof L.GPX:', typeof (L && L.GPX));
 
     currentLayer = new L.GPX(url, {
       async: true,
@@ -185,8 +181,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
     elList.querySelector('.trace-item')?.click();
   }
-console.log('[DEBUG] Leaflet version:', L && L.version);
-console.log('[DEBUG] typeof L.GPX:', typeof (L && L.GPX));
 
   renderList();
 </script>
@@ -279,18 +273,5 @@ console.log('[DEBUG] typeof L.GPX:', typeof (L && L.GPX));
     background: #fff;
   }
 
-  .card{
-    background: var(--card);
-    border:1px solid var(--border);
-    border-radius: var(--radius);
-    padding:14px;
-    box-shadow: var(--shadow);
-  }
-  .card-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-  }
   .muted{ color: var(--muted); }
 </style>
