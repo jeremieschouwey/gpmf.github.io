@@ -90,7 +90,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     }
 
     // Si la map vient d'être affichée/resize
-    setTimeout(() => map.invalidateSize(true), 0);
+    //setTimeout(() => map.invalidateSize(true), 0);
 
     currentLayer = new L.GPX(url, {
       async: true,
