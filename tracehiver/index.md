@@ -42,7 +42,8 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
 <!-- GPX loader (CDN jsDelivr) -->
-<script src="https://cdn.jsdelivr.net/npm/leaflet-gpx@1.7.0/gpx.min.js"></script>
+<script src="https://unpkg.com/leaflet-gpx@1.7.0/leaflet-gpx.js"></script>
+
 
 <script>
   const TRACES = {{ site.data.gpx_traces | jsonify }};
