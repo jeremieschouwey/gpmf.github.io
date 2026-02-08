@@ -36,14 +36,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
     <div id="map" class="map-box"></div>
 
-    <div class="card" style="margin-top:12px;">
-      <div class="card-title"><h3 style="margin:0;">Conseils</h3></div>
-      <ul style="margin:10px 0 0 18px;">
-        <li>En hiver, privilégie des chaussures adaptées si c’est gelé (crampons légers / semelle accrocheuse).</li>
-        <li>Si la trace traverse des zones forestières ombragées, attention aux plaques de glace.</li>
-        <li>Ces tracés sont fournis “tels quels” : reste attentif à la signalisation et aux conditions.</li>
-      </ul>
-    </div>
+    
   </section>
 </div>
 
