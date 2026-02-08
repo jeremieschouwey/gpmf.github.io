@@ -35,8 +35,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     </div>
 
     <div id="map" class="map-box"></div>
-
-    
   </section>
 </div>
 
@@ -46,12 +44,12 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 <!-- GPX loader (CDN jsDelivr) -->
 <script src="https://cdn.jsdelivr.net/npm/leaflet-gpx@1.7.0/gpx.min.js"></script>
 
-
 <script>
   const TRACES = {{ site.data.gpx_traces | jsonify }};
 
   const elList  = document.getElementById('tracesList');
   const elTitle = document.getElementById('traceTitle');
+  const elMeta  = document.getElementById('traceMeta');
   const elDl    = document.getElementById('downloadBtn');
 
   const map = L.map('map');
@@ -74,10 +72,44 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     buttonEl.classList.add('is-active');
   }
 
-  function loadTrace(trace, buttonEl) {
+  // === TEST 1: scan GPX for invalid points (lat/lon missing or non numeric) ===
+  async function scanGpxForInvalidPoints(url) {
+    const res = await fetch(url, { cache: 'no-store' });
+    console.log('[GPX scan] fetch', url, '->', res.status);
+
+    const txt = await res.text();
+
+    const re = /<(trkpt|rtept)\b[^>]*\blat="([^"]*)"\b[^>]*\blon="([^"]*)"\b[^>]*>/g;
+    let m, total = 0, bad = 0;
+    const samples = [];
+
+    while ((m = re.exec(txt)) !== null) {
+      total++;
+      const lat = parseFloat(m[2]);
+      const lon = parseFloat(m[3]);
+      const ok = Number.isFinite(lat) && Number.isFinite(lon);
+      if (!ok) {
+        bad++;
+        if (samples.length < 5) samples.push(m[0]);
+      }
+    }
+
+    console.log('[GPX scan] points:', total, 'bad:', bad);
+    if (bad) console.warn('[GPX scan] bad samples:', samples);
+
+    if (!total) {
+      console.warn('[GPX scan] no trkpt/rtept found (GPX format different?)');
+    }
+
+    // keep a tiny preview to ensure we really fetched GPX
+    console.log('[GPX scan] first chars:', txt.slice(0, 120));
+  }
+
+  async function loadTrace(trace, buttonEl) {
     if (buttonEl) setActive(buttonEl);
 
     elTitle.textContent = trace.title || trace.file;
+    elMeta.textContent = '';
 
     const url = gpxUrl(trace.file);
     elDl.href = url;
@@ -89,12 +121,15 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
       currentLayer = null;
     }
 
-    // Si la map vient d'être affichée/resize
-    //setTimeout(() => map.invalidateSize(true), 0);
+    // === TEST 1 execution ===
+    try {
+      await scanGpxForInvalidPoints(url);
+    } catch (e) {
+      console.error('[GPX scan] failed:', e);
+    }
 
     currentLayer = new L.GPX(url, {
       async: true,
-      // Évite les soucis d'icônes (et l'erreur GPXTrackIcon)
       marker_options: {
         startIconUrl: null,
         endIconUrl: null,
@@ -108,7 +143,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     .on('loaded', function(e) {
       const bounds = e.target.getBounds();
       if (bounds && bounds.isValid && bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [20, 20] });
+        map.fitBounds(bounds, { padding: [20, 20], animate: false });
       }
     })
     .on('error', function(err) {
@@ -139,7 +174,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
   renderList();
 </script>
-
 
 <style>
   .traces-layout{
@@ -229,7 +263,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
     background: #fff;
   }
 
-  /* Reuse your existing .card styles if present; this is safe fallback */
   .card{
     background: var(--card);
     border:1px solid var(--border);
