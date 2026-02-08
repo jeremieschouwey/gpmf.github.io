@@ -11,3 +11,8 @@ Ajouter des actualités :
 
 Modifier le programme :
   Le contenu du programme se trouve dans la hiérarchie du site sous assets/programme2026.json
+
+Ajouter un tracée pour les hivernaux : 
+  Tu copies le fichier : assets/gpx/NOM.gpx
+  Tu ajoutes une entrée dans _data/gpx_traces.yml avec file: "NOM.gpx"
+  Commit / push → c’est live.
