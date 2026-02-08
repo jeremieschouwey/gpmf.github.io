@@ -48,127 +48,116 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 <script src="https://unpkg.com/leaflet-gpx@1.7.0/leaflet-gpx.min.js"></script>
 
 <script>
-  // Data from Jekyll (_data/gpx_traces.yml)
   const TRACES = {{ site.data.gpx_traces | jsonify }};
 
-  const elList = document.getElementById('tracesList');
+  const elList  = document.getElementById('tracesList');
   const elTitle = document.getElementById('traceTitle');
   const elMeta  = document.getElementById('traceMeta');
   const elDl    = document.getElementById('downloadBtn');
 
-  // Map init
-  const map = L.map('map', { scrollWheelZoom: false });
+  const map = L.map('map');
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  // Default view (Suisse) until a trace is loaded
   map.setView([46.8, 7.15], 11);
 
   let currentLayer = null;
 
-  function formatMeta(t) {
-    const parts = [];
-    if (typeof t.distance_km !== 'undefined') parts.push(`${t.distance_km} km`);
-    if (typeof t.dplus_m !== 'undefined') parts.push(`D+ ${t.dplus_m} m`);
-    if (t.difficulty) parts.push(`${t.difficulty}`);
-    return parts.join(" • ");
-  }
-
   function gpxUrl(file) {
-    return "{{ '/assets/gpx/' | relative_url }}" + file;
+    // ⚠️ on construit l'URL proprement (évite les surprises de slash)
+    const base = "{{ '/assets/gpx/' | relative_url }}";
+    return base.replace(/\/?$/, '/') + file.replace(/^\//, '');
   }
 
-  function setActive(buttonEl) {
-    [...document.querySelectorAll('.trace-item')].forEach(el => el.classList.remove('is-active'));
-    buttonEl.classList.add('is-active');
+  async function smokeTestFetch(url) {
+    console.log('[GPX] fetch test:', url);
+    const res = await fetch(url, { cache: 'no-store' });
+    console.log('[GPX] status:', res.status, res.statusText);
+    const txt = await res.text();
+    console.log('[GPX] first chars:', txt.slice(0, 120));
+    // Petit check “GPX-like”
+    if (!txt.includes('<gpx') && !txt.includes('<trk') && !txt.includes('<rte')) {
+      console.warn('[GPX] content does not look like GPX');
+    }
   }
 
   function loadTrace(trace, buttonEl) {
-    if (buttonEl) setActive(buttonEl);
-
-    elTitle.textContent = trace.title || trace.file;
-    const meta = formatMeta(trace);
-    elMeta.textContent = meta ? meta : '';
-    if (trace.description) {
-      elMeta.textContent = meta ? (meta + " — " + trace.description) : trace.description;
+    // UI
+    if (buttonEl) {
+      [...document.querySelectorAll('.trace-item')].forEach(el => el.classList.remove('is-active'));
+      buttonEl.classList.add('is-active');
     }
-
-    const url = gpxUrl(trace.file);
-
-    // Download button
-    elDl.href = url;
+    elTitle.textContent = trace.title || trace.file;
+    elMeta.textContent = '';
+    elDl.href = gpxUrl(trace.file);
     elDl.style.pointerEvents = 'auto';
     elDl.style.opacity = '1';
 
-    // Remove previous layer
+    const url = gpxUrl(trace.file);
+    console.log('[GPX] loading:', trace.file, '->', url);
+
+    // remove previous
     if (currentLayer) {
       map.removeLayer(currentLayer);
       currentLayer = null;
     }
 
-    // Load GPX
+    // IMPORTANT: si la map est dans un layout qui change, parfois il faut ça
+    setTimeout(() => map.invalidateSize(true), 0);
+
+    // Optionnel: test fetch pour voir si le fichier est vraiment récupéré
+    smokeTestFetch(url).catch(err => console.error('[GPX] fetch failed:', err));
+
     currentLayer = new L.GPX(url, {
       async: true,
-      marker_options: {
-        startIconUrl: null,
-        endIconUrl: null,
-        shadowUrl: null
+      polyline_options: {
+        // on force un style visible
+        opacity: 0.9,
+        weight: 5
       }
     })
     .on('loaded', function(e) {
+      console.log('[GPX] loaded event fired');
       const bounds = e.target.getBounds();
-      if (bounds && bounds.isValid()) {
+      console.log('[GPX] bounds:', bounds);
+
+      if (bounds && bounds.isValid && bounds.isValid()) {
         map.fitBounds(bounds, { padding: [20, 20] });
+      } else {
+        console.warn('[GPX] invalid bounds -> fallback zoom');
+        map.setView([46.8, 7.15], 12);
       }
     })
     .on('error', function(err) {
-      console.error('GPX load error', err);
-      alert("Impossible de charger ce GPX. Vérifie le fichier et son chemin.");
+      console.error('[GPX] leaflet-gpx error:', err);
+      alert("Erreur: impossible de lire le fichier GPX. Regarde la console (F12) pour le détail.");
     })
     .addTo(map);
   }
 
   function renderList() {
     if (!TRACES || !TRACES.length) {
-      elList.innerHTML = `
-        <div class="card">
-          <p style="margin:0;">
-            Aucun tracé n’est encore configuré.
-            Ajoute des fichiers dans <code>assets/gpx</code> et référence-les dans <code>_data/gpx_traces.yml</code>.
-          </p>
-        </div>
-      `;
+      elList.innerHTML = `<p>Aucun tracé configuré.</p>`;
       return;
     }
+    elList.innerHTML = TRACES.map((t, idx) => `
+      <button class="trace-item" type="button" data-index="${idx}">
+        <div class="trace-title">${t.title || t.file}</div>
+      </button>
+    `).join('');
 
-    elList.innerHTML = TRACES.map((t, idx) => {
-      const title = t.title || t.file;
-      const meta = formatMeta(t);
-      return `
-        <button class="trace-item" type="button" data-index="${idx}">
-          <div class="trace-title">${title}</div>
-          ${meta ? `<div class="trace-meta">${meta}</div>` : ``}
-        </button>
-      `;
-    }).join('');
-
-    // Bind clicks
     [...elList.querySelectorAll('.trace-item')].forEach(btn => {
-      btn.addEventListener('click', () => {
-        const i = Number(btn.dataset.index);
-        loadTrace(TRACES[i], btn);
-      });
+      btn.addEventListener('click', () => loadTrace(TRACES[Number(btn.dataset.index)], btn));
     });
 
-    // Auto-load first trace
-    const firstBtn = elList.querySelector('.trace-item');
-    if (firstBtn) firstBtn.click();
+    elList.querySelector('.trace-item')?.click();
   }
 
   renderList();
 </script>
+
 
 <style>
   .traces-layout{
