@@ -40,13 +40,11 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   </section>
 </div>
 
-<!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-<!-- GPX loader -->
-<script src="https://cdn.jsdelivr.net/npm/leaflet-gpx@1.7.0/dist/leaflet-gpx.min.js"></script>
-
+<!-- GPX loader (CDN jsDelivr) -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet-gpx@1.7.0/gpx.min.js"></script>
 
 
 <script>
@@ -54,7 +52,6 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
   const elList  = document.getElementById('tracesList');
   const elTitle = document.getElementById('traceTitle');
-  const elMeta  = document.getElementById('traceMeta');
   const elDl    = document.getElementById('downloadBtn');
 
   const map = L.map('map');
@@ -68,73 +65,55 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   let currentLayer = null;
 
   function gpxUrl(file) {
-    // ⚠️ on construit l'URL proprement (évite les surprises de slash)
     const base = "{{ '/assets/gpx/' | relative_url }}";
     return base.replace(/\/?$/, '/') + file.replace(/^\//, '');
   }
 
-  async function smokeTestFetch(url) {
-    console.log('[GPX] fetch test:', url);
-    const res = await fetch(url, { cache: 'no-store' });
-    console.log('[GPX] status:', res.status, res.statusText);
-    const txt = await res.text();
-    console.log('[GPX] first chars:', txt.slice(0, 120));
-    // Petit check “GPX-like”
-    if (!txt.includes('<gpx') && !txt.includes('<trk') && !txt.includes('<rte')) {
-      console.warn('[GPX] content does not look like GPX');
-    }
+  function setActive(buttonEl) {
+    [...document.querySelectorAll('.trace-item')].forEach(el => el.classList.remove('is-active'));
+    buttonEl.classList.add('is-active');
   }
 
   function loadTrace(trace, buttonEl) {
-    // UI
-    if (buttonEl) {
-      [...document.querySelectorAll('.trace-item')].forEach(el => el.classList.remove('is-active'));
-      buttonEl.classList.add('is-active');
-    }
+    if (buttonEl) setActive(buttonEl);
+
     elTitle.textContent = trace.title || trace.file;
-    elMeta.textContent = '';
-    elDl.href = gpxUrl(trace.file);
+
+    const url = gpxUrl(trace.file);
+    elDl.href = url;
     elDl.style.pointerEvents = 'auto';
     elDl.style.opacity = '1';
 
-    const url = gpxUrl(trace.file);
-    console.log('[GPX] loading:', trace.file, '->', url);
-
-    // remove previous
     if (currentLayer) {
       map.removeLayer(currentLayer);
       currentLayer = null;
     }
 
-    // IMPORTANT: si la map est dans un layout qui change, parfois il faut ça
+    // Si la map vient d'être affichée/resize
     setTimeout(() => map.invalidateSize(true), 0);
-
-    // Optionnel: test fetch pour voir si le fichier est vraiment récupéré
-    smokeTestFetch(url).catch(err => console.error('[GPX] fetch failed:', err));
 
     currentLayer = new L.GPX(url, {
       async: true,
+      // Évite les soucis d'icônes (et l'erreur GPXTrackIcon)
+      marker_options: {
+        startIconUrl: null,
+        endIconUrl: null,
+        shadowUrl: null
+      },
       polyline_options: {
-        // on force un style visible
         opacity: 0.9,
         weight: 5
       }
     })
     .on('loaded', function(e) {
-      console.log('[GPX] loaded event fired');
       const bounds = e.target.getBounds();
-      console.log('[GPX] bounds:', bounds);
-
       if (bounds && bounds.isValid && bounds.isValid()) {
         map.fitBounds(bounds, { padding: [20, 20] });
-      } else {
-        console.warn('[GPX] invalid bounds -> fallback zoom');
-        map.setView([46.8, 7.15], 12);
       }
     })
     .on('error', function(err) {
-      console.error('[GPX] leaflet-gpx error:', err);
-      alert("Erreur: impossible de lire le fichier GPX. Regarde la console (F12) pour le détail.");
+      console.error('GPX parse/load error', err);
+      alert("Impossible de charger ce GPX. Vérifie le fichier et la console.");
     })
     .addTo(map);
   }
@@ -144,6 +123,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
       elList.innerHTML = `<p>Aucun tracé configuré.</p>`;
       return;
     }
+
     elList.innerHTML = TRACES.map((t, idx) => `
       <button class="trace-item" type="button" data-index="${idx}">
         <div class="trace-title">${t.title || t.file}</div>
