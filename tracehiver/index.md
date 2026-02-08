@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tracées hivernaux
-permalink: /traces-hivernaux/
+permalink: /tracehiver/
 ---
 
 # Tracées hivernaux
