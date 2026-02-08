@@ -74,25 +74,39 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
   // === TEST 1: scan GPX for invalid points (lat/lon missing or non numeric) ===
   async function scanGpxForInvalidPoints(url) {
-    const res = await fetch(url, { cache: 'no-store' });
-    console.log('[GPX scan] fetch', url, '->', res.status);
+  const res = await fetch(url, { cache: 'no-store' });
+  console.log('[GPX scan] fetch', url, '->', res.status);
 
-    const txt = await res.text();
+  const txt = await res.text();
+  console.log('[GPX scan] first chars:', txt.slice(0, 120));
 
-    const re = /<(trkpt|rtept)\b[^>]*\blat="([^"]*)"\b[^>]*\blon="([^"]*)"\b[^>]*>/g;
-    let m, total = 0, bad = 0;
-    const samples = [];
+  const xml = new DOMParser().parseFromString(txt, "application/xml");
+  const parseError = xml.querySelector("parsererror");
+  if (parseError) {
+    console.error('[GPX scan] XML parse error:', parseError.textContent);
+    return;
+  }
 
-    while ((m = re.exec(txt)) !== null) {
-      total++;
-      const lat = parseFloat(m[2]);
-      const lon = parseFloat(m[3]);
-      const ok = Number.isFinite(lat) && Number.isFinite(lon);
-      if (!ok) {
-        bad++;
-        if (samples.length < 5) samples.push(m[0]);
-      }
+  const pts = [...xml.getElementsByTagName("trkpt"), ...xml.getElementsByTagName("rtept")];
+
+  let total = 0, bad = 0;
+  const samples = [];
+  for (const p of pts) {
+    total++;
+    const lat = parseFloat(p.getAttribute("lat"));
+    const lon = parseFloat(p.getAttribute("lon"));
+    const ok = Number.isFinite(lat) && Number.isFinite(lon);
+    if (!ok) {
+      bad++;
+      if (samples.length < 5) samples.push(p.outerHTML.slice(0, 140) + "...");
     }
+  }
+
+  console.log('[GPX scan] points:', total, 'bad:', bad);
+  if (bad) console.warn('[GPX scan] bad samples:', samples);
+  if (!total) console.warn('[GPX scan] no trkpt/rtept found at all');
+}
+
 
     console.log('[GPX scan] points:', total, 'bad:', bad);
     if (bad) console.warn('[GPX scan] bad samples:', samples);
@@ -171,6 +185,8 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
 
     elList.querySelector('.trace-item')?.click();
   }
+console.log('[DEBUG] Leaflet version:', L && L.version);
+console.log('[DEBUG] typeof L.GPX:', typeof (L && L.GPX));
 
   renderList();
 </script>
