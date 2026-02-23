@@ -463,11 +463,28 @@ permalink: /programme/
 
   // --- Load per language ---
   async function loadDataForLang(lang) {
-    const url = (lang === "de") ? API_DE : API_FR;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return await res.json();
+  const url = (lang === "de") ? API_DE : API_FR;
+
+  console.log("[programme] loading lang =", lang, "url =", url);
+
+  const res = await fetch(url, { cache: "no-store" });
+  console.log("[programme] fetch status =", res.status);
+
+  if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText} for ${url}`);
+
+  const txt = await res.text();
+  console.log("[programme] first chars =", txt.slice(0, 60));
+
+  let obj;
+  try {
+    obj = JSON.parse(txt);
+  } catch (err) {
+    throw new Error(`Invalid JSON: ${err.message}`);
   }
+
+  console.log("[programme] data OK, weeks =", (obj.weeks || []).length);
+  return obj;
+}
 
   // --- Helpers ---
   function ymdLocal(d) {
