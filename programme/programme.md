@@ -13,6 +13,12 @@ permalink: /programme/
   <div id="calTitle" class="cal-title"></div>
   <button id="calNext" class="btn btn-ghost" type="button">Mois suivant ▶</button>
 </div>
+
+<div class="cal-lang" style="display:flex; gap:10px; justify-content:flex-end; margin: 8px 0 12px;">
+  <button id="langFR" class="btn" type="button">FR</button>
+  <button id="langDE" class="btn" type="button">DE</button>
+</div>
+
 <div style="margin:10px 0 18px 0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
   <button id="calDownloadIcs" class="btn" type="button">Télécharger le programme (.ics)</button>
   <span class="muted">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
@@ -171,41 +177,84 @@ permalink: /programme/
   </div>
 </section>
 
-
 <script>
 (async () => {
-  const API_ALL = "https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.all.json";
+  // --- Sources ---
+  const API_FR = "{{ '/assets/programme2026.fr.json' | relative_url }}";
+  const API_DE = "{{ '/assets/programme2026.de.json' | relative_url }}";
 
+  // --- DOM ---
   const elTitle = document.getElementById("calTitle");
   const elGrid = document.getElementById("calGrid");
   const elDetails = document.getElementById("calDetails");
+
   const btnPrev = document.getElementById("calPrev");
   const btnNext = document.getElementById("calNext");
-const btnIcs = document.getElementById("calDownloadIcs");
-  // Charge toutes les séances (20 semaines)
-  let data;
+  const btnIcs  = document.getElementById("calDownloadIcs");
+
+  const btnFR = document.getElementById("langFR");
+  const btnDE = document.getElementById("langDE");
+
+  // --- i18n minimal (UI) ---
+  const UI = {
+    fr: {
+      monthNames: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+      headers: ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],
+      noProgram: "Impossible de charger le programme.",
+      pickDate: "Sélectionne une date dans le calendrier.",
+      noneThisMonth: "Aucune séance planifiée sur ce mois.",
+      noneOnDate: (k) => `Aucune séance le ${k}.`,
+      week: "Semaine",
+      intensity: "Intensité",
+      timeLabel: "Heure",
+      durationLabel: "Durée",
+      advice: "Conseil",
+      wedSession: "Séance du mercredi",
+      extraSessions: "Séances supplémentaires",
+      details: "Détails",
+      toDefine: "À définir",
+      icsFilename: "gpmf-programme-2026-fr.ics",
+      icsProdid: "-//GPMF//Programme 2026//FR"
+    },
+    de: {
+      monthNames: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+      headers: ["Mo","Di","Mi","Do","Fr","Sa","So"],
+      noProgram: "Das Programm konnte nicht geladen werden.",
+      pickDate: "Wähle ein Datum im Kalender.",
+      noneThisMonth: "In diesem Monat ist kein Training geplant.",
+      noneOnDate: (k) => `Kein Training am ${k}.`,
+      week: "Woche",
+      intensity: "Intensität",
+      timeLabel: "Uhrzeit",
+      durationLabel: "Dauer",
+      advice: "Tipp",
+      wedSession: "Training am Mittwoch",
+      extraSessions: "Zusätzliche Trainings",
+      details: "Details",
+      toDefine: "Noch festzulegen",
+      icsFilename: "gpmf-programme-2026-de.ics",
+      icsProdid: "-//GPMF//Programme 2026//DE"
+    }
+  };
+
+  // --- State ---
+  let currentLang = getLangFromUrlOrStorage();
+  let data = null;
+  let byDate = new Map();
+
+  // --- Init UI ---
+  setLangButtonsActive(currentLang);
+  setPickDateText();
+
+  // --- Load initial data ---
   try {
-    const res = await fetch(API_ALL, { cache: "no-store" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    data = await res.json();
-    if (btnIcs) {
-  btnIcs.addEventListener("click", () => {
-    const ics = buildIcsCalendar(data);
-    downloadTextFile(ics, "gpmf-programme-2026.ics", "text/calendar;charset=utf-8");
-  });
-}
+    data = await loadDataForLang(currentLang);
   } catch (e) {
-    elGrid.innerHTML = "<p>Impossible de charger le programme.</p>";
+    elGrid.innerHTML = `<p>${escapeHtml(UI[currentLang].noProgram)}</p>`;
     return;
   }
 
-  // Indexer les séances par date YYYY-MM-DD
-  const byDate = new Map();
-  for (const w of (data.weeks || [])) {
-    const d = new Date(w.date_iso);
-    const key = ymdLocal(d);
-    byDate.set(key, w);
-  }
+  rebuildIndex();
 
   // Mois courant affiché (par défaut : mois de la prochaine séance si elle existe, sinon mois actuel)
   const now = new Date();
@@ -213,6 +262,7 @@ const btnIcs = document.getElementById("calDownloadIcs");
   let currentMonth = next ? new Date(next.date_iso) : now;
   currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
 
+  // --- Nav month ---
   btnPrev.addEventListener("click", () => {
     currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
     render();
@@ -222,20 +272,69 @@ const btnIcs = document.getElementById("calDownloadIcs");
     render();
   });
 
+  // --- Language buttons ---
+  if (btnFR) btnFR.addEventListener("click", async () => {
+    if (currentLang === "fr") return;
+    await switchLang("fr");
+  });
+  if (btnDE) btnDE.addEventListener("click", async () => {
+    if (currentLang === "de") return;
+    await switchLang("de");
+  });
+
+  // --- ICS download ---
+  if (btnIcs) {
+    btnIcs.addEventListener("click", () => {
+      const ics = buildIcsCalendar(data, currentLang);
+      downloadTextFile(ics, UI[currentLang].icsFilename, "text/calendar;charset=utf-8");
+    });
+  }
+
+  async function switchLang(lang) {
+    currentLang = lang;
+    setLang(lang);
+    setLangButtonsActive(lang);
+
+    try {
+      data = await loadDataForLang(lang);
+    } catch (e) {
+      elGrid.innerHTML = `<p>${escapeHtml(UI[lang].noProgram)}</p>`;
+      return;
+    }
+
+    rebuildIndex();
+    setPickDateText();
+    render();
+  }
+
+  function setPickDateText() {
+    elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].pickDate)}</p>`;
+  }
+
+  function rebuildIndex() {
+    byDate = new Map();
+    for (const w of (data.weeks || [])) {
+      const d = new Date(w.date_iso);
+      const key = ymdLocal(d);
+      byDate.set(key, w);
+    }
+  }
+
+  // --- Render calendar + details ---
   function render() {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth(); // 0..11
 
-    elTitle.textContent = monthNameFR(month) + " " + year;
+    elTitle.textContent = UI[currentLang].monthNames[month] + " " + year;
 
-    const headers = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+    const headers = UI[currentLang].headers;
     const firstDay = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const offset = (firstDay.getDay() + 6) % 7; // lun=0 ... dim=6
+    const offset = (firstDay.getDay() + 6) % 7; // lun=0 ... dim=6 (structure identique même en DE)
 
     let html = "";
     html += `<div class="cal-row cal-head">${
-      headers.map(h => `<div class="cal-cell cal-headcell">${h}</div>`).join("")
+      headers.map(h => `<div class="cal-cell cal-headcell">${escapeHtml(h)}</div>`).join("")
     }</div>`;
 
     let day = 1;
@@ -255,7 +354,7 @@ const btnIcs = document.getElementById("calDownloadIcs");
         rowHtml += `
           <button class="cal-cell cal-day ${hasEvent ? "cal-event" : ""}" type="button" data-date="${key}">
             <div class="cal-daynum">${day}</div>
-            ${hasEvent ? `<div class="cal-dot" aria-label="Séance"></div>` : ``}
+            ${hasEvent ? `<div class="cal-dot" aria-label="Event"></div>` : ``}
           </button>
         `;
         day++;
@@ -278,13 +377,13 @@ const btnIcs = document.getElementById("calDownloadIcs");
     });
 
     if (firstEventKeyInMonth) showDetails(firstEventKeyInMonth);
-    else elDetails.innerHTML = "<p>Aucune séance planifiée sur ce mois.</p>";
+    else elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneThisMonth)}</p>`;
   }
 
   function showDetails(key) {
     const ev = byDate.get(key);
     if (!ev) {
-      elDetails.innerHTML = `<p>Aucune séance le ${escapeHtml(key)}.</p>`;
+      elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneOnDate(escapeHtml(key)))}</p>`;
       return;
     }
 
@@ -298,13 +397,13 @@ const btnIcs = document.getElementById("calDownloadIcs");
     const intensityHtml =
       intensity && (intensity.I || intensity.percent)
         ? `<div class="badge-row">
-             <span class="badge">Semaine ${escapeHtml(ev.week)}</span>
-             <span class="badge badge-soft">Intensité: ${
+             <span class="badge">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span>
+             <span class="badge badge-soft">${escapeHtml(UI[currentLang].intensity)}: ${
                [intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""]
                  .filter(Boolean).join(" — ")
              }</span>
            </div>`
-        : `<div class="badge-row"><span class="badge">Semaine ${escapeHtml(ev.week)}</span></div>`;
+        : `<div class="badge-row"><span class="badge">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span></div>`;
 
     const levelCards = levels.length
       ? levels.map(lvl => {
@@ -316,13 +415,13 @@ const btnIcs = document.getElementById("calDownloadIcs");
               <div class="level-title">${escapeHtml(lvl.label)}</div>
 
               <div class="block">
-                <div class="block-title">Séance du mercredi</div>
-                <div class="block-body">${formatMultiline(wTxt || "À définir")}</div>
+                <div class="block-title">${escapeHtml(UI[currentLang].wedSession)}</div>
+                <div class="block-body">${formatMultiline(wTxt || UI[currentLang].toDefine)}</div>
               </div>
 
               <div class="block">
-                <div class="block-title">Séances supplémentaires</div>
-                <div class="block-body">${formatMultiline(sTxt || "À définir")}</div>
+                <div class="block-title">${escapeHtml(UI[currentLang].extraSessions)}</div>
+                <div class="block-body">${formatMultiline(sTxt || UI[currentLang].toDefine)}</div>
               </div>
             </div>
           `;
@@ -332,7 +431,7 @@ const btnIcs = document.getElementById("calDownloadIcs");
     const conseilHtml = conseil
       ? `
         <div class="advice">
-          <div class="advice-title">Conseil</div>
+          <div class="advice-title">${escapeHtml(UI[currentLang].advice)}</div>
           <div class="advice-body">${formatMultiline(conseil)}</div>
         </div>
       `
@@ -340,7 +439,7 @@ const btnIcs = document.getElementById("calDownloadIcs");
 
     const fallbackDescription = (!levels.length && ev.description)
       ? `<div class="block">
-           <div class="block-title">Détails</div>
+           <div class="block-title">${escapeHtml(UI[currentLang].details)}</div>
            <div class="block-body">${formatMultiline(ev.description)}</div>
          </div>`
       : "";
@@ -362,13 +461,18 @@ const btnIcs = document.getElementById("calDownloadIcs");
     `;
   }
 
+  // --- Load per language ---
+  async function loadDataForLang(lang) {
+    const url = (lang === "de") ? API_DE : API_FR;
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return await res.json();
+  }
+
+  // --- Helpers ---
   function ymdLocal(d) {
     const pad = (n) => String(n).padStart(2, "0");
     return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
-  }
-
-  function monthNameFR(m) {
-    return ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"][m];
   }
 
   function escapeHtml(s) {
@@ -381,187 +485,203 @@ const btnIcs = document.getElementById("calDownloadIcs");
     return escapeHtml(String(text)).replace(/\r?\n/g, "<br/>");
   }
 
-function buildIcsCalendar(data) {
-  const weeks = Array.isArray(data.weeks) ? data.weeks : [];
-  const nowUtc = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+  // --- ICS ---
+  function buildIcsCalendar(data, lang) {
+    const weeks = Array.isArray(data.weeks) ? data.weeks : [];
+    const nowUtc = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
 
-  const lines = [];
-  lines.push("BEGIN:VCALENDAR");
-  lines.push("VERSION:2.0");
-  lines.push("PRODID:-//GPMF//Programme 2026//FR");
-  lines.push("CALSCALE:GREGORIAN");
-  lines.push("METHOD:PUBLISH");
-  lines.push(...vtzEuropeZurich());
+    const lines = [];
+    lines.push("BEGIN:VCALENDAR");
+    lines.push("VERSION:2.0");
+    lines.push("PRODID:" + UI[lang].icsProdid);
+    lines.push("CALSCALE:GREGORIAN");
+    lines.push("METHOD:PUBLISH");
+    lines.push(...vtzEuropeZurich());
 
-  for (const w of weeks) {
-    if (!w || !w.date_iso) continue;
+    for (const w of weeks) {
+      if (!w || !w.date_iso) continue;
 
-    const { hh, mm } = parseTimeToHHMM(w.time);
-    const startLocal = formatLocalDateTime(w.date_iso, hh, mm); // YYYYMMDDTHHMM00
-    const dur = Number.isFinite(+w.duration_minutes) ? Math.max(1, +w.duration_minutes) : 60;
-    const endLocal = addMinutesToLocalDateTime(w.date_iso, hh, mm, dur);
+      const { hh, mm } = parseTimeToHHMM(w.time);
+      const startLocal = formatLocalDateTime(w.date_iso, hh, mm);
+      const dur = Number.isFinite(+w.duration_minutes) ? Math.max(1, +w.duration_minutes) : 60;
+      const endLocal = addMinutesToLocalDateTime(w.date_iso, hh, mm, dur);
 
-    const title = w.title || `Séance GPMF — Semaine ${w.week ?? ""}`.trim();
-    const location = w.location || "";
-    const description = buildDescription(w);
+      const title = w.title || `GPMF — ${UI[lang].week} ${w.week ?? ""}`.trim();
+      const location = w.location || "";
+      const description = buildDescription(w, lang);
 
-    const uid = `gpmf-${(w.date_iso || "").slice(0,10)}-w${w.week ?? "x"}@gpmf.ch`;
+      const uid = `gpmf-${(w.date_iso || "").slice(0,10)}-w${w.week ?? "x"}@gpmf.ch`;
 
-    lines.push("BEGIN:VEVENT");
-    lines.push(foldLine("UID:" + uid));
-    lines.push(foldLine("DTSTAMP:" + nowUtc));
-    lines.push(foldLine("SUMMARY:" + icsEscapeText(title)));
-    lines.push(foldLine("DTSTART;TZID=Europe/Zurich:" + startLocal));
-    lines.push(foldLine("DTEND;TZID=Europe/Zurich:" + endLocal));
-    if (location) lines.push(foldLine("LOCATION:" + icsEscapeText(location)));
-    if (description) lines.push(foldLine("DESCRIPTION:" + icsEscapeText(description)));
-    lines.push("END:VEVENT");
-  }
-
-  lines.push("END:VCALENDAR");
-  return lines.join("\r\n") + "\r\n";
-}
-
-function buildDescription(ev) {
-  const meta = ev.meta || {};
-  const intensity = meta.intensity || {};
-  const levels = Array.isArray(meta.levels) ? meta.levels : [];
-  const mercredi = meta.mercredi || {};
-  const supplementaires = meta.supplementaires || {};
-  const conseil = meta.conseil || "";
-
-  const parts = [];
-  if (ev.date_human) parts.push(ev.date_human);
-  if (ev.time) parts.push(`Heure: ${ev.time}`);
-  if (ev.duration_minutes) parts.push(`Durée: ${ev.duration_minutes} min`);
-  if (intensity && (intensity.I || intensity.percent)) {
-    const i = intensity.I ? `I ${intensity.I}` : "";
-    const p = intensity.percent ? `${intensity.percent}` : "";
-    parts.push(`Intensité: ${[i,p].filter(Boolean).join(" — ")}`);
-  }
-
-  if (levels.length) {
-    parts.push("");
-    for (const lvl of levels) {
-      const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
-      const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
-      parts.push(`${lvl.label}:`);
-      parts.push(`- Mercredi: ${oneLine(wTxt || "À définir")}`);
-      parts.push(`- Supplémentaires: ${oneLine(sTxt || "À définir")}`);
-      parts.push("");
+      lines.push("BEGIN:VEVENT");
+      lines.push(foldLine("UID:" + uid));
+      lines.push(foldLine("DTSTAMP:" + nowUtc));
+      lines.push(foldLine("SUMMARY:" + icsEscapeText(title)));
+      lines.push(foldLine("DTSTART;TZID=Europe/Zurich:" + startLocal));
+      lines.push(foldLine("DTEND;TZID=Europe/Zurich:" + endLocal));
+      if (location) lines.push(foldLine("LOCATION:" + icsEscapeText(location)));
+      if (description) lines.push(foldLine("DESCRIPTION:" + icsEscapeText(description)));
+      lines.push("END:VEVENT");
     }
-  } else if (ev.description) {
-    parts.push("");
-    parts.push(oneLine(ev.description));
+
+    lines.push("END:VCALENDAR");
+    return lines.join("\r\n") + "\r\n";
   }
 
-  if (conseil) {
-    parts.push("");
-    parts.push("Conseil:");
-    parts.push(oneLine(conseil));
+  function buildDescription(ev, lang) {
+    const meta = ev.meta || {};
+    const intensity = meta.intensity || {};
+    const levels = Array.isArray(meta.levels) ? meta.levels : [];
+    const mercredi = meta.mercredi || {};
+    const supplementaires = meta.supplementaires || {};
+    const conseil = meta.conseil || "";
+
+    const parts = [];
+    if (ev.date_human) parts.push(ev.date_human);
+    if (ev.time) parts.push(`${UI[lang].timeLabel}: ${ev.time}`);
+    if (ev.duration_minutes) parts.push(`${UI[lang].durationLabel}: ${ev.duration_minutes} min`);
+    if (intensity && (intensity.I || intensity.percent)) {
+      const i = intensity.I ? `I ${intensity.I}` : "";
+      const p = intensity.percent ? `${intensity.percent}` : "";
+      parts.push(`${UI[lang].intensity}: ${[i,p].filter(Boolean).join(" — ")}`);
+    }
+
+    if (levels.length) {
+      parts.push("");
+      for (const lvl of levels) {
+        const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+        const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+        parts.push(`${lvl.label}:`);
+        parts.push(`- ${UI[lang].wedSession}: ${oneLine(wTxt || UI[lang].toDefine)}`);
+        parts.push(`- ${UI[lang].extraSessions}: ${oneLine(sTxt || UI[lang].toDefine)}`);
+        parts.push("");
+      }
+    } else if (ev.description) {
+      parts.push("");
+      parts.push(oneLine(ev.description));
+    }
+
+    if (conseil) {
+      parts.push("");
+      parts.push(`${UI[lang].advice}:`);
+      parts.push(oneLine(conseil));
+    }
+
+    return parts.join("\n").trim();
   }
 
-  return parts.join("\n").trim();
-}
-
-function oneLine(s) {
-  return String(s).replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();
-}
-
-function parseTimeToHHMM(timeStr) {
-  // gère "18h15", "18:15", "18.15", "18 15"
-  const s = (timeStr || "").toString().trim();
-  const m = s.match(/(\d{1,2})\s*(?:h|:|\.|\s)\s*(\d{2})/i) || s.match(/^(\d{1,2})$/);
-  if (!m) return { hh: 18, mm: 15 }; // fallback
-  const hh = Math.min(23, Math.max(0, parseInt(m[1], 10)));
-  const mm = m[2] ? Math.min(59, Math.max(0, parseInt(m[2], 10))) : 0;
-  return { hh, mm };
-}
-
-function formatLocalDateTime(dateIso, hh, mm) {
-  // dateIso attendu: "YYYY-MM-DD" ou ISO complet -> on garde la date
-  const d = String(dateIso).slice(0, 10); // YYYY-MM-DD
-  const y = d.slice(0, 4);
-  const mo = d.slice(5, 7);
-  const da = d.slice(8, 10);
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${y}${mo}${da}T${pad(hh)}${pad(mm)}00`;
-}
-
-function addMinutesToLocalDateTime(dateIso, hh, mm, addMin) {
-  // on calcule en Date locale pour gérer les passages de jour
-  const d = String(dateIso).slice(0, 10);
-  const dt = new Date(`${d}T00:00:00`);
-  dt.setHours(hh, mm, 0, 0);
-  dt.setMinutes(dt.getMinutes() + addMin);
-
-  const pad = (n) => String(n).padStart(2, "0");
-  const y = dt.getFullYear();
-  const mo = pad(dt.getMonth() + 1);
-  const da = pad(dt.getDate());
-  const H = pad(dt.getHours());
-  const M = pad(dt.getMinutes());
-  return `${y}${mo}${da}T${H}${M}00`;
-}
-
-function icsEscapeText(text) {
-  // RFC5545: échapper \ ; , et retours ligne
-  return String(text)
-    .replace(/\\/g, "\\\\")
-    .replace(/;/g, "\\;")
-    .replace(/,/g, "\\,")
-    .replace(/\r?\n/g, "\\n");
-}
-
-function foldLine(line) {
-  // RFC5545: 75 octets; ici folding simple ~74 chars (OK pour la majorité des clients)
-  const max = 74;
-  if (line.length <= max) return line;
-  let out = "";
-  let i = 0;
-  while (i < line.length) {
-    out += (i === 0 ? "" : "\r\n ") + line.slice(i, i + max);
-    i += max;
+  function oneLine(s) {
+    return String(s).replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();
   }
-  return out;
-}
 
-function downloadTextFile(content, filename, mime) {
-  const blob = new Blob([content], { type: mime });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
+  function parseTimeToHHMM(timeStr) {
+    const s = (timeStr || "").toString().trim();
+    const m = s.match(/(\d{1,2})\s*(?:h|:|\.|\s)\s*(\d{2})/i) || s.match(/^(\d{1,2})$/);
+    if (!m) return { hh: 18, mm: 15 };
+    const hh = Math.min(23, Math.max(0, parseInt(m[1], 10)));
+    const mm = m[2] ? Math.min(59, Math.max(0, parseInt(m[2], 10))) : 0;
+    return { hh, mm };
+  }
 
-function vtzEuropeZurich() {
-  // VTIMEZONE minimal (CET/CEST) compatible la plupart des agendas
-  return [
-    "BEGIN:VTIMEZONE",
-    "TZID:Europe/Zurich",
-    "BEGIN:DAYLIGHT",
-    "TZOFFSETFROM:+0100",
-    "TZOFFSETTO:+0200",
-    "TZNAME:CEST",
-    "DTSTART:19700329T020000",
-    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU",
-    "END:DAYLIGHT",
-    "BEGIN:STANDARD",
-    "TZOFFSETFROM:+0200",
-    "TZOFFSETTO:+0100",
-    "TZNAME:CET",
-    "DTSTART:19701025T030000",
-    "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
-    "END:STANDARD",
-    "END:VTIMEZONE"
-  ];
-}
-  
+  function formatLocalDateTime(dateIso, hh, mm) {
+    const d = String(dateIso).slice(0, 10);
+    const y = d.slice(0, 4);
+    const mo = d.slice(5, 7);
+    const da = d.slice(8, 10);
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${y}${mo}${da}T${pad(hh)}${pad(mm)}00`;
+  }
+
+  function addMinutesToLocalDateTime(dateIso, hh, mm, addMin) {
+    const d = String(dateIso).slice(0, 10);
+    const dt = new Date(`${d}T00:00:00`);
+    dt.setHours(hh, mm, 0, 0);
+    dt.setMinutes(dt.getMinutes() + addMin);
+
+    const pad = (n) => String(n).padStart(2, "0");
+    const y = dt.getFullYear();
+    const mo = pad(dt.getMonth() + 1);
+    const da = pad(dt.getDate());
+    const H = pad(dt.getHours());
+    const M = pad(dt.getMinutes());
+    return `${y}${mo}${da}T${H}${M}00`;
+  }
+
+  function icsEscapeText(text) {
+    return String(text)
+      .replace(/\\/g, "\\\\")
+      .replace(/;/g, "\\;")
+      .replace(/,/g, "\\,")
+      .replace(/\r?\n/g, "\\n");
+  }
+
+  function foldLine(line) {
+    const max = 74;
+    if (line.length <= max) return line;
+    let out = "";
+    let i = 0;
+    while (i < line.length) {
+      out += (i === 0 ? "" : "\r\n ") + line.slice(i, i + max);
+      i += max;
+    }
+    return out;
+  }
+
+  function downloadTextFile(content, filename, mime) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function vtzEuropeZurich() {
+    return [
+      "BEGIN:VTIMEZONE",
+      "TZID:Europe/Zurich",
+      "BEGIN:DAYLIGHT",
+      "TZOFFSETFROM:+0100",
+      "TZOFFSETTO:+0200",
+      "TZNAME:CEST",
+      "DTSTART:19700329T020000",
+      "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU",
+      "END:DAYLIGHT",
+      "BEGIN:STANDARD",
+      "TZOFFSETFROM:+0200",
+      "TZOFFSETTO:+0100",
+      "TZNAME:CET",
+      "DTSTART:19701025T030000",
+      "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
+      "END:STANDARD",
+      "END:VTIMEZONE"
+    ];
+  }
+
+  // --- Lang state helpers ---
+  function getLangFromUrlOrStorage() {
+    const urlLang = new URLSearchParams(location.search).get("lang");
+    if (urlLang === "fr" || urlLang === "de") return urlLang;
+    const saved = localStorage.getItem("gpmf_lang");
+    return (saved === "de" || saved === "fr") ? saved : "fr";
+  }
+
+  function setLang(lang) {
+    localStorage.setItem("gpmf_lang", lang);
+    const u = new URL(location.href);
+    u.searchParams.set("lang", lang);
+    history.replaceState({}, "", u.toString());
+  }
+
+  function setLangButtonsActive(lang) {
+    if (!btnFR || !btnDE) return;
+    btnFR.classList.toggle("is-active", lang === "fr");
+    btnDE.classList.toggle("is-active", lang === "de");
+  }
+
+  // first paint
   render();
 })();
 </script>
-
