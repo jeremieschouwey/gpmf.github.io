@@ -257,10 +257,22 @@ permalink: /programme/
   rebuildIndex();
 
   // Mois courant affiché (par défaut : mois de la prochaine séance si elle existe, sinon mois actuel)
-  const now = new Date();
-  const next = (data.weeks || []).find(w => new Date(w.date_iso).getTime() >= Date.now());
-  let currentMonth = next ? new Date(next.date_iso) : now;
-  currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+ const now = new Date();
+const todayKey = ymdLocal(now);
+
+// On trie les semaines par date_iso (string YYYY-MM-DD)
+const sorted = [...(data.weeks || [])]
+  .map(w => ({ w, iso: (w?.date_iso || "").toString().slice(0, 10) }))
+  .filter(x => /^\d{4}-\d{2}-\d{2}$/.test(x.iso))
+  .sort((a, b) => a.iso.localeCompare(b.iso));
+
+const nextObj = sorted.find(x => x.iso >= todayKey);
+const baseIso = (nextObj ? nextObj.iso : (sorted[0] ? sorted[0].iso : todayKey));
+
+const y = parseInt(baseIso.slice(0, 4), 10);
+const m = parseInt(baseIso.slice(5, 7), 10) - 1;
+
+let currentMonth = new Date(y, m, 1);
 
   // --- Nav month ---
   btnPrev.addEventListener("click", () => {
@@ -312,13 +324,20 @@ permalink: /programme/
   }
 
   function rebuildIndex() {
-    byDate = new Map();
-    for (const w of (data.weeks || [])) {
-      const d = new Date(w.date_iso);
-      const key = ymdLocal(d);
-      byDate.set(key, w);
-    }
+  byDate = new Map();
+
+  for (const w of (data.weeks || [])) {
+    if (!w) continue;
+
+    // Accepte "YYYY-MM-DD" ou ISO complet, on normalise en "YYYY-MM-DD"
+    const iso = (w.date_iso || "").toString().slice(0, 10);
+
+    // On ignore les entrées invalides (évite NaN-NaN-NaN)
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) continue;
+
+    byDate.set(iso, w);
   }
+}
 
   // --- Render calendar + details ---
   function render() {
