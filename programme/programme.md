@@ -13,6 +13,10 @@ permalink: /programme/
   <div id="calTitle" class="cal-title"></div>
   <button id="calNext" class="btn btn-ghost" type="button">Mois suivant ▶</button>
 </div>
+<div style="margin:10px 0 18px 0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+  <button id="calDownloadIcs" class="btn" type="button">Télécharger le programme (.ics)</button>
+  <span class="muted">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
+</div>
 
 <div id="calGrid" class="cal-grid"></div>
 
@@ -177,13 +181,19 @@ permalink: /programme/
   const elDetails = document.getElementById("calDetails");
   const btnPrev = document.getElementById("calPrev");
   const btnNext = document.getElementById("calNext");
-
+const btnIcs = document.getElementById("calDownloadIcs");
   // Charge toutes les séances (20 semaines)
   let data;
   try {
     const res = await fetch(API_ALL, { cache: "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     data = await res.json();
+    if (btnIcs) {
+  btnIcs.addEventListener("click", () => {
+    const ics = buildIcsCalendar(data);
+    downloadTextFile(ics, "gpmf-programme-2026.ics", "text/calendar;charset=utf-8");
+  });
+}
   } catch (e) {
     elGrid.innerHTML = "<p>Impossible de charger le programme.</p>";
     return;
@@ -371,6 +381,186 @@ permalink: /programme/
     return escapeHtml(String(text)).replace(/\r?\n/g, "<br/>");
   }
 
+function buildIcsCalendar(data) {
+  const weeks = Array.isArray(data.weeks) ? data.weeks : [];
+  const nowUtc = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+
+  const lines = [];
+  lines.push("BEGIN:VCALENDAR");
+  lines.push("VERSION:2.0");
+  lines.push("PRODID:-//GPMF//Programme 2026//FR");
+  lines.push("CALSCALE:GREGORIAN");
+  lines.push("METHOD:PUBLISH");
+  lines.push(...vtzEuropeZurich());
+
+  for (const w of weeks) {
+    if (!w || !w.date_iso) continue;
+
+    const { hh, mm } = parseTimeToHHMM(w.time);
+    const startLocal = formatLocalDateTime(w.date_iso, hh, mm); // YYYYMMDDTHHMM00
+    const dur = Number.isFinite(+w.duration_minutes) ? Math.max(1, +w.duration_minutes) : 60;
+    const endLocal = addMinutesToLocalDateTime(w.date_iso, hh, mm, dur);
+
+    const title = w.title || `Séance GPMF — Semaine ${w.week ?? ""}`.trim();
+    const location = w.location || "";
+    const description = buildDescription(w);
+
+    const uid = `gpmf-${(w.date_iso || "").slice(0,10)}-w${w.week ?? "x"}@gpmf.ch`;
+
+    lines.push("BEGIN:VEVENT");
+    lines.push(foldLine("UID:" + uid));
+    lines.push(foldLine("DTSTAMP:" + nowUtc));
+    lines.push(foldLine("SUMMARY:" + icsEscapeText(title)));
+    lines.push(foldLine("DTSTART;TZID=Europe/Zurich:" + startLocal));
+    lines.push(foldLine("DTEND;TZID=Europe/Zurich:" + endLocal));
+    if (location) lines.push(foldLine("LOCATION:" + icsEscapeText(location)));
+    if (description) lines.push(foldLine("DESCRIPTION:" + icsEscapeText(description)));
+    lines.push("END:VEVENT");
+  }
+
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function buildDescription(ev) {
+  const meta = ev.meta || {};
+  const intensity = meta.intensity || {};
+  const levels = Array.isArray(meta.levels) ? meta.levels : [];
+  const mercredi = meta.mercredi || {};
+  const supplementaires = meta.supplementaires || {};
+  const conseil = meta.conseil || "";
+
+  const parts = [];
+  if (ev.date_human) parts.push(ev.date_human);
+  if (ev.time) parts.push(`Heure: ${ev.time}`);
+  if (ev.duration_minutes) parts.push(`Durée: ${ev.duration_minutes} min`);
+  if (intensity && (intensity.I || intensity.percent)) {
+    const i = intensity.I ? `I ${intensity.I}` : "";
+    const p = intensity.percent ? `${intensity.percent}` : "";
+    parts.push(`Intensité: ${[i,p].filter(Boolean).join(" — ")}`);
+  }
+
+  if (levels.length) {
+    parts.push("");
+    for (const lvl of levels) {
+      const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+      const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+      parts.push(`${lvl.label}:`);
+      parts.push(`- Mercredi: ${oneLine(wTxt || "À définir")}`);
+      parts.push(`- Supplémentaires: ${oneLine(sTxt || "À définir")}`);
+      parts.push("");
+    }
+  } else if (ev.description) {
+    parts.push("");
+    parts.push(oneLine(ev.description));
+  }
+
+  if (conseil) {
+    parts.push("");
+    parts.push("Conseil:");
+    parts.push(oneLine(conseil));
+  }
+
+  return parts.join("\n").trim();
+}
+
+function oneLine(s) {
+  return String(s).replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function parseTimeToHHMM(timeStr) {
+  // gère "18h15", "18:15", "18.15", "18 15"
+  const s = (timeStr || "").toString().trim();
+  const m = s.match(/(\d{1,2})\s*(?:h|:|\.|\s)\s*(\d{2})/i) || s.match(/^(\d{1,2})$/);
+  if (!m) return { hh: 18, mm: 15 }; // fallback
+  const hh = Math.min(23, Math.max(0, parseInt(m[1], 10)));
+  const mm = m[2] ? Math.min(59, Math.max(0, parseInt(m[2], 10))) : 0;
+  return { hh, mm };
+}
+
+function formatLocalDateTime(dateIso, hh, mm) {
+  // dateIso attendu: "YYYY-MM-DD" ou ISO complet -> on garde la date
+  const d = String(dateIso).slice(0, 10); // YYYY-MM-DD
+  const y = d.slice(0, 4);
+  const mo = d.slice(5, 7);
+  const da = d.slice(8, 10);
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${y}${mo}${da}T${pad(hh)}${pad(mm)}00`;
+}
+
+function addMinutesToLocalDateTime(dateIso, hh, mm, addMin) {
+  // on calcule en Date locale pour gérer les passages de jour
+  const d = String(dateIso).slice(0, 10);
+  const dt = new Date(`${d}T00:00:00`);
+  dt.setHours(hh, mm, 0, 0);
+  dt.setMinutes(dt.getMinutes() + addMin);
+
+  const pad = (n) => String(n).padStart(2, "0");
+  const y = dt.getFullYear();
+  const mo = pad(dt.getMonth() + 1);
+  const da = pad(dt.getDate());
+  const H = pad(dt.getHours());
+  const M = pad(dt.getMinutes());
+  return `${y}${mo}${da}T${H}${M}00`;
+}
+
+function icsEscapeText(text) {
+  // RFC5545: échapper \ ; , et retours ligne
+  return String(text)
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\r?\n/g, "\\n");
+}
+
+function foldLine(line) {
+  // RFC5545: 75 octets; ici folding simple ~74 chars (OK pour la majorité des clients)
+  const max = 74;
+  if (line.length <= max) return line;
+  let out = "";
+  let i = 0;
+  while (i < line.length) {
+    out += (i === 0 ? "" : "\r\n ") + line.slice(i, i + max);
+    i += max;
+  }
+  return out;
+}
+
+function downloadTextFile(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function vtzEuropeZurich() {
+  // VTIMEZONE minimal (CET/CEST) compatible la plupart des agendas
+  return [
+    "BEGIN:VTIMEZONE",
+    "TZID:Europe/Zurich",
+    "BEGIN:DAYLIGHT",
+    "TZOFFSETFROM:+0100",
+    "TZOFFSETTO:+0200",
+    "TZNAME:CEST",
+    "DTSTART:19700329T020000",
+    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU",
+    "END:DAYLIGHT",
+    "BEGIN:STANDARD",
+    "TZOFFSETFROM:+0200",
+    "TZOFFSETTO:+0100",
+    "TZNAME:CET",
+    "DTSTART:19701025T030000",
+    "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
+    "END:STANDARD",
+    "END:VTIMEZONE"
+  ];
+}
+  
   render();
 })();
 </script>
