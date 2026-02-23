@@ -1,1 +1,319 @@
-
+{
+  "title": "Trainingsplan über 20 Wochen",
+  "levels": [
+    { "id": "debutants", "label": "Laufeinsteiger" },
+    { "id": "reguliers", "label": "Fitnessläufer" },
+    { "id": "competiteurs", "label": "Wettkampfläufer" }
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Joggen mit Gehpausen",
+        "reguliers": "Leichtes Joggen 50-60 min",
+        "competiteurs": "Ausdauertraining von 60 min"
+      },
+      "supplementaires": {
+        "debutants": "1 Vita-Parcours",
+        "reguliers": "50 min Joggen\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 60 min Ausdauerlauf\n1 x 45 min. Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Vergessen Sie nicht, Lockerungsübungen durchzuführen (an einem anderen Tag als dem des Trainings). Kein Stretching vor dem Joggen!"
+    },
+    {
+      "week": 2,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Joggen mit Gehpausen mit GPP",
+        "reguliers": "Ausdauerlaufen 60 min mit GPP",
+        "competiteurs": "4 x 1 min beschleunigen mit GPP"
+      },
+      "supplementaires": {
+        "debutants": "Beweglichkeitstraining / Liegestützvarianten oder Vita-Parcours",
+        "reguliers": "1 x 40-50 min Ausdauer schnell (Fartlek)\n1 x 50 min. Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 40-50 min Ausdauer schnell (Fartlek)\n1 x 50 min. Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Kontrollieren Sie Ihre Ernährung (möglichst abwechslungsreich und natürlich). Täglich 15-20% Proteine, 30-45% Fette, 40-55% Kohlenhydrate. Künstliche und natürliche Zucker sind zu vermeiden."
+    },
+    {
+      "week": 3,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Joggen mit Gehpausen",
+        "reguliers": "Lauftraining 60 min mit Fahrtspiel (Schildkröte und Hase)",
+        "competiteurs": "Pyramiden 1-2-3-2-1 min"
+      },
+      "supplementaires": {
+        "debutants": "40 min Joggen mit Gehpausen",
+        "reguliers": "1 x 70 min. Ausdauer\n1 x 50 min. Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 70 min. Ausdauer\n1 x 50 min. Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": ""
+    },
+    {
+      "week": 4,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Joggen mit 2 oder 3 Pausen",
+        "reguliers": "Joggen mit technischen Übungen und einigen Beschleunigungen 60 min",
+        "competiteurs": "60 min Lauftraining in hügeligem Gelände mit einigen Beschleunigungen"
+      },
+      "supplementaires": {
+        "debutants": "40 min. Lauftraining alternierend mit Marschieren",
+        "reguliers": "1 x 1 Std. 15 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 1 Std. 15 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Überprüfen Sie Ihre Ausrüstung (gutes Schuhwerk verhindert Verletzungen)."
+    },
+    {
+      "week": 5,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Joggen mit 2 Pausen",
+        "reguliers": "MAS (Maximale aerobe Geschwindigkeit): 6-8 x 30 Sek. Sprint + 30 Sek. Pause\nOder: 1. Test Geschwindigkeit (~ 5 km)",
+        "competiteurs": "MAS (Maximale aerobe Geschwindigkeit): 10 x 30 Sek. Sprint + 30 Sek. Pause\nOder: 1. Test Geschwindigkeit (~ 5 km)"
+      },
+      "supplementaires": {
+        "debutants": "30 - 40 min Joggen mit Gehpausen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 x 1 Std. 15 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 1 Std 15 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Machen Sie regelmässig Kraft-, Koordinations- und Gleichgewichtsübungen."
+    },
+    {
+      "week": 6,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Joggen mit einer Pause",
+        "reguliers": "Ausdauertraining mit 3x 2 min gesteigerter Geschwindigkeit; dazwischen 2 min aktive Pause",
+        "competiteurs": "Pyramide: 30 Sek./45 Sek./60 Sek./60 Sek./45 Sek./30 Sek. (Pausen = Dauer der Sprints)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40-50 min Joggen mit Gehpausen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 x 1 Std. 10 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 1 Std. 10 min Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Täglich 2 - 3 Liter trinken und 2,5 - 5 dl 30 min vor dem Training."
+    },
+    {
+      "week": 7,
+      "intensity": { "I": "15", "percent": "75%" },
+      "mercredi": {
+        "debutants": "Ausdauertraining mit 1 Pause + GPP",
+        "reguliers": "Normales Ausdauertraining + GPP",
+        "competiteurs": "Fahrtspiel/Speedplay: Normales Ausdauertraining mit mehreren Geschwindigkeitsänderungen + GPP"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min Joggen mit Gehpausen\n1 Vita-Parcours",
+        "reguliers": "1 x 1 Std. 20 min. Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 1 Std. 20 min. Ausdauer\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Machen Sie regelmässig Entspannungs- oder Dehnungsübungen. Wieso nicht einmal eine Massage oder ein Thermalbad! Eine gute Möglichkeit, sich nach einer Anstrengung zu erholen."
+    },
+    {
+      "week": 8,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Joggen mit ev. einer Pause",
+        "reguliers": "Ausdauertraining mit 6 x 1 min. schnell / dazwischen jeweils 1 min. Pause",
+        "competiteurs": "MAS 2x (6x30\"), Pause 30\", 2 min. zwischen den Serien"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min Joggen\nAktivität zur Regeneration",
+        "reguliers": "1 x 1 Std. 20 min. Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 20 min. Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "Mindestens 80% des Trainings sollte unter I = 80% (unter den intensiven Zonen) stattfinden, d.h. zwischen 60% und 80% gemäss Borg-Skala."
+    },
+    {
+      "week": 9,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Joggen ohne Pause mit 6 x 10 Sek. schnell + Pause bis zur vollständigen Erholung",
+        "reguliers": "Laufen mit 2 x 10 min. im Wettkampftempo Murten - Freiburg",
+        "competiteurs": "Pyramiden 2 x (30\"-60\"-1'30\"-60\"-30\")\n(gleich lange Laufpausen wie Laufdauer)\n2 min Pause zwischen den Serien"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min Joggen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 x 1 Std. 20 min Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 20 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "Entdecken Sie andere Strecken zum Joggen (abgemessene Strecken in Belfaux, Marly, Bourguillon, Ecuvillens oder im Galterntal)."
+    },
+    {
+      "week": 10,
+      "intensity": { "I": "18", "percent": "90%" },
+      "mercredi": {
+        "debutants": "Leichtes Joggen (Schildkröte und Hase)",
+        "reguliers": "Fartlek in Steigung",
+        "competiteurs": "Training mit 10 Hügeln von je 30 Sek."
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min Joggen\nIm hügeligen Gelände",
+        "reguliers": "1 x 1 Std. 20 min Ausdauertraining\n1 x 50 min Footing\nIm hügeligen Gelände",
+        "competiteurs": "1 x 1 Std. 20 min Ausdauertraining\n1 x 50 min Footing\nIm hügeligen Gelände"
+      },
+      "conseil": "Trainieren Sie morgens oder abends, wenn es nicht zu heiss ist."
+    },
+    {
+      "week": 11,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Leichtes Joggen mit 3 x 2 min schneller",
+        "reguliers": "Ausdauertraining mit Fahrtspiel (Schritt-, Tempowechsel etc.)",
+        "competiteurs": "4 - 5 x 1 km im Wettkampfrhythmus (dazwischen je 3 min aktive Pause)"
+      },
+      "supplementaires": {
+        "debutants": "2 x 60 min Joggen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 x 1 Std. 25 min Ausdauertraining\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 x 1 Std. 25 min Ausdauertraining\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Nutzen Sie das schöne Wetter, um in den Bergen zu wandern. Dies ist auch ein gutes Training."
+    },
+    {
+      "week": 12,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Leichtes Joggen mit 5 x 30 Sek. schnell und 30 Sek. Pause",
+        "reguliers": "Ausdauertraining\nOder: 2. Test Geschwindigkeit (~ 5 km)",
+        "competiteurs": "MAS: 2 x (8 x 30 Sek.), dazwischen je 30 Sek. aktive Pausen und 3 min Pause zwischen den Serien\nOder: 2. Test Geschwindigkeit (~ 5 km)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min Joggen\nAktivität zur Regeneration → Footing",
+        "reguliers": "1 x 50 min Footing mit 10 x 30 Sek schnell (dazwischen je 30 Sek. aktive Pause)",
+        "competiteurs": "1 x 1 Std. 25 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "In den Ferien darf man sich ohne schlechtes Gewissen ausruhen!"
+    },
+    {
+      "week": 13,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Normales Ausdauertraining von max. 10 km",
+        "reguliers": "Ausdauertraining (max. 13 km)",
+        "competiteurs": "Ausdauertraining (max. 14 km)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min Joggen\nEv. 1 x 40 min auf asphaltierter Strasse\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "MAS: 8-10 x 30 Sek. (dazwischen je 30 Sek. aktive Pause)\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "MAS: 8-10 x 30 Sek. (dazwischen je 30 Sek. aktive Pause)\n1 x 50 min Footing\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Wenn es zu heiss ist, ersetzen Sie ein Training durch Aquajogging oder eine andere Wasseraktivität."
+    },
+    {
+      "week": 14,
+      "intensity": { "I": "17-18", "percent": "85-90%" },
+      "mercredi": {
+        "debutants": "Pyramide 1-2-3-2-1 min",
+        "reguliers": "Ausdauertraining mit 5 x 45'' an Steigungen",
+        "competiteurs": "Laufen an der anaeroben Schwelle (MAS): 4 x 6 min"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min Joggen\n1 x 60 min Joggen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 x 1 Std. 30 min Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 30 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "Machen Sie regelmässig Übungen für Ihre Beweglichkeit und die Koordination."
+    },
+    {
+      "week": 15,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Ausdauertraining (max. 12 km)",
+        "reguliers": "Ausdauertraining (max. 15 km)",
+        "competiteurs": "Ausdauertraining (max. 17 km)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min Joggen\nBeweglichkeitstraining / Liegestützvarianten",
+        "reguliers": "1 Training mit Pyramide\n1 x footing 50 min\nBeweglichkeitstraining / Liegestützvarianten",
+        "competiteurs": "1 Training mit Pyramide\n1 x footing 50 min\nBeweglichkeitstraining / Liegestützvarianten"
+      },
+      "conseil": "Beachten Sie die Anmeldefrist für den Murtenlauf!\nWechselduschen (kalt/warm) und mit einem kleinen Ball zur schnelleren Erholung die unteren Gliedmassen massieren."
+    },
+    {
+      "week": 16,
+      "intensity": { "I": "17", "percent": "85%" },
+      "mercredi": {
+        "debutants": "MAS: 8 x 30 Sek. Sprint, dazwischen je 30 Sek. aktive Pause",
+        "reguliers": "Ausdauertraining + 2 x 10 min Training an der anaeroben Schwelle",
+        "competiteurs": "MAS: 10 x 60 Sek. Sprint, dazwischen je 60 Sek. aktive Pause"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min leichtes Joggen\nAktivität zur Regeneration → footing → footing",
+        "reguliers": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "12-14 km laufen im Rhythmus des Murtenlaufs.\nVorschlag: Teilnahme am Rechthaltenlauf (10,6 km) am Samstag, 6. September 2025."
+    },
+    {
+      "week": 17,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Ausdauertraining (max. 15 km)",
+        "reguliers": "Ausdauertraining (max. 17 km)",
+        "competiteurs": "Ausdauertraining (max. 17 km)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min Joggen\nLeichtes Joggen am Sonntagmorgen",
+        "reguliers": "1 Training mit 6 Aufstiegen à 30 Sek.\n1 x footing 50 min",
+        "competiteurs": "1 Training mit 6 Aufstiegen à 30 Sek.\n1 x footing 50 min"
+      },
+      "conseil": "Testen Sie ein isotonisches Getränk, falls Sie beabsichtigen, ein solches am Murtenlauf zu trinken."
+    },
+    {
+      "week": 18,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Normales Ausdauertraining + GPP",
+        "reguliers": "Normales Ausdauertraining + GPP",
+        "competiteurs": "Laufen im Wettkampftempo: 2 x 8 min"
+      },
+      "supplementaires": {
+        "debutants": "2 x 50-60 min Joggen\nJoggen in hügeligem Gelände",
+        "reguliers": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "Überprüfen und testen Sie ihre Ausrüstung für den Murtenlauf.\nWieso nicht am Sonntag, 20. September 2025 am Waldlauf von Romont (7,5 km oder 15 km) teilnehmen?"
+    },
+    {
+      "week": 19,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Normales Ausdauertraining",
+        "reguliers": "Perfektionierung: 5 x 1 km im Wettkampftempo Murten - Freiburg, dazwischen Pausen von 1 min.",
+        "competiteurs": "Laufen im Wettkampftempo: 2 x (4 x 3 min), dazwischen Pausen von 1 min 30 Sek. Zwischen den Serien 3 min Pause"
+      },
+      "supplementaires": {
+        "debutants": "2 x 50-60 min Joggen\nAktivität zur Regeneration",
+        "reguliers": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing",
+        "competiteurs": "1 x 1 Std. 40 min Ausdauertraining\n1 x 50 min Footing"
+      },
+      "conseil": "Ändern Sie Ihre Gewohnheiten nicht (Ernährung und Ablauf ihrer täglichen Aktivitäten)!"
+    },
+    {
+      "week": 20,
+      "intensity": { "I": "10", "percent": "50%" },
+      "mercredi": {
+        "debutants": "Leichtes Ausdauertraining",
+        "reguliers": "Leichtes Ausdauertraining mit kurzen Temposteigerungen",
+        "competiteurs": "Leichtes Ausdauertraining mit kurzen Temposteigerungen"
+      },
+      "supplementaires": {
+        "debutants": "30 min „Vorbereitungsjoggen“ 1(-2) Tag(e) vor dem Murtenlauf\nAktivität zur Regeneration",
+        "reguliers": "1 x 40 min leichtes Joggen\n30 min „Vorbereitungsjoggen“ 1(-2) Tag(e) vor dem Murtenlauf\nAktivität zur Regeneration",
+        "competiteurs": "1-2 x 40 min Joggen\n30 min „Vorbereitungsjoggen“ 1(-2) Tag(e) vor dem Murtenlauf\nAktivität zur Regeneration"
+      },
+      "conseil": "Vor dem Murtenlauf nichts Neues ausprobieren.\nViel Glück!"
+    }
+  ],
+  "notes": {
+    "ppg": "GPP (General Physical Preparedness / Grundlagentraining): Ziel ist der Aufbau von Muskelmasse und die allgemeine Kräftigung (u.a. mit Eigenkörpergewicht).",
+    "links": [
+      "https://www.polar.com/blog/de/die-besten-kraftuebungen-fuer-laeufer-mit-paula-thomsen/",
+      "https://www.coach-reef.de/trainieren-mit-eigenem-koerpergewicht/",
+      "https://rechthaltenlauf.ch/",
+      "https://carc.ch/course-en-foret-2-2/"
+    ]
+  }
+}
