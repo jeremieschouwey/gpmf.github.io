@@ -248,11 +248,11 @@ permalink: /programme/
 
   // --- Load initial data ---
   try {
-    data = await loadDataForLang(currentLang);
-  } catch (e) {
-    elGrid.innerHTML = `<p>${escapeHtml(UI[currentLang].noProgram)}</p>`;
-    return;
-  }
+  data = await loadDataForLang(currentLang);
+} catch (e) {
+  elGrid.innerHTML = `<p>${escapeHtml(UI[currentLang].noProgram)}<br/><small>${escapeHtml(e.message || String(e))}</small></p>`;
+  return;
+}
 
   rebuildIndex();
 
