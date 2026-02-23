@@ -1,1 +1,319 @@
+{
 
+  "title": "Programme des 20 semaines",
+  "levels": [
+    { "id": "debutants", "label": "Coureurs débutants" },
+    { "id": "reguliers", "label": "Coureurs réguliers" },
+    { "id": "competiteurs", "label": "Coureurs compétiteurs" }
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Course-marche alternée",
+        "reguliers": "Course légère 50-60 min.",
+        "competiteurs": "Endurance 60 min."
+      },
+      "supplementaires": {
+        "debutants": "1 parcours-vita\nSouplesse et gainage",
+        "reguliers": "1 x endurance 60 min.\n1 x footing 45 min.\nSouplesse et gainage",
+        "competiteurs": "1 x endurance 60 min.\n1 x footing 45 min.\nSouplesse et gainage"
+      },
+      "conseil": "Ne pas oublier d’effectuer des exercices d’assouplissement un autre jour que celui de l’entraînement. Pas de stretching avant la course à pied."
+    },
+    {
+      "week": 2,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Course-marche alternée + PPG 9",
+        "reguliers": "Course endurance 60 min + PPG 1",
+        "competiteurs": "4 x 1 min. accélérer + PPG 1"
+      },
+      "supplementaires": {
+        "debutants": "Souplesse et gainage\nparcours-vita",
+        "reguliers": "1 x 40-50 min. endurance rapide (Fartlek)\n1 x 50 min. footing\nSouplesse et gainage",
+        "competiteurs": "1 x 40-50 min. endurance rapide (Fartlek)\n1 x 50 min. footing\nSouplesse et gainage"
+      },
+      "conseil": "Surveiller son alimentation (la plus variée et naturelle possible). 15-20% de protéines, 30-45% lipides, 40-45% glucides de la ration énergétique quotidienne. Éviter au maximum le sucre naturel et artificiel."
+    },
+    {
+      "week": 3,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Course-marche alternée",
+        "reguliers": "Course 60 min. avec jeux de course (lièvre et tortue)",
+        "competiteurs": "Pyramides 1-2-3-2-1 min."
+      },
+      "supplementaires": {
+        "debutants": "40 min. de course-marche.\nSouplesse et gainage",
+        "reguliers": "1 x 70 min. endurance\n1 x 50 min. footing\nSouplesse et gainage",
+        "competiteurs": "1 x 70 min. endurance\n1 x 50 min. footing\nSouplesse et gainage"
+      },
+      "conseil": ""
+    },
+    {
+      "week": 4,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Course avec 2 ou 3 pauses",
+        "reguliers": "Course avec exercices pour la technique et quelques accélérations env. 60 min.",
+        "competiteurs": "60 min. course parcours vallonné avec accélérations"
+      },
+      "supplementaires": {
+        "debutants": "40 min. de course-marche",
+        "reguliers": "1 x 1h 15 min. endurance\n1 x footing 50 min.\nSouplesse et gainage",
+        "competiteurs": "1 x 1h 15 min. endurance\n1 x footing 50 min.\nSouplesse et gainage"
+      },
+      "conseil": "Revoir son équipement, de bonnes chaussures préviennent les blessures."
+    },
+    {
+      "week": 5,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Course avec 2 pauses",
+        "reguliers": "VMA (Vitesse Maximale Aérobie) : 6-8 x 30 s. avec 30 s. de pause\nOu : 1er Test de vitesse (~ 5 km)",
+        "competiteurs": "VMA (Vitesse Maximale Aérobie) : 10 x 30 s. avec 30 s. de pause\nOu : 1er Test de vitesse (~ 5 km)"
+      },
+      "supplementaires": {
+        "debutants": "30-40 min. de course-marche\nSouplesse et gainage",
+        "reguliers": "1 x 1h 15 min. endurance\n1 x footing 50 min.\nSouplesse et gainage",
+        "competiteurs": "1 x 1h 15 min. endurance\n1 x footing 50 min.\nSouplesse et gainage"
+      },
+      "conseil": "Effectuer régulièrement quelques exercices de musculation, de coordination et d’équilibre."
+    },
+    {
+      "week": 6,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Course avec 1 pause",
+        "reguliers": "Endurance plus 3 x 2 min. soutenues / pause 2 min.",
+        "competiteurs": "Pyramides 30-45-60-60-45-30. (pause = temps de course)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40-50 min. de course-marche\nSouplesse et gainage",
+        "reguliers": "1 x 1h 10 min endurance\n1 x footing 50 min.\nSouplesse et gainage",
+        "competiteurs": "1 x 1h 10 min endurance\n1 x footing 50 min.\nSouplesse et gainage"
+      },
+      "conseil": "Boire 2 à 3 litres par jour, par petite portion de 2 dl à la fois et 2,5 à 3 dl 30 min. avant l’entraînement."
+    },
+    {
+      "week": 7,
+      "intensity": { "I": "15", "percent": "75%" },
+      "mercredi": {
+        "debutants": "Endurance avec 1 pause + PPG",
+        "reguliers": "Endurance normale + PPG",
+        "competiteurs": "Fartlek/Speedplay (endurance normale avec plusieurs changements de vitesse) + PPG"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min. de course-marche\n1 parcours Vita",
+        "reguliers": "1 x 1h 20 min. endurance\n1 x footing 50 min.\nSouplesse et gainage",
+        "competiteurs": "1 x 1h 20 min. endurance\n1 x footing 50 min.\nSouplesse et gainage"
+      },
+      "conseil": "Pratiquer régulièrement des exercices de relaxation et de détente. Pourquoi pas un massage ou des bains thermaux ! Une bonne façon de récupérer après l’effort."
+    },
+    {
+      "week": 8,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Course avec évent. 1 pause marchée",
+        "reguliers": "Endurance avec 6 x 1 min. / 1 min.",
+        "competiteurs": "VMA 2x (6x30\"), pause 30\", 2 min. entre les deux séries"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min. de course\nSéances de récupération",
+        "reguliers": "1 x endurance 1h 20 min.\n1 x footing 50 min.",
+        "competiteurs": "1 x endurance 1h 20 min.\n1 x footing 50 min."
+      },
+      "conseil": "Effectuer 80% de votre entraînement en dessous des zones intensives, c.-à-d. entre 60% et 80% dans l'échelle de Borg."
+    },
+    {
+      "week": 9,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Course sans pause avec 6 x 10 s. rapides + pause récupération complète",
+        "reguliers": "2 x 10 min. au rythme de compétition Morat-Fribourg",
+        "competiteurs": "Pyramides 2 x (30\"-60\"-1'30\"-60\"-30\")\nPause 2 min. entre les séries"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min. de course\nSouplesse et gainage",
+        "reguliers": "1 x endurance 1h 20 min\n1 x footing 50 min",
+        "competiteurs": "1 x endurance 1h 20 min\n1 x footing 50 min"
+      },
+      "conseil": "Découvrir d’autres parcours pour courir : parcours mesurés à Belfaux, Marly, Bourguillon ou la vallée du Gottéron."
+    },
+    {
+      "week": 10,
+      "intensity": { "I": "18", "percent": "90%" },
+      "mercredi": {
+        "debutants": "Course légère (lièvre et tortue)",
+        "reguliers": "Fartlek en montée",
+        "competiteurs": "Séance avec 10 collines env. 30 sec."
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min. de course\nChoisir des terrains vallonnés",
+        "reguliers": "1 x endurance 1h 20 min\n1 x footing 50 min\nChoisir des terrains vallonnés",
+        "competiteurs": "1 x endurance 1h 20 min\n1 x footing 50 min\nChoisir des terrains vallonnés"
+      },
+      "conseil": "Effectuer les entraînements quand il ne fait pas trop chaud, soit le matin ou le soir."
+    },
+    {
+      "week": 11,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Course légère avec 3 x 2 min. plus rapides",
+        "reguliers": "Endurance avec jeu de course",
+        "competiteurs": "4 – 5 x 1 km au rythme de compétition ; pauses 3 min."
+      },
+      "supplementaires": {
+        "debutants": "2 x 60 min. de course\nSouplesse et gainage",
+        "reguliers": "1 x endurance 1h 25 min\n1 x footing 50 min\nSouplesse et gainage",
+        "competiteurs": "1 x endurance 1h 25 min\n1 x footing 50 min\nSouplesse et gainage"
+      },
+      "conseil": "Pourquoi ne pas remplacer un entraînement par une marche en montagne ?"
+    },
+    {
+      "week": 12,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Course légère avec 5 x 30 s. vite + 30 s. de pause",
+        "reguliers": "Endurance\nOu : 2ème Test de vitesse (~ 5 km)",
+        "competiteurs": "VMA : 2 x (8 x 30 s. – 30 s. de pause) avec pause de 3 min. entre les séries\nOu : 2ème Test de vitesse (~ 5 km)"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min. de course\nSéances de récupération → footing",
+        "reguliers": "1 x footing 50 min\n10 x 30\" – 30\"",
+        "competiteurs": "1 x endurance 1h 25 min\n1 x footing 50 min"
+      },
+      "conseil": "On a aussi le droit de se reposer en vacances sans mauvaise conscience."
+    },
+    {
+      "week": 13,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Endurance normale max. 10 km",
+        "reguliers": "Endurance max. 13 km",
+        "competiteurs": "Endurance max. 14 km"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min. de course\nÉventuellement 1 x 40 min. sortie sur route\nSouplesse et gainage",
+        "reguliers": "1 x séance VMA 8-10 x 30\"-30\"\n1 x footing 50 min\nSouplesse et gainage",
+        "competiteurs": "1 x séance VMA 8-10 x 30\"-30\"\n1 x footing 50 min\nSouplesse et gainage"
+      },
+      "conseil": "Quand il fait chaud, remplacer un entraînement par de l’aqua jogging ou autres activités aquatiques."
+    },
+    {
+      "week": 14,
+      "intensity": { "I": "17-18", "percent": "85%-90%" },
+      "mercredi": {
+        "debutants": "Pyramide 1-2-3-2-1 min.",
+        "reguliers": "Endurance + côtes avec 5 x 45''",
+        "competiteurs": "Séance au seuil 4 x 6 min."
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min. course\n1 x 60 min. course\nSouplesse et gainage",
+        "reguliers": "1 x endurance 1h 30\n1 x footing 50 min",
+        "competiteurs": "1 x endurance 1h 30\n1 x footing 50 min"
+      },
+      "conseil": "Faire régulièrement des exercices pour la mobilité et la coordination pour prévenir les blessures."
+    },
+    {
+      "week": 15,
+      "intensity": { "I": "13", "percent": "65%" },
+      "mercredi": {
+        "debutants": "Endurance : max. 12 km",
+        "reguliers": "Endurance : max. 15 km",
+        "competiteurs": "Endurance : max. 17 km"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50-60 min. de course\nSouplesse et gainage",
+        "reguliers": "1 x séance Pyramides\nSouplesse et gainage",
+        "competiteurs": "1 x séance Pyramides\n1 x footing 50 min\nSouplesse et gainage"
+      },
+      "conseil": "Attention au délai pour s'inscrire à Morat-Fribourg !\nPratiquer des douches alternées (chaud/froid) et l’automassage avec une petite balle sur les membres inférieurs pour mieux récupérer."
+    },
+    {
+      "week": 16,
+      "intensity": { "I": "17", "percent": "85%" },
+      "mercredi": {
+        "debutants": "VMA : 8 x 30 s. avec 30 s. de pause",
+        "reguliers": "Endurance + 2 x 10 min. entraînement au seuil",
+        "competiteurs": "VMA : 10 x 60\" avec 60\" de pause"
+      },
+      "supplementaires": {
+        "debutants": "1 x 40 min. de course légère\nSéances de récupération",
+        "reguliers": "1 x endurance 1h 40\n1 x footing 50 min",
+        "competiteurs": "1 x endurance 1h 40\n1 x footing 50 min"
+      },
+      "conseil": "Prévoir une séance de 12 à 14 km au rythme du Morat-Fribourg.\nProposition : 6 septembre 2025 course de Rechthalten (10,6 km)"
+    },
+    {
+      "week": 17,
+      "intensity": { "I": "14", "percent": "70%" },
+      "mercredi": {
+        "debutants": "Endurance : max. 15 km",
+        "reguliers": "Endurance : max. 17 km",
+        "competiteurs": "Endurance max. 17 km"
+      },
+      "supplementaires": {
+        "debutants": "1 x 50 min. de course\nCourse légère le dimanche matin",
+        "reguliers": "1 x séance côtes 6 x 30\")\n1 x footing 50 min",
+        "competiteurs": "1 x séance côtes (6 x 30\")\n1 x footing 50 min"
+      },
+      "conseil": "Essayez une boisson énergétique si vous désirez en boire à Morat-Fribourg."
+    },
+    {
+      "week": 18,
+      "intensity": { "I": "12", "percent": "60%" },
+      "mercredi": {
+        "debutants": "Endurance normale + PPG",
+        "reguliers": "Endurance normale + PPG",
+        "competiteurs": "Travail d’allure 2 x 8 min."
+      },
+      "supplementaires": {
+        "debutants": "2 x 50-60 min. de course\nCourse sur terrain vallonné",
+        "reguliers": "1 x endurance 1h 40\n1 x footing 50 min",
+        "competiteurs": "1 x endurance 1h 40\n1 x footing 50 min"
+      },
+      "conseil": "Contrôler et tester son matériel pour le Morat-Fribourg.\nEt pourquoi pas dimanche, le 20 septembre 2025, course en forêt de Romont – course classique 7,5 km ou 15 km ?"
+    },
+    {
+      "week": 19,
+      "intensity": { "I": "16", "percent": "80%" },
+      "mercredi": {
+        "debutants": "Endurance normale",
+        "reguliers": "Affinage : 5 x 1 km au rythme de compétition Morat-Fribourg / pause 1 min.",
+        "competiteurs": "Travail d'allure 2 x (4 x 3 min), pause 1'30\", 3' entre les séries"
+      },
+      "supplementaires": {
+        "debutants": "2 x 40-50 min. de course\nSéances de récupération",
+        "reguliers": "1 x endurance 1h 40\n1 x footing 50 min",
+        "competiteurs": "1 x endurance 1h 40\n1 x footing 50 min"
+      },
+      "conseil": "Ne pas changer ses habitudes alimentaires et le déroulement de ses activités journalières."
+    },
+    {
+      "week": 20,
+      "intensity": { "I": "10", "percent": "50%" },
+      "mercredi": {
+        "debutants": "Endurance légère",
+        "reguliers": "Endurance légère avec petites accélérations",
+        "competiteurs": "Endurance légère avec petites accélérations"
+      },
+      "supplementaires": {
+        "debutants": "30 min. de mise en train 1 (-2) jours avant la course\nRécupération active",
+        "reguliers": "1 x 40 min. de course légère\n30 min. de mise en train 1 (-2) jours avant la course\nRécupération active",
+        "competiteurs": "1-2 x 40 min. de course\n30 min. de mise en train 1 (-2) jours avant la course\nRécupération active"
+      },
+      "conseil": "Ne rien tester de nouveau avant Morat-Fribourg.\nBonne chance !"
+    }
+  ],
+  "notes": {
+    "ppg": "PPG (préparation physique généralisée) : panel d'exercices qui permet de renforcer l'ensemble du système musculaire, tendineux et articulaire (haut et bas du corps).",
+    "links": [
+      "https://www.running-addict.fr/conseil-running/10-exercices-de-preparation-physique-generale-ppg-a-faire-a-la-maison/",
+      "https://rechthaltenlauf.ch/fr/",
+      "https://carc.ch/course-en-foret-2-2/"
+    ]
+  }
+}
