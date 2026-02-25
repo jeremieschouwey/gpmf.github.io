@@ -185,6 +185,27 @@ permalink: /programme/
   // Date du 1er entraînement (mercredi) du programme
 const START_DATE = "2026-05-20"; // <-- à adapter
 
+  const EXTRA_EVENTS = [
+  {
+    date_iso: "2026-10-04",
+    time: "09:00",
+    duration_minutes: 180,
+    title: "Course Morat–Fribourg",
+    location: "Morat → Fribourg",
+    description: "Course Morat–Fribourg (date fixe).",
+    kind: "race"
+  },
+  {
+    date_iso: "2026-10-14",
+    time: "19:00",
+    duration_minutes: 180,
+    title: "21ème — Souper après la course",
+    location: "Salle La grange, Villars-sur-glane",
+    description: "Souper après la course (21ème).",
+    kind: "social"
+  }
+];
+
   // --- DOM ---
   const elTitle = document.getElementById("calTitle");
   const elGrid = document.getElementById("calGrid");
@@ -392,11 +413,38 @@ let currentMonth = new Date(y, m, 1);
 
   function rebuildIndex() {
   byDate = new Map();
+
+  // 1) semaines (hydrated)
   for (const w of (data.weeks || [])) {
     const iso = (w.date_iso || "").toString().slice(0, 10);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) continue;
-    byDate.set(iso, w);
+    pushEvent(iso, { ...w, kind: w.kind || "training" });
   }
+
+  // 2) événements fixes
+  for (const ev of (EXTRA_EVENTS || [])) {
+    const iso = (ev.date_iso || "").toString().slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) continue;
+    pushEvent(iso, ev);
+  }
+}
+
+function pushEvent(dateKey, ev) {
+  const list = byDate.get(dateKey) || [];
+  list.push(ev);
+
+  // tri : course/social avant entraînement (et ensuite par heure)
+  list.sort((a, b) => {
+    const rank = (x) => (x.kind === "race" ? 0 : x.kind === "social" ? 1 : 2);
+    const ra = rank(a), rb = rank(b);
+    if (ra !== rb) return ra - rb;
+
+    const ta = (a.time || "").toString();
+    const tb = (b.time || "").toString();
+    return ta.localeCompare(tb);
+  });
+
+  byDate.set(dateKey, list);
 }
 
   // --- Render calendar + details ---
@@ -428,7 +476,7 @@ let currentMonth = new Date(y, m, 1);
 
         const dateObj = new Date(year, month, day);
         const key = ymdLocal(dateObj);
-        const hasEvent = byDate.has(key);
+        const hasEvent = (byDate.get(key) || []).length > 0;
 
         rowHtml += `
           <button class="cal-cell cal-day ${hasEvent ? "cal-event" : ""}" type="button" data-date="${key}">
@@ -459,12 +507,95 @@ let currentMonth = new Date(y, m, 1);
     else elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneThisMonth)}</p>`;
   }
 
+
+function renderEventDetails(ev) {
+  const meta = ev.meta || {};
+  const levels = Array.isArray(meta.levels) ? meta.levels : [];
+  const intensity = meta.intensity || null;
+  const mercredi = meta.mercredi || {};
+  const supplementaires = meta.supplementaires || {};
+  const conseil = meta.conseil || "";
+
+  const badgeKind =
+    ev.kind === "race" ? (currentLang === "de" ? "Wettkampf" : "Course") :
+    ev.kind === "social" ? (currentLang === "de" ? "Événement" : "Événement") :
+    (currentLang === "de" ? "Training" : "Entraînement");
+
+  const intensityHtml =
+    intensity && (intensity.I || intensity.percent)
+      ? `<div class="badge-row">
+           <span class="badge">${escapeHtml(badgeKind)}</span>
+           <span class="badge badge-soft">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week ?? "")}</span>
+           <span class="badge badge-soft">${escapeHtml(UI[currentLang].intensity)}: ${
+             [intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""]
+               .filter(Boolean).join(" — ")
+           }</span>
+         </div>`
+      : `<div class="badge-row">
+           <span class="badge">${escapeHtml(badgeKind)}</span>
+           ${ev.week ? `<span class="badge badge-soft">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span>` : ``}
+         </div>`;
+
+  const levelCards = levels.length
+    ? levels.map(lvl => {
+        const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+        const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+        return `
+          <div class="level-card">
+            <div class="level-title">${escapeHtml(lvl.label)}</div>
+            <div class="block">
+              <div class="block-title">${escapeHtml(UI[currentLang].wedSession)}</div>
+              <div class="block-body">${formatMultiline(wTxt || UI[currentLang].toDefine)}</div>
+            </div>
+            <div class="block">
+              <div class="block-title">${escapeHtml(UI[currentLang].extraSessions)}</div>
+              <div class="block-body">${formatMultiline(sTxt || UI[currentLang].toDefine)}</div>
+            </div>
+          </div>
+        `;
+      }).join("")
+    : "";
+
+  const conseilHtml = conseil
+    ? `<div class="advice">
+         <div class="advice-title">${escapeHtml(UI[currentLang].advice)}</div>
+         <div class="advice-body">${formatMultiline(conseil)}</div>
+       </div>`
+    : "";
+
+  const fallbackDescription = (!levels.length && ev.description)
+    ? `<div class="block">
+         <div class="block-title">${escapeHtml(UI[currentLang].details)}</div>
+         <div class="block-body">${formatMultiline(ev.description)}</div>
+       </div>`
+    : "";
+
+  return `
+    <div class="event-card" style="margin-bottom:14px;">
+      <h2>${escapeHtml(ev.title || "Événement")}</h2>
+      ${intensityHtml}
+      <div class="details-meta">
+        <div><strong>${escapeHtml(ev.date_human || "")}</strong></div>
+        <div>${escapeHtml(ev.time || "")} ${ev.duration_minutes ? `(${escapeHtml(String(ev.duration_minutes))} min)` : ""}</div>
+        <div>${escapeHtml(ev.location || "")}</div>
+      </div>
+      ${levelCards ? `<div class="levels-grid">${levelCards}</div>` : ""}
+      ${conseilHtml}
+      ${fallbackDescription}
+    </div>
+  `;
+}
+  
   function showDetails(key) {
-    const ev = byDate.get(key);
-    if (!ev) {
-      elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneOnDate(escapeHtml(key)))}</p>`;
-      return;
-    }
+    const events = byDate.get(key) || [];
+if (!events.length) {
+  elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneOnDate(escapeHtml(key)))}</p>`;
+  return;
+}
+
+// S'il y a plusieurs événements ce jour-là, on les affiche tous
+elDetails.innerHTML = events.map(ev => renderEventDetails(ev)).join("");
+return;
 
     const meta = ev.meta || {};
     const levels = Array.isArray(meta.levels) ? meta.levels : [];
@@ -584,17 +715,12 @@ let currentMonth = new Date(y, m, 1);
   // --- ICS ---
   function buildIcsCalendar(data, lang) {
     const weeks = Array.isArray(data.weeks) ? data.weeks : [];
-    const nowUtc = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+const allEvents = [
+  ...weeks.map(w => ({ ...w, kind: w.kind || "training" })),
+  ...(EXTRA_EVENTS || [])
+];
 
-    const lines = [];
-    lines.push("BEGIN:VCALENDAR");
-    lines.push("VERSION:2.0");
-    lines.push("PRODID:" + UI[lang].icsProdid);
-    lines.push("CALSCALE:GREGORIAN");
-    lines.push("METHOD:PUBLISH");
-    lines.push(...vtzEuropeZurich());
-
-    for (const w of weeks) {
+for (const w of allEvents) {
       if (!w || !w.date_iso) continue;
 
       const { hh, mm } = parseTimeToHHMM(w.time);
