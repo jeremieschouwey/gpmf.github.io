@@ -11,6 +11,7 @@ Ajouter des actualités :
 
 Modifier le programme :
   Le contenu du programme se trouve dans la hiérarchie du site sous assets/programme2026.json
+  Pour le changement d'année --> modifier constante START_DATE avec la date du premier entrainement
 
 Ajouter un tracée pour les hivernaux : 
   Tu copies le fichier : assets/gpx/NOM.gpx
