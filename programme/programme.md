@@ -509,23 +509,43 @@ function pushEvent(dateKey, ev) {
 
 
 function renderEventDetails(ev) {
-  const meta = ev.meta || {};
-  const levels = Array.isArray(meta.levels) ? meta.levels : [];
-  const intensity = meta.intensity || null;
-  const mercredi = meta.mercredi || {};
-  const supplementaires = meta.supplementaires || {};
-  const conseil = meta.conseil || "";
+  // Supporte 2 formats:
+  // - format "calendar.all.json" : ev.meta.*
+  // - format "programme2026.*.json" : ev.intensity / ev.mercredi / ev.supplementaires / ev.conseil + data.levels
+  const meta = ev.meta || null;
+
+  const levels =
+    (meta && Array.isArray(meta.levels) ? meta.levels : null) ||
+    (data && Array.isArray(data.levels) ? data.levels : []);
+
+  const intensity = (meta && meta.intensity) ? meta.intensity : (ev.intensity || null);
+  const mercredi = (meta && meta.mercredi) ? meta.mercredi : (ev.mercredi || {});
+  const supplementaires = (meta && meta.supplementaires) ? meta.supplementaires : (ev.supplementaires || {});
+  const conseil = (meta && typeof meta.conseil === "string") ? meta.conseil : (ev.conseil || "");
+
+  // Defaults utiles pour les entraînements
+  const title =
+    ev.title ||
+    (ev.kind === "training"
+      ? (currentLang === "de"
+          ? `Training — Woche ${ev.week ?? ""}`.trim()
+          : `Entraînement — Semaine ${ev.week ?? ""}`.trim())
+      : (ev.kind === "race" ? "Course" : "Événement"));
+
+  const time = ev.time || (ev.kind === "training" ? "18:15" : "");
+  const duration = (ev.duration_minutes ?? (ev.kind === "training" ? 60 : "")) || "";
+  const location = ev.location || (ev.kind === "training" ? "Rendez-vous habituel" : "");
 
   const badgeKind =
     ev.kind === "race" ? (currentLang === "de" ? "Wettkampf" : "Course") :
-    ev.kind === "social" ? (currentLang === "de" ? "Événement" : "Événement") :
+    ev.kind === "social" ? (currentLang === "de" ? "Event" : "Événement") :
     (currentLang === "de" ? "Training" : "Entraînement");
 
   const intensityHtml =
     intensity && (intensity.I || intensity.percent)
       ? `<div class="badge-row">
            <span class="badge">${escapeHtml(badgeKind)}</span>
-           <span class="badge badge-soft">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week ?? "")}</span>
+           ${ev.week ? `<span class="badge badge-soft">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span>` : ``}
            <span class="badge badge-soft">${escapeHtml(UI[currentLang].intensity)}: ${
              [intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""]
                .filter(Boolean).join(" — ")
@@ -536,17 +556,20 @@ function renderEventDetails(ev) {
            ${ev.week ? `<span class="badge badge-soft">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span>` : ``}
          </div>`;
 
-  const levelCards = levels.length
+  const levelCards = (levels && levels.length)
     ? levels.map(lvl => {
         const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
         const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+
         return `
           <div class="level-card">
             <div class="level-title">${escapeHtml(lvl.label)}</div>
+
             <div class="block">
               <div class="block-title">${escapeHtml(UI[currentLang].wedSession)}</div>
               <div class="block-body">${formatMultiline(wTxt || UI[currentLang].toDefine)}</div>
             </div>
+
             <div class="block">
               <div class="block-title">${escapeHtml(UI[currentLang].extraSessions)}</div>
               <div class="block-body">${formatMultiline(sTxt || UI[currentLang].toDefine)}</div>
@@ -563,7 +586,7 @@ function renderEventDetails(ev) {
        </div>`
     : "";
 
-  const fallbackDescription = (!levels.length && ev.description)
+  const fallbackDescription = (!levelCards && ev.description)
     ? `<div class="block">
          <div class="block-title">${escapeHtml(UI[currentLang].details)}</div>
          <div class="block-body">${formatMultiline(ev.description)}</div>
@@ -572,13 +595,16 @@ function renderEventDetails(ev) {
 
   return `
     <div class="event-card" style="margin-bottom:14px;">
-      <h2>${escapeHtml(ev.title || "Événement")}</h2>
+      <h2>${escapeHtml(title)}</h2>
+
       ${intensityHtml}
+
       <div class="details-meta">
         <div><strong>${escapeHtml(ev.date_human || "")}</strong></div>
-        <div>${escapeHtml(ev.time || "")} ${ev.duration_minutes ? `(${escapeHtml(String(ev.duration_minutes))} min)` : ""}</div>
-        <div>${escapeHtml(ev.location || "")}</div>
+        <div>${escapeHtml(time)} ${duration ? `(${escapeHtml(String(duration))} min)` : ""}</div>
+        <div>${escapeHtml(location)}</div>
       </div>
+
       ${levelCards ? `<div class="levels-grid">${levelCards}</div>` : ""}
       ${conseilHtml}
       ${fallbackDescription}
