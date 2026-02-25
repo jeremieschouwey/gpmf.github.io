@@ -739,41 +739,149 @@ return;
   }
 
   // --- ICS ---
-  function buildIcsCalendar(data, lang) {
-    const weeks = Array.isArray(data.weeks) ? data.weeks : [];
-const allEvents = [
-  ...weeks.map(w => ({ ...w, kind: w.kind || "training" })),
-  ...(EXTRA_EVENTS || [])
-];
 
-for (const w of allEvents) {
-      if (!w || !w.date_iso) continue;
+function buildIcsCalendar(data, lang) {
+  const weeks = Array.isArray(data.weeks) ? data.weeks : [];
 
-      const { hh, mm } = parseTimeToHHMM(w.time);
-      const startLocal = formatLocalDateTime(w.date_iso, hh, mm);
-      const dur = Number.isFinite(+w.duration_minutes) ? Math.max(1, +w.duration_minutes) : 60;
-      const endLocal = addMinutesToLocalDateTime(w.date_iso, hh, mm, dur);
+  // On combine entraînements + événements fixes
+  const allEvents = [
+    ...weeks.map(w => ({ ...w, kind: w.kind || "training" })),
+    ...(EXTRA_EVENTS || [])
+  ];
 
-      const title = w.title || `GPMF — ${UI[lang].week} ${w.week ?? ""}`.trim();
-      const location = w.location || "";
-      const description = buildDescription(w, lang);
+  const nowUtc = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
 
-      const uid = `gpmf-${(w.date_iso || "").slice(0,10)}-w${w.week ?? "x"}@gpmf.ch`;
+  const lines = [];
+  lines.push("BEGIN:VCALENDAR");
+  lines.push("VERSION:2.0");
+  lines.push("PRODID:" + (UI[lang]?.icsProdid || "-//GPMF//Programme 2026//"));
+  lines.push("CALSCALE:GREGORIAN");
+  lines.push("METHOD:PUBLISH");
+  lines.push(...vtzEuropeZurich());
 
-      lines.push("BEGIN:VEVENT");
-      lines.push(foldLine("UID:" + uid));
-      lines.push(foldLine("DTSTAMP:" + nowUtc));
-      lines.push(foldLine("SUMMARY:" + icsEscapeText(title)));
-      lines.push(foldLine("DTSTART;TZID=Europe/Zurich:" + startLocal));
-      lines.push(foldLine("DTEND;TZID=Europe/Zurich:" + endLocal));
-      if (location) lines.push(foldLine("LOCATION:" + icsEscapeText(location)));
-      if (description) lines.push(foldLine("DESCRIPTION:" + icsEscapeText(description)));
-      lines.push("END:VEVENT");
+  for (const ev of allEvents) {
+    if (!ev) continue;
+
+    const iso = (ev.date_iso || "").toString().slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) continue;
+
+    const { hh, mm } = parseTimeToHHMM(ev.time);
+    const startLocal = formatLocalDateTime(iso, hh, mm);
+
+    const dur =
+      Number.isFinite(+ev.duration_minutes) ? Math.max(1, +ev.duration_minutes)
+      : (ev.kind === "training" ? 60 : 180);
+
+    const endLocal = addMinutesToLocalDateTime(iso, hh, mm, dur);
+
+    const title = buildEventTitle(ev, lang);
+    const location = (ev.location || "").toString().trim();
+    const description = buildEventDescription(ev, lang);
+
+    // UID stable
+    const uid = buildUid(ev, iso);
+
+    lines.push("BEGIN:VEVENT");
+    lines.push(foldLine("UID:" + uid));
+    lines.push(foldLine("DTSTAMP:" + nowUtc));
+    lines.push(foldLine("SUMMARY:" + icsEscapeText(title)));
+    lines.push(foldLine("DTSTART;TZID=Europe/Zurich:" + startLocal));
+    lines.push(foldLine("DTEND;TZID=Europe/Zurich:" + endLocal));
+    if (location) lines.push(foldLine("LOCATION:" + icsEscapeText(location)));
+    if (description) lines.push(foldLine("DESCRIPTION:" + icsEscapeText(description)));
+    lines.push("END:VEVENT");
+  }
+
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function buildUid(ev, iso) {
+  // Evénement fixe : UID basé sur la date + kind
+  if (ev.kind === "race" || ev.kind === "social") {
+    return `gpmf-${iso}-${ev.kind}@gpmf.ch`;
+  }
+
+  // Entraînement : UID basé sur date + week (si disponible)
+  const wk = (ev.week != null) ? String(ev.week) : "x";
+  return `gpmf-${iso}-w${wk}@gpmf.ch`;
+}
+
+function buildEventTitle(ev, lang) {
+  // Si un title existe (course/souper), on le garde
+  if (ev.title) return String(ev.title);
+
+  // Sinon, on fabrique un titre pour les entraînements
+  if (ev.kind === "training") {
+    const wk = (ev.week != null) ? String(ev.week) : "";
+    return lang === "de"
+      ? `GPMF Training — Woche ${wk}`.trim()
+      : `Entraînement GPMF — Semaine ${wk}`.trim();
+  }
+
+  return lang === "de" ? "GPMF Event" : "Événement GPMF";
+}
+
+function buildEventDescription(ev, lang) {
+  // Si l'événement a une description "simple" (course/souper), on l’inclut
+  const baseDesc = (ev.description || "").toString().trim();
+
+  // Entraînement : on génère la description depuis les champs du programme (flat)
+  if (ev.kind === "training") {
+    const intensity = ev.intensity || {};
+    const mercredi = ev.mercredi || {};
+    const supplementaires = ev.supplementaires || {};
+    const conseil = (ev.conseil || "").toString().trim();
+
+    const parts = [];
+
+    // Date/heure/durée
+    if (ev.date_human) parts.push(ev.date_human);
+    if (ev.time) parts.push(`${UI[lang].timeLabel}: ${ev.time}`);
+    if (ev.duration_minutes) parts.push(`${UI[lang].durationLabel}: ${ev.duration_minutes} min`);
+
+    // Intensité
+    if (intensity && (intensity.I || intensity.percent)) {
+      const i = intensity.I ? `I ${intensity.I}` : "";
+      const p = intensity.percent ? `${intensity.percent}` : "";
+      parts.push(`${UI[lang].intensity}: ${[i, p].filter(Boolean).join(" — ")}`);
     }
 
-    lines.push("END:VCALENDAR");
-    return lines.join("\r\n") + "\r\n";
+    // Contenu par niveau (data.levels)
+    const levels = (data && Array.isArray(data.levels)) ? data.levels : [];
+    if (levels.length) {
+      parts.push("");
+      for (const lvl of levels) {
+        const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
+        const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
+        parts.push(`${lvl.label}:`);
+        parts.push(`- ${UI[lang].wedSession}: ${oneLine(wTxt || UI[lang].toDefine)}`);
+        parts.push(`- ${UI[lang].extraSessions}: ${oneLine(sTxt || UI[lang].toDefine)}`);
+        parts.push("");
+      }
+    } else if (baseDesc) {
+      parts.push("");
+      parts.push(oneLine(baseDesc));
+    }
+
+    // Conseil
+    if (conseil) {
+      parts.push("");
+      parts.push(`${UI[lang].advice}:`);
+      parts.push(oneLine(conseil));
+    }
+
+    return parts.join("\n").trim();
   }
+
+  // Course / Souper : description simple + éventuellement date/heure
+  const parts = [];
+  if (baseDesc) parts.push(baseDesc);
+  if (ev.time) parts.push(`${UI[lang].timeLabel}: ${ev.time}`);
+  if (ev.duration_minutes) parts.push(`${UI[lang].durationLabel}: ${ev.duration_minutes} min`);
+  return parts.join("\n").trim();
+}
+  
 
   function buildDescription(ev, lang) {
     const meta = ev.meta || {};
