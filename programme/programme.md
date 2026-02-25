@@ -182,6 +182,8 @@ permalink: /programme/
   // --- Sources ---
   const API_FR = "{{ '/assets/programme2026.fr.json' | relative_url }}";
   const API_DE = "{{ '/assets/programme2026.de.json' | relative_url }}";
+  // Date du 1er entraînement (mercredi) du programme
+const START_DATE = "2026-05-06"; // <-- à adapter
 
   // --- DOM ---
   const elTitle = document.getElementById("calTitle");
@@ -249,11 +251,72 @@ permalink: /programme/
   // --- Load initial data ---
   try {
   data = await loadDataForLang(currentLang);
+    data = hydrateWeeksWithDates(data);
 } catch (e) {
   elGrid.innerHTML = `<p>${escapeHtml(UI[currentLang].noProgram)}<br/><small>${escapeHtml(e.message || String(e))}</small></p>`;
   return;
 }
 
+
+function hydrateWeeksWithDates(d) {
+  if (!d || !Array.isArray(d.weeks)) return d;
+
+  // si déjà daté, on ne touche pas
+  const alreadyDated = d.weeks.some(w => w && (w.date_iso || w.date));
+  if (alreadyDated) return d;
+
+  const start = parseYmd(START_DATE);
+  if (!start) return d;
+
+  // On force le start au mercredi le plus proche (sécurité)
+  const startWed = moveToNextWeekday(start, 3); // 0=dim ... 3=mercredi
+
+  d.weeks = d.weeks.map(w => {
+    const wk = Number(w.week);
+    if (!Number.isFinite(wk)) return w;
+
+    const dt = new Date(startWed.getTime());
+    dt.setDate(dt.getDate() + (wk - 1) * 7);
+
+    return {
+      ...w,
+      date_iso: ymdLocal(dt),
+      // optionnel: date_human si tu veux une date lisible
+      date_human: formatDateHuman(dt, currentLang)
+    };
+  });
+
+  return d;
+}
+
+function parseYmd(s) {
+  const m = String(s).trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return null;
+  const y = parseInt(m[1], 10);
+  const mo = parseInt(m[2], 10) - 1;
+  const d = parseInt(m[3], 10);
+  const dt = new Date(y, mo, d);
+  return Number.isFinite(dt.getTime()) ? dt : null;
+}
+
+function moveToNextWeekday(dateObj, weekday) {
+  const dt = new Date(dateObj.getTime());
+  const delta = (weekday - dt.getDay() + 7) % 7;
+  dt.setDate(dt.getDate() + delta);
+  return dt;
+}
+
+function formatDateHuman(dt, lang) {
+  try {
+    const locale = (lang === "de") ? "de-CH" : "fr-CH";
+    return dt.toLocaleDateString(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  } catch (e) {
+    return ymdLocal(dt);
+  }
+}
+
+
+  
   rebuildIndex();
   console.log("[programme] indexed dates =", byDate.size, "sample keys =", [...byDate.keys()].slice(0, 5));
 console.log("[programme] first week object =", (data.weeks || [])[0]);
@@ -312,6 +375,7 @@ let currentMonth = new Date(y, m, 1);
 
     try {
       data = await loadDataForLang(lang);
+      data = hydrateWeeksWithDates(data);
     } catch (e) {
       elGrid.innerHTML = `<p>${escapeHtml(UI[lang].noProgram)}</p>`;
       return;
@@ -328,16 +392,9 @@ let currentMonth = new Date(y, m, 1);
 
   function rebuildIndex() {
   byDate = new Map();
-
   for (const w of (data.weeks || [])) {
-    if (!w) continue;
-
-    // Accepte "YYYY-MM-DD" ou ISO complet, on normalise en "YYYY-MM-DD"
     const iso = (w.date_iso || "").toString().slice(0, 10);
-
-    // On ignore les entrées invalides (évite NaN-NaN-NaN)
     if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) continue;
-
     byDate.set(iso, w);
   }
 }
