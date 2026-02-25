@@ -183,7 +183,7 @@ permalink: /programme/
   const API_FR = "{{ '/assets/programme2026.fr.json' | relative_url }}";
   const API_DE = "{{ '/assets/programme2026.de.json' | relative_url }}";
   // Date du 1er entraînement (mercredi) du programme
-const START_DATE = "2026-05-06"; // <-- à adapter
+const START_DATE = "2026-05-20"; // <-- à adapter
 
   // --- DOM ---
   const elTitle = document.getElementById("calTitle");
