@@ -255,6 +255,9 @@ permalink: /programme/
 }
 
   rebuildIndex();
+  console.log("[programme] indexed dates =", byDate.size, "sample keys =", [...byDate.keys()].slice(0, 5));
+console.log("[programme] first week object =", (data.weeks || [])[0]);
+  
 
   // Mois courant affiché (par défaut : mois de la prochaine séance si elle existe, sinon mois actuel)
  const now = new Date();
