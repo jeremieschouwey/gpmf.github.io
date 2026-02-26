@@ -53,7 +53,6 @@ permalink: /course/
 
 <p class="muted">
   Carte interactive du parcours via Strava.  
-  Si l’embed ne s’affiche pas, vérifie que le parcours est public et remplace l’ID ci-dessous.
 </p>
 
 <!-- ✅ Remplace 1234567890 par l’ID du parcours Strava (route) -->
