@@ -72,25 +72,12 @@ permalink: /course/
     </iframe>
   </div>
 
-  <p class="muted" style="margin-top:12px;">
-    Si tu n’as pas encore l’ID : ouvre le parcours dans Strava → “Partager” → récupère l’URL
-    <code>https://www.strava.com/routes/XXXXXXXXXX</code> et remplace <code>1234567890</code>.
-  </p>
+ 
 </div>
 
 <div class="hr"></div>
 
-## Infos pratiques (à compléter)
 
-<ul class="list">
-  <li><strong>Distance :</strong> ~17,17 km</li>
-  <li><strong>Départ :</strong> Morat (Murten)</li>
-  <li><strong>Arrivée :</strong> Fribourg</li>
-</ul>
-
-<p class="muted">
-  Tu peux compléter cette section avec : retrait des dossards, horaires, accès transports, consignes, ravitaillements, etc.
-</p>
 
 <!-- Styles spécifiques à cette page -->
 <style>
