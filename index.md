@@ -66,6 +66,7 @@ title: Accueil
     <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
   </small>
 </section>
+<h2>Nos sponsors</h2>
 <div class="sponsors-grid">
 
  <figure class="sponsor-card">
@@ -134,6 +135,14 @@ title: Accueil
            alt="Commune de Villars-sur-Glâne" />
     </a>
     <figcaption>Commune de Villars-sur-Glâne</figcaption>
+  </figure>
+
+  <figure class="sponsor-card">
+    <a href="https://www.raiffeisen.ch/sarine-ouest/fr/ueber-uns/ihre-bank-vor-ort.html" target="_blank" rel="noopener noreferrer">
+      <img src="{{ '/assets/sponsors/logos/raiffeisen.png' | relative_url }}"
+           alt="RAIFFEISEN Sarine-Ouest" />
+    </a>
+    <figcaption>RAIFFEISEN Sarine-Ouest</figcaption>
   </figure>  
 
 </div>
