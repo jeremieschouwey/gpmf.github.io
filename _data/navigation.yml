@@ -10,8 +10,6 @@
   url: /photos/
 - title: Contact
   url: /contact/
-- title: Sponsors
-  url: /sponsors/
 - title: Autres
   url: "#"
   children:
