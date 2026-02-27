@@ -61,15 +61,7 @@ permalink: /course/
     <h3>Parcours Morat–Fribourg</h3>
   </div>
 
-  <div class="strava-embed">
-    <iframe
-      title="Parcours Morat–Fribourg (Strava)"
-      src="https://www.strava.com/routes/3462516631951810042/embed"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      allowfullscreen>
-    </iframe>
-  </div>
+ <div class="strava-embed-placeholder" data-embed-type="route" data-embed-id="3462516631951810042" data-style="standard" data-map-hash="9.78/46.8672/7.1353" data-from-embed="true"></div><script src="https://strava-embeds.com/embed.js"></script>
 
  
 </div>
