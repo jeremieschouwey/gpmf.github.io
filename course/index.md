@@ -37,7 +37,7 @@ permalink: /course/
 
       <!-- ✅ Mets à jour ici chaque année -->
       <p style="font-size:1.05rem; margin: 0 0 8px;">
-        <strong>Dimanche 5 octobre 2026</strong>
+        <strong>Dimanche 4 octobre 2026</strong>
       </p>
 
       <p class="muted" style="margin:0;">
