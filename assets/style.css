@@ -603,3 +603,61 @@ table.borg tr:last-child td {
   background: rgba(16,24,40,0.06);
 }
 
+
+/* Accordion "Groupes" (Notre proposition / mission) */
+.groups-accordion{
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.group-item{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.group-item > summary{
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 750;
+}
+
+.group-item > summary::-webkit-details-marker{
+  display: none;
+}
+
+.group-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.group-chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(217,50,0,0.25);
+  background: rgba(217,50,0,0.08);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.group-content{
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.group-item[open] > summary{
+  background: rgba(217,50,0,0.06);
+}
