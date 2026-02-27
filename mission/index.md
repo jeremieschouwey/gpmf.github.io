@@ -173,7 +173,7 @@ Les participant(e)s évoluent sous leur propre responsabilité. Les personnes à
       </p>
       <ul>
         <li>Augustin Berset</li>
-        <li>Alexandre Berset</li>
+        <li>Alexandre Mooser</li>
       </ul>
     </div>
   </details>
