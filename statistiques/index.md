@@ -107,6 +107,10 @@ permalink: /statistiques/
       .map(season => ({ ...season, computedSummary: computeSeasonSummary(season) }))
       .sort((a, b) => a.year - b.year);
 
+    const fullSeasonsForChart = seasonsSorted.filter(
+      season => (season.computedSummary.session_count || 0) === 20
+    );
+
     const latestSeason = seasonsSorted[seasonsSorted.length - 1];
     const anomalies = Array.isArray(data.anomalies) ? data.anomalies : [];
 
@@ -224,10 +228,10 @@ permalink: /statistiques/
     new Chart(totalCtx, {
       type: 'line',
       data: {
-        labels: seasonsSorted.map(s => s.year),
+        labels: fullSeasonsForChart.map(s => s.year),
         datasets: [{
           label: 'Présences totales',
-          data: seasonsSorted.map(s => s.computedSummary.season_total || 0),
+          data: fullSeasonsForChart.map(s => s.computedSummary.season_total || 0),
           tension: 0.2,
           fill: false
         }]
