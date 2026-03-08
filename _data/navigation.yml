@@ -13,6 +13,8 @@
 - title: Autres
   url: "#"
   children:
+    - title: Statistiques
+      url: /statistiques/
     - title: Tracés hiver
       url: /tracehiver/
     - title: Actualités 
