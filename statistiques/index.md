@@ -79,7 +79,9 @@ permalink: /statistiques/
             <div class="card-title">
               <h3>Présences totales par saison</h3>
             </div>
-            <canvas id="seasonTotalsChart" height="140"></canvas>
+            <div class="chart-box">
+  <canvas id="seasonTotalsChart"></canvas>
+</div>
           </div>
         </div>
 
@@ -92,7 +94,9 @@ permalink: /statistiques/
                 <select id="seasonPicker"></select>
               </label>
             </div>
-            <canvas id="seasonDetailChart" height="140"></canvas>
+            <div class="chart-box">
+  <canvas id="seasonDetailChart"></canvas>
+</div>
           </div>
         </div>
       </div>
@@ -308,11 +312,17 @@ permalink: /statistiques/
   font-size: 0.95rem;
 }
 
-#seasonDetailChart,
-#seasonTotalsChart {
-  min-height: 320px;
+.chart-box {
+  position: relative;
+  height: 320px;
+  width: 100%;
 }
 
+.chart-box canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
 .stats-summary-list p {
   margin: 0 0 8px;
 }
