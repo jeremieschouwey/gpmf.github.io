@@ -6,15 +6,16 @@
   url: /programme/  
 - title: La course
   url: /course/
-- title: Photos
-  url: /photos/
+    - title: Statistiques
+      url: /statistiques/
 - title: Contact
   url: /contact/
 - title: Autres
   url: "#"
   children:
-    - title: Statistiques
-      url: /statistiques/
+  - title: Photos
+  url: /photos/
+
     - title: Tracés hiver
       url: /tracehiver/
     - title: Actualités 
