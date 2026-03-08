@@ -19,7 +19,10 @@ permalink: /statistiques/
 (async () => {
   const root = document.getElementById('statsApp');
 
-  const fmtNumber = new Intl.NumberFormat('fr-CH');
+  const fmtNumber = new Intl.NumberFormat('fr-CH', {
+    maximumFractionDigits: 1,
+    minimumFractionDigits: 0
+  });
   const fmtDate = new Intl.DateTimeFormat('fr-CH', {
     day: '2-digit', month: '2-digit', year: 'numeric'
   });
@@ -49,28 +52,89 @@ permalink: /statistiques/
     `;
   }
 
+  function round1(value) {
+    return Math.round((Number(value) || 0) * 10) / 10;
+  }
+
+  function computeSeasonSummary(season) {
+    const sessions = Array.isArray(season.sessions) ? [...season.sessions] : [];
+    sessions.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+    let seasonTotal = 0;
+    let peakTotal = 0;
+    let peakDate = null;
+    const groupTotals = {};
+
+    sessions.forEach(session => {
+      const total = Number(session.total) || 0;
+      seasonTotal += total;
+
+      if (total > peakTotal) {
+        peakTotal = total;
+        peakDate = session.date || null;
+      }
+
+      const groups = session.groups && typeof session.groups === 'object' ? session.groups : {};
+      Object.entries(groups).forEach(([name, value]) => {
+        const n = Number(value) || 0;
+        groupTotals[name] = (groupTotals[name] || 0) + n;
+      });
+    });
+
+    return {
+      session_count: sessions.length,
+      season_total: seasonTotal,
+      average_per_session: sessions.length ? round1(seasonTotal / sessions.length) : 0,
+      peak_total: peakTotal,
+      peak_date: peakDate,
+      group_totals: groupTotals,
+      sessions
+    };
+  }
+
   try {
     const res = await fetch('{{ "/assets/stats-gpmf.json" | relative_url }}', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
 
-    const seasons = Array.isArray(data.seasons) ? data.seasons : [];
-    if (!seasons.length) {
+    const seasonsRaw = Array.isArray(data.seasons) ? data.seasons : [];
+    if (!seasonsRaw.length) {
       root.innerHTML = '<p>Aucune statistique disponible.</p>';
       return;
     }
 
-    const overview = data.overview || {};
-    const seasonsSorted = [...seasons].sort((a, b) => a.year - b.year);
+    const seasonsSorted = seasonsRaw
+      .map(season => ({ ...season, computedSummary: computeSeasonSummary(season) }))
+      .sort((a, b) => a.year - b.year);
+
     const latestSeason = seasonsSorted[seasonsSorted.length - 1];
     const anomalies = Array.isArray(data.anomalies) ? data.anomalies : [];
 
+    const allSessions = seasonsSorted.flatMap(season =>
+      season.computedSummary.sessions.map(session => ({
+        year: season.year,
+        date: session.date,
+        total: Number(session.total) || 0,
+        intensity: session.intensity,
+        remarks: session.remarks || '',
+        groups: session.groups || {}
+      }))
+    );
+
+    const globalSessionCount = allSessions.length;
+    const globalParticipants = allSessions.reduce((sum, item) => sum + item.total, 0);
+    const globalAverage = globalSessionCount ? round1(globalParticipants / globalSessionCount) : 0;
+    const globalRecord = allSessions.reduce((best, current) => {
+      if (!best || current.total > best.total) return current;
+      return best;
+    }, null);
+
     root.innerHTML = `
       <div class="grid stats-grid">
-        <div class="col-3">${card('Saisons', fmtNumber.format(overview.season_count || seasonsSorted.length), '2010 → 2025, hors 2020')}</div>
-        <div class="col-3">${card('Séances importées', fmtNumber.format(overview.session_count || 0), 'historique complet')}</div>
-        <div class="col-3">${card('Moyenne globale', fmtNumber.format(overview.all_time_average || 0), 'participants par séance')}</div>
-        <div class="col-3">${card('Record', fmtNumber.format(overview.record_session?.total || 0), formatDate(overview.record_session?.date))}</div>
+        <div class="col-3">${card('Saisons', fmtNumber.format(seasonsSorted.length), 'historique disponible')}</div>
+        <div class="col-3">${card('Séances importées', fmtNumber.format(globalSessionCount), 'historique complet')}</div>
+        <div class="col-3">${card('Moyenne globale', fmtNumber.format(globalAverage), 'participants par séance')}</div>
+        <div class="col-3">${card('Record', fmtNumber.format(globalRecord?.total || 0), formatDate(globalRecord?.date))}</div>
       </div>
 
       <div class="grid" style="margin-top:16px;">
@@ -87,7 +151,7 @@ permalink: /statistiques/
 
         <div class="col-6">
           <div class="card">
-            <div class="card-title">
+            <div class="card-title card-title-wrap">
               <h3>Détail d'une saison</h3>
               <label>
                 <span class="muted" style="margin-right:8px;">Année</span>
@@ -148,7 +212,7 @@ permalink: /statistiques/
 
       ${anomalies.length ? `
         <div class="card" style="margin-top:16px; border-left: 4px solid var(--primary);">
-          <div class="card-title"><h3>Points à vérifier dans l'import</h3></div>
+          <div class="card-title"><h3>Points à vérifier dans l'import historique</h3></div>
           <ul style="margin:0; padding-left: 20px;">
             ${anomalies.map(item => `<li><strong>${escapeHtml(String(item.year_sheet))}</strong> : ${escapeHtml(item.issue)} — ex. ${escapeHtml((item.examples || []).join(', '))}</li>`).join('')}
           </ul>
@@ -163,7 +227,7 @@ permalink: /statistiques/
         labels: seasonsSorted.map(s => s.year),
         datasets: [{
           label: 'Présences totales',
-          data: seasonsSorted.map(s => s.summary?.season_total || 0),
+          data: seasonsSorted.map(s => s.computedSummary.season_total || 0),
           tension: 0.2,
           fill: false
         }]
@@ -176,16 +240,8 @@ permalink: /statistiques/
       }
     });
 
-    const allSessions = seasonsSorted.flatMap(season =>
-      (season.sessions || []).map(session => ({
-        year: season.year,
-        date: session.date,
-        total: session.total || 0
-      }))
-    );
-
-    allSessions
-      .sort((a, b) => (b.total - a.total) || a.date.localeCompare(b.date))
+    [...allSessions]
+      .sort((a, b) => (b.total - a.total) || String(a.date).localeCompare(String(b.date)))
       .slice(0, 10)
       .forEach((item, index) => {
         document.getElementById('topSessionsBody').insertAdjacentHTML('beforeend', `
@@ -210,9 +266,10 @@ permalink: /statistiques/
       const season = seasonsSorted.find(s => String(s.year) === String(year));
       if (!season) return;
 
-      const labels = (season.sessions || []).map((s, i) => `S${i + 1}`);
-      const totals = (season.sessions || []).map(s => s.total || 0);
-      const summary = season.summary || {};
+      const sessions = season.computedSummary.sessions;
+      const labels = sessions.map((s, i) => `S${i + 1}`);
+      const totals = sessions.map(s => Number(s.total) || 0);
+      const summary = season.computedSummary;
       const groups = Object.entries(summary.group_totals || {})
         .sort((a, b) => b[1] - a[1])
         .map(([name, value]) => `<li><strong>${escapeHtml(name)}</strong> : ${fmtNumber.format(value)}</li>`)
@@ -226,7 +283,7 @@ permalink: /statistiques/
           <p><strong>Pic :</strong> ${fmtNumber.format(summary.peak_total || 0)} le ${formatDate(summary.peak_date)}</p>
           <div style="margin-top:12px;">
             <strong>Répartition cumulée par groupe</strong>
-            <ul style="margin:8px 0 0; padding-left:18px;">${groups}</ul>
+            ${groups ? `<ul style="margin:8px 0 0; padding-left:18px;">${groups}</ul>` : '<p class="muted" style="margin-top:8px;">Aucun détail par groupe disponible.</p>'}
           </div>
         </div>
       `;
@@ -260,11 +317,11 @@ permalink: /statistiques/
       const body = document.getElementById('seasonTableBody');
       body.innerHTML = '';
 
-      (season.sessions || []).forEach(session => {
+      season.computedSummary.sessions.forEach(session => {
         body.insertAdjacentHTML('beforeend', `
           <tr>
             <td>${formatDate(session.date)}</td>
-            <td>${fmtNumber.format(session.total || 0)}</td>
+            <td>${fmtNumber.format(Number(session.total) || 0)}</td>
             <td>${escapeHtml(session.intensity ?? '—')}</td>
             <td>${escapeHtml(session.remarks || '—')}</td>
           </tr>
@@ -345,9 +402,21 @@ permalink: /statistiques/
   margin: 0 0 8px;
 }
 
+.card-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 @media (max-width: 700px) {
   .chart-box {
     height: 260px;
+  }
+
+  .card-title-wrap {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>
