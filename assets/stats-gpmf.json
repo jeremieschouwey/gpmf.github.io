@@ -4749,6 +4749,25 @@
           "intensity": 12
         }
       ]
+      {
+  "year": 2026,
+  "sessions": [
+"date": "2026-05-20",
+          "total": 10,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 0,
+            "Gr.4": 0,
+            "Gr.5": 0,
+            "Gr.6": 0,
+            "Gr.7": 0,
+            "Gr.8": 0,
+            "Gr.W/NW": 0
+          },
+          "intensity": 12
+    
+  ]
+}
     }
   ],
   "anomalies": [
