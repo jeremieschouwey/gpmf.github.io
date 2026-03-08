@@ -80,8 +80,8 @@ permalink: /statistiques/
               <h3>Présences totales par saison</h3>
             </div>
             <div class="chart-box">
-  <canvas id="seasonTotalsChart"></canvas>
-</div>
+              <canvas id="seasonTotalsChart"></canvas>
+            </div>
           </div>
         </div>
 
@@ -95,8 +95,8 @@ permalink: /statistiques/
               </label>
             </div>
             <div class="chart-box">
-  <canvas id="seasonDetailChart"></canvas>
-</div>
+              <canvas id="seasonDetailChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ permalink: /statistiques/
       </div>
 
       <div class="card" style="margin-top:16px;">
-        <div class="card-title"><h3>${latestSeason.year} — séances</h3></div>
+        <div class="card-title"><h3 id="seasonTableTitle"></h3></div>
         <div class="table-wrap">
           <table>
             <thead>
@@ -141,7 +141,7 @@ permalink: /statistiques/
                 <th>Remarques</th>
               </tr>
             </thead>
-            <tbody id="latestSeasonBody"></tbody>
+            <tbody id="seasonTableBody"></tbody>
           </table>
         </div>
       </div>
@@ -198,17 +198,6 @@ permalink: /statistiques/
         `);
       });
 
-    (latestSeason.sessions || []).forEach(session => {
-      document.getElementById('latestSeasonBody').insertAdjacentHTML('beforeend', `
-        <tr>
-          <td>${formatDate(session.date)}</td>
-          <td>${fmtNumber.format(session.total || 0)}</td>
-          <td>${escapeHtml(session.intensity ?? '—')}</td>
-          <td>${escapeHtml(session.remarks || '—')}</td>
-        </tr>
-      `);
-    });
-
     const picker = document.getElementById('seasonPicker');
     seasonsSorted.forEach(season => {
       picker.insertAdjacentHTML('beforeend', `<option value="${season.year}">${season.year}</option>`);
@@ -216,6 +205,7 @@ permalink: /statistiques/
     picker.value = String(latestSeason.year);
 
     let detailChart = null;
+
     function renderSeason(year) {
       const season = seasonsSorted.find(s => String(s.year) === String(year));
       if (!season) return;
@@ -261,8 +251,35 @@ permalink: /statistiques/
       });
     }
 
-    picker.addEventListener('change', e => renderSeason(e.target.value));
+    function renderSeasonTable(year) {
+      const season = seasonsSorted.find(s => String(s.year) === String(year));
+      if (!season) return;
+
+      document.getElementById('seasonTableTitle').textContent = `${season.year} — séances`;
+
+      const body = document.getElementById('seasonTableBody');
+      body.innerHTML = '';
+
+      (season.sessions || []).forEach(session => {
+        body.insertAdjacentHTML('beforeend', `
+          <tr>
+            <td>${formatDate(session.date)}</td>
+            <td>${fmtNumber.format(session.total || 0)}</td>
+            <td>${escapeHtml(session.intensity ?? '—')}</td>
+            <td>${escapeHtml(session.remarks || '—')}</td>
+          </tr>
+        `);
+      });
+    }
+
+    picker.addEventListener('change', e => {
+      renderSeason(e.target.value);
+      renderSeasonTable(e.target.value);
+    });
+
     renderSeason(latestSeason.year);
+    renderSeasonTable(latestSeason.year);
+
   } catch (err) {
     root.innerHTML = `<p>Impossible de charger les statistiques : ${escapeHtml(err.message)}</p>`;
   }
@@ -323,7 +340,14 @@ permalink: /statistiques/
   width: 100% !important;
   height: 100% !important;
 }
+
 .stats-summary-list p {
   margin: 0 0 8px;
+}
+
+@media (max-width: 700px) {
+  .chart-box {
+    height: 260px;
+  }
 }
 </style>
