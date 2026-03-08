@@ -1,4 +1,4436 @@
+{
+  "seasons": [
     {
+      "year": 2010,
+      "sessions": [
+        {
+          "date": "2010-05-19",
+          "total": 243,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 20,
+            "Gr.3": 23,
+            "Gr.4": 59,
+            "Gr.5": 52,
+            "Gr.6": 55,
+            "Gr.7": 29
+          }
+        },
+        {
+          "date": "2010-05-26",
+          "total": 247,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 20,
+            "Gr.3": 23,
+            "Gr.4": 62,
+            "Gr.5": 60,
+            "Gr.6": 48,
+            "Gr.7": 29
+          }
+        },
+        {
+          "date": "2010-06-02",
+          "total": 161,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 9,
+            "Gr.3": 14,
+            "Gr.4": 42,
+            "Gr.5": 37,
+            "Gr.6": 36,
+            "Gr.7": 19
+          }
+        },
+        {
+          "date": "2010-06-09",
+          "total": 252,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 27,
+            "Gr.3": 26,
+            "Gr.4": 63,
+            "Gr.5": 65,
+            "Gr.6": 40,
+            "Gr.7": 27
+          }
+        },
+        {
+          "date": "2010-06-16",
+          "total": 119,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 14,
+            "Gr.3": 21,
+            "Gr.4": 29,
+            "Gr.5": 23,
+            "Gr.6": 15,
+            "Gr.7": 13
+          },
+          "remarks": "Crotte, il a plu beaucoup avant, il pleut encore un peu pendant. Pas mouillés jusqu'aux os mais crottés jusqu'aux yeux. 15°. La Suisse joue contre l'Espagne et gagne. D'où la perte dans la fréquentation ?"
+        },
+        {
+          "date": "2010-06-23",
+          "total": 229,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 24,
+            "Gr.3": 26,
+            "Gr.4": 55,
+            "Gr.5": 53,
+            "Gr.6": 40,
+            "Gr.7": 25
+          },
+          "remarks": "Beau temps, env. 20°. Petite bise"
+        },
+        {
+          "date": "2010-06-30",
+          "total": 220,
+          "groups": {
+            "Gr.3": 15
+          },
+          "remarks": "Beau temps, env. 28°. Chaud. Au prg., le test sur 5km. Env. 200 pers. Pour les réfractaires, un groupe (3) recomposé en endurance légère. D'autres participants courent en solo"
+        },
+        {
+          "date": "2010-07-07",
+          "total": 196,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 32,
+            "Gr.4": 40,
+            "Gr.5": 52,
+            "Gr.6": 42,
+            "Gr.7": 7
+          },
+          "remarks": "Tout aussi beau que la semaine précédente et tout aussi chaud, env. 28°. Au prg., endurance pour tous"
+        },
+        {
+          "date": "2010-07-14",
+          "total": 161,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 22,
+            "Gr.3": 21,
+            "Gr.4": 32,
+            "Gr.5": 44,
+            "Gr.6": 27,
+            "Gr.7": 10
+          },
+          "remarks": "Météo en crescendo, excessivement chaud 32-34°. Tout comme les pyramides du programme dont on remarque à peine le decrescendo"
+        },
+        {
+          "date": "2010-07-21",
+          "total": 168,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 22,
+            "Gr.3": 22,
+            "Gr.4": 38,
+            "Gr.5": 35,
+            "Gr.6": 39,
+            "Gr.7": 7
+          }
+        },
+        {
+          "date": "2010-07-28",
+          "total": 156,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 18,
+            "Gr.4": 38,
+            "Gr.5": 36,
+            "Gr.6": 30,
+            "Gr.7": 11
+          },
+          "remarks": "Pluie dans l'après-midi, mais elle nous épargne. Plutôt frais : ~ 22°, mais chaud quand même avec les longs intervalles du programme (3x 2km/1km)"
+        },
+        {
+          "date": "2010-08-04",
+          "total": 170,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 18,
+            "Gr.4": 49,
+            "Gr.5": 47,
+            "Gr.6": 28,
+            "Gr.7": 5
+          },
+          "remarks": "~ 25°, couvert."
+        },
+        {
+          "date": "2010-08-11",
+          "total": 152,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 18,
+            "Gr.3": 20,
+            "Gr.4": 46,
+            "Gr.5": 34,
+            "Gr.6": 18,
+            "Gr.7": 8
+          },
+          "remarks": "~ 27°, couvert, lourd"
+        },
+        {
+          "date": "2010-08-18",
+          "total": 182,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 18,
+            "Gr.3": 18,
+            "Gr.4": 51,
+            "Gr.5": 44,
+            "Gr.6": 40,
+            "Gr.7": 3
+          },
+          "remarks": "~ 18°, couvert"
+        },
+        {
+          "date": "2010-08-25",
+          "total": 210,
+          "groups": {
+            "Gr.2": 16,
+            "Gr.3": 20,
+            "Gr.4": 25
+          },
+          "remarks": "Beau, ~ 25°"
+        },
+        {
+          "date": "2010-09-01",
+          "total": 229,
+          "groups": {
+            "Gr.1": 12,
+            "Gr.2": 33,
+            "Gr.3": 34,
+            "Gr.4": 54,
+            "Gr.5": 49,
+            "Gr.6": 38,
+            "Gr.7": 9
+          },
+          "remarks": "~ 18°, beau, bise"
+        },
+        {
+          "date": "2010-09-08",
+          "total": 194,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 23,
+            "Gr.3": 40,
+            "Gr.4": 42,
+            "Gr.5": 44,
+            "Gr.6": 31,
+            "Gr.7": 7
+          },
+          "remarks": "~ 15°, beau, vent soutenu"
+        },
+        {
+          "date": "2010-09-15",
+          "total": 187,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 30,
+            "Gr.3": 30,
+            "Gr.4": 45,
+            "Gr.5": 44,
+            "Gr.6": 25,
+            "Gr.7": 7
+          },
+          "remarks": "quelques gouttes au dpt."
+        },
+        {
+          "date": "2010-09-22",
+          "total": 216,
+          "groups": {
+            "Gr.1": 15,
+            "Gr.2": 34,
+            "Gr.3": 34,
+            "Gr.4": 43,
+            "Gr.5": 47,
+            "Gr.6": 37,
+            "Gr.7": 6
+          },
+          "remarks": "Temps estival > 20°. Présence de Magali di Marco Messmer et de Tarcis Ançay. Sympas les 2, ils s'intègrent aux groupes 1 (?) et 2. Georges Wolf fait un reportage photographique. A voir prochainement sur ce site."
+        },
+        {
+          "date": "2010-09-29",
+          "total": 205,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 29,
+            "Gr.3": 30,
+            "Gr.4": 49,
+            "Gr.5": 48,
+            "Gr.6": 37,
+            "Gr.7": 4
+          },
+          "remarks": "Temps automnal, 16°."
+        }
+      ]
+    },
+    {
+      "year": 2011,
+      "sessions": [
+        {
+          "date": "2011-05-18",
+          "total": 225,
+          "groups": {
+            "Gr.1": 9,
+            "Gr.2": 20,
+            "Gr.3": 34,
+            "Gr.4": 41,
+            "Gr.5": 62,
+            "Gr.6": 41,
+            "Gr.7": 18
+          },
+          "intensity": 12,
+          "remarks": "Beau, env. 24°"
+        },
+        {
+          "date": "2011-05-25",
+          "total": 247,
+          "groups": {
+            "Gr.1": 9,
+            "Gr.2": 23,
+            "Gr.3": 40,
+            "Gr.4": 45,
+            "Gr.5": 64,
+            "Gr.6": 37,
+            "Gr.7": 29
+          },
+          "intensity": 14,
+          "remarks": "Beau, env. 24°"
+        },
+        {
+          "date": "2011-06-01",
+          "total": 124,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 8,
+            "Gr.3": 19,
+            "Gr.4": 20,
+            "Gr.5": 30,
+            "Gr.6": 27,
+            "Gr.7": 12
+          },
+          "intensity": 16,
+          "remarks": "Bruine, bise, env. 10°"
+        },
+        {
+          "date": "2011-06-08",
+          "total": 169,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 17,
+            "Gr.3": 25,
+            "Gr.4": 36,
+            "Gr.5": 40,
+            "Gr.6": 26,
+            "Gr.7": 21
+          },
+          "intensity": 13,
+          "remarks": "pluie, env. 15°"
+        },
+        {
+          "date": "2011-06-15",
+          "total": 214,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 40,
+            "Gr.4": 44,
+            "Gr.5": 49,
+            "Gr.6": 39,
+            "Gr.7": 19
+          },
+          "intensity": 14,
+          "remarks": "Beau, 25-26°"
+        },
+        {
+          "date": "2011-06-22",
+          "total": 95,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 4,
+            "Gr.3": 12,
+            "Gr.4": 25,
+            "Gr.5": 20,
+            "Gr.6": 12,
+            "Gr.7": 19
+          },
+          "intensity": 17,
+          "remarks": "pluie orageuse et intense, env. 17°"
+        },
+        {
+          "date": "2011-06-29",
+          "total": 117,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 17,
+            "Gr.4": 76,
+            "Gr.7": 15
+          },
+          "remarks": "Nombre des participants au test des 3/5 km sous Gr.4, Estimation. Pluie légère au départ, env. 25°."
+        },
+        {
+          "date": "2011-07-06",
+          "total": 169,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 19,
+            "Gr.3": 21,
+            "Gr.4": 37,
+            "Gr.5": 33,
+            "Gr.6": 32,
+            "Gr.7": 21
+          },
+          "intensity": 13,
+          "remarks": "Beau, env. 24°"
+        },
+        {
+          "date": "2011-07-13",
+          "total": 154,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 17,
+            "Gr.3": 25,
+            "Gr.4": 30,
+            "Gr.5": 22,
+            "Gr.6": 32,
+            "Gr.7": 20
+          },
+          "intensity": 15,
+          "remarks": "Séance généreusement arrosée et pas de toit sur pyramides"
+        },
+        {
+          "date": "2011-07-20",
+          "total": 171,
+          "groups": {
+            "Gr.2": 22,
+            "Gr.3": 37,
+            "Gr.4": 38,
+            "Gr.5": 29,
+            "Gr.6": 34,
+            "Gr.7": 11
+          },
+          "intensity": 16,
+          "remarks": "Plutôt frais ! env. 15°"
+        },
+        {
+          "date": "2011-07-27",
+          "total": 173,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 15,
+            "Gr.3": 29,
+            "Gr.4": 39,
+            "Gr.5": 38,
+            "Gr.6": 32,
+            "Gr.7": 12
+          },
+          "intensity": 17,
+          "remarks": "env. 20° et sans pluie !"
+        },
+        {
+          "date": "2011-08-03",
+          "total": 146,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 20,
+            "Gr.3": 18,
+            "Gr.4": 35,
+            "Gr.5": 36,
+            "Gr.6": 21,
+            "Gr.7": 11
+          },
+          "intensity": 13,
+          "remarks": "env. 22° et sans pluie !"
+        },
+        {
+          "date": "2011-08-10",
+          "total": 155,
+          "groups": {
+            "Gr.1": 9,
+            "Gr.2": 12,
+            "Gr.3": 22,
+            "Gr.4": 30,
+            "Gr.5": 37,
+            "Gr.6": 35,
+            "Gr.7": 10
+          },
+          "intensity": 15,
+          "remarks": "env. 20° et ensoleillé !"
+        },
+        {
+          "date": "2011-08-17",
+          "total": 174,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 23,
+            "Gr.3": 34,
+            "Gr.4": 29,
+            "Gr.5": 43,
+            "Gr.6": 28,
+            "Gr.7": 13
+          },
+          "intensity": "17-18",
+          "remarks": "env. 30° donc chaud pour un I =17-18 !"
+        },
+        {
+          "date": "2011-08-24",
+          "total": 177,
+          "groups": {
+            "Gr.2": 12,
+            "Gr.3": 19,
+            "Gr.4": 33,
+            "Gr.5": 70,
+            "Gr.6": 35,
+            "Gr.7": 8
+          },
+          "remarks": "Nombre (estimé) des participants au test des 3/5 km sous Gr.5, Pluie d'orage en cours de séance, env. 28°."
+        },
+        {
+          "date": "2011-08-31",
+          "total": 187,
+          "groups": {
+            "Gr.2": 21,
+            "Gr.3": 35,
+            "Gr.4": 42,
+            "Gr.5": 43,
+            "Gr.6": 30,
+            "Gr.7": 16
+          },
+          "intensity": 14,
+          "remarks": "env. 26° donc encore d'été. I=14? tu parles !"
+        },
+        {
+          "date": "2011-09-07",
+          "total": 187,
+          "groups": {
+            "Gr.1": 11,
+            "Gr.2": 20,
+            "Gr.3": 26,
+            "Gr.4": 45,
+            "Gr.5": 44,
+            "Gr.6": 25,
+            "Gr.7": 16
+          },
+          "intensity": 12,
+          "remarks": "Plutôt frais ! env. 18°"
+        },
+        {
+          "date": "2011-09-14",
+          "total": 161,
+          "groups": {
+            "Gr.2": 24,
+            "Gr.3": 26,
+            "Gr.4": 33,
+            "Gr.5": 37,
+            "Gr.6": 32,
+            "Gr.7": 9
+          },
+          "intensity": 18,
+          "remarks": "Plutôt frais ! env. 18°"
+        },
+        {
+          "date": "2011-09-21",
+          "total": 178,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 30,
+            "Gr.3": 24,
+            "Gr.4": 33,
+            "Gr.5": 43,
+            "Gr.6": 32,
+            "Gr.7": 11
+          },
+          "intensity": 16,
+          "remarks": "Beau temps d'automne env. 20°.Présence de Laurent Meuwly prés.CO MF. Tarcis Ançay et Philippe Brandi en entraîneurs vedettes. C. Mussoi (75 ans) et S. Thomet (25) en vedettes généreuses à l'occasion de leur anniversaire!"
+        },
+        {
+          "date": "2011-09-28",
+          "total": 175,
+          "groups": {
+            "Gr.1": 14,
+            "Gr.2": 19,
+            "Gr.3": 27,
+            "Gr.4": 29,
+            "Gr.5": 41,
+            "Gr.6": 32,
+            "Gr.7": 13
+          },
+          "intensity": 12,
+          "remarks": "Température estivale. Laurence Bolomey de la RSR interviewe (horrible) des participants."
+        }
+      ]
+    },
+    {
+      "year": 2012,
+      "sessions": [
+        {
+          "date": "2012-05-23",
+          "total": 242,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 28,
+            "Gr.3": 23,
+            "Gr.4": 51,
+            "Gr.5": 58,
+            "Gr.6": 36,
+            "Gr.7": 32,
+            "Walk": 11
+          },
+          "intensity": 12,
+          "remarks": "Beau, env. 18°"
+        },
+        {
+          "date": "2012-05-30",
+          "total": 252,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 23,
+            "Gr.3": 28,
+            "Gr.4": 57,
+            "Gr.5": 56,
+            "Gr.6": 45,
+            "Gr.7": 27,
+            "Walk": 11
+          },
+          "intensity": 14,
+          "remarks": "Beau, env. 24°. Le 1er orage de l'été nous effleure quand Marianne déflore le programme !"
+        },
+        {
+          "date": "2012-06-06",
+          "total": 190,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 21,
+            "Gr.4": 36,
+            "Gr.5": 37,
+            "Gr.6": 50,
+            "Gr.7": 25,
+            "Walk": 11
+          },
+          "intensity": 16,
+          "remarks": "env. 18°, course de Matran et veille de Fête-DIeu"
+        },
+        {
+          "date": "2012-06-13",
+          "total": 212,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 22,
+            "Gr.3": 27,
+            "Gr.4": 56,
+            "Gr.5": 35,
+            "Gr.6": 40,
+            "Gr.7": 22,
+            "Walk": 7
+          },
+          "intensity": 13,
+          "remarks": "après la pluie, env. 13°"
+        },
+        {
+          "date": "2012-06-20",
+          "total": 237,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 41,
+            "Gr.4": 49,
+            "Gr.5": 55,
+            "Gr.6": 36,
+            "Gr.7": 22,
+            "Walk": 11
+          },
+          "intensity": 14,
+          "remarks": "après la pluie, env. 20°, mais lourd et humide"
+        },
+        {
+          "date": "2012-06-27",
+          "total": 233,
+          "groups": {
+            "Gr.1": 11,
+            "Gr.2": 17,
+            "Gr.3": 29,
+            "Gr.4": 53,
+            "Gr.5": 43,
+            "Gr.6": 53,
+            "Gr.7": 18,
+            "Walk": 9
+          },
+          "intensity": 17,
+          "remarks": "pluie orageuse et intense, env. 17°"
+        },
+        {
+          "date": "2012-07-04",
+          "total": 206,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 29,
+            "Gr.4": 16,
+            "Gr.5": 29,
+            "Gr.6": 36,
+            "Gr.7": 77,
+            "Walk": 9
+          },
+          "remarks": "Nombre des participants au test des 3/5 km sous Gr.7, Sous Gr.2, gr.1+2 . Env. 25°."
+        },
+        {
+          "date": "2012-07-11",
+          "total": 238,
+          "groups": {
+            "Gr.1": 12,
+            "Gr.2": 18,
+            "Gr.3": 34,
+            "Gr.4": 45,
+            "Gr.5": 40,
+            "Gr.6": 57,
+            "Gr.7": 20,
+            "Walk": 12
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2012-07-18",
+          "total": 202,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 24,
+            "Gr.3": 22,
+            "Gr.4": 47,
+            "Gr.5": 35,
+            "Gr.6": 40,
+            "Gr.7": 24,
+            "Walk": 7
+          },
+          "intensity": 15,
+          "remarks": "Séance généreusement ensoleillée et pas de toit sur pyramides. Env. 28°"
+        },
+        {
+          "date": "2012-07-25",
+          "total": 184,
+          "groups": {
+            "Gr.1": 11,
+            "Gr.2": 12,
+            "Gr.3": 26,
+            "Gr.4": 48,
+            "Gr.5": 32,
+            "Gr.6": 30,
+            "Gr.7": 18,
+            "Walk": 7
+          },
+          "intensity": 16,
+          "remarks": "Plutôt chaud ! env. 30°"
+        },
+        {
+          "date": "2012-08-01",
+          "total": 60,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 7,
+            "Gr.3": 8,
+            "Gr.4": 14,
+            "Gr.5": 15,
+            "Gr.6": 5,
+            "Gr.7": 7,
+            "Walk": 2
+          },
+          "intensity": 17,
+          "remarks": "env. 30°, fête nationale et défaite nationale aux JO ! 60 courageux: de quoi faire plonger la moyenne"
+        },
+        {
+          "date": "2012-08-08",
+          "total": 178,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 24,
+            "Gr.4": 44,
+            "Gr.5": 39,
+            "Gr.6": 25,
+            "Gr.7": 18,
+            "Walk": 5
+          },
+          "intensity": 13,
+          "remarks": "env. 26° et beau"
+        },
+        {
+          "date": "2012-08-15",
+          "total": 108,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 9,
+            "Gr.3": 10,
+            "Gr.4": 28,
+            "Gr.5": 27,
+            "Gr.6": 17,
+            "Gr.7": 7,
+            "Walk": 2
+          },
+          "intensity": 15,
+          "remarks": "env. 30° ! Chaud, chaud ! Et pis 15 août, jour férié."
+        },
+        {
+          "date": "2012-08-22",
+          "total": 188,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 17,
+            "Gr.3": 27,
+            "Gr.4": 44,
+            "Gr.5": 34,
+            "Gr.6": 42,
+            "Gr.7": 12,
+            "Walk": 5
+          },
+          "intensity": "17-18",
+          "remarks": "env. 31° donc (trop) chaud pour un I =17-18 !"
+        },
+        {
+          "date": "2012-08-29",
+          "total": 170,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 8,
+            "Gr.3": 22,
+            "Gr.4": 34,
+            "Gr.5": 24,
+            "Gr.6": 37,
+            "Gr.7": 39,
+            "Walk": 2
+          },
+          "remarks": "Nombre des participants au test des 3/5 km (36 + 3) sous Gr.7, env. 25°."
+        },
+        {
+          "date": "2012-09-05",
+          "total": 209,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 23,
+            "Gr.3": 27,
+            "Gr.4": 52,
+            "Gr.5": 32,
+            "Gr.6": 42,
+            "Gr.7": 19,
+            "Walk": 10
+          },
+          "intensity": 14,
+          "remarks": "env. 20°. Chaud quand même. Présence de Magali Di Marco et de Stéphane Joly"
+        },
+        {
+          "date": "2012-09-12",
+          "total": 160,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.2": 10,
+            "Gr.3": 22,
+            "Gr.4": 42,
+            "Gr.5": 26,
+            "Gr.6": 34,
+            "Gr.7": 10,
+            "Walk": 8
+          },
+          "intensity": 12,
+          "remarks": "Plutôt frais ! env. 8°"
+        },
+        {
+          "date": "2012-09-19",
+          "total": 190,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 13,
+            "Gr.3": 31,
+            "Gr.4": 44,
+            "Gr.5": 32,
+            "Gr.6": 42,
+            "Gr.7": 15,
+            "Walk": 8
+          },
+          "intensity": 18,
+          "remarks": "Plutôt frais ! env. 12°."
+        },
+        {
+          "date": "2012-09-26",
+          "total": 127,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 11,
+            "Gr.3": 22,
+            "Gr.4": 30,
+            "Gr.5": 25,
+            "Gr.6": 14,
+            "Gr.7": 14,
+            "Walk": 4
+          },
+          "intensity": 16,
+          "remarks": "Pluie et bouchons partout en ville."
+        },
+        {
+          "date": "2012-10-03",
+          "total": 177,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 12,
+            "Gr.3": 35,
+            "Gr.4": 41,
+            "Gr.5": 32,
+            "Gr.6": 32,
+            "Gr.7": 14,
+            "Walk": 8
+          },
+          "intensity": 12,
+          "remarks": "Doux env. 20°"
+        }
+      ]
+    },
+    {
+      "year": 2013,
+      "sessions": [
+        {
+          "date": "2013-05-22",
+          "total": 228,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 12,
+            "Gr.3": 28,
+            "Gr.4": 36,
+            "Gr.4b": 31,
+            "Gr.5": 28,
+            "Gr.6": 50,
+            "Gr.7": 24,
+            "Walk": 12
+          },
+          "intensity": 12,
+          "remarks": "Couvert, sol détrempé, env. 10°"
+        },
+        {
+          "date": "2013-05-29",
+          "total": 143,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 9,
+            "Gr.4": 30,
+            "Gr.4b": 22,
+            "Gr.5": 15,
+            "Gr.6": 36,
+            "Gr.7": 15,
+            "Walk": 8
+          },
+          "intensity": 14,
+          "remarks": "L'éclaircie venue juste avant le départ nous vaut de très beaux arcs-en-ciel, sol détrempé, env. 10°. Veille de la Fête-Dieu, pluie abondante l'arès-midi, course de Matran"
+        },
+        {
+          "date": "2013-06-05",
+          "total": 231,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 11,
+            "Gr.3": 22,
+            "Gr.4": 39,
+            "Gr.4b": 29,
+            "Gr.5": 38,
+            "Gr.6": 53,
+            "Gr.7": 20,
+            "Walk": 13
+          },
+          "intensity": 16,
+          "remarks": "Beau, env. 20°"
+        },
+        {
+          "date": "2013-06-12",
+          "total": 257,
+          "groups": {
+            "Gr.1": 10,
+            "Gr.2": 11,
+            "Gr.3": 33,
+            "Gr.4": 33,
+            "Gr.4b": 16,
+            "Gr.5": 55,
+            "Gr.6": 61,
+            "Gr.7": 26,
+            "Walk": 12
+          },
+          "intensity": 13,
+          "remarks": "Beau, env. 24°"
+        },
+        {
+          "date": "2013-06-19",
+          "total": 210,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 10,
+            "Gr.3": 27,
+            "Gr.4": 36,
+            "Gr.4b": 25,
+            "Gr.5": 25,
+            "Gr.6": 50,
+            "Gr.7": 21,
+            "Walk": 12
+          },
+          "intensity": 14,
+          "remarks": "Beau, très chaud, env. 31°"
+        },
+        {
+          "date": "2013-06-26",
+          "total": 228,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 12,
+            "Gr.3": 34,
+            "Gr.4": 46,
+            "Gr.4b": 23,
+            "Gr.5": 34,
+            "Gr.6": 42,
+            "Gr.7": 22,
+            "Walk": 11
+          },
+          "intensity": 17,
+          "remarks": "Beau, frais, env. 18°"
+        },
+        {
+          "date": "2013-07-03",
+          "total": 183,
+          "groups": {
+            "Gr.1": 110,
+            "Gr.4": 30,
+            "Gr.5": 33,
+            "Walk": 10
+          },
+          "remarks": "Frais, env. 17°. Galop d'essai : 110 pers. à forêt de Belle-Croix. Le solde à Verdilloud."
+        },
+        {
+          "date": "2013-07-10",
+          "total": 230,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 19,
+            "Gr.3": 26,
+            "Gr.4": 41,
+            "Gr.4b": 32,
+            "Gr.5": 25,
+            "Gr.6": 58,
+            "Gr.7": 21,
+            "Walk": 4
+          },
+          "intensity": 13,
+          "remarks": "Beau, chaud, env. 28°"
+        },
+        {
+          "date": "2013-07-17",
+          "total": 223,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 18,
+            "Gr.3": 28,
+            "Gr.4": 35,
+            "Gr.4b": 34,
+            "Gr.5": 22,
+            "Gr.6": 54,
+            "Gr.7": 21,
+            "Walk": 7
+          },
+          "intensity": 15,
+          "remarks": "Un peu de pluie dans la frange de l'orage après une journée chaude et lourde."
+        },
+        {
+          "date": "2013-07-24",
+          "total": 180,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 12,
+            "Gr.3": 27,
+            "Gr.4": 40,
+            "Gr.4b": 21,
+            "Gr.5": 18,
+            "Gr.6": 36,
+            "Gr.7": 21,
+            "Walk": 1
+          },
+          "intensity": 16,
+          "remarks": "Beau, chaud, pas loin de 30°"
+        },
+        {
+          "date": "2013-07-31",
+          "total": 138,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 9,
+            "Gr.3": 18,
+            "Gr.4": 23,
+            "Gr.4b": 22,
+            "Gr.5": 21,
+            "Gr.6": 26,
+            "Gr.7": 13,
+            "Walk": 2
+          },
+          "intensity": 17,
+          "remarks": "Beau, chaud, pas loin de 30°. Fête anticipée du 1er août !"
+        },
+        {
+          "date": "2013-08-07",
+          "total": 156,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 29,
+            "Gr.4": 37,
+            "Gr.4b": 18,
+            "Gr.5": 27,
+            "Gr.6": 22,
+            "Gr.7": 9,
+            "Walk": 5
+          },
+          "intensity": 13,
+          "remarks": "5' sans pluie au début, mais alors après... jusqu'aux os les mieux protégés !"
+        },
+        {
+          "date": "2013-08-14",
+          "total": 195,
+          "groups": {
+            "Gr.2": 21,
+            "Gr.3": 26,
+            "Gr.4": 35,
+            "Gr.4b": 28,
+            "Gr.5": 28,
+            "Gr.6": 35,
+            "Gr.7": 17,
+            "Walk": 5
+          },
+          "intensity": 15,
+          "remarks": "Beau, env. 22°"
+        },
+        {
+          "date": "2013-08-21",
+          "total": 220,
+          "groups": {
+            "Gr.2": 17,
+            "Gr.3": 26,
+            "Gr.4": 44,
+            "Gr.4b": 25,
+            "Gr.5": 30,
+            "Gr.6": 56,
+            "Gr.7": 17,
+            "Walk": 5
+          },
+          "intensity": "17-18",
+          "remarks": "Beau, env. 22°"
+        },
+        {
+          "date": "2013-08-28",
+          "total": 154,
+          "groups": {
+            "Gr.2": 50,
+            "Gr.3": 26,
+            "Gr.4": 33,
+            "Gr.5": 28,
+            "Gr.7": 7,
+            "Walk": 10
+          },
+          "remarks": "Test.  50 = participants forêt de Belle-Croix. Meilleur temps : Quentin 17'18"
+        },
+        {
+          "date": "2013-09-04",
+          "total": 195,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 16,
+            "Gr.3": 23,
+            "Gr.4": 39,
+            "Gr.4b": 25,
+            "Gr.5": 29,
+            "Gr.6": 37,
+            "Gr.7": 19,
+            "Walk": 3
+          },
+          "intensity": 14,
+          "remarks": "Beau, env. 27°"
+        },
+        {
+          "date": "2013-09-11",
+          "total": 174,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 14,
+            "Gr.3": 25,
+            "Gr.4": 29,
+            "Gr.4b": 26,
+            "Gr.5": 22,
+            "Gr.6": 36,
+            "Gr.7": 16,
+            "Walk": 3
+          },
+          "intensity": 12,
+          "remarks": "frais, env. 15°"
+        },
+        {
+          "date": "2013-09-18",
+          "total": 153,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 16,
+            "Gr.3": 20,
+            "Gr.4": 30,
+            "Gr.4b": 10,
+            "Gr.5": 24,
+            "Gr.6": 30,
+            "Gr.7": 12,
+            "Walk": 5
+          },
+          "intensity": 18,
+          "remarks": "Viktor Röthlin était des nôtres. Frais, quelques gouttes avant le départ."
+        },
+        {
+          "date": "2013-09-25",
+          "total": 205,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 20,
+            "Gr.3": 39,
+            "Gr.4": 31,
+            "Gr.4b": 25,
+            "Gr.5": 20,
+            "Gr.6": 40,
+            "Gr.7": 22,
+            "Walk": 5
+          },
+          "intensity": 16,
+          "remarks": "Beau, > 20°"
+        },
+        {
+          "date": "2013-10-02",
+          "total": 197,
+          "groups": {
+            "Gr.2": 23,
+            "Gr.3": 26,
+            "Gr.4": 35,
+            "Gr.4b": 25,
+            "Gr.5": 31,
+            "Gr.6": 34,
+            "Gr.7": 15,
+            "Walk": 8
+          },
+          "intensity": 12,
+          "remarks": "env. 16°"
+        }
+      ]
+    },
+    {
+      "year": 2014,
+      "sessions": [
+        {
+          "date": "2014-05-21",
+          "total": 292,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 20,
+            "Gr.3": 20,
+            "Gr.4": 46,
+            "Gr.5": 52,
+            "Gr.6": 59,
+            "Gr.7": 42,
+            "Gr.8": 34,
+            "Gr.W/NW": 13
+          },
+          "intensity": 12,
+          "remarks": "Beau, chaud : ∼ 25°"
+        },
+        {
+          "date": "2014-05-28",
+          "total": 210,
+          "groups": {
+            "Gr.2": 19,
+            "Gr.3": 16,
+            "Gr.4": 36,
+            "Gr.5": 30,
+            "Gr.6": 39,
+            "Gr.7": 39,
+            "Gr.8": 24,
+            "Gr.W/NW": 7
+          },
+          "intensity": 14,
+          "remarks": "Veille d'Ascension, veille des 3 Ponts, veille de pont."
+        },
+        {
+          "date": "2014-06-04",
+          "total": 245,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 20,
+            "Gr.3": 26,
+            "Gr.4": 35,
+            "Gr.5": 27,
+            "Gr.6": 53,
+            "Gr.7": 42,
+            "Gr.8": 19,
+            "Gr.W/NW": 17
+          },
+          "intensity": 16,
+          "remarks": "Après la pluie, avant aussi !"
+        },
+        {
+          "date": "2014-06-11",
+          "total": 280,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 27,
+            "Gr.4": 49,
+            "Gr.5": 37,
+            "Gr.6": 57,
+            "Gr.7": 44,
+            "Gr.8": 30,
+            "Gr.W/NW": 13
+          },
+          "intensity": 13,
+          "remarks": "Chaud, très chaud"
+        },
+        {
+          "date": "2014-06-18",
+          "total": 221,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 14,
+            "Gr.3": 18,
+            "Gr.4": 37,
+            "Gr.5": 30,
+            "Gr.6": 48,
+            "Gr.7": 33,
+            "Gr.8": 24,
+            "Gr.W/NW": 10
+          },
+          "intensity": 14,
+          "remarks": "Soir de course (Matran), veille de Fête-Dieu et juste avant un puissant orage !"
+        },
+        {
+          "date": "2014-06-25",
+          "total": 258,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 17,
+            "Gr.3": 34,
+            "Gr.4": 41,
+            "Gr.5": 29,
+            "Gr.6": 52,
+            "Gr.7": 55,
+            "Gr.8": 13,
+            "Gr.W/NW": 10
+          },
+          "intensity": 18,
+          "remarks": "Soir de match Honduras-Suisse. Beau (temps) !"
+        },
+        {
+          "date": "2014-07-02",
+          "total": 200,
+          "intensity": "Test",
+          "remarks": "A la louche ! Et sans douche."
+        },
+        {
+          "date": "2014-07-09",
+          "total": 201,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 21,
+            "Gr.3": 28,
+            "Gr.4": 30,
+            "Gr.5": 20,
+            "Gr.6": 40,
+            "Gr.7": 30,
+            "Gr.8": 15,
+            "Gr.W/NW": 10
+          },
+          "intensity": 13,
+          "remarks": "Pluie, frais"
+        },
+        {
+          "date": "2014-07-16",
+          "total": 219,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 20,
+            "Gr.3": 28,
+            "Gr.4": 39,
+            "Gr.5": 23,
+            "Gr.6": 39,
+            "Gr.7": 37,
+            "Gr.8": 16,
+            "Gr.W/NW": 10
+          },
+          "intensity": 15,
+          "remarks": "Beau et chaud"
+        },
+        {
+          "date": "2014-07-23",
+          "total": 194,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 11,
+            "Gr.3": 25,
+            "Gr.4": 31,
+            "Gr.5": 24,
+            "Gr.6": 41,
+            "Gr.7": 27,
+            "Gr.8": 22,
+            "Gr.W/NW": 10
+          },
+          "intensity": 16,
+          "remarks": "Lourd malgré la bise. Effet vacances sur la participation en baisse."
+        },
+        {
+          "date": "2014-07-30",
+          "total": 173,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 23,
+            "Gr.3": 20,
+            "Gr.4": 25,
+            "Gr.5": 6,
+            "Gr.6": 33,
+            "Gr.7": 38,
+            "Gr.8": 15,
+            "Gr.W/NW": 9
+          },
+          "intensity": 17,
+          "remarks": "Bruine sensible surtout pour le groupe 5 ?"
+        },
+        {
+          "date": "2014-08-06",
+          "total": 192,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 14,
+            "Gr.3": 32,
+            "Gr.4": 33,
+            "Gr.5": 15,
+            "Gr.6": 44,
+            "Gr.7": 21,
+            "Gr.8": 16,
+            "Gr.W/NW": 10
+          },
+          "intensity": 13,
+          "remarks": "Endurance pour tous, sans pluie.  ∼ 25°"
+        },
+        {
+          "date": "2014-08-13",
+          "total": 198,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 18,
+            "Gr.3": 28,
+            "Gr.4": 30,
+            "Gr.5": 20,
+            "Gr.6": 50,
+            "Gr.7": 16,
+            "Gr.8": 22,
+            "Gr.W/NW": 9
+          },
+          "intensity": 15,
+          "remarks": "Endurance \"longue\", sans pluie, frisquet ∼ 17°"
+        },
+        {
+          "date": "2014-08-20",
+          "total": 239,
+          "groups": {
+            "Gr.2": 14,
+            "Gr.3": 23,
+            "Gr.4": 48,
+            "Gr.5": 28,
+            "Gr.6": 54,
+            "Gr.7": 35,
+            "Gr.8": 25,
+            "Gr.W/NW": 12
+          },
+          "intensity": 18,
+          "remarks": "∼ 20°"
+        },
+        {
+          "date": "2014-08-27",
+          "total": 198,
+          "groups": {
+            "Gr.3": 26,
+            "Gr.4": 63,
+            "Gr.5": 11,
+            "Gr.6": 31,
+            "Gr.7": 53,
+            "Gr.W/NW": 14
+          },
+          "intensity": "Test",
+          "remarks": "∼ 18°.          Gr.7/53 = ∑ (1+2+3+7+8) participants au test"
+        },
+        {
+          "date": "2014-09-03",
+          "total": 220,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 32,
+            "Gr.4": 46,
+            "Gr.5": 18,
+            "Gr.6": 58,
+            "Gr.7": 31,
+            "Gr.8": 18,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "Beau, bise un peu"
+        },
+        {
+          "date": "2014-09-10",
+          "total": 216,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 16,
+            "Gr.3": 33,
+            "Gr.4": 45,
+            "Gr.5": 21,
+            "Gr.6": 48,
+            "Gr.7": 21,
+            "Gr.8": 17,
+            "Gr.W/NW": 11
+          },
+          "intensity": 12,
+          "remarks": "∼ 20°"
+        },
+        {
+          "date": "2014-09-17",
+          "total": 172,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 13,
+            "Gr.3": 24,
+            "Gr.4": 29,
+            "Gr.5": 15,
+            "Gr.6": 41,
+            "Gr.7": 19,
+            "Gr.8": 16,
+            "Gr.W/NW": 13
+          },
+          "intensity": 18,
+          "remarks": "∼ 23°, lourd"
+        },
+        {
+          "date": "2014-09-24",
+          "total": 202,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 16,
+            "Gr.3": 36,
+            "Gr.4": 25,
+            "Gr.5": 19,
+            "Gr.6": 49,
+            "Gr.7": 28,
+            "Gr.8": 10,
+            "Gr.W/NW": 13
+          },
+          "intensity": 14,
+          "remarks": "C'est l'automne, frais, pluvieux..."
+        },
+        {
+          "date": "2014-10-01",
+          "total": 199,
+          "groups": {
+            "Gr.2": 22,
+            "Gr.3": 37,
+            "Gr.4": 30,
+            "Gr.5": 15,
+            "Gr.6": 48,
+            "Gr.7": 25,
+            "Gr.8": 10,
+            "Gr.W/NW": 12
+          },
+          "intensity": 12,
+          "remarks": "Beau, ∼ 18°. Maude Mathys, la TELE en invités et notre photographe en action"
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "sessions": [
+        {
+          "date": "2015-05-20",
+          "total": 271,
+          "groups": {
+            "Gr.2": 27,
+            "Gr.3": 25,
+            "Gr.4": 45,
+            "Gr.5": 33,
+            "Gr.6": 57,
+            "Gr.7": 34,
+            "Gr.8": 34,
+            "Gr.W/NW": 16
+          },
+          "intensity": 12,
+          "remarks": "Couvert, frisquet : ∼ 12°"
+        },
+        {
+          "date": "2015-05-27",
+          "total": 332,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 20,
+            "Gr.3": 35,
+            "Gr.4": 38,
+            "Gr.5": 45,
+            "Gr.6": 61,
+            "Gr.7": 64,
+            "Gr.8": 47,
+            "Gr.W/NW": 17
+          },
+          "intensity": 14,
+          "remarks": "beau, bise : ∼ 18°"
+        },
+        {
+          "date": "2015-06-03",
+          "total": 239,
+          "groups": {
+            "Gr.3": 26,
+            "Gr.4": 33,
+            "Gr.5": 35,
+            "Gr.7": 105,
+            "Gr.8": 30,
+            "Gr.W/NW": 10
+          },
+          "intensity": 16,
+          "remarks": "beau, chaud : ∼ 28°. La course de Matran nous fait une méchante concurrence et est la raison de beaucoup d'infidélités"
+        },
+        {
+          "date": "2015-06-10",
+          "total": 300,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 20,
+            "Gr.3": 35,
+            "Gr.4": 34,
+            "Gr.5": 48,
+            "Gr.6": 52,
+            "Gr.7": 54,
+            "Gr.8": 43,
+            "Gr.W/NW": 10
+          },
+          "intensity": 13,
+          "remarks": "beau : ∼ 22°. I=13 ??? Pas selon les dires du conférencier de la veille !"
+        },
+        {
+          "date": "2015-06-17",
+          "total": 277,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 17,
+            "Gr.3": 38,
+            "Gr.4": 45,
+            "Gr.5": 51,
+            "Gr.6": 30,
+            "Gr.7": 50,
+            "Gr.8": 30,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "beau : ∼ 22°."
+        },
+        {
+          "date": "2015-06-24",
+          "total": 254,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 13,
+            "Gr.3": 32,
+            "Gr.4": 43,
+            "Gr.5": 31,
+            "Gr.6": 41,
+            "Gr.7": 43,
+            "Gr.8": 28,
+            "Gr.W/NW": 17
+          },
+          "intensity": 18,
+          "remarks": "beau : ∼ 22°."
+        },
+        {
+          "date": "2015-07-01",
+          "total": 196,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 15,
+            "Gr.3": 38,
+            "Gr.4": 32,
+            "Gr.5": 29,
+            "Gr.6": 31,
+            "Gr.7": 17,
+            "Gr.8": 22,
+            "Gr.W/NW": 8
+          },
+          "intensity": "--",
+          "remarks": "chaud, chaud : ∼ 32°. Test repoussé d'une semaine ou + en fonction de la météo caniculaire."
+        },
+        {
+          "date": "2015-07-08",
+          "total": 215,
+          "groups": {
+            "Gr.2": 22,
+            "Gr.3": 26,
+            "Gr.4": 30,
+            "Gr.5": 45,
+            "Gr.6": 46,
+            "Gr.7": 33,
+            "Gr.W/NW": 13
+          },
+          "intensity": "Test",
+          "remarks": "Participants au test : 45 sous grpe 5 ! -12° par rapport aux +35 la veille !"
+        },
+        {
+          "date": "2015-07-15",
+          "total": 200,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 15,
+            "Gr.3": 27,
+            "Gr.4": 26,
+            "Gr.5": 28,
+            "Gr.6": 34,
+            "Gr.7": 29,
+            "Gr.8": 25,
+            "Gr.W/NW": 11
+          },
+          "intensity": 15,
+          "remarks": "chaud, chaud : ∼ 31°"
+        },
+        {
+          "date": "2015-07-22",
+          "total": 140,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 15,
+            "Gr.3": 18,
+            "Gr.4": 19,
+            "Gr.5": 20,
+            "Gr.6": 20,
+            "Gr.7": 14,
+            "Gr.8": 18,
+            "Gr.W/NW": 12
+          },
+          "intensity": 16,
+          "remarks": "???"
+        },
+        {
+          "date": "2015-07-29",
+          "total": 159,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 12,
+            "Gr.3": 18,
+            "Gr.4": 25,
+            "Gr.5": 23,
+            "Gr.6": 21,
+            "Gr.7": 24,
+            "Gr.8": 23,
+            "Gr.W/NW": 7
+          },
+          "intensity": 17,
+          "remarks": "Après la pluie"
+        },
+        {
+          "date": "2015-08-05",
+          "total": 183,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 16,
+            "Gr.3": 24,
+            "Gr.4": 26,
+            "Gr.5": 28,
+            "Gr.6": 22,
+            "Gr.7": 22,
+            "Gr.8": 27,
+            "Gr.W/NW": 13
+          },
+          "intensity": 13,
+          "remarks": "chaud, chaud : ∼ 31°"
+        },
+        {
+          "date": "2015-08-12",
+          "total": 180,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 17,
+            "Gr.3": 27,
+            "Gr.4": 36,
+            "Gr.5": 12,
+            "Gr.6": 24,
+            "Gr.7": 27,
+            "Gr.8": 24,
+            "Gr.W/NW": 8
+          },
+          "intensity": 15,
+          "remarks": "chaud : ∼ 31°"
+        },
+        {
+          "date": "2015-08-19",
+          "total": 210,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 22,
+            "Gr.3": 40,
+            "Gr.4": 38,
+            "Gr.5": 12,
+            "Gr.6": 25,
+            "Gr.7": 28,
+            "Gr.8": 32,
+            "Gr.W/NW": 11
+          },
+          "intensity": 18,
+          "remarks": "avec ∼ 17°, ça va aussi ! La raison de l'embellie de la courbe de fréquentation ?"
+        },
+        {
+          "date": "2015-08-26",
+          "total": 160,
+          "groups": {
+            "Gr.3": 26,
+            "Gr.4": 16,
+            "Gr.5": 62,
+            "Gr.6": 25,
+            "Gr.7": 20,
+            "Gr.W/NW": 11
+          },
+          "intensity": "Test",
+          "remarks": "Participants au test : 62 sous grpe 5 !  beau, ∼ 25°"
+        },
+        {
+          "date": "2015-09-02",
+          "total": 206,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 21,
+            "Gr.3": 33,
+            "Gr.4": 28,
+            "Gr.5": 28,
+            "Gr.6": 27,
+            "Gr.7": 25,
+            "Gr.8": 27,
+            "Gr.W/NW": 13
+          },
+          "intensity": 14,
+          "remarks": "Longue distance : de 10,6 à 20,4 km"
+        },
+        {
+          "date": "2015-09-09",
+          "total": 187,
+          "groups": {
+            "Gr.2": 21,
+            "Gr.3": 25,
+            "Gr.4": 18,
+            "Gr.5": 23,
+            "Gr.6": 34,
+            "Gr.7": 29,
+            "Gr.8": 25,
+            "Gr.W/NW": 12
+          },
+          "intensity": 12,
+          "remarks": "beau, ∼ 20°"
+        },
+        {
+          "date": "2015-09-16",
+          "total": 186,
+          "groups": {
+            "Gr.2": 20,
+            "Gr.3": 26,
+            "Gr.4": 30,
+            "Gr.5": 14,
+            "Gr.6": 30,
+            "Gr.7": 25,
+            "Gr.8": 27,
+            "Gr.W/NW": 14
+          },
+          "intensity": 18,
+          "remarks": "beau, ∼ 20°"
+        },
+        {
+          "date": "2015-09-23",
+          "total": 195,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 23,
+            "Gr.3": 30,
+            "Gr.4": 21,
+            "Gr.5": 21,
+            "Gr.6": 33,
+            "Gr.7": 28,
+            "Gr.8": 25,
+            "Gr.W/NW": 10
+          },
+          "intensity": 14,
+          "remarks": "après la pluie, ∼ 10°"
+        },
+        {
+          "date": "2015-09-30",
+          "total": 209,
+          "groups": {
+            "Gr.2": 20,
+            "Gr.3": 34,
+            "Gr.4": 24,
+            "Gr.5": 30,
+            "Gr.6": 34,
+            "Gr.7": 28,
+            "Gr.8": 25,
+            "Gr.W/NW": 14
+          },
+          "intensity": 12,
+          "remarks": "forte bise, ∼ 8°"
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "sessions": [
+        {
+          "date": "2016-05-18",
+          "total": 315,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 19,
+            "Gr.3": 35,
+            "Gr.4": 35,
+            "Gr.5": 42,
+            "Gr.6": 52,
+            "Gr.7": 68,
+            "Gr.8": 40,
+            "Gr.W/NW": 22
+          },
+          "intensity": 12,
+          "remarks": "Couvert : ∼ 19°"
+        },
+        {
+          "date": "2016-05-25",
+          "total": 234,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 8,
+            "Gr.3": 27,
+            "Gr.4": 25,
+            "Gr.5": 24,
+            "Gr.6": 47,
+            "Gr.7": 53,
+            "Gr.8": 31,
+            "Gr.W/NW": 17
+          },
+          "intensity": 14,
+          "remarks": "Couvert : ∼ 16°"
+        },
+        {
+          "date": "2016-06-01",
+          "total": 293,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 14,
+            "Gr.3": 25,
+            "Gr.4": 29,
+            "Gr.5": 39,
+            "Gr.6": 55,
+            "Gr.7": 74,
+            "Gr.8": 29,
+            "Gr.W/NW": 22
+          },
+          "intensity": 16,
+          "remarks": "Couvert : ∼ 17°"
+        },
+        {
+          "date": "2016-06-08",
+          "total": 254,
+          "groups": {
+            "Gr.2": 19,
+            "Gr.3": 36,
+            "Gr.4": 27,
+            "Gr.5": 35,
+            "Gr.6": 44,
+            "Gr.7": 59,
+            "Gr.8": 15,
+            "Gr.W/NW": 19
+          },
+          "intensity": 13,
+          "remarks": "pluie intense au départ, rien pendant, intense à l'arrivée : ∼ 20°"
+        },
+        {
+          "date": "2016-06-15",
+          "total": 233,
+          "groups": {
+            "Gr.1": 1,
+            "Gr.2": 8,
+            "Gr.3": 26,
+            "Gr.4": 30,
+            "Gr.5": 30,
+            "Gr.6": 46,
+            "Gr.7": 53,
+            "Gr.8": 23,
+            "Gr.W/NW": 16
+          },
+          "intensity": 14,
+          "remarks": "Couvert : ∼ 19°. Suisse-Roumanie 1-1 Grrrr!"
+        },
+        {
+          "date": "2016-06-22",
+          "total": 251,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 29,
+            "Gr.4": 29,
+            "Gr.5": 35,
+            "Gr.6": 50,
+            "Gr.7": 51,
+            "Gr.8": 30,
+            "Gr.W/NW": 17
+          },
+          "intensity": 18,
+          "remarks": "Chaud comme en été : ∼ 30° !"
+        },
+        {
+          "date": "2016-06-29",
+          "total": 276,
+          "groups": {
+            "Gr.1": 200,
+            "Gr.3": 23,
+            "Gr.4": 35,
+            "Gr.W/NW": 18
+          },
+          "intensity": "Test",
+          "remarks": "Chaud (et lourd) : ∼ 28°. 200 participant(e)s au test, attribué(e)s comme il se doit au groupe 1 !"
+        },
+        {
+          "date": "2016-07-06",
+          "total": 256,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 16,
+            "Gr.3": 36,
+            "Gr.4": 36,
+            "Gr.5": 33,
+            "Gr.6": 58,
+            "Gr.7": 34,
+            "Gr.8": 25,
+            "Gr.W/NW": 15
+          },
+          "intensity": 13,
+          "remarks": "Beau : ∼ 25°"
+        },
+        {
+          "date": "2016-07-13",
+          "total": 223,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 13,
+            "Gr.3": 32,
+            "Gr.4": 25,
+            "Gr.5": 28,
+            "Gr.6": 42,
+            "Gr.7": 37,
+            "Gr.8": 30,
+            "Gr.W/NW": 13
+          },
+          "intensity": 15,
+          "remarks": "Quelques gouttes, frais : ∼ 15°"
+        },
+        {
+          "date": "2016-07-20",
+          "total": 157,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 13,
+            "Gr.3": 22,
+            "Gr.4": 23,
+            "Gr.5": 18,
+            "Gr.6": 34,
+            "Gr.7": 17,
+            "Gr.8": 16,
+            "Gr.W/NW": 11
+          },
+          "intensity": 16,
+          "remarks": "Chaud comme en été : ∼ 30° ! Lourd, très !"
+        },
+        {
+          "date": "2016-07-27",
+          "total": 163,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 9,
+            "Gr.3": 22,
+            "Gr.4": 26,
+            "Gr.5": 25,
+            "Gr.6": 28,
+            "Gr.7": 23,
+            "Gr.8": 15,
+            "Gr.W/NW": 13
+          },
+          "intensity": 17,
+          "remarks": "Beau : ∼ 25°"
+        },
+        {
+          "date": "2016-08-03",
+          "total": 148,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 13,
+            "Gr.3": 15,
+            "Gr.4": 19,
+            "Gr.5": 37,
+            "Gr.6": 19,
+            "Gr.7": 17,
+            "Gr.8": 15,
+            "Gr.W/NW": 10
+          },
+          "intensity": 13,
+          "remarks": "Chaud : ∼ 29° !"
+        },
+        {
+          "date": "2016-08-10",
+          "total": 200,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 34,
+            "Gr.4": 25,
+            "Gr.5": 39,
+            "Gr.6": 35,
+            "Gr.7": 21,
+            "Gr.8": 21,
+            "Gr.W/NW": 16
+          },
+          "intensity": 15,
+          "remarks": "Couvert : ∼ 18°"
+        },
+        {
+          "date": "2016-08-17",
+          "total": 189,
+          "groups": {
+            "Gr.2": 17,
+            "Gr.3": 19,
+            "Gr.4": 20,
+            "Gr.5": 26,
+            "Gr.6": 48,
+            "Gr.7": 18,
+            "Gr.8": 27,
+            "Gr.W/NW": 14
+          },
+          "intensity": "17-18",
+          "remarks": "∼ 25°, lourd. Quelques gouttes à l'arrivée"
+        },
+        {
+          "date": "2016-08-24",
+          "total": 180,
+          "groups": {
+            "Gr.1": 120,
+            "Gr.3": 16,
+            "Gr.4": 20,
+            "Gr.5": 6,
+            "Gr.W/NW": 18
+          },
+          "intensity": "Test",
+          "remarks": "Chaud : ∼ 29°. Test : environ 120 dans forêt Belle-Croix; grpes 3&4, dans Verdilloud.  ∼  5-6 ou + ± irréductibles/allergiques"
+        },
+        {
+          "date": "2016-08-31",
+          "total": 215,
+          "groups": {
+            "Gr.2": 20,
+            "Gr.3": 21,
+            "Gr.4": 20,
+            "Gr.5": 35,
+            "Gr.6": 38,
+            "Gr.7": 37,
+            "Gr.8": 25,
+            "Gr.W/NW": 19
+          },
+          "intensity": 14,
+          "remarks": "Orageux. Entre 15 et 20 km !"
+        },
+        {
+          "date": "2016-09-07",
+          "total": 198,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 19,
+            "Gr.3": 22,
+            "Gr.4": 23,
+            "Gr.5": 22,
+            "Gr.6": 38,
+            "Gr.7": 32,
+            "Gr.8": 26,
+            "Gr.W/NW": 13
+          },
+          "intensity": 12,
+          "remarks": "Beau : ∼ 25°"
+        },
+        {
+          "date": "2016-09-14",
+          "total": 198,
+          "groups": {
+            "Gr.2": 22,
+            "Gr.3": 22,
+            "Gr.4": 26,
+            "Gr.5": 22,
+            "Gr.6": 40,
+            "Gr.7": 26,
+            "Gr.8": 25,
+            "Gr.W/NW": 15
+          },
+          "intensity": "17-18",
+          "remarks": "Beau : ∼ 25°"
+        },
+        {
+          "date": "2016-09-21",
+          "total": 205,
+          "groups": {
+            "Gr.2": 23,
+            "Gr.3": 35,
+            "Gr.4": 18,
+            "Gr.5": 24,
+            "Gr.6": 48,
+            "Gr.7": 19,
+            "Gr.8": 24,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "Couvert : ∼ 16°"
+        },
+        {
+          "date": "2016-09-28",
+          "total": 194,
+          "groups": {
+            "Gr.2": 23,
+            "Gr.3": 32,
+            "Gr.4": 13,
+            "Gr.5": 28,
+            "Gr.6": 41,
+            "Gr.7": 18,
+            "Gr.8": 28,
+            "Gr.W/NW": 11
+          },
+          "intensity": 12,
+          "remarks": "Beau : ∼ 18°"
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "sessions": [
+        {
+          "date": "2016-05-17",
+          "total": 278,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 10,
+            "Gr.3": 32,
+            "Gr.4": 28,
+            "Gr.5": 22,
+            "Gr.6": 52,
+            "Gr.7": 60,
+            "Gr.8": 47,
+            "Gr.W/NW": 20
+          },
+          "intensity": 12,
+          "remarks": "Chaud comme en été : ∼ 28° !"
+        },
+        {
+          "date": "2016-05-24",
+          "total": 229,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 20,
+            "Gr.3": 19,
+            "Gr.4": 20,
+            "Gr.5": 18,
+            "Gr.6": 44,
+            "Gr.7": 53,
+            "Gr.8": 29,
+            "Gr.W/NW": 23
+          },
+          "intensity": 14,
+          "remarks": "Beau : ∼ 24°"
+        },
+        {
+          "date": "2016-05-31",
+          "total": 285,
+          "groups": {
+            "Gr.2": 18,
+            "Gr.3": 36,
+            "Gr.4": 32,
+            "Gr.5": 14,
+            "Gr.6": 50,
+            "Gr.7": 62,
+            "Gr.8": 43,
+            "Gr.W/NW": 30
+          },
+          "intensity": 16,
+          "remarks": "Orageux : ∼ 23°"
+        },
+        {
+          "date": "2016-06-07",
+          "total": 276,
+          "groups": {
+            "Gr.2": 19,
+            "Gr.3": 32,
+            "Gr.4": 27,
+            "Gr.5": 27,
+            "Gr.6": 58,
+            "Gr.7": 58,
+            "Gr.8": 30,
+            "Gr.W/NW": 25
+          },
+          "intensity": 13,
+          "remarks": "Beau, frais : ∼ 17°"
+        },
+        {
+          "date": "2016-06-14",
+          "total": 182,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 11,
+            "Gr.3": 21,
+            "Gr.4": 14,
+            "Gr.5": 13,
+            "Gr.6": 44,
+            "Gr.7": 43,
+            "Gr.8": 18,
+            "Gr.W/NW": 16
+          },
+          "intensity": 14,
+          "remarks": "Pluie, quelques coups de tonnerre, ∼ 20°"
+        },
+        {
+          "date": "2016-06-21",
+          "total": 223,
+          "groups": {
+            "Gr.2": 18,
+            "Gr.3": 34,
+            "Gr.4": 23,
+            "Gr.5": 15,
+            "Gr.6": 44,
+            "Gr.7": 45,
+            "Gr.8": 28,
+            "Gr.W/NW": 16
+          },
+          "intensity": "?",
+          "remarks": "∼ 32° : il paraît que c'est le 1er jour de l'été !"
+        },
+        {
+          "date": "2016-06-28",
+          "total": 233,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 14,
+            "Gr.3": 27,
+            "Gr.4": 23,
+            "Gr.5": 28,
+            "Gr.6": 42,
+            "Gr.7": 49,
+            "Gr.8": 28,
+            "Gr.W/NW": 19
+          },
+          "intensity": "Test",
+          "remarks": "Pluie, ∼ 19°"
+        },
+        {
+          "date": "2016-07-05",
+          "total": 243,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 10,
+            "Gr.3": 34,
+            "Gr.4": 25,
+            "Gr.5": 23,
+            "Gr.6": 52,
+            "Gr.7": 48,
+            "Gr.8": 21,
+            "Gr.W/NW": 27
+          },
+          "intensity": 13,
+          "remarks": "Beau, ∼ 27°"
+        },
+        {
+          "date": "2016-07-12",
+          "total": 251,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 15,
+            "Gr.3": 35,
+            "Gr.4": 28,
+            "Gr.5": 26,
+            "Gr.6": 50,
+            "Gr.7": 46,
+            "Gr.8": 30,
+            "Gr.W/NW": 19
+          },
+          "intensity": 15,
+          "remarks": "venteux, lourd, ∼ 26°"
+        },
+        {
+          "date": "2016-07-19",
+          "total": 219,
+          "groups": {
+            "Gr.1": 1,
+            "Gr.2": 8,
+            "Gr.3": 20,
+            "Gr.4": 30,
+            "Gr.5": 23,
+            "Gr.6": 50,
+            "Gr.7": 43,
+            "Gr.8": 26,
+            "Gr.W/NW": 18
+          },
+          "intensity": 16,
+          "remarks": "caniculaire"
+        },
+        {
+          "date": "2016-07-26",
+          "total": 203,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.3": 28,
+            "Gr.4": 30,
+            "Gr.5": 26,
+            "Gr.6": 46,
+            "Gr.7": 39,
+            "Gr.8": 18,
+            "Gr.W/NW": 14
+          },
+          "intensity": 17,
+          "remarks": "Beau : ∼ 21°. Groupes 2 & 3 fusionnés."
+        },
+        {
+          "date": "2016-08-02",
+          "total": 154,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.3": 24,
+            "Gr.4": 17,
+            "Gr.5": 12,
+            "Gr.6": 32,
+            "Gr.7": 37,
+            "Gr.8": 22,
+            "Gr.W/NW": 8
+          },
+          "intensity": 13,
+          "remarks": "caniculaire : ~ 32 º"
+        },
+        {
+          "date": "2016-08-09",
+          "total": 155,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 10,
+            "Gr.3": 22,
+            "Gr.4": 25,
+            "Gr.5": 10,
+            "Gr.6": 38,
+            "Gr.7": 23,
+            "Gr.8": 15,
+            "Gr.W/NW": 9
+          },
+          "intensity": 15,
+          "remarks": "Pluie d'orage avant. Le ciel soit loué, il est clément pendant."
+        },
+        {
+          "date": "2016-08-16",
+          "total": 217,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 12,
+            "Gr.3": 28,
+            "Gr.4": 27,
+            "Gr.5": 26,
+            "Gr.6": 44,
+            "Gr.7": 38,
+            "Gr.8": 23,
+            "Gr.W/NW": 17
+          },
+          "intensity": "17-18",
+          "remarks": "lourd, ∼ 26°"
+        },
+        {
+          "date": "2016-08-23",
+          "total": 188,
+          "groups": {
+            "Gr.2": 39,
+            "Gr.4": 18,
+            "Gr.6": 40,
+            "Gr.7": 76,
+            "Gr.W/NW": 15
+          },
+          "intensity": "Test",
+          "remarks": "chaleur étouffante : ~ 32 º"
+        },
+        {
+          "date": "2016-08-30",
+          "total": 200,
+          "groups": {
+            "Gr.1": 8,
+            "Gr.3": 35,
+            "Gr.4": 26,
+            "Gr.5": 17,
+            "Gr.6": 33,
+            "Gr.7": 48,
+            "Gr.8": 20,
+            "Gr.W/NW": 13
+          },
+          "intensity": 14,
+          "remarks": "∼ 28° couvert"
+        },
+        {
+          "date": "2016-09-06",
+          "total": 225,
+          "groups": {
+            "Gr.2": 17,
+            "Gr.3": 33,
+            "Gr.4": 26,
+            "Gr.5": 21,
+            "Gr.6": 48,
+            "Gr.7": 39,
+            "Gr.8": 23,
+            "Gr.W/NW": 18
+          },
+          "intensity": 12,
+          "remarks": "∼ 21° couvert"
+        },
+        {
+          "date": "2016-09-13",
+          "total": 206,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 11,
+            "Gr.3": 31,
+            "Gr.4": 25,
+            "Gr.5": 19,
+            "Gr.6": 44,
+            "Gr.7": 33,
+            "Gr.8": 18,
+            "Gr.W/NW": 22
+          },
+          "intensity": "17-18",
+          "remarks": "∼ 20° couvert"
+        },
+        {
+          "date": "2016-09-20",
+          "total": 216,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 18,
+            "Gr.3": 30,
+            "Gr.4": 26,
+            "Gr.5": 19,
+            "Gr.6": 48,
+            "Gr.7": 37,
+            "Gr.8": 17,
+            "Gr.W/NW": 19
+          },
+          "remarks": "∼ 15° frais"
+        },
+        {
+          "date": "2016-09-27",
+          "total": 195,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 14,
+            "Gr.3": 21,
+            "Gr.4": 18,
+            "Gr.5": 18,
+            "Gr.6": 40,
+            "Gr.7": 42,
+            "Gr.8": 16,
+            "Gr.W/NW": 21
+          },
+          "remarks": "∼ 20° beau"
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "sessions": [
+        {
+          "date": "2018-05-23",
+          "total": 226,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 12,
+            "Gr.3": 38,
+            "Gr.4": 16,
+            "Gr.5": 29,
+            "Gr.6": 52,
+            "Gr.7": 45,
+            "Gr.8": 22,
+            "Gr.W/NW": 8
+          },
+          "intensity": 12,
+          "remarks": "Pluie au départ.  ∼ 13º"
+        },
+        {
+          "date": "2018-05-30",
+          "total": 241,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 12,
+            "Gr.3": 34,
+            "Gr.4": 20,
+            "Gr.5": 21,
+            "Gr.6": 61,
+            "Gr.7": 54,
+            "Gr.8": 22,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "Déluge à 16:00, pas une goutte pendant nos ébats !   ∼ 23º"
+        },
+        {
+          "date": "2018-06-06",
+          "total": 287,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 11,
+            "Gr.3": 37,
+            "Gr.4": 21,
+            "Gr.5": 42,
+            "Gr.6": 67,
+            "Gr.7": 62,
+            "Gr.8": 29,
+            "Gr.W/NW": 14
+          },
+          "intensity": 16,
+          "remarks": "Pluie au retour.  ∼ 20º"
+        },
+        {
+          "date": "2018-06-13",
+          "total": 277,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 12,
+            "Gr.3": 39,
+            "Gr.4": 20,
+            "Gr.5": 44,
+            "Gr.6": 53,
+            "Gr.7": 63,
+            "Gr.8": 27,
+            "Gr.W/NW": 16
+          },
+          "intensity": 13,
+          "remarks": "Sans pluie, stock épuisé !  ∼ 15º"
+        },
+        {
+          "date": "2018-06-20",
+          "total": 263,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 9,
+            "Gr.3": 40,
+            "Gr.4": 19,
+            "Gr.5": 33,
+            "Gr.6": 51,
+            "Gr.7": 62,
+            "Gr.8": 31,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "Beau, très chaud   ∼ 30º !"
+        },
+        {
+          "date": "2018-06-27",
+          "total": 225,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 10,
+            "Gr.3": 29,
+            "Gr.4": 17,
+            "Gr.5": 26,
+            "Gr.6": 49,
+            "Gr.7": 58,
+            "Gr.8": 18,
+            "Gr.W/NW": 14
+          },
+          "intensity": "17-18",
+          "remarks": "Beau, bise   ∼ 25º !"
+        },
+        {
+          "date": "2018-07-04",
+          "total": 254,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 11,
+            "Gr.3": 39,
+            "Gr.4": 20,
+            "Gr.5": 28,
+            "Gr.6": 67,
+            "Gr.7": 54,
+            "Gr.8": 20,
+            "Gr.W/NW": 12
+          },
+          "intensity": "?",
+          "remarks": "Beau, très chaud, lourd,   ∼ 30º !"
+        },
+        {
+          "date": "2018-07-11",
+          "total": 259,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 8,
+            "Gr.3": 47,
+            "Gr.4": 19,
+            "Gr.5": 37,
+            "Gr.6": 48,
+            "Gr.7": 61,
+            "Gr.8": 20,
+            "Gr.W/NW": 15
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2018-07-18",
+          "total": 247,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 12,
+            "Gr.3": 42,
+            "Gr.4": 19,
+            "Gr.5": 35,
+            "Gr.6": 54,
+            "Gr.7": 48,
+            "Gr.8": 20,
+            "Gr.W/NW": 15
+          },
+          "intensity": 15,
+          "remarks": "Beau, très chaud,   ∼ 28º"
+        },
+        {
+          "date": "2018-07-25",
+          "total": 218,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 7,
+            "Gr.3": 33,
+            "Gr.4": 32,
+            "Gr.5": 25,
+            "Gr.6": 46,
+            "Gr.7": 43,
+            "Gr.8": 18,
+            "Gr.W/NW": 12
+          },
+          "intensity": 16,
+          "remarks": "Beau, très chaud  ∼ 30º !"
+        },
+        {
+          "date": "2018-08-01",
+          "total": 72,
+          "groups": {
+            "Gr.2": 14,
+            "Gr.4": 7,
+            "Gr.5": 12,
+            "Gr.6": 17,
+            "Gr.7": 12,
+            "Gr.8": 4,
+            "Gr.W/NW": 6
+          },
+          "intensity": 17,
+          "remarks": "La canicule a un coup de mou !"
+        },
+        {
+          "date": "2018-08-08",
+          "total": 166,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 32,
+            "Gr.4": 12,
+            "Gr.5": 24,
+            "Gr.6": 33,
+            "Gr.7": 39,
+            "Gr.8": 9,
+            "Gr.W/NW": 9
+          },
+          "intensity": 13,
+          "remarks": "Après un orage et avant les suivants !"
+        },
+        {
+          "date": "2018-08-15",
+          "total": 182,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 24,
+            "Gr.4": 19,
+            "Gr.5": 17,
+            "Gr.6": 39,
+            "Gr.7": 41,
+            "Gr.8": 18,
+            "Gr.W/NW": 14
+          },
+          "intensity": 15,
+          "remarks": "Beau, bise   ∼ 26º !"
+        },
+        {
+          "date": "2018-08-22",
+          "total": 169,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 30,
+            "Gr.4": 15,
+            "Gr.5": 25,
+            "Gr.6": 35,
+            "Gr.7": 35,
+            "Gr.8": 14,
+            "Gr.W/NW": 9
+          },
+          "intensity": "17-18",
+          "remarks": "Juste après la pluie, mais lourd quand même, ∼ 28º"
+        },
+        {
+          "date": "2018-08-29",
+          "total": 208,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.3": 40,
+            "Gr.4": 15,
+            "Gr.5": 27,
+            "Gr.6": 40,
+            "Gr.7": 49,
+            "Gr.8": 17,
+            "Gr.W/NW": 15
+          },
+          "intensity": 15,
+          "remarks": "15 km au programme, orage pas évité, coureurs/coureuses bien arrosé-e-s"
+        },
+        {
+          "date": "2018-09-05",
+          "total": 233,
+          "groups": {
+            "Gr.1": 6,
+            "Gr.2": 4,
+            "Gr.3": 34,
+            "Gr.4": 16,
+            "Gr.5": 29,
+            "Gr.6": 57,
+            "Gr.7": 58,
+            "Gr.8": 15,
+            "Gr.W/NW": 14
+          },
+          "intensity": 14,
+          "remarks": "Beau, 26º"
+        },
+        {
+          "date": "2018-09-12",
+          "total": 191,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 4,
+            "Gr.3": 33,
+            "Gr.4": 18,
+            "Gr.5": 18,
+            "Gr.6": 36,
+            "Gr.7": 53,
+            "Gr.8": 14,
+            "Gr.W/NW": 11
+          },
+          "intensity": 12,
+          "remarks": "Beau, 28º"
+        },
+        {
+          "date": "2018-09-19",
+          "total": 237,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.3": 41,
+            "Gr.4": 25,
+            "Gr.5": 31,
+            "Gr.6": 52,
+            "Gr.7": 55,
+            "Gr.8": 16,
+            "Gr.W/NW": 12
+          },
+          "intensity": "17-18",
+          "remarks": "Beau, 28º"
+        },
+        {
+          "date": "2018-09-26",
+          "total": 228,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 7,
+            "Gr.3": 38,
+            "Gr.4": 20,
+            "Gr.5": 21,
+            "Gr.6": 56,
+            "Gr.7": 50,
+            "Gr.8": 19,
+            "Gr.W/NW": 13
+          },
+          "remarks": "Beau, 20º"
+        },
+        {
+          "date": "2018-10-03",
+          "total": 195,
+          "groups": {
+            "Gr.1": 7,
+            "Gr.2": 29,
+            "Gr.4": 19,
+            "Gr.5": 29,
+            "Gr.6": 36,
+            "Gr.7": 45,
+            "Gr.8": 16,
+            "Gr.W/NW": 14
+          },
+          "remarks": "Couvert, frais 17º"
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "sessions": [
+        {
+          "date": "2019-05-22",
+          "total": 304,
+          "groups": {
+            "Gr.1": 5,
+            "Gr.2": 9,
+            "Gr.3": 32,
+            "Gr.4": 26,
+            "Gr.5": 38,
+            "Gr.6": 53,
+            "Gr.7": 64,
+            "Gr.8": 49,
+            "Gr.W/NW": 28
+          },
+          "intensity": 12,
+          "remarks": "Sous le soleil exactement  ∼ 20º"
+        },
+        {
+          "date": "2019-05-29",
+          "total": 230,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 7,
+            "Gr.3": 24,
+            "Gr.4": 18,
+            "Gr.5": 34,
+            "Gr.6": 43,
+            "Gr.7": 39,
+            "Gr.8": 41,
+            "Gr.W/NW": 22
+          },
+          "intensity": 14,
+          "remarks": "Après la pluie, fraichement ! ∼ 10º. Assistance modeste, veille de l'Ascension."
+        },
+        {
+          "date": "2019-06-05",
+          "total": 304,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 13,
+            "Gr.3": 32,
+            "Gr.4": 28,
+            "Gr.5": 42,
+            "Gr.6": 66,
+            "Gr.7": 49,
+            "Gr.8": 42,
+            "Gr.W/NW": 28
+          },
+          "intensity": 16,
+          "remarks": "Chaud, lourd  ∼ 26º"
+        },
+        {
+          "date": "2019-06-12",
+          "total": 282,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 5,
+            "Gr.3": 32,
+            "Gr.4": 28,
+            "Gr.5": 46,
+            "Gr.6": 53,
+            "Gr.7": 43,
+            "Gr.8": 45,
+            "Gr.W/NW": 28
+          },
+          "intensity": 13,
+          "remarks": "Soleil revenu, frais  ∼ 18º"
+        },
+        {
+          "date": "2019-06-19",
+          "total": 241,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 5,
+            "Gr.3": 27,
+            "Gr.4": 19,
+            "Gr.5": 35,
+            "Gr.6": 42,
+            "Gr.7": 47,
+            "Gr.8": 39,
+            "Gr.W/NW": 23
+          },
+          "intensity": 14,
+          "remarks": "Chaud, lourd  ∼ 28º. Veille de Fête-Dieu et course à Matran."
+        },
+        {
+          "date": "2019-06-26",
+          "total": 145,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 15,
+            "Gr.4": 22,
+            "Gr.5": 21,
+            "Gr.6": 18,
+            "Gr.7": 28,
+            "Gr.8": 19,
+            "Gr.W/NW": 13
+          },
+          "intensity": "17-18",
+          "remarks": "Canicule dissuasive, ∼ 34 - 35º. Sans parler du taux d'ozone ! Faut être fou pour courir (même en endurance). La moitié d'entre nous l'est !"
+        },
+        {
+          "date": "2019-07-03",
+          "total": 224,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 6,
+            "Gr.3": 29,
+            "Gr.4": 27,
+            "Gr.5": 25,
+            "Gr.6": 43,
+            "Gr.7": 38,
+            "Gr.8": 36,
+            "Gr.W/NW": 16
+          },
+          "intensity": "?",
+          "remarks": "Encore chaud, encore lourd  ∼ 28º."
+        },
+        {
+          "date": "2019-07-10",
+          "total": 252,
+          "groups": {
+            "Gr.2": 12,
+            "Gr.3": 33,
+            "Gr.4": 18,
+            "Gr.5": 47,
+            "Gr.6": 44,
+            "Gr.7": 50,
+            "Gr.8": 27,
+            "Gr.W/NW": 21
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2019-07-17",
+          "total": 233,
+          "groups": {
+            "Gr.2": 13,
+            "Gr.3": 19,
+            "Gr.4": 26,
+            "Gr.5": 34,
+            "Gr.6": 38,
+            "Gr.7": 51,
+            "Gr.8": 34,
+            "Gr.W/NW": 18
+          },
+          "intensity": 15,
+          "remarks": "Chaud  ∼ 28º."
+        },
+        {
+          "date": "2019-07-24",
+          "total": 136,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 15,
+            "Gr.4": 11,
+            "Gr.5": 21,
+            "Gr.6": 21,
+            "Gr.7": 25,
+            "Gr.8": 22,
+            "Gr.W/NW": 14
+          },
+          "intensity": 16,
+          "remarks": "Canicule dissuasive, ∼ 34 - 35º ! Record du 26.06. battu, autant pour la température que pour le creux de participation"
+        },
+        {
+          "date": "2019-07-31",
+          "total": 127,
+          "groups": {
+            "Gr.2": 4,
+            "Gr.3": 17,
+            "Gr.4": 13,
+            "Gr.5": 17,
+            "Gr.6": 16,
+            "Gr.7": 32,
+            "Gr.8": 14,
+            "Gr.W/NW": 14
+          },
+          "intensity": 17,
+          "remarks": "Veille de fête  nationale et vacances"
+        },
+        {
+          "date": "2019-08-07",
+          "total": 194,
+          "groups": {
+            "Gr.2": 11,
+            "Gr.3": 19,
+            "Gr.4": 27,
+            "Gr.5": 29,
+            "Gr.6": 32,
+            "Gr.7": 36,
+            "Gr.8": 21,
+            "Gr.W/NW": 19
+          },
+          "intensity": 13,
+          "remarks": "Couvert, 21º"
+        },
+        {
+          "date": "2019-08-14",
+          "total": 161,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 16,
+            "Gr.4": 14,
+            "Gr.5": 23,
+            "Gr.6": 28,
+            "Gr.7": 36,
+            "Gr.8": 22,
+            "Gr.W/NW": 15
+          },
+          "intensity": 15,
+          "remarks": "Beau, 21º, idéal pour une longue sortie"
+        },
+        {
+          "date": "2019-08-21",
+          "total": 218,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 25,
+            "Gr.4": 18,
+            "Gr.5": 38,
+            "Gr.6": 31,
+            "Gr.7": 53,
+            "Gr.8": 20,
+            "Gr.W/NW": 26
+          },
+          "intensity": "17-18",
+          "remarks": "frais  ∼ 18º, bise noire"
+        },
+        {
+          "date": "2019-08-28",
+          "total": 217,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 4,
+            "Gr.3": 22,
+            "Gr.4": 17,
+            "Gr.5": 32,
+            "Gr.6": 37,
+            "Gr.7": 55,
+            "Gr.8": 24,
+            "Gr.W/NW": 22
+          },
+          "intensity": 15,
+          "remarks": "Chaud, lourd  ∼ 28º. Objectif 15 km !"
+        },
+        {
+          "date": "2019-09-04",
+          "total": 188,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 24,
+            "Gr.4": 16,
+            "Gr.5": 27,
+            "Gr.6": 39,
+            "Gr.7": 37,
+            "Gr.8": 20,
+            "Gr.W/NW": 15
+          },
+          "intensity": 14,
+          "remarks": "Beau, 23º"
+        },
+        {
+          "date": "2019-09-11",
+          "total": 184,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 25,
+            "Gr.4": 17,
+            "Gr.5": 33,
+            "Gr.6": 28,
+            "Gr.7": 42,
+            "Gr.8": 18,
+            "Gr.W/NW": 15
+          },
+          "intensity": 12,
+          "remarks": "Beau, 23º I = 12 pour 17 km ???"
+        },
+        {
+          "date": "2019-09-18",
+          "total": 187,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 24,
+            "Gr.4": 26,
+            "Gr.5": 29,
+            "Gr.6": 30,
+            "Gr.7": 42,
+            "Gr.8": 13,
+            "Gr.W/NW": 17
+          },
+          "intensity": "17-18",
+          "remarks": "frais  ∼ 18º, bise noire et blanche"
+        },
+        {
+          "date": "2019-09-25",
+          "total": 203,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 29,
+            "Gr.4": 25,
+            "Gr.5": 27,
+            "Gr.6": 36,
+            "Gr.7": 42,
+            "Gr.8": 16,
+            "Gr.W/NW": 20
+          },
+          "remarks": "frais  ∼ 16º, 10' de pluie pendant"
+        },
+        {
+          "date": "2019-10-02",
+          "total": 139,
+          "groups": {
+            "Gr.3": 23,
+            "Gr.4": 16,
+            "Gr.5": 16,
+            "Gr.6": 23,
+            "Gr.7": 34,
+            "Gr.8": 14,
+            "Gr.W/NW": 13
+          },
+          "remarks": "forte pluie avant, sec pendant.  ∼ 13º"
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "sessions": [
+        {
+          "date": "2021-05-19",
+          "total": 0,
+          "intensity": 12
+        },
+        {
+          "date": "2021-05-26",
+          "total": 0,
+          "intensity": 14
+        },
+        {
+          "date": "2021-06-02",
+          "total": 0,
+          "intensity": 16
+        },
+        {
+          "date": "2021-06-09",
+          "total": 0,
+          "intensity": 13
+        },
+        {
+          "date": "2021-06-16",
+          "total": 0,
+          "intensity": 14
+        },
+        {
+          "date": "2021-06-23",
+          "total": 0,
+          "intensity": "17-18"
+        },
+        {
+          "date": "2021-06-30",
+          "total": 0,
+          "intensity": "?"
+        },
+        {
+          "date": "2021-07-07",
+          "total": 75,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 4,
+            "Gr.3": 8,
+            "Gr.4": 12,
+            "Gr.5": 8,
+            "Gr.6": 9,
+            "Gr.7": 10,
+            "Gr.8": 11,
+            "Gr.W/NW": 10
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2021-07-14",
+          "total": 55,
+          "groups": {
+            "Gr.2": 5,
+            "Gr.3": 7,
+            "Gr.4": 11,
+            "Gr.6": 9,
+            "Gr.7": 10,
+            "Gr.8": 7,
+            "Gr.W/NW": 6
+          },
+          "intensity": 15,
+          "remarks": "Pluie"
+        },
+        {
+          "date": "2021-07-21",
+          "total": 90,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 14,
+            "Gr.4": 6,
+            "Gr.5": 10,
+            "Gr.6": 12,
+            "Gr.7": 17,
+            "Gr.8": 12,
+            "Gr.W/NW": 9
+          },
+          "intensity": 16,
+          "remarks": "Beau et chaud, bise disparue."
+        },
+        {
+          "date": "2021-07-28",
+          "total": 88,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 12,
+            "Gr.4": 11,
+            "Gr.5": 7,
+            "Gr.6": 16,
+            "Gr.7": 16,
+            "Gr.8": 7,
+            "Gr.W/NW": 9
+          },
+          "intensity": 17,
+          "remarks": "Beau 25º. Flaques résiduelles sur les chemins !"
+        },
+        {
+          "date": "2021-08-04",
+          "total": 48,
+          "groups": {
+            "Gr.2": 5,
+            "Gr.3": 6,
+            "Gr.4": 4,
+            "Gr.5": 8,
+            "Gr.6": 6,
+            "Gr.7": 4,
+            "Gr.8": 9,
+            "Gr.W/NW": 6
+          },
+          "intensity": 13,
+          "remarks": "Pluie continue"
+        },
+        {
+          "date": "2021-08-11",
+          "total": 72,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 9,
+            "Gr.4": 9,
+            "Gr.5": 11,
+            "Gr.6": 9,
+            "Gr.7": 10,
+            "Gr.8": 8,
+            "Gr.W/NW": 10
+          },
+          "intensity": 15,
+          "remarks": "Beau, très chaud (mais oui !)"
+        },
+        {
+          "date": "2021-08-18",
+          "total": 76,
+          "groups": {
+            "Gr.2": 3,
+            "Gr.3": 9,
+            "Gr.4": 12,
+            "Gr.5": 6,
+            "Gr.6": 16,
+            "Gr.7": 10,
+            "Gr.8": 9,
+            "Gr.W/NW": 11
+          },
+          "intensity": "17-18",
+          "remarks": "Beau, frais"
+        },
+        {
+          "date": "2021-08-25",
+          "total": 91,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 9,
+            "Gr.4": 9,
+            "Gr.5": 10,
+            "Gr.6": 17,
+            "Gr.7": 14,
+            "Gr.8": 9,
+            "Gr.W/NW": 14
+          },
+          "intensity": 15
+        },
+        {
+          "date": "2021-09-01",
+          "total": 88,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 8,
+            "Gr.4": 14,
+            "Gr.5": 11,
+            "Gr.6": 10,
+            "Gr.7": 16,
+            "Gr.8": 8,
+            "Gr.W/NW": 11
+          },
+          "intensity": 14
+        },
+        {
+          "date": "2021-09-08",
+          "total": 71,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 3,
+            "Gr.4": 13,
+            "Gr.5": 11,
+            "Gr.6": 11,
+            "Gr.7": 9,
+            "Gr.8": 8,
+            "Gr.W/NW": 9
+          },
+          "intensity": 12,
+          "remarks": "Beau, chaud"
+        },
+        {
+          "date": "2021-09-15",
+          "total": 86,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 5,
+            "Gr.4": 21,
+            "Gr.5": 8,
+            "Gr.6": 17,
+            "Gr.7": 10,
+            "Gr.8": 7,
+            "Gr.W/NW": 8
+          },
+          "intensity": "17-18",
+          "remarks": "Humide, quelques gouttes de pluie... et de sueur !"
+        },
+        {
+          "date": "2021-09-22",
+          "total": 83,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 8,
+            "Gr.4": 12,
+            "Gr.5": 5,
+            "Gr.6": 14,
+            "Gr.7": 10,
+            "Gr.8": 11,
+            "Gr.W/NW": 13
+          }
+        },
+        {
+          "date": "2021-09-29",
+          "total": 86,
+          "groups": {
+            "Gr.2": 11,
+            "Gr.3": 8,
+            "Gr.4": 12,
+            "Gr.5": 10,
+            "Gr.6": 12,
+            "Gr.7": 16,
+            "Gr.8": 6,
+            "Gr.W/NW": 11
+          },
+          "remarks": "Après (et avant) la pluie."
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "sessions": [
+        {
+          "date": "2022-05-18",
+          "total": 159,
+          "groups": {
+            "Gr.1": 4,
+            "Gr.2": 4,
+            "Gr.3": 14,
+            "Gr.4": 17,
+            "Gr.5": 20,
+            "Gr.6": 29,
+            "Gr.7": 34,
+            "Gr.8": 22,
+            "Gr.W/NW": 15
+          },
+          "intensity": 12,
+          "remarks": "Chaud comme en été !"
+        },
+        {
+          "date": "2022-05-25",
+          "total": 131,
+          "groups": {
+            "Gr.1": 3,
+            "Gr.2": 4,
+            "Gr.3": 8,
+            "Gr.4": 17,
+            "Gr.5": 12,
+            "Gr.6": 30,
+            "Gr.7": 24,
+            "Gr.8": 22,
+            "Gr.W/NW": 11
+          },
+          "intensity": 12,
+          "remarks": "≈ 20º. La veille de l'Ascension éveille-t-elle des envies d'évasion ?"
+        },
+        {
+          "date": "2022-06-01",
+          "total": 135,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 13,
+            "Gr.4": 16,
+            "Gr.5": 17,
+            "Gr.6": 24,
+            "Gr.7": 22,
+            "Gr.8": 19,
+            "Gr.W/NW": 16
+          },
+          "intensity": 14,
+          "remarks": "couvert et même petite averse pendant la course"
+        },
+        {
+          "date": "2022-06-08",
+          "total": 153,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 8,
+            "Gr.3": 15,
+            "Gr.4": 19,
+            "Gr.5": 17,
+            "Gr.6": 26,
+            "Gr.7": 23,
+            "Gr.8": 20,
+            "Gr.W/NW": 23
+          },
+          "intensity": 13,
+          "remarks": "Après la pluie d'après-midi"
+        },
+        {
+          "date": "2022-06-15",
+          "total": 117,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 9,
+            "Gr.3": 15,
+            "Gr.4": 12,
+            "Gr.5": 7,
+            "Gr.6": 21,
+            "Gr.7": 29,
+            "Gr.8": 10,
+            "Gr.W/NW": 12
+          },
+          "intensity": 16,
+          "remarks": "≥ 30º, chaud pour des accels ! Température ou/et Fête-Dieu et son pont expliquent la petite fréquentation ?"
+        },
+        {
+          "date": "2022-06-22",
+          "total": 111,
+          "groups": {
+            "Gr.1": 2,
+            "Gr.2": 3,
+            "Gr.3": 15,
+            "Gr.4": 12,
+            "Gr.5": 14,
+            "Gr.6": 19,
+            "Gr.7": 22,
+            "Gr.8": 10,
+            "Gr.W/NW": 14
+          },
+          "intensity": 16,
+          "remarks": "Qui a eu peur de l'orage a de quoi en rester coi : les 111 dingues du soir l'ont fait taire !"
+        },
+        {
+          "date": "2022-06-29",
+          "total": 130,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 6,
+            "Gr.3": 17,
+            "Gr.4": 15,
+            "Gr.5": 15,
+            "Gr.6": 30,
+            "Gr.7": 26,
+            "Gr.8": 9,
+            "Gr.W/NW": 12
+          },
+          "intensity": 15,
+          "remarks": "Chaud"
+        },
+        {
+          "date": "2022-07-06",
+          "total": 139,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 9,
+            "Gr.3": 19,
+            "Gr.4": 22,
+            "Gr.5": 17,
+            "Gr.6": 24,
+            "Gr.7": 26,
+            "Gr.8": 10,
+            "Gr.W/NW": 12
+          },
+          "intensity": 12,
+          "remarks": "Beau, petite bise"
+        },
+        {
+          "date": "2022-07-13",
+          "total": 136,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 4,
+            "Gr.3": 16,
+            "Gr.4": 20,
+            "Gr.5": 20,
+            "Gr.6": 23,
+            "Gr.7": 28,
+            "Gr.8": 10,
+            "Gr.W/NW": 15
+          },
+          "intensity": 16,
+          "remarks": "≥ 34º !? pas pyramide donc"
+        },
+        {
+          "date": "2022-07-20",
+          "total": 103,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 8,
+            "Gr.3": 13,
+            "Gr.4": 17,
+            "Gr.5": 17,
+            "Gr.6": 14,
+            "Gr.7": 11,
+            "Gr.8": 10,
+            "Gr.W/NW": 13
+          },
+          "intensity": 17,
+          "remarks": "10ème semaine ! Orageux"
+        },
+        {
+          "date": "2022-07-27",
+          "total": 116,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 4,
+            "Gr.3": 14,
+            "Gr.4": 15,
+            "Gr.5": 14,
+            "Gr.6": 18,
+            "Gr.7": 19,
+            "Gr.8": 15,
+            "Gr.W/NW": 17
+          },
+          "intensity": 15
+        },
+        {
+          "date": "2022-08-03",
+          "total": 78,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 5,
+            "Gr.3": 11,
+            "Gr.4": 10,
+            "Gr.5": 7,
+            "Gr.6": 10,
+            "Gr.7": 12,
+            "Gr.8": 10,
+            "Gr.W/NW": 13
+          },
+          "intensity": 17,
+          "remarks": "≥ 34º !"
+        },
+        {
+          "date": "2022-08-10",
+          "total": 111,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 7,
+            "Gr.3": 14,
+            "Gr.4": 12,
+            "Gr.5": 16,
+            "Gr.6": 22,
+            "Gr.7": 22,
+            "Gr.8": 10,
+            "Gr.W/NW": 8
+          },
+          "intensity": 13,
+          "remarks": "30º"
+        },
+        {
+          "date": "2022-08-17",
+          "total": 109,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 7,
+            "Gr.3": 12,
+            "Gr.4": 15,
+            "Gr.5": 16,
+            "Gr.6": 19,
+            "Gr.7": 22,
+            "Gr.8": 8,
+            "Gr.W/NW": 10
+          },
+          "intensity": "17-18",
+          "remarks": "Orageux"
+        },
+        {
+          "date": "2022-08-24",
+          "total": 128,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 7,
+            "Gr.3": 14,
+            "Gr.4": 17,
+            "Gr.5": 17,
+            "Gr.6": 22,
+            "Gr.7": 22,
+            "Gr.8": 12,
+            "Gr.W/NW": 17
+          },
+          "intensity": 13,
+          "remarks": "Longue distance (annoncée)"
+        },
+        {
+          "date": "2022-08-31",
+          "total": 123,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 5,
+            "Gr.3": 12,
+            "Gr.4": 15,
+            "Gr.5": 21,
+            "Gr.6": 22,
+            "Gr.7": 22,
+            "Gr.8": 11,
+            "Gr.W/NW": 15
+          },
+          "intensity": 17
+        },
+        {
+          "date": "2022-09-07",
+          "total": 108,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 7,
+            "Gr.3": 10,
+            "Gr.4": 15,
+            "Gr.5": 13,
+            "Gr.6": 20,
+            "Gr.7": 22,
+            "Gr.8": 10,
+            "Gr.W/NW": 11
+          },
+          "intensity": 14,
+          "remarks": "17e semaine = 17 km (ou presque)"
+        },
+        {
+          "date": "2022-09-14",
+          "total": 116,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 9,
+            "Gr.3": 8,
+            "Gr.4": 23,
+            "Gr.5": 10,
+            "Gr.6": 25,
+            "Gr.7": 13,
+            "Gr.8": 11,
+            "Gr.W/NW": 17
+          },
+          "intensity": "17-18"
+        },
+        {
+          "date": "2022-09-21",
+          "total": 128,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 12,
+            "Gr.3": 12,
+            "Gr.4": 22,
+            "Gr.5": 18,
+            "Gr.6": 18,
+            "Gr.7": 22,
+            "Gr.8": 9,
+            "Gr.W/NW": 15
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2022-09-28",
+          "total": 75,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 6,
+            "Gr.3": 21,
+            "Gr.4": 0,
+            "Gr.5": 9,
+            "Gr.6": 18,
+            "Gr.7": 11,
+            "Gr.8": 3,
+            "Gr.W/NW": 7
+          },
+          "intensity": 12,
+          "remarks": "20e semaine : la douche ! Bonne course aux fidèles et aux infidèles aussi !"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "sessions": [
+        {
+          "date": "2022-05-17",
+          "total": 165,
+          "groups": {
+            "Gr.1": 1,
+            "Gr.2": 7,
+            "Gr.3": 15,
+            "Gr.4": 19,
+            "Gr.5": 26,
+            "Gr.6": 32,
+            "Gr.7": 23,
+            "Gr.8": 26,
+            "Gr.W/NW": 16
+          },
+          "intensity": 12,
+          "remarks": "Bise noire, forte, 12º"
+        },
+        {
+          "date": "2022-05-24",
+          "total": 196,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 19,
+            "Gr.4": 21,
+            "Gr.5": 29,
+            "Gr.6": 33,
+            "Gr.7": 35,
+            "Gr.8": 25,
+            "Gr.W/NW": 24
+          },
+          "intensity": 12,
+          "remarks": "Importante fréquentation, digne de l'avant-Covid ! La présence de la RTS en est-elle la raison ? Voir Brèves"
+        },
+        {
+          "date": "2022-05-31",
+          "total": 147,
+          "groups": {
+            "Gr.2": 5,
+            "Gr.3": 12,
+            "Gr.4": 21,
+            "Gr.5": 25,
+            "Gr.6": 19,
+            "Gr.7": 27,
+            "Gr.8": 16,
+            "Gr.W/NW": 22
+          },
+          "intensity": 14,
+          "remarks": "Orage juste avant, quelques gouttes pendant"
+        },
+        {
+          "date": "2022-06-07",
+          "total": 202,
+          "groups": {
+            "Gr.2": 13,
+            "Gr.3": 11,
+            "Gr.4": 26,
+            "Gr.5": 47,
+            "Gr.6": 28,
+            "Gr.7": 25,
+            "Gr.8": 28,
+            "Gr.W/NW": 24
+          },
+          "intensity": 13,
+          "remarks": "On frise la barre des 25 (º) et dépasse celle des 200 (participant.e.s) !"
+        },
+        {
+          "date": "2022-06-14",
+          "total": 212,
+          "groups": {
+            "Gr.2": 13,
+            "Gr.3": 14,
+            "Gr.4": 30,
+            "Gr.5": 35,
+            "Gr.6": 27,
+            "Gr.7": 39,
+            "Gr.8": 25,
+            "Gr.W/NW": 29
+          },
+          "intensity": 16,
+          "remarks": "Température et participation encore en hausse, c'est bon signe"
+        },
+        {
+          "date": "2022-06-21",
+          "total": 182,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 15,
+            "Gr.4": 26,
+            "Gr.5": 25,
+            "Gr.6": 26,
+            "Gr.7": 31,
+            "Gr.8": 28,
+            "Gr.W/NW": 22
+          },
+          "intensity": 16,
+          "remarks": "En concurrence avec la fête de la musique, en compétition avec la chaleur, la lourdeur, la 'touffeur'..."
+        },
+        {
+          "date": "2022-06-28",
+          "total": 186,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 16,
+            "Gr.4": 25,
+            "Gr.5": 38,
+            "Gr.6": 20,
+            "Gr.7": 39,
+            "Gr.8": 20,
+            "Gr.W/NW": 20
+          },
+          "intensity": 15,
+          "remarks": "Encore du beau temps... et du bon"
+        },
+        {
+          "date": "2022-07-05",
+          "total": 172,
+          "groups": {
+            "Gr.2": 13,
+            "Gr.3": 16,
+            "Gr.4": 22,
+            "Gr.5": 27,
+            "Gr.6": 18,
+            "Gr.7": 37,
+            "Gr.8": 19,
+            "Gr.W/NW": 20
+          },
+          "intensity": 12,
+          "remarks": "Après la pluie (de la journée), le soleil (pour/de la course)"
+        },
+        {
+          "date": "2022-07-12",
+          "total": 160,
+          "groups": {
+            "Gr.2": 16,
+            "Gr.3": 15,
+            "Gr.4": 20,
+            "Gr.5": 27,
+            "Gr.6": 15,
+            "Gr.7": 27,
+            "Gr.8": 19,
+            "Gr.W/NW": 21
+          },
+          "intensity": 16,
+          "remarks": "Après les orages de la veille et de la journée, atmosphère tropicale"
+        },
+        {
+          "date": "2022-07-19",
+          "total": 160,
+          "groups": {
+            "Gr.2": 14,
+            "Gr.3": 15,
+            "Gr.4": 23,
+            "Gr.5": 28,
+            "Gr.6": 12,
+            "Gr.7": 29,
+            "Gr.8": 18,
+            "Gr.W/NW": 21
+          },
+          "intensity": 17,
+          "remarks": "A mi-distance : 10/20 par temps chaud et lourd."
+        },
+        {
+          "date": "2022-07-26",
+          "total": 157,
+          "groups": {
+            "Gr.2": 14,
+            "Gr.3": 10,
+            "Gr.4": 24,
+            "Gr.5": 23,
+            "Gr.6": 16,
+            "Gr.7": 29,
+            "Gr.8": 20,
+            "Gr.W/NW": 21
+          },
+          "intensity": 15,
+          "remarks": "La fraîcheur fait du bien"
+        },
+        {
+          "date": "2022-08-02",
+          "total": 132,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 16,
+            "Gr.4": 17,
+            "Gr.5": 20,
+            "Gr.6": 12,
+            "Gr.7": 18,
+            "Gr.8": 20,
+            "Gr.W/NW": 23
+          },
+          "intensity": 17,
+          "remarks": "Très venteux, on évite si possible la forêt"
+        },
+        {
+          "date": "2022-08-09",
+          "total": 147,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 8,
+            "Gr.4": 25,
+            "Gr.5": 23,
+            "Gr.6": 16,
+            "Gr.7": 20,
+            "Gr.8": 30,
+            "Gr.W/NW": 17
+          },
+          "intensity": 13,
+          "remarks": "Endurance estivale"
+        },
+        {
+          "date": "2022-08-16",
+          "total": 120,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 10,
+            "Gr.4": 11,
+            "Gr.5": 25,
+            "Gr.6": 13,
+            "Gr.7": 22,
+            "Gr.8": 20,
+            "Gr.W/NW": 13
+          },
+          "intensity": "17-18",
+          "remarks": "Très chaud, dissuasif ? 1ère étape Groupe-E Tour"
+        },
+        {
+          "date": "2022-08-23",
+          "total": 104,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 6,
+            "Gr.4": 14,
+            "Gr.5": 26,
+            "Gr.6": 7,
+            "Gr.7": 24,
+            "Gr.8": 9,
+            "Gr.W/NW": 9
+          },
+          "intensity": 13,
+          "remarks": "Canicule ? 34º !"
+        },
+        {
+          "date": "2022-08-30",
+          "total": 156,
+          "groups": {
+            "Gr.2": 11,
+            "Gr.3": 10,
+            "Gr.4": 16,
+            "Gr.5": 29,
+            "Gr.6": 14,
+            "Gr.7": 31,
+            "Gr.8": 25,
+            "Gr.W/NW": 20
+          },
+          "intensity": 17,
+          "remarks": "Sortie longue par <=20º, idéal !"
+        },
+        {
+          "date": "2022-09-06",
+          "total": 136,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 18,
+            "Gr.4": 11,
+            "Gr.5": 19,
+            "Gr.6": 15,
+            "Gr.7": 26,
+            "Gr.8": 18,
+            "Gr.W/NW": 22
+          },
+          "intensity": 14,
+          "remarks": "Très chaud encore !"
+        },
+        {
+          "date": "2022-09-13",
+          "total": 121,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 15,
+            "Gr.4": 14,
+            "Gr.5": 15,
+            "Gr.6": 16,
+            "Gr.7": 22,
+            "Gr.8": 13,
+            "Gr.W/NW": 18
+          },
+          "intensity": "17-18",
+          "remarks": "Le temps est à la pluie"
+        },
+        {
+          "date": "2022-09-20",
+          "total": 163,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 22,
+            "Gr.4": 24,
+            "Gr.5": 25,
+            "Gr.6": 14,
+            "Gr.7": 26,
+            "Gr.8": 18,
+            "Gr.W/NW": 26
+          },
+          "intensity": 13,
+          "remarks": "Ah, fréquentation en hausse ! fin des courses Groupe-E ou proximité du MF ?"
+        },
+        {
+          "date": "2022-09-27",
+          "total": 141,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 17,
+            "Gr.4": 17,
+            "Gr.5": 23,
+            "Gr.6": 13,
+            "Gr.7": 26,
+            "Gr.8": 13,
+            "Gr.W/NW": 25
+          },
+          "intensity": 12,
+          "remarks": "La der avant ... la nuit !"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "sessions": [
+        {
+          "date": "2024-05-22",
+          "total": 282,
+          "groups": {
+            "Gr.1": 0,
+            "Gr.2": 13,
+            "Gr.3": 15,
+            "Gr.4": 40,
+            "Gr.5": 40,
+            "Gr.6": 39,
+            "Gr.7": 54,
+            "Gr.8": 46,
+            "Gr.W/NW": 35
+          },
+          "intensity": 12,
+          "remarks": "Avant la pluie. 17º. Record 1er soir presque égalé !"
+        },
+        {
+          "date": "2024-05-29",
+          "total": 254,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 8,
+            "Gr.4": 37,
+            "Gr.5": 42,
+            "Gr.6": 40,
+            "Gr.7": 45,
+            "Gr.8": 37,
+            "Gr.W/NW": 35
+          },
+          "intensity": 12,
+          "remarks": "Veille de la Fête-Dieu"
+        },
+        {
+          "date": "2024-06-05",
+          "total": 279,
+          "groups": {
+            "Gr.2": 6,
+            "Gr.3": 13,
+            "Gr.4": 42,
+            "Gr.5": 41,
+            "Gr.6": 39,
+            "Gr.7": 55,
+            "Gr.8": 47,
+            "Gr.W/NW": 36
+          },
+          "intensity": 14,
+          "remarks": "Premières chaleurs pour première séance d'intensité augmentée."
+        },
+        {
+          "date": "2024-06-12",
+          "total": 275,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 13,
+            "Gr.4": 37,
+            "Gr.5": 44,
+            "Gr.6": 39,
+            "Gr.7": 48,
+            "Gr.8": 54,
+            "Gr.W/NW": 30
+          },
+          "intensity": 13,
+          "remarks": "Frais, petite bise"
+        },
+        {
+          "date": "2024-06-19",
+          "total": 265,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 13,
+            "Gr.4": 31,
+            "Gr.5": 49,
+            "Gr.6": 36,
+            "Gr.7": 54,
+            "Gr.8": 43,
+            "Gr.W/NW": 31
+          },
+          "intensity": 16,
+          "remarks": "Très chaud, très lourd pour une séance VMA"
+        },
+        {
+          "date": "2024-06-26",
+          "total": 215,
+          "groups": {
+            "Gr.2": 11,
+            "Gr.3": 16,
+            "Gr.4": 34,
+            "Gr.5": 42,
+            "Gr.6": 21,
+            "Gr.7": 40,
+            "Gr.8": 32,
+            "Gr.W/NW": 19
+          },
+          "intensity": 16,
+          "remarks": "Des flonflons d’accordéon qui donnent au rassemblement un air de fête. Merci à  la charmante interprète anonyme (?) qui joue pour quelle bonne cause ? Séance d'après la pluie, dissuasive ?"
+        },
+        {
+          "date": "2024-07-03",
+          "total": 218,
+          "groups": {
+            "Gr.2": 15,
+            "Gr.3": 12,
+            "Gr.4": 36,
+            "Gr.5": 39,
+            "Gr.6": 26,
+            "Gr.7": 31,
+            "Gr.8": 30,
+            "Gr.W/NW": 29
+          },
+          "intensity": 15,
+          "remarks": "Frais, après la pluie"
+        },
+        {
+          "date": "2024-07-10",
+          "total": 253,
+          "groups": {
+            "Gr.2": 15,
+            "Gr.3": 13,
+            "Gr.4": 37,
+            "Gr.5": 42,
+            "Gr.6": 30,
+            "Gr.7": 42,
+            "Gr.8": 43,
+            "Gr.W/NW": 31
+          },
+          "intensity": 12
+        },
+        {
+          "date": "2024-07-17",
+          "total": 222,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 10,
+            "Gr.4": 30,
+            "Gr.5": 29,
+            "Gr.6": 37,
+            "Gr.7": 41,
+            "Gr.8": 36,
+            "Gr.W/NW": 29
+          },
+          "intensity": 16,
+          "remarks": "Beau 24º"
+        },
+        {
+          "date": "2024-07-24",
+          "total": 191,
+          "groups": {
+            "Gr.2": 10,
+            "Gr.3": 13,
+            "Gr.4": 25,
+            "Gr.5": 27,
+            "Gr.6": 29,
+            "Gr.7": 28,
+            "Gr.8": 29,
+            "Gr.W/NW": 30
+          },
+          "intensity": 17,
+          "remarks": "Beau, 24º. Fréquentation en baisse effet vacances."
+        },
+        {
+          "date": "2024-07-31",
+          "total": 120,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 12,
+            "Gr.4": 13,
+            "Gr.5": 17,
+            "Gr.6": 16,
+            "Gr.7": 15,
+            "Gr.8": 16,
+            "Gr.W/NW": 23
+          },
+          "intensity": 15,
+          "remarks": "Le creux des vacances"
+        },
+        {
+          "date": "2024-08-07",
+          "total": 182,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 15,
+            "Gr.4": 24,
+            "Gr.5": 27,
+            "Gr.6": 25,
+            "Gr.7": 35,
+            "Gr.8": 24,
+            "Gr.W/NW": 23
+          },
+          "intensity": 17,
+          "remarks": "Beau, après la pluie de la journée"
+        },
+        {
+          "date": "2024-08-14",
+          "total": 194,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 9,
+            "Gr.4": 37,
+            "Gr.5": 29,
+            "Gr.6": 21,
+            "Gr.7": 36,
+            "Gr.8": 30,
+            "Gr.W/NW": 24
+          },
+          "intensity": 13,
+          "remarks": "Au départ, soleil; à la fin orage et pluie battante"
+        },
+        {
+          "date": "2024-08-21",
+          "total": 240,
+          "groups": {
+            "Gr.2": 8,
+            "Gr.3": 17,
+            "Gr.4": 34,
+            "Gr.5": 37,
+            "Gr.6": 39,
+            "Gr.7": 48,
+            "Gr.8": 27,
+            "Gr.W/NW": 30
+          },
+          "intensity": "17-18",
+          "remarks": "ha ha, fin des vacances ! Présence de Mme Lachat de Solidarité Femmes. Séance \"confortablement difficile\""
+        },
+        {
+          "date": "2024-08-28",
+          "total": 233,
+          "groups": {
+            "Gr.2": 15,
+            "Gr.3": 12,
+            "Gr.4": 34,
+            "Gr.5": 40,
+            "Gr.6": 27,
+            "Gr.7": 44,
+            "Gr.8": 32,
+            "Gr.W/NW": 29
+          },
+          "intensity": 13,
+          "remarks": "Sortie longue 15 km approchés voire atteints"
+        },
+        {
+          "date": "2024-09-04",
+          "total": 228,
+          "groups": {
+            "Gr.2": 9,
+            "Gr.3": 17,
+            "Gr.4": 40,
+            "Gr.5": 35,
+            "Gr.6": 26,
+            "Gr.7": 40,
+            "Gr.8": 31,
+            "Gr.W/NW": 30
+          },
+          "intensity": 17,
+          "remarks": "Pluie"
+        },
+        {
+          "date": "2024-09-11",
+          "total": 154,
+          "groups": {
+            "Gr.2": 7,
+            "Gr.3": 12,
+            "Gr.4": 29,
+            "Gr.5": 24,
+            "Gr.6": 19,
+            "Gr.7": 23,
+            "Gr.8": 18,
+            "Gr.W/NW": 22
+          },
+          "intensity": 14,
+          "remarks": "Sortie longue et pluie abondante : 2 facteurs dissuasifs ? Tout le mérite aux  participant.e.s courageux.ses"
+        },
+        {
+          "date": "2024-09-18",
+          "total": 203,
+          "groups": {
+            "Gr.2": 16,
+            "Gr.3": 12,
+            "Gr.4": 30,
+            "Gr.5": 29,
+            "Gr.6": 31,
+            "Gr.7": 37,
+            "Gr.8": 22,
+            "Gr.W/NW": 26
+          },
+          "intensity": "17-18",
+          "remarks": "Beau"
+        },
+        {
+          "date": "2024-09-25",
+          "total": 216,
+          "groups": {
+            "Gr.2": 12,
+            "Gr.3": 17,
+            "Gr.4": 29,
+            "Gr.5": 39,
+            "Gr.6": 19,
+            "Gr.7": 50,
+            "Gr.8": 23,
+            "Gr.W/NW": 27
+          },
+          "intensity": 13
+        },
+        {
+          "date": "2024-10-02",
+          "total": 199,
+          "groups": {
+            "Gr.2": 13,
+            "Gr.3": 12,
+            "Gr.4": 34,
+            "Gr.5": 27,
+            "Gr.6": 29,
+            "Gr.7": 32,
+            "Gr.8": 24,
+            "Gr.W/NW": 28
+          },
+          "intensity": 12,
+          "remarks": "La der ! Bonne course à toutes/tous !"
+        }
+      ]
+    },
+       {
       "year": 2025,
       "sessions": [
         {
