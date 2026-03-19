@@ -14,13 +14,13 @@ permalink: /programme/
   <button id="calNext" class="btn btn-ghost" type="button">Mois suivant ▶</button>
 </div>
 
-<div class="cal-lang" style="display:flex; gap:10px; justify-content:flex-end; margin: 8px 0 12px;">
-  <button id="langFR" class="btn" type="button">FR</button>
-  <button id="langDE" class="btn" type="button">DE</button>
+<div class="cal-lang">
+  <button id="langFR" class="btn btn-ghost" type="button">FR</button>
+  <button id="langDE" class="btn btn-ghost" type="button">DE</button>
 </div>
 
-<div style="margin:10px 0 18px 0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-  <button id="calDownloadIcs" class="btn" type="button">Télécharger le programme (.ics)</button>
+<div class="cal-actions">
+  <button id="calDownloadIcs" class="btn btn-outline" type="button">Télécharger le programme (.ics)</button>
   <span class="muted">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
 </div>
 
@@ -594,7 +594,7 @@ function renderEventDetails(ev) {
     : "";
 
   return `
-    <div class="event-card" style="margin-bottom:14px;">
+    <div class="event-card">
       <h2>${escapeHtml(title)}</h2>
 
       ${intensityHtml}

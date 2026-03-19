@@ -19,7 +19,7 @@ title: Accueil
 </div>
 <div class="hr"></div>
 
-<div class="grid" style="margin-top:16px;">
+<div class="grid mt-16">
   <div class="col-4">
     <div class="card">
       <div class="card-title">
@@ -51,12 +51,12 @@ title: Accueil
   </div>
 </div>
 
-<section class="map" style="margin-top:16px;">
+<section class="map mt-16">
   <h2>Point de rendez-vous</h2>
 
-  <div id="map-rdv" style="height:360px; border:1px solid #ccc; border-radius:8px;"></div>
+  <div id="map-rdv" class="map-box" style="height:360px;"></div>
 
-  <p style="margin:8px 0 0; color:#667085;">
+  <p class="muted">
     RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte.
   </p>
 
@@ -237,8 +237,8 @@ title: Accueil
         ${seanceMercrediHtml}
         ${conseilHtml}
 
-        <p style="margin-top:10px;">
-          <a class="btn" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
+        <p class="mt-16">
+          <a class="btn btn-outline" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
             Télécharger le calendrier (.ics)
           </a>
         </p>

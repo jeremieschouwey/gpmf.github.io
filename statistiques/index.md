@@ -141,7 +141,7 @@ permalink: /statistiques/
         <div class="col-3">${card('Record', fmtNumber.format(globalRecord?.total || 0), formatDate(globalRecord?.date))}</div>
       </div>
 
-      <div class="grid" style="margin-top:16px;">
+      <div class="grid mt-16">
         <div class="col-6">
           <div class="card">
             <div class="card-title">
@@ -169,7 +169,7 @@ permalink: /statistiques/
         </div>
       </div>
 
-      <div class="grid" style="margin-top:16px;">
+      <div class="grid mt-16">
         <div class="col-4">
           <div class="card">
             <div class="card-title"><h3>Résumé de la saison sélectionnée</h3></div>
@@ -197,7 +197,7 @@ permalink: /statistiques/
         </div>
       </div>
 
-      <div class="card" style="margin-top:16px;">
+      <div class="card mt-16">
         <div class="card-title"><h3 id="seasonTableTitle"></h3></div>
         <div class="table-wrap">
           <table>
@@ -347,80 +347,3 @@ permalink: /statistiques/
 })();
 </script>
 
-<style>
-.stats-grid .card,
-.stat-card {
-  height: 100%;
-}
-
-.stat-label {
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 6px;
-}
-
-.stat-help {
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-.table-wrap table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table-wrap th,
-.table-wrap td {
-  text-align: left;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-}
-
-.table-wrap th {
-  font-size: 0.95rem;
-}
-
-.chart-box {
-  position: relative;
-  height: 320px;
-  width: 100%;
-}
-
-.chart-box canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.stats-summary-list p {
-  margin: 0 0 8px;
-}
-
-.card-title-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-@media (max-width: 700px) {
-  .chart-box {
-    height: 260px;
-  }
-
-  .card-title-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-</style>

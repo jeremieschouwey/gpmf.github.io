@@ -7,7 +7,7 @@ permalink: /photos/
 <h1>Photos</h1>
 
 <nav id="photo-menu"></nav>
-<div id="photo-status" style="margin: 1rem 0;"></div>
+<div id="photo-status"></div>
 <div id="photo-gallery" class="gallery"></div>
 
 <!-- Lightbox -->
@@ -23,103 +23,6 @@ permalink: /photos/
   <div id="lb-caption" class="lb-caption"></div>
 </div>
 
-<style>
-  #photo-menu a {
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    text-decoration: none;
-  }
-  #photo-menu a.active {
-    font-weight: 600;
-    border-color: #999;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-  }
-  .gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    background: #f3f3f3;
-    cursor: zoom-in;
-  }
-
-  .lb {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: rgba(0,0,0,0.85);
-    z-index: 9999;
-  }
-  .lb.open { display: flex; }
-
-  .lb-topbar {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    display: flex;
-    gap: 10px;
-    z-index: 10000;
-  }
-
-  .lb-btn {
-    font-size: 14px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(0,0,0,0.35);
-    color: #fff;
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 8px;
-  }
-  .lb-btn:hover { background: rgba(255,255,255,0.15); }
-
-  .lb-img {
-    max-width: min(1200px, 95vw);
-    max-height: 85vh;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    background: #111;
-  }
-
-  .lb-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 48px;
-    line-height: 1;
-    border: 0;
-    background: rgba(0,0,0,0.25);
-    color: #fff;
-    cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 10px;
-    z-index: 10000;
-  }
-  .lb-prev { left: 14px; }
-  .lb-next { right: 14px; }
-
-  .lb-caption {
-    position: absolute;
-    bottom: 14px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: rgba(255,255,255,0.9);
-    font-size: 14px;
-    padding: 0 18px;
-    word-break: break-word;
-    z-index: 10000;
-  }
-</style>
 
 <script>
   const R2_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";

@@ -12,7 +12,7 @@ permalink: /course/
 
 <div class="hr"></div>
 
-<div class="grid" style="margin-top:16px; gap:16px;">
+<div class="grid mt-16">
   <div class="col-6">
     <div class="card">
       <div class="card-title">
@@ -21,7 +21,7 @@ permalink: /course/
       <p>
         Retrouvez les informations officielles (inscriptions, horaires, règlement, infos pratiques) sur le site de la course.
       </p>
-      <p style="margin: 0;">
+      <p>
         <a class="btn btn-primary" href="https://www.morat-fribourg.ch" target="_blank" rel="noopener noreferrer">
           Ouvrir le site officiel
         </a>
@@ -36,11 +36,9 @@ permalink: /course/
       </div>
 
       <!-- ✅ Mets à jour ici chaque année -->
-      <p style="font-size:1.05rem; margin: 0 0 8px;">
-        <strong>Dimanche 4 octobre 2026</strong>
-      </p>
+      <p><strong>Dimanche 4 octobre 2026</strong></p>
 
-      <p class="muted" style="margin:0;">
+      <p class="muted">
         Astuce : la course a généralement lieu début octobre (souvent le 1er dimanche).
       </p>
     </div>
@@ -62,26 +60,3 @@ permalink: /course/
 
 
 
-<!-- Styles spécifiques à cette page -->
-<style>
-  .strava-embed{
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 responsive */
-    height: 0;
-    overflow: hidden;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: var(--card);
-  }
-  .strava-embed iframe{
-    position: absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    border:0;
-  }
-  .list{
-    margin: 10px 0 0;
-    padding-left: 18px;
-  }
-</style>

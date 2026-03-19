@@ -41,28 +41,3 @@ permalink: /membres-honneur/
 
 </div>
 
-<style>
-  .membres-list {
-    display: grid;
-    gap: 14px;
-    margin-top: 20px;
-  }
-
-  .membre-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    box-shadow: var(--shadow);
-  }
-
-  .membre-name {
-    font-size: 1.1rem;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-
-  .membre-desc {
-    color: var(--text);
-  }
-</style>

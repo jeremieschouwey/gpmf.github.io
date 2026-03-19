@@ -12,9 +12,7 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   <aside class="traces-panel">
     <div class="traces-panel-header">
       <h2>Liste des tracés</h2>
-      <p class="muted" style="margin:6px 0 0 0;">
-        Les GPX sont hébergés sur GitHub.
-      </p>
+      <p class="muted">Les GPX sont hébergés sur GitHub.</p>
     </div>
 
     <div class="traces-list" id="tracesList"></div>
@@ -23,12 +21,12 @@ Choisis un tracé pour l’afficher sur la carte, puis télécharge le fichier G
   <section class="traces-map">
     <div class="traces-map-header">
       <div>
-        <h2 id="traceTitle" style="margin:0;">Sélectionne un tracé</h2>
-        <div class="muted" id="traceMeta" style="margin-top:6px;"></div>
+        <h2 id="traceTitle">Sélectionne un tracé</h2>
+        <div class="muted" id="traceMeta"></div>
       </div>
 
       <div class="traces-actions">
-        <a class="btn" id="downloadBtn" href="#" download style="pointer-events:none; opacity:.5;">
+        <a class="btn btn-outline" id="downloadBtn" href="#" download style="pointer-events:none; opacity:.5;">
           Télécharger GPX
         </a>
       </div>
@@ -226,83 +224,3 @@ function sanitizeForLeafletProjection(latlngs) {
   renderList();
 </script>
 
-<style>
-  .traces-layout{
-    display:grid;
-    grid-template-columns: 360px 1fr;
-    gap:16px;
-    margin-top:16px;
-    align-items:start;
-  }
-  @media (max-width: 900px){
-    .traces-layout{ grid-template-columns: 1fr; }
-  }
-
-  .traces-panel{
-    position:sticky;
-    top:16px;
-  }
-  @media (max-width: 900px){
-    .traces-panel{ position:static; }
-  }
-
-  .traces-panel-header{ margin-bottom:10px; }
-
-  .traces-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-
-  .trace-item{
-    text-align:left;
-    border:1px solid var(--border);
-    background: var(--card);
-    padding:12px;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 6px 16px rgba(16,24,40,0.06);
-    cursor:pointer;
-  }
-  .trace-item:hover{ transform: translateY(-1px); }
-  .trace-item.is-active{
-    outline: 2px solid rgba(217,50,0,0.25);
-    border-color: rgba(217,50,0,0.35);
-  }
-  .trace-title{ font-weight: 700; color: var(--text); }
-
-  .traces-map-header{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:12px;
-  }
-  .traces-actions{ display:flex; gap:10px; flex-wrap:wrap; }
-
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:10px 12px;
-    border-radius: 12px;
-    border:1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    text-decoration:none;
-    box-shadow: 0 8px 20px rgba(16,24,40,0.08);
-    font-weight: 600;
-    white-space:nowrap;
-  }
-  .btn:hover{ transform: translateY(-1px); }
-
-  .map-box{
-    height: 520px;
-    border-radius: var(--radius);
-    border:1px solid var(--border);
-    overflow:hidden;
-    box-shadow: var(--shadow);
-    background: #fff;
-  }
-
-  .muted{ color: var(--muted); }
-</style>
