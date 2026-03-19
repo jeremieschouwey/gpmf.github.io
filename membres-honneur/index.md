@@ -15,9 +15,8 @@ permalink: /membres-honneur/
 <div class="membres-list">
 
   <div class="membre-card">
-    <div class="membre-name">Prénom Nom</div>
-    <div class="membre-info">Membre depuis <strong>AAAA</strong> · Honoré en <strong>AAAA</strong></div>
-    <div class="membre-desc">Courte description de la contribution de ce membre à l'association.</div>
+    <div class="membre-name">Thomet Guy</div>
+    <div class="membre-desc">Ancien moniteur groupe 4</div>
   </div>
 
   <div class="membre-card">
