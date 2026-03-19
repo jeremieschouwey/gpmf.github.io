@@ -5,24 +5,41 @@ permalink: /mission/
 ---
 
 # L'offre
-Un programme d'entraînement vous est proposé sur 20 semaines (Programme/Programm). Il est conçu pour des coureurs de tout niveau (débutant à compétiteur) et pour des marcheurs (NW) de niveau "compétiteur" ou "fun". D'autres prestations complètent l'offre :
 
-        conférences sur des thèmes autour de la course à pied
+<div class="grid mt-16">
+  <div class="col-8">
+    <div class="card">
+      <h3>Programme d'entraînement</h3>
+      <p>Un programme sur <strong>20 semaines</strong>, conçu pour des coureurs de tout niveau (débutant à compétiteur) et pour des marcheurs Nordic Walking de niveau compétiteur ou fun.</p>
+      <p>Vous profitez de la dynamique d'un groupe et d'un encadrement de personnes expérimentées.</p>
+      <p class="muted">L'équipement est conseillé mais pas offert, pas plus que les vestiaires.</p>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <h3>Prestations complémentaires</h3>
+      <ul class="list">
+        <li>Conférences sur des thèmes autour de la course à pied</li>
+        <li>Repas-rencontre le mardi/mercredi suivant la course</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-        un repas-rencontre le mardi/mercredi suivant la course
+<div class="hr"></div>
 
-Vous profitez de la dynamique d'un groupe et d'un encadrement de personnes expérimentées.
+# Les participants
 
-L'équipement est conseillé mais pas offert, pas plus que les vestiaires !
+<div class="kpi mt-16">
+  <span class="badge">Hommes &amp; femmes</span>
+  <span class="badge">Dès 16 ans</span>
+  <span class="badge">Gratuit &amp; sans inscription</span>
+</div>
 
-
-
-# Les participants 
-Hommes et femmes, dès 16 ans. Suffit d'avoir envie ! Et c'est gratuit !
-
-Les participant(e)s évoluent sous leur propre responsabilité. Les personnes à risques (fumeurs, personnes avec excédent de poids et/ou problèmes cardiaques, débutant(e)s de plus de 40 ans) doivent préalablement consulter un médecin.
-
-
+<div class="card mt-16">
+  <p>Les participant(e)s évoluent sous leur propre responsabilité.</p>
+  <p class="muted">Les personnes à risques (fumeurs, personnes avec excédent de poids et/ou problèmes cardiaques, débutant(e)s de plus de 40 ans) doivent préalablement consulter un médecin.</p>
+</div>
 
 <div class="hr"></div>
 
