@@ -20,24 +20,23 @@ permalink: /membres-honneur/
   </div>
 
   <div class="membre-card">
-    <div class="membre-name">Stéphane Gmünder/div>
-    <div class="membre-desc">CO Fondateur	</div>
-  </div>
-
-
-  <div class="membre-card">
-    <div class="membre-name">Marianne Baechler/div>
-    <div class="membre-desc">CO Fondatrice + Présidente GPMF de 1991 à 2016			</div>
+    <div class="membre-name">Stéphane Gmünder</div>
+    <div class="membre-desc">CO Fondateur</div>
   </div>
 
   <div class="membre-card">
-    <div class="membre-name">Rémy Michel/div>
-    <div class="membre-desc">Ancien montieur groupe 5 + cuisinier de la 21ème semaine		</div>
+    <div class="membre-name">Marianne Baechler</div>
+    <div class="membre-desc">CO Fondatrice + Présidente GPMF de 1991 à 2016</div>
   </div>
 
   <div class="membre-card">
-    <div class="membre-name">René-Michel Dubey/div>
-    <div class="membre-desc">Ancien webmaster		</div>
+    <div class="membre-name">Rémy Michel</div>
+    <div class="membre-desc">Ancien moniteur groupe 5 + cuisinier de la 21ème semaine</div>
+  </div>
+
+  <div class="membre-card">
+    <div class="membre-name">René-Michel Dubey</div>
+    <div class="membre-desc">Ancien webmaster</div>
   </div>
 
 </div>
@@ -61,12 +60,6 @@ permalink: /membres-honneur/
     font-size: 1.1rem;
     font-weight: 800;
     margin-bottom: 4px;
-  }
-
-  .membre-info {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 8px;
   }
 
   .membre-desc {
