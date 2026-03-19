@@ -20,15 +20,24 @@ permalink: /membres-honneur/
   </div>
 
   <div class="membre-card">
-    <div class="membre-name">Prénom Nom</div>
-    <div class="membre-info">Membre depuis <strong>AAAA</strong> · Honoré en <strong>AAAA</strong></div>
-    <div class="membre-desc">Courte description de la contribution de ce membre à l'association.</div>
+    <div class="membre-name">Stéphane Gmünder/div>
+    <div class="membre-desc">CO Fondateur	</div>
+  </div>
+
+
+  <div class="membre-card">
+    <div class="membre-name">Marianne Baechler/div>
+    <div class="membre-desc">CO Fondatrice + Présidente GPMF de 1991 à 2016			</div>
   </div>
 
   <div class="membre-card">
-    <div class="membre-name">Prénom Nom</div>
-    <div class="membre-info">Membre depuis <strong>AAAA</strong> · Honoré en <strong>AAAA</strong></div>
-    <div class="membre-desc">Courte description de la contribution de ce membre à l'association.</div>
+    <div class="membre-name">Rémy Michel/div>
+    <div class="membre-desc">Ancien montieur groupe 5 + cuisinier de la 21ème semaine		</div>
+  </div>
+
+  <div class="membre-card">
+    <div class="membre-name">René-Michel Dubey/div>
+    <div class="membre-desc">Ancien webmaster		</div>
   </div>
 
 </div>
