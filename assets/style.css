@@ -994,6 +994,43 @@ table.borg tr:last-child td {
   background: #fff;
 }
 
+/* =========================
+   Marqueurs carte RDV
+   ========================= */
+
+.map-pin{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.30);
+}
+.map-pin--rdv     { background: #d93200; }
+.map-pin--parking { background: #1a56db; }
+
+.map-label{
+  background: white !important;
+  border: 1px solid rgba(0,0,0,0.15) !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  color: var(--text) !important;
+}
+/* Masquer la petite flèche du tooltip Leaflet */
+.map-label::before{ display: none !important; }
+
+.map-label--rdv     { border-color: rgba(217,50,0,0.35)  !important; }
+.map-label--parking { border-color: rgba(26,86,219,0.35) !important; }
+
 .elevation-chart{
   margin-top: 12px;
   border: 1px solid var(--border);

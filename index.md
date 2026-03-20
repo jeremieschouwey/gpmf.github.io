@@ -164,10 +164,23 @@ title: Accueil
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    const m1 = L.marker(rdv).addTo(map)
+    const iconRdv = L.divIcon({
+      className: '',
+      html: '<div class="map-pin map-pin--rdv">🏃</div>',
+      iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
+    });
+    const iconParking = L.divIcon({
+      className: '',
+      html: '<div class="map-pin map-pin--parking">P</div>',
+      iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
+    });
+
+    const m1 = L.marker(rdv, { icon: iconRdv }).addTo(map)
+      .bindTooltip("Rendez-vous", { permanent: true, direction: 'top', className: 'map-label map-label--rdv' })
       .bindPopup("<b>Point de rendez-vous</b><br>RDV estival chaque mercredi à 18h15 !");
 
-    const m2 = L.marker(parking).addTo(map)
+    const m2 = L.marker(parking, { icon: iconParking }).addTo(map)
+      .bindTooltip("Parking", { permanent: true, direction: 'top', className: 'map-label map-label--parking' })
       .bindPopup("<b>Parking à disposition</b><br>Places limitées !");
 
     // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
@@ -468,19 +481,4 @@ shuffle(photos);
 
 
 
-<script>
-  const lat = 46.798062;
-  const lon = 7.118103;
-
-  const map = L.map('map').setView([lat, lon], 18);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
-
-  L.marker([lat, lon]).addTo(map)
-    .bindPopup('<strong>RDV estival</strong><br/>ici chaque mercredi à <strong>18h15</strong> !')
-    .openPopup();
-</script>
 
