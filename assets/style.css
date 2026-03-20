@@ -986,12 +986,48 @@ table.borg tr:last-child td {
 }
 .traces-actions{ display: flex; gap: 10px; flex-wrap: wrap; }
 .map-box{
-  height: 520px;
+  height: 480px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   overflow: hidden;
   box-shadow: var(--shadow);
   background: #fff;
+}
+
+.elevation-chart{
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.elevation-svg{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.trace-stats{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.trace-stat{
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: rgba(16,24,40,0.04);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.trace-item-meta{
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 3px;
 }
 
 /* =========================

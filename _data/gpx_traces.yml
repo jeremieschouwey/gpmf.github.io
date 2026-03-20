@@ -1,7 +1,8 @@
+# Deux formats acceptés pour "file" :
+#   - nom de fichier seul  → cherche dans /assets/gpx/
+#   - URL complète         → https://raw.githubusercontent.com/user/repo/main/fichier.gpx
+
 - title: "Tracée hivernal 1"
   file: "trace-hiver-1.gpx"
-  distance_km: 10.16
-  dplus_m: 124
   difficulty: "facile"
   description: "Boucle classique en hiver"
-
