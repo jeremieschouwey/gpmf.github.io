@@ -53,7 +53,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 map.setView([46.8, 7.15], 11);
 
-let currentLayer = null;
+let currentLayer  = null;
+let hoverMarker   = null;
+let currentLatlngs     = [];
+let currentDistPoints  = [];
 
 /* ---- Helpers ---- */
 
@@ -115,7 +118,7 @@ function parseGpx(gpxText) {
   };
 }
 
-/* ---- Elevation chart (SVG) ---- */
+/* ---- Elevation chart (SVG) avec interaction souris ---- */
 
 function drawElevation(distPoints, elevations) {
   const pairs = distPoints
@@ -141,12 +144,10 @@ function drawElevation(distPoints, elevations) {
   const linePath = pairs.map(([d, e], i) => `${i === 0 ? 'M' : 'L'}${px(d).toFixed(1)},${py(e).toFixed(1)}`).join(' ');
   const areaPath = `${linePath} L${px(maxDist).toFixed(1)},${(PAD.top + innerH).toFixed(1)} L${PAD.left},${(PAD.top + innerH).toFixed(1)} Z`;
 
-  /* Axe Y : 3 repères */
   const yTicks = [minE, minE + rangeE / 2, maxE].map(e => ({
     e, y: py(e), label: Math.round(e) + ' m'
   }));
 
-  /* Axe X : ~5 repères */
   const xSteps = Math.min(5, Math.floor(maxDist));
   const xTicks = Array.from({ length: xSteps + 1 }, (_, i) => {
     const d = (maxDist / xSteps) * i;
@@ -154,7 +155,7 @@ function drawElevation(distPoints, elevations) {
   });
 
   elElevChart.innerHTML = `
-<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" class="elevation-svg">
+<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" class="elevation-svg" style="cursor:crosshair">
   <defs>
     <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#d93200" stop-opacity="0.35"/>
@@ -162,12 +163,9 @@ function drawElevation(distPoints, elevations) {
     </linearGradient>
   </defs>
 
-  <!-- Zone remplie -->
   <path d="${areaPath}" fill="url(#elevGrad)"/>
-  <!-- Ligne -->
   <path d="${linePath}" fill="none" stroke="#d93200" stroke-width="2" stroke-linejoin="round"/>
 
-  <!-- Axe Y -->
   ${yTicks.map(t => `
     <line x1="${PAD.left}" y1="${t.y.toFixed(1)}" x2="${(PAD.left + innerW).toFixed(1)}" y2="${t.y.toFixed(1)}"
           stroke="rgba(16,24,40,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
@@ -175,14 +173,88 @@ function drawElevation(distPoints, elevations) {
           font-size="11" fill="#667085">${t.label}</text>
   `).join('')}
 
-  <!-- Axe X -->
   ${xTicks.map(t => `
     <line x1="${t.x.toFixed(1)}" y1="${PAD.top}" x2="${t.x.toFixed(1)}" y2="${(PAD.top + innerH).toFixed(1)}"
           stroke="rgba(16,24,40,0.06)" stroke-width="1"/>
     <text x="${t.x.toFixed(1)}" y="${(PAD.top + innerH + 14).toFixed(1)}" text-anchor="middle"
           font-size="11" fill="#667085">${t.label}</text>
   `).join('')}
+
+  <!-- Éléments interactifs (cachés par défaut) -->
+  <line   class="h-vline" x1="0" y1="${PAD.top}" x2="0" y2="${PAD.top + innerH}"
+          stroke="#d93200" stroke-width="1.5" stroke-dasharray="4 3" style="display:none"/>
+  <circle class="h-dot"   r="5" fill="#d93200" stroke="white" stroke-width="2" style="display:none"/>
+  <rect   class="h-bg"    width="96" height="32" rx="5"
+          fill="white" stroke="rgba(217,50,0,0.3)" stroke-width="1" style="display:none"/>
+  <text   class="h-txt1"  font-size="10.5" fill="#667085"  style="display:none"/>
+  <text   class="h-txt2"  font-size="10.5" font-weight="700" fill="#101828" style="display:none"/>
+
+  <!-- Zone de capture souris -->
+  <rect class="h-hit" x="${PAD.left}" y="${PAD.top}" width="${innerW}" height="${innerH}" fill="transparent"/>
 </svg>`;
+
+  /* Références aux éléments SVG */
+  const svg   = elElevChart.querySelector('svg');
+  const hVline = svg.querySelector('.h-vline');
+  const hDot   = svg.querySelector('.h-dot');
+  const hBg    = svg.querySelector('.h-bg');
+  const hTxt1  = svg.querySelector('.h-txt1');
+  const hTxt2  = svg.querySelector('.h-txt2');
+
+  svg.addEventListener('mousemove', (e) => {
+    const rect   = svg.getBoundingClientRect();
+    const svgX   = (e.clientX - rect.left) * (W / rect.width);
+    const dist   = Math.max(0, Math.min(maxDist, (svgX - PAD.left) / innerW * maxDist));
+
+    /* Point le plus proche dans le profil */
+    let ci = 0, minDiff = Infinity;
+    for (let i = 0; i < pairs.length; i++) {
+      const diff = Math.abs(pairs[i][0] - dist);
+      if (diff < minDiff) { minDiff = diff; ci = i; }
+    }
+    const [d, elev] = pairs[ci];
+    const cx = px(d), cy = py(elev);
+
+    /* Ligne verticale */
+    hVline.setAttribute('x1', cx); hVline.setAttribute('x2', cx);
+    hVline.style.display = '';
+
+    /* Point sur la courbe */
+    hDot.setAttribute('cx', cx); hDot.setAttribute('cy', cy);
+    hDot.style.display = '';
+
+    /* Tooltip (bascule gauche/droite selon la position) */
+    const tipW = 96, tipX = (cx + tipW + 10 > W - PAD.right) ? cx - tipW - 6 : cx + 8;
+    const tipY = PAD.top + 2;
+    hBg.setAttribute('x', tipX);    hBg.setAttribute('y', tipY);    hBg.style.display = '';
+    hTxt1.setAttribute('x', tipX + 8); hTxt1.setAttribute('y', tipY + 13);
+    hTxt1.textContent = d.toFixed(2) + ' km'; hTxt1.style.display = '';
+    hTxt2.setAttribute('x', tipX + 8); hTxt2.setAttribute('y', tipY + 25);
+    hTxt2.textContent = Math.round(elev) + ' m'; hTxt2.style.display = '';
+
+    /* Marqueur sur la carte : trouver le point GPS le plus proche en distance */
+    if (currentLatlngs.length > 0) {
+      let mi = 0, mDiff = Infinity;
+      for (let i = 0; i < currentDistPoints.length; i++) {
+        const diff = Math.abs(currentDistPoints[i] - d);
+        if (diff < mDiff) { mDiff = diff; mi = i; }
+      }
+      const ll = currentLatlngs[mi];
+      if (hoverMarker) {
+        hoverMarker.setLatLng(ll);
+      } else {
+        hoverMarker = L.circleMarker(ll, {
+          radius: 7, color: '#d93200', fillColor: '#d93200',
+          fillOpacity: 1, weight: 2.5
+        }).addTo(map);
+      }
+    }
+  });
+
+  svg.addEventListener('mouseleave', () => {
+    [hVline, hDot, hBg, hTxt1, hTxt2].forEach(el => el.style.display = 'none');
+    if (hoverMarker) { map.removeLayer(hoverMarker); hoverMarker = null; }
+  });
 }
 
 /* ---- Afficher les stats ---- */
@@ -214,7 +286,9 @@ async function loadTrace(trace, btn) {
   elDl.style.pointerEvents = 'auto';
   elDl.style.opacity = '1';
 
-  if (currentLayer) { map.removeLayer(currentLayer); currentLayer = null; }
+  if (currentLayer)  { map.removeLayer(currentLayer);  currentLayer  = null; }
+  if (hoverMarker)   { map.removeLayer(hoverMarker);   hoverMarker   = null; }
+  currentLatlngs = []; currentDistPoints = [];
 
   let gpxData;
   try {
@@ -235,6 +309,8 @@ async function loadTrace(trace, btn) {
   }
 
   const { latlngs, elevations, distPoints, distKm, dplus, dminus } = gpxData;
+  currentLatlngs    = latlngs;
+  currentDistPoints = distPoints;
 
   if (latlngs.length < 2) {
     elStats.innerHTML = '<span class="muted">GPX vide ou illisible.</span>';
