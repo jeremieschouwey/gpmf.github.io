@@ -38,10 +38,12 @@ Choisis un tracé pour l'afficher sur la carte, puis télécharge le fichier GPX
 <script>
 const TRACES = {{ site.data.gpx_traces | jsonify }};
 
-const elList     = document.getElementById('tracesList');
-const elTitle    = document.getElementById('traceTitle');
-const elStats    = document.getElementById('traceStats');
-const elDl       = document.getElementById('downloadBtn');
+document.addEventListener('DOMContentLoaded', function () {
+
+const elList      = document.getElementById('tracesList');
+const elTitle     = document.getElementById('traceTitle');
+const elStats     = document.getElementById('traceStats');
+const elDl        = document.getElementById('downloadBtn');
 const elElevChart = document.getElementById('elevationChart');
 
 const map = L.map('map', { preferCanvas: true, renderer: L.canvas() });
@@ -273,4 +275,6 @@ function renderList() {
 }
 
 renderList();
+
+}); // DOMContentLoaded
 </script>
