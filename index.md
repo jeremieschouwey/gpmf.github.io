@@ -186,6 +186,7 @@ title: Accueil
     // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
     const bounds = L.latLngBounds([rdv, parking]);
     map.fitBounds(bounds, { padding: [30, 30] });
+    map.zoomOut(1);
 
     // Optionnel: ouvre la popup RDV par défaut
     // m1.openPopup();
