@@ -966,3 +966,101 @@ table.borg tr:last-child td {
   box-shadow: var(--shadow);
   background: #fff;
 }
+
+/* =========================
+   Navigation mobile (hamburger)
+   ========================= */
+
+.nav-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle span{
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1){
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px){
+  .nav-toggle{ display: flex; }
+
+  .site-nav{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(246,247,251,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 10px 16px 16px;
+    gap: 2px;
+    z-index: 49;
+  }
+
+  .site-nav.is-open{ display: flex; }
+
+  .site-nav > a,
+  .site-nav .nav-item > a{
+    display: block;
+    padding: 12px 14px;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  .nav-item{ width: 100%; }
+
+  /* Flèche indiquant le dropdown */
+  .has-dropdown > a::after{
+    content: " ▾";
+    font-size: 11px;
+    opacity: 0.55;
+  }
+
+  /* Désactiver le hover, utiliser la classe .is-open via JS */
+  .has-dropdown:hover .dropdown{ display: none; }
+  .has-dropdown.is-open .dropdown{ display: block; }
+
+  .has-dropdown .dropdown{
+    position: static;
+    min-width: unset;
+    box-shadow: none;
+    border: 1px solid var(--border);
+    background: rgba(209,232,246,0.30);
+    border-radius: 10px;
+    margin: 4px 0 6px 10px;
+    padding: 4px;
+  }
+
+  .dropdown a{
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+}
