@@ -756,18 +756,45 @@ table.borg tr:last-child td {
   margin: 1rem 0;
 }
 
-#photo-menu a{
-  display: inline-block;
-  margin-right: 10px;
+#photo-menu{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 10px;
+}
+#photo-menu a{
   padding: 8px 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
   text-decoration: none;
+  white-space: nowrap;
 }
 #photo-menu a.active{
   font-weight: 600;
   border-color: #999;
+}
+.menu-page-btn{
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+.menu-page-btn:disabled{
+  opacity: 0.35;
+  cursor: default;
+}
+.menu-page-btn:not(:disabled):hover{
+  background: rgba(16,24,40,0.06);
+}
+.menu-page-info{
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0 4px;
 }
 .gallery{
   display: grid;

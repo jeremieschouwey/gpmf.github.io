@@ -42,6 +42,9 @@ permalink: /photos/
 
   let currentFiles = [];
   let currentIndex = 0;
+  let allFolders = [];
+  let menuPage = 0;
+  const PAGE_SIZE = 5;
 
   function setStatus(msg) { statusEl.textContent = msg || ""; }
 
@@ -49,6 +52,55 @@ permalink: /photos/
     for (const a of menuEl.querySelectorAll("a")) {
       a.classList.toggle("active", a.dataset.id === id);
     }
+  }
+
+  function renderMenu() {
+    const total = allFolders.length;
+    const totalPages = Math.ceil(total / PAGE_SIZE);
+    const start = menuPage * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, total);
+
+    menuEl.innerHTML = "";
+
+    if (totalPages > 1) {
+      const prev = document.createElement("button");
+      prev.className = "menu-page-btn";
+      prev.textContent = "◀";
+      prev.disabled = menuPage === 0;
+      prev.addEventListener("click", () => { menuPage--; renderMenu(); });
+      menuEl.appendChild(prev);
+    }
+
+    for (let i = start; i < end; i++) {
+      const f = allFolders[i];
+      const a = document.createElement("a");
+      a.href = `#${f.id}`;
+      a.dataset.id = f.id;
+      a.textContent = f.label;
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        updateHash(f.id);
+        showFolder(f);
+      });
+      menuEl.appendChild(a);
+    }
+
+    if (totalPages > 1) {
+      const next = document.createElement("button");
+      next.className = "menu-page-btn";
+      next.textContent = "▶";
+      next.disabled = menuPage >= totalPages - 1;
+      next.addEventListener("click", () => { menuPage++; renderMenu(); });
+      menuEl.appendChild(next);
+
+      const pageInfo = document.createElement("span");
+      pageInfo.className = "menu-page-info";
+      pageInfo.textContent = `${menuPage + 1} / ${totalPages}`;
+      menuEl.appendChild(pageInfo);
+    }
+
+    const currentId = (location.hash || "").replace("#", "");
+    setActive(currentId);
   }
 
   function openLightbox(index) {
@@ -112,6 +164,12 @@ permalink: /photos/
   async function loadFiles(prefix) { return fetchJson(`/api/list?prefix=${encodeURIComponent(prefix)}`); }
 
   async function showFolder(folder) {
+    // Sauter à la bonne page du menu si nécessaire
+    const idx = allFolders.findIndex(f => f.id === folder.id);
+    if (idx >= 0) {
+      const page = Math.floor(idx / PAGE_SIZE);
+      if (page !== menuPage) { menuPage = page; renderMenu(); }
+    }
     setActive(folder.id);
     setStatus(`Chargement: ${folder.label}…`);
     const data = await loadFiles(folder.prefix);
@@ -124,25 +182,15 @@ permalink: /photos/
   async function init() {
     try {
       const data = await loadFolders();
-      const folders = data.folders || [];
-      if (!folders.length) { setStatus("Aucun dossier trouvé dans le stockage."); return; }
-
-      menuEl.innerHTML = "";
-      for (const f of folders) {
-        const a = document.createElement("a");
-        a.href = `#${f.id}`;
-        a.dataset.id = f.id;
-        a.textContent = f.label;
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          updateHash(f.id);
-          showFolder(f);
-        });
-        menuEl.appendChild(a);
-      }
+      allFolders = data.folders || [];
+      if (!allFolders.length) { setStatus("Aucun dossier trouvé dans le stockage."); return; }
 
       const currentId = (location.hash || "").replace("#", "");
-      const initial = folders.find(x => x.id === currentId) || folders[0];
+      const initialIdx = allFolders.findIndex(x => x.id === currentId);
+      menuPage = initialIdx >= 0 ? Math.floor(initialIdx / PAGE_SIZE) : 0;
+      renderMenu();
+
+      const initial = (initialIdx >= 0 ? allFolders[initialIdx] : allFolders[0]);
       updateHash(initial.id);
       await showFolder(initial);
 
