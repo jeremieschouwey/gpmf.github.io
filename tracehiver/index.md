@@ -12,7 +12,7 @@ Choisis un tracé pour l'afficher sur la carte, puis télécharge le fichier GPX
   <aside class="traces-panel">
     <div class="traces-panel-header">
       <h2>Liste des tracés</h2>
-      <p class="muted">Les GPX sont hébergés sur GitHub.</p>
+      <p class="muted" id="tracesSubtitle">Chargement…</p>
     </div>
     <div class="traces-list" id="tracesList"></div>
   </aside>
@@ -36,9 +36,21 @@ Choisis un tracé pour l'afficher sur la carte, puis télécharge le fichier GPX
 </div>
 
 <script>
-const TRACES = {{ site.data.gpx_traces | jsonify }};
+const API_BASE = 'https://gpmf-admin.jeremieschouwey.workers.dev';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+
+let TRACES = [];
+try {
+  const res = await fetch(API_BASE + '/api/gpx', { cache: 'no-store' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = await res.json();
+  TRACES = data.traces || [];
+  document.getElementById('tracesSubtitle').textContent =
+    TRACES.length + ' tracé' + (TRACES.length > 1 ? 's' : '') + ' disponible' + (TRACES.length > 1 ? 's' : '');
+} catch (e) {
+  document.getElementById('tracesSubtitle').textContent = 'Impossible de charger les tracés.';
+}
 
 const elList      = document.getElementById('tracesList');
 const elTitle     = document.getElementById('traceTitle');
@@ -61,9 +73,7 @@ let currentDistPoints  = [];
 /* ---- Helpers ---- */
 
 function gpxUrl(trace) {
-  if (/^https?:\/\//.test(trace.file)) return trace.file;
-  const base = "{{ '/assets/gpx/' | relative_url }}".replace(/\/?$/, '/');
-  return base + trace.file.replace(/^\//, '');
+  return trace.url || (API_BASE + '/api/gpx/' + encodeURIComponent(trace.filename));
 }
 
 function haversineKm(lat1, lon1, lat2, lon2) {
@@ -330,16 +340,19 @@ async function loadTrace(trace, btn) {
 
 /* ---- Rendu de la liste ---- */
 
+const difficultyLabel = { facile: '🟢 Facile', moyen: '🟡 Moyen', difficile: '🔴 Difficile' };
+
 function renderList() {
   if (!TRACES || !TRACES.length) {
-    elList.innerHTML = '<p class="muted">Aucun tracé configuré.</p>';
+    elList.innerHTML = '<p class="muted">Aucun tracé disponible.</p>';
     return;
   }
 
   elList.innerHTML = TRACES.map((t, idx) => `
     <button class="trace-item" type="button" data-index="${idx}">
-      <div class="trace-title">${t.title || t.file}</div>
-      ${t.distance_km ? `<div class="trace-item-meta">📏 ${t.distance_km} km${t.dplus_m ? ' · ⬆ ' + t.dplus_m + ' m' : ''}</div>` : ''}
+      <div class="trace-title">${t.title || t.filename}</div>
+      ${t.difficulty ? `<div class="trace-item-meta">${difficultyLabel[t.difficulty] || t.difficulty}</div>` : ''}
+      ${t.description ? `<div class="trace-item-meta">${t.description}</div>` : ''}
     </button>
   `).join('');
 
