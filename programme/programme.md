@@ -6,12 +6,12 @@ permalink: /programme/
 
 # Programme 2026
 
-<p>Navigue mois par mois et clique sur une date pour afficher le détail de la séance.</p>
+<p data-i18n="pageDesc">Navigue mois par mois et clique sur une date pour afficher le détail de la séance.</p>
 
 <div class="cal-toolbar">
-  <button id="calPrev" class="btn btn-ghost" type="button">◀ Mois précédent</button>
+  <button id="calPrev" class="btn btn-ghost" type="button" data-i18n="calPrev">◀ Mois précédent</button>
   <div id="calTitle" class="cal-title"></div>
-  <button id="calNext" class="btn btn-ghost" type="button">Mois suivant ▶</button>
+  <button id="calNext" class="btn btn-ghost" type="button" data-i18n="calNext">Mois suivant ▶</button>
 </div>
 
 <div class="cal-lang">
@@ -20,8 +20,8 @@ permalink: /programme/
 </div>
 
 <div class="cal-actions">
-  <button id="calDownloadIcs" class="btn btn-outline" type="button">Télécharger le programme (.ics)</button>
-  <span class="muted">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
+  <button id="calDownloadIcs" class="btn btn-outline" type="button" data-i18n="icsDownload">Télécharger le programme (.ics)</button>
+  <span class="muted" data-i18n="icsDesc">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
 </div>
 
 <div id="calGrid" class="cal-grid"></div>
@@ -30,7 +30,7 @@ permalink: /programme/
   <p>Sélectionne une date dans le calendrier.</p>
 </div>
 
-<section class="training-notes">
+<section class="training-notes lang-fr">
   <h2>Conseils d’entraînement sur 20 semaines</h2>
 
   <p>
@@ -177,6 +177,154 @@ permalink: /programme/
   </div>
 </section>
 
+<section class="training-notes lang-de" style="display:none">
+  <h2>Trainingstipps für 20 Wochen</h2>
+
+  <p>
+    Jede Woche bieten wir ein sehr spezifisches Gruppentraining an, mit regelmässig durchgeführten Übungen im
+    Widerstandsbereich (hohe Intensität). Ein Training im Widerstandsbereich entspricht einer Anstrengung von
+    „etwas hart" bis „hart" (aber nicht „sehr hart"); es ist anspruchsvoller und die Erholungszeit für den Körper ist länger.
+  </p>
+
+  <p>
+    Es wird empfohlen, pro Woche ein Lauftraining im Widerstandsbereich durchzuführen (für Wettkämpfer evtl. zwei,
+    wenn in dieser Woche kein Wettkampf geplant ist).
+  </p>
+
+  <p>
+    Wir empfehlen, individuell ein zusätzliches Training durchzuführen, das im Ausdauerbereich (niedrige Intensität)
+    absolviert werden sollte, d.h. die Anstrengung sollte „leicht" bis „etwas schwer" sein. Es kann nach eigenem Ermessen
+    gestaltet werden. Jede Laufeinheit kann durch eine andere Sportart oder Krafttraining ersetzt werden.
+  </p>
+
+  <p>
+    Wenn Sie am Wochenende einen Wettkampf geplant haben, vermeiden Sie intensives Training die Woche vor und nach dem Wettkampf.
+  </p>
+
+  <p>
+    Die angegebene Trainingsdauer ist ein Vorschlag. Selbst wenn Sie nur 30 Minuten Zeit haben, lohnt es sich, diese zu nutzen.
+    Zu lange und wiederholte Einheiten sind jedoch ineffektiv und belasten den Körper unnötig.
+  </p>
+
+  <div class="two-cols">
+    <div class="note-card">
+      <h3>Andere Sportarten</h3>
+      <p>
+        Aquajogging oder Aquagymnastik, Fahrrad oder Mountainbike, Schwimmen, Walking / Nordic Walking oder Bergwandern,
+        Vita-Parcours, Fitness, Spinning, Mannschaftssport, Inline-Skating, Windsurfen, Ski, Tai-Chi, usw.
+      </p>
+    </div>
+
+    <div class="note-card">
+      <h3>Erholungseinheiten</h3>
+      <p>
+        Stretching, Mobilitätsübungen, Massage, Entspannungsmethoden, Atemübungen, Thermalbäder (oder normales Bad),
+        Mittagsschlaf, Yoga, usw.
+      </p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Intensität I</h3>
+    <p>
+      Die Intensität des Mittwochstrainings wird für jede Woche anhand der Borg-Skala angegeben.
+    </p>
+    <p class="quote">
+      Vergessen Sie nicht zu lachen, es trainiert die Bauchmuskeln.
+    </p>
+  </div>
+
+  <h2>Die Borg-Skala der wahrgenommenen Anstrengung</h2>
+
+  <p>
+    Diese Methode basiert auf den körperlichen Empfindungen, die eine Person während körperlicher Anstrengung wahrnimmt:
+    erhöhte Herzfrequenz, erhöhte Atemfrequenz, Schwitzen und Muskelermüdung. Obwohl diese Messung subjektiv ist,
+    kann eine Schätzung der wahrgenommenen Anstrengung eine gute Einschätzung der tatsächlichen Belastungsintensität liefern.
+  </p>
+
+  <h3>Vorgehen</h3>
+  <p>
+    Das Ziel ist es, Ihre wahrgenommene Anstrengung während des Trainings zu messen. Ihre Wahrnehmung sollte die
+    Schwierigkeit und Intensität der Anstrengung widerspiegeln und dabei auch die Muskel- oder allgemeine Ermüdung
+    berücksichtigen. Versuchen Sie, sich auf das allgemeine Empfinden Ihrer Anstrengung zu konzentrieren.
+  </p>
+
+  <p>
+    Versuchen Sie während des Trainings, die Anstrengung dem im Trainingsplan geforderten Niveau anzupassen.
+    Dies ermöglicht Ihnen, während der 20 Wochen der Vorbereitung auf den Murten-Fribourg-Lauf Fortschritte zu erzielen.
+  </p>
+
+  <h3>Die Borg-Skala (Zusammenfassung)</h3>
+  <div class="table-wrap">
+    <table class="borg">
+      <thead>
+        <tr>
+          <th>Note</th>
+          <th>Wahrnehmung der Intensität</th>
+          <th>Intensität (%)</th>
+          <th>Sprechfähigkeit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6</td>
+          <td>Aufwärmen / Abkühlen</td>
+          <td></td>
+          <td>Singen ohne Unterbrechung möglich</td>
+        </tr>
+        <tr>
+          <td>7–9</td>
+          <td>Sehr sehr leicht / sehr leicht</td>
+          <td>40%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Sehr leicht / einfach</td>
+          <td>50%</td>
+          <td>Sprechen ohne Unterbrechung möglich</td>
+        </tr>
+        <tr>
+          <td>11–12</td>
+          <td>Etwas anstrengend</td>
+          <td>60%</td>
+          <td>Ausdauerzone (aerob)</td>
+        </tr>
+        <tr>
+          <td>13–14</td>
+          <td>Mässig schwer</td>
+          <td>70%</td>
+          <td>Sprechen mit Unterbrechungen möglich</td>
+        </tr>
+        <tr>
+          <td>15–16</td>
+          <td>Anstrengend / schwer</td>
+          <td>80%</td>
+          <td>Intensiver Belastungsbereich (anaerob)</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>Sehr anstrengend / sehr schwer</td>
+          <td></td>
+          <td>Sprechen nicht mehr möglich</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>Sehr ermüdend</td>
+          <td>90%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>19–20</td>
+          <td>Sehr, sehr ermüdend → erschöpfend</td>
+          <td>100%</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <script>
 (async () => {
   // --- Sources ---
@@ -237,7 +385,12 @@ const START_DATE = "2026-05-20"; // <-- à adapter
       details: "Détails",
       toDefine: "À définir",
       icsFilename: "gpmf-programme-2026-fr.ics",
-      icsProdid: "-//GPMF//Programme 2026//FR"
+      icsProdid: "-//GPMF//Programme 2026//FR",
+      pageDesc: "Navigue mois par mois et clique sur une date pour afficher le détail de la séance.",
+      calPrev: "◀ Mois précédent",
+      calNext: "Mois suivant ▶",
+      icsDownload: "Télécharger le programme (.ics)",
+      icsDesc: "Importable dans Google Calendar, Apple Calendar, Outlook, etc."
     },
     de: {
       monthNames: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
@@ -256,7 +409,12 @@ const START_DATE = "2026-05-20"; // <-- à adapter
       details: "Details",
       toDefine: "Noch festzulegen",
       icsFilename: "gpmf-programme-2026-de.ics",
-      icsProdid: "-//GPMF//Programme 2026//DE"
+      icsProdid: "-//GPMF//Programme 2026//DE",
+      pageDesc: "Navigiere Monat für Monat und klicke auf ein Datum, um die Details der Trainingseinheit anzuzeigen.",
+      calPrev: "◀ Vorheriger Monat",
+      calNext: "Nächster Monat ▶",
+      icsDownload: "Programm herunterladen (.ics)",
+      icsDesc: "Importierbar in Google Calendar, Apple Calendar, Outlook, usw."
     }
   };
 
@@ -1035,6 +1193,16 @@ function buildEventDescription(ev, lang) {
     if (!btnFR || !btnDE) return;
     btnFR.classList.toggle("is-active", lang === "fr");
     btnDE.classList.toggle("is-active", lang === "de");
+    updateStaticI18n(lang);
+  }
+
+  function updateStaticI18n(lang) {
+    document.querySelectorAll(".lang-fr").forEach(el => el.style.display = (lang === "fr") ? "" : "none");
+    document.querySelectorAll(".lang-de").forEach(el => el.style.display = (lang === "de") ? "" : "none");
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (UI[lang] && UI[lang][key] !== undefined) el.textContent = UI[lang][key];
+    });
   }
 
   // first paint
