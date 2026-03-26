@@ -28,21 +28,6 @@ permalink: /mission/
 
 <div class="hr"></div>
 
-# Les participants
-
-<div class="kpi mt-16">
-  <span class="badge">Hommes &amp; femmes</span>
-  <span class="badge">Dès 16 ans</span>
-  <span class="badge">Gratuit &amp; sans inscription</span>
-</div>
-
-<div class="card mt-16">
-  <p>Les participant(e)s évoluent sous leur propre responsabilité.</p>
-  <p class="muted">Les personnes à risques (fumeurs, personnes avec excédent de poids et/ou problèmes cardiaques, débutant(e)s de plus de 40 ans) doivent préalablement consulter un médecin.</p>
-</div>
-
-<div class="hr"></div>
-
 <h2>Les groupes</h2>
 <p class="muted">Clique sur un groupe pour afficher les détails.</p>
 
@@ -116,7 +101,7 @@ permalink: /mission/
         <li>Isabelle Mussoi</li>
         <li>Caroline Perini</li>
         <li>Augusto Soares</li>
-        <li>Jean-Pierre Volery</li>      
+        <li>Jean-Pierre Volery</li>
       </ul>
     </div>
   </details>
@@ -134,7 +119,7 @@ permalink: /mission/
         <li>Claire Barbier</li>
         <li>Carole Macheret</li>
         <li>Gilles Rosset</li>
-        <li>Mélanie Stempfel</li>  
+        <li>Mélanie Stempfel</li>
       </ul>
     </div>
   </details>
@@ -152,10 +137,10 @@ permalink: /mission/
         <li>Claire Barbier</li>
         <li>Jérôme Dick</li>
         <li>Claudia Dubey</li>
-        <li>Carole Macheret</li>  
+        <li>Carole Macheret</li>
         <li>Michel Rémy</li>
         <li>Jacques Rast</li>
-        <li>Gilles Rosset</li>  
+        <li>Gilles Rosset</li>
       </ul>
     </div>
   </details>
@@ -173,7 +158,7 @@ permalink: /mission/
         <li>Christian Baechler</li>
         <li>Jérôme Dick</li>
         <li>Claudia Dubey</li>
-        <li>Michel Mertenat</li>  
+        <li>Michel Mertenat</li>
       </ul>
     </div>
   </details>
@@ -224,5 +209,20 @@ permalink: /mission/
       </ul>
     </div>
   </details>
-  
+
+</div>
+
+<div class="hr"></div>
+
+# Les participants
+
+<div class="kpi mt-16">
+  <span class="badge">Hommes &amp; femmes</span>
+  <span class="badge">Dès 16 ans</span>
+  <span class="badge">Gratuit &amp; sans inscription</span>
+</div>
+
+<div class="card mt-16">
+  <p>Les participant(e)s évoluent sous leur propre responsabilité.</p>
+  <p class="muted">Les personnes à risques (fumeurs, personnes avec excédent de poids et/ou problèmes cardiaques, débutant(e)s de plus de 40 ans) doivent préalablement consulter un médecin.</p>
 </div>
