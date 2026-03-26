@@ -43,10 +43,10 @@ title: Accueil
   <div class="col-4">
     <div class="card">
       <div class="card-title">
-        <h3>Actualités</h3>
-        <a class="card-link" href="{{ '/actualites' | relative_url }}">Lire</a>
+        <h3>Notre proposition</h3>
+        <a class="card-link" href="{{ '/mission' | relative_url }}">Découvrir</a>
       </div>
-      <p class="muted">Annonces, informations et divers de l'association</p>
+      <p class="muted">Consulte les différents groupes avec leurs allures</p>
     </div>
   </div>
 </div>
