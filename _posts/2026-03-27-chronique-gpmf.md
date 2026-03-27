@@ -379,7 +379,7 @@ title: "Les GPMF au fil du temps"
 
     <p>Tests Conconi : 2 sessions : Simon Thomet.</p>
 
-    <p>Subvention de la LoRo : Fr. 1'000.00 ; autres sponsors Ville de Fribourg : Fr. 300.00 ; ActiveBIKE Marly : Fr. 300.00 ; Groupe E Connect : Fr. 500.00 ; la crousille : Fr. 1'420.35, plus les étrennes cédées par plusieurs moniteurs/trices.</p>
+    <p>Subvention de la LoRo : Fr. 1'000.00 ; autres sponsors Ville de Fribourg : Fr. 300.00; ActiveBIKE Marly : Fr. 300.00; Groupe E Connect : Fr. 500.00; la crousille : Fr. 1'420.35, plus les étrennes cédées par plusieurs moniteurs/trices.</p>
 
     <p>9 octobre : apéritif des groupes à La Grange à VSG.</p>
 
