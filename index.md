@@ -33,10 +33,10 @@ title: Accueil
   <div class="col-4">
     <div class="card">
       <div class="card-title">
-        <h3>Programme</h3>
-        <a class="card-link" href="{{ '/programme' | relative_url }}">Ouvrir</a>
+        <h3>Les GPMF au fil du temps</h3>
+        <a class="card-link" href="{{ '/2026/03/27/chronique-gpmf.html' | relative_url }}">Lire</a>
       </div>
-      <p class="muted">Le programme entier des 20 semaines.</p>
+      <p class="muted">Chronique de l'histoire de l'association depuis 1989, par Marianne Baechler.</p>
     </div>
   </div>
 
