@@ -1,0 +1,44 @@
+- name: Trilogie Sport Belfaux
+  url: https://www.trilogiesport.ch
+  logo: TrilogieSport.jpg
+  alt: Trilogie Sport Belfaux
+
+- name: afc10000
+  url: https://afc10000.ch/
+  logo: AFC10000.jpg
+  alt: Amicale fribourgeoise des coureurs de 10'000m
+
+- name: Commune de Givisiez
+  url: https://www.givisiez.ch
+  logo: CommuneGivisiez.jpg
+  alt: Commune de Givisiez
+
+- name: Commune de Granges-Paccot
+  url: https://granges-paccot.ch/
+  logo: CommuneGrangePaccot.jpg
+  alt: Commune de Granges-Paccot
+
+- name: Groupe E
+  url: https://www.groupe-e.ch/fr/
+  logo: GroupeE.jpg
+  alt: Groupe E
+
+- name: Loterie Romande
+  url: https://soutien-loro.ch/fr
+  logo: LoterieRomande.jpg
+  alt: Loterie Romande
+
+- name: Restaurant De Moncor
+  url: https://demoncor.ch/
+  logo: RestaurantDeMoncor.jpg
+  alt: Restaurant De Moncor
+
+- name: Commune de Villars-sur-Glâne
+  url: https://www.villars-sur-glane.ch/
+  logo: VillarsSurGlane.png
+  alt: Commune de Villars-sur-Glâne
+
+- name: RAIFFEISEN Sarine-Ouest
+  url: https://www.raiffeisen.ch/sarine-ouest/fr/ueber-uns/ihre-bank-vor-ort.html
+  logo: raiffeisen.png
+  alt: RAIFFEISEN Sarine-Ouest

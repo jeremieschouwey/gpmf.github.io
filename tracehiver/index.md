@@ -2,6 +2,7 @@
 layout: default
 title: Tracées hivernaux
 permalink: /tracehiver/
+uses_map: true
 ---
 
 # Tracées hivernaux

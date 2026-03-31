@@ -25,7 +25,7 @@ permalink: /photos/
 
 
 <script>
-  const R2_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";
+  const R2_BASE = GPMF.workerBase;
 
   const menuEl = document.getElementById("photo-menu");
   const statusEl = document.getElementById("photo-status");
@@ -154,14 +154,8 @@ permalink: /photos/
     });
   }
 
-  async function fetchJson(path) {
-    const res = await fetch(`${R2_BASE}${path}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status} sur ${path}`);
-    return res.json();
-  }
-
-  async function loadFolders() { return fetchJson("/api/folders"); }
-  async function loadFiles(prefix) { return fetchJson(`/api/list?prefix=${encodeURIComponent(prefix)}`); }
+  async function loadFolders() { return GPMF.fetchJSON(`${R2_BASE}/api/folders`); }
+  async function loadFiles(prefix) { return GPMF.fetchJSON(`${R2_BASE}/api/list?prefix=${encodeURIComponent(prefix)}`); }
 
   async function showFolder(folder) {
     // Sauter à la bonne page du menu si nécessaire

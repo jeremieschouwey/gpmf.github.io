@@ -1,0 +1,14 @@
+<div class="sponsors-grid">
+  {% for sponsor in site.data.sponsors %}
+  <figure class="sponsor-card">
+    <a href="{{ sponsor.url }}" target="_blank" rel="noopener noreferrer">
+      <img
+        src="{{ '/assets/sponsors/logos/' | append: sponsor.logo | relative_url }}"
+        alt="{{ sponsor.alt }}"
+        loading="lazy"
+      />
+    </a>
+    <figcaption>{{ sponsor.name }}</figcaption>
+  </figure>
+  {% endfor %}
+</div>

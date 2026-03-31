@@ -4,9 +4,15 @@
   --text: #101828;
   --muted: #667085;
 
-  /* Nouvelle palette GPMF */
+  /* Palette GPMF */
   --primary: #d93200; /* rouge */
   --secondary: #d1e8f6; /* bleu clair */
+
+  /* Alpha variants — use these instead of hardcoding rgba(217, 50, 0, ...) */
+  --primary-bg-subtle: rgba(217, 50, 0, 0.06);
+  --primary-bg-hover: rgba(217, 50, 0, 0.1);
+  --primary-border-subtle: rgba(217, 50, 0, 0.2);
+  --primary-border: rgba(217, 50, 0, 0.25);
 
   --border: rgba(16, 24, 40, 0.1);
   --shadow: 0 10px 25px rgba(16, 24, 40, 0.08);
@@ -93,8 +99,6 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.brand {
   color: var(--text);
   text-decoration: none;
 }
@@ -116,32 +120,13 @@ a:hover {
   white-space: nowrap;
   display: none; /* visible only on mobile */
 }
-/* Forcer la taille du logo dans le header, même si d'autres règles existent */
 .site-header .brand img {
-  height: 56px !important;
-  width: auto !important;
-  max-height: 56px !important;
-  max-width: 220px !important; /* limite la largeur si le logo est très horizontal */
+  height: 56px;
+  width: auto;
+  max-height: 56px;
+  max-width: 220px;
   object-fit: contain;
   display: block;
-}
-
-.site-nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-.site-nav a {
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: var(--text);
-  border: 1px solid transparent;
-  text-decoration: none;
-}
-.site-nav a:hover {
-  background: rgba(217, 50, 0, 0.1);
-  border-color: rgba(217, 50, 0, 0.2);
 }
 
 main {
@@ -252,6 +237,18 @@ p {
   max-width: 70ch;
 }
 
+.reprise-date {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--primary-border-subtle);
+  background: var(--primary-bg-subtle);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .actions {
   display: flex;
   gap: 10px;
@@ -316,8 +313,8 @@ p {
 }
 .btn-outline:hover {
   transform: translateY(-1px);
-  background: rgba(217, 50, 0, 0.06);
-  border-color: rgba(217, 50, 0, 0.25);
+  background: var(--primary-bg-subtle);
+  border-color: var(--primary-border);
   box-shadow: 0 12px 26px rgba(16, 24, 40, 0.12);
 }
 
@@ -585,7 +582,7 @@ button.cal-day {
 
 button.cal-day:hover {
   background: rgba(209, 232, 246, 0.55);
-  border-color: rgba(217, 50, 0, 0.25);
+  border-color: var(--primary-border);
 }
 
 .cal-empty {
@@ -602,7 +599,7 @@ button.cal-day:hover {
 
 /* Jours avec séance */
 .cal-event {
-  border-color: rgba(217, 50, 0, 0.3);
+  border-color: var(--primary-border);
   box-shadow: 0 8px 18px rgba(16, 24, 40, 0.06);
 }
 
@@ -643,10 +640,9 @@ button.cal-day:hover {
   margin: 10px 0 6px;
 }
 
-/* si tu as déjà .badge, on garde; on ajoute une variante soft */
 .badge-soft {
   background: rgba(209, 232, 246, 0.8);
-  border-color: rgba(217, 50, 0, 0.2);
+  border-color: var(--primary-border-subtle);
 }
 
 /* Cartes par niveau */
@@ -695,8 +691,8 @@ button.cal-day:hover {
 /* Conseil */
 .advice {
   margin-top: 14px;
-  border: 1px solid rgba(217, 50, 0, 0.22);
-  background: rgba(217, 50, 0, 0.06);
+  border: 1px solid var(--primary-border-subtle);
+  background: var(--primary-bg-subtle);
   border-radius: var(--radius-sm);
   padding: 14px;
 }
@@ -718,10 +714,10 @@ button.cal-day:hover {
 }
 
 .note-card {
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px;
-  background: #fff;
+  background: var(--card);
 }
 
 .note-card h3 {
@@ -731,16 +727,16 @@ button.cal-day:hover {
 .quote {
   margin: 10px 0 0;
   padding: 10px 12px;
-  border-left: 4px solid #ddd;
-  background: #fafafa;
+  border-left: 4px solid var(--border);
+  background: var(--bg);
   border-radius: 8px;
 }
 
 .table-wrap {
   overflow-x: auto;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--card);
 }
 
 table.borg {
@@ -752,12 +748,12 @@ table.borg {
 table.borg th,
 table.borg td {
   padding: 10px 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   vertical-align: top;
 }
 
 table.borg thead th {
-  background: #fafafa;
+  background: var(--bg);
   font-weight: 800;
 }
 
@@ -825,6 +821,8 @@ table.borg tr:last-child td {
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 /* Items */
@@ -833,9 +831,11 @@ table.borg tr:last-child td {
   padding: 8px 10px;
   border-radius: 10px;
   color: var(--text);
+  border: 1px solid transparent;
 }
 .site-nav a:hover {
-  background: rgba(16, 24, 40, 0.06);
+  background: var(--primary-bg-hover);
+  border-color: var(--primary-border-subtle);
 }
 
 /* Dropdown */
@@ -890,6 +890,9 @@ table.borg tr:last-child td {
 .group-item:hover {
   border-color: rgba(16, 16, 40, 0.2);
   transform: translateY(-1px);
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
 }
 
 .group-item > summary {
@@ -933,8 +936,8 @@ table.borg tr:last-child td {
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(217, 50, 0, 0.25);
-  background: rgba(217, 50, 0, 0.08);
+  border: 1px solid var(--primary-border);
+  background: var(--primary-bg-subtle);
   color: var(--text);
   font-weight: 700;
   font-size: 12px;
@@ -1006,7 +1009,7 @@ table.borg tr:last-child td {
 }
 
 .group-item[open] > summary {
-  background: rgba(217, 50, 0, 0.06);
+  background: var(--primary-bg-subtle);
 }
 
 /* =========================
@@ -1087,14 +1090,14 @@ table.borg tr:last-child td {
 }
 #photo-menu a {
   padding: 8px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 6px;
   text-decoration: none;
   white-space: nowrap;
 }
 #photo-menu a.active {
   font-weight: 600;
-  border-color: #999;
+  border-color: var(--muted);
 }
 .menu-page-btn {
   padding: 8px 12px;
@@ -1127,7 +1130,7 @@ table.borg tr:last-child td {
   width: 100%;
   height: auto;
   border-radius: 6px;
-  background: #f3f3f3;
+  background: var(--bg);
   cursor: zoom-in;
 }
 .lb {
@@ -1311,10 +1314,13 @@ table.borg tr:last-child td {
 }
 .trace-item:hover {
   transform: translateY(-1px);
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
 }
 .trace-item.is-active {
   outline: 1px solid var(--border);
-  border-color: rgba(217, 50, 0, 0.35);
+  border-color: var(--primary-border);
 }
 .trace-title {
   font-weight: 700;
@@ -1338,7 +1344,11 @@ table.borg tr:last-child td {
   border: 1px solid var(--border);
   overflow: hidden;
   box-shadow: var(--shadow);
-  background: #fff;
+  background: var(--card);
+}
+
+.map-box--lg {
+  height: 360px;
 }
 
 /* =========================
@@ -1359,7 +1369,7 @@ table.borg tr:last-child td {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .map-pin--rdv {
-  background: #d93200;
+  background: var(--primary);
 }
 .map-pin--parking {
   background: #1a56db;
@@ -1382,7 +1392,7 @@ table.borg tr:last-child td {
 }
 
 .map-label--rdv {
-  border-color: rgba(217, 50, 0, 0.35) !important;
+  border-color: var(--primary-border) !important;
 }
 .map-label--parking {
   border-color: rgba(26, 86, 219, 0.35) !important;

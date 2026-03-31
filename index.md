@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Accueil
+uses_map: true
 ---
 
 <div class="hero">
@@ -10,6 +11,10 @@ title: Accueil
   <p class="subtitle">
     → 20 semaines pour préparer Morat-Fribourg !
   </p>
+
+  {% if site.reprise_date %}
+  <p class="reprise-date">Reprise le {{ site.reprise_date }}</p>
+  {% endif %}
 
   <div class="kpi mt-16">
     <span class="badge">Ouvert à tous niveaux</span>
@@ -85,7 +90,7 @@ title: Accueil
     </div>
   </div>
 
-  <div id="map-rdv" class="map-box" style="height:360px;"></div>
+  <div id="map-rdv" class="map-box map-box--lg"></div>
 
   <p class="muted">
     RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte. 
@@ -106,81 +111,7 @@ title: Accueil
 <div class="hr"></div>
 
 <h2>Nos sponsors</h2>
-<div class="sponsors-grid">
-
- <figure class="sponsor-card">
-    <a href="https://www.trilogiesport.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/TrilogieSport.jpg' | relative_url }}"
-           alt="Trilogie Sport Belfaux" />
-    </a>
-    <figcaption>Trilogie Sport Belfaux</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://afc10000.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/AFC10000.jpg' | relative_url }}"
-           alt="Amicale fribourgeoise des coureurs de 10'000m" />
-    </a>
-    <figcaption>afc10000</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://www.givisiez.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/CommuneGivisiez.jpg' | relative_url }}"
-           alt="Commune de Givisiez" />
-    </a>
-    <figcaption>Commune de Givisiez</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://granges-paccot.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/CommuneGrangePaccot.jpg' | relative_url }}"
-           alt="Commune de Granges-Paccot" />
-    </a>
-    <figcaption>Commune de Granges-Paccot</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://www.groupe-e.ch/fr/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/GroupeE.jpg' | relative_url }}"
-           alt="Groupe E" />
-    </a>
-    <figcaption>Groupe E</figcaption>
-  </figure>
-
-   <figure class="sponsor-card">
-    <a href="https://soutien-loro.ch/fr" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/LoterieRomande.jpg' | relative_url }}"
-           alt="Loterie Romande" />
-    </a>
-    <figcaption>Loterie Romande</figcaption>
-  </figure>
-
-   <figure class="sponsor-card">
-    <a href="https://demoncor.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/RestaurantDeMoncor.jpg' | relative_url }}"
-           alt="Restaurant De Moncor" />
-    </a>
-    <figcaption>Restaurant De Moncor</figcaption>
-  </figure>
-
-   <figure class="sponsor-card">
-    <a href="https://www.villars-sur-glane.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/VillarsSurGlane.png' | relative_url }}"
-           alt="Commune de Villars-sur-Glâne" />
-    </a>
-    <figcaption>Commune de Villars-sur-Glâne</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://www.raiffeisen.ch/sarine-ouest/fr/ueber-uns/ihre-bank-vor-ort.html" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/raiffeisen.png' | relative_url }}"
-           alt="RAIFFEISEN Sarine-Ouest" />
-    </a>
-    <figcaption>RAIFFEISEN Sarine-Ouest</figcaption>
-  </figure>
-
-</div>
+{% include sponsors-grid.html %}
 
 <div class="hr mt-32"></div>
 
@@ -234,9 +165,7 @@ title: Accueil
   const container = document.getElementById("calendarUpcoming");
 
   try {
-    const res = await fetch("https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
+    const data = await GPMF.fetchJSON(GPMF.calendarUrl + "/api/calendar.json");
 
     const items = data.upcoming || [];
     if (!items.length) {
@@ -286,7 +215,7 @@ title: Accueil
         ${conseilHtml}
 
         <p class="mt-16">
-          <a class="btn btn-outline" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
+          <a class="btn btn-outline" href="${GPMF.calendarUrl}/api/calendar.ics" download>
             Télécharger le calendrier (.ics)
           </a>
         </p>
@@ -296,9 +225,7 @@ title: Accueil
     container.innerHTML = "<p>Impossible de charger la prochaine séance.</p>";
   }
 
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c]));
-  }
+  function escapeHtml(s) { return GPMF.escapeHtml(s); }
 })();
 </script>
 
@@ -326,11 +253,11 @@ title: Accueil
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  const WORKER_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";
+  const WORKER_BASE = GPMF.workerBase;
   const INTERVAL_MS = 6000;
   const MAX_PHOTOS = 300;
-  const PER_FOLDER = 12;   // nb max de photos prises par dossier
-const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
+  const PER_FOLDER = 12;
+  const SHUFFLE_FOLDERS = true;
 
 
   const imgEl  = document.getElementById("slideshowImg");
@@ -342,19 +269,8 @@ const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
     return;
   }
 
-  const shuffle = (arr) => {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  };
-
-  async function fetchJSON(url) {
-    const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`HTTP ${r.status} – ${url}`);
-    return r.json();
-  }
+  const shuffle = GPMF.shuffle;
+  const fetchJSON = GPMF.fetchJSON;
 
   function normalizeFiles(payload) {
     if (payload && typeof payload === "object") {
