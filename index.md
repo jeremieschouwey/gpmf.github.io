@@ -4,68 +4,107 @@ title: Accueil
 ---
 
 <div class="hero">
-  <div class="badge">Chaque mercredi • 18h15 • Préparation Morat-Fribourg</div>
+  <a class="badge-hero" href="{{ '/programme' | relative_url }}"><span class="badge-hero-dot"></span>Chaque mercredi · 18h15 · Préparation Morat-Fribourg</a>
 
   <h1>Groupes Préparer Morat Fribourg</h1>
   <p class="subtitle">
-    20 semaines pour préparer Morat-Fribourg !
+    → 20 semaines pour préparer Morat-Fribourg !
   </p>
 
-  <div class="kpi">
+  <div class="kpi mt-16">
     <span class="badge">Ouvert à tous niveaux</span>
     <span class="badge">Programme progressif</span>
     <span class="badge">Gratuit et sans inscription</span>
   </div>
 </div>
-<div class="hr"></div>
+<div class="hr mt-32"></div>
 
-<div class="grid mt-16">
+<div class="grid mt-32">
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
         <h3>Prochain entrainement</h3>
-        <a class="card-link" href="{{ '/programme' | relative_url }}">Détails</a>
+        <span class="card-link">Détails →</span>
       </div>
       <p class="muted">Consulte les détails du prochain entrainement.</p>
+      <a class="card-stretched-link" href="{{ '/programme' | relative_url }}" aria-label="Prochain entrainement"></a>
     </div>
   </div>
 
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
-        <h3>Les GPMF au fil du temps</h3>
-        <a class="card-link" href="{{ '/2026/03/27/chronique-gpmf.html' | relative_url }}">Lire</a>
+        <h3>C'est quoi le GPMF?</h3>
+        <span class="card-link">Découvrir →</span>
       </div>
-      <p class="muted">Chronique de l'histoire de l'association depuis 1989, par Marianne Baechler.</p>
+      <p class="muted">Apprends-en plus sur la mission et l'offre du GPMF.</p>
+      <a class="card-stretched-link" href="{{ '/mission' | relative_url }}" aria-label="C'est quoi le GPMF?"></a>
     </div>
   </div>
 
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
-        <h3>Notre proposition</h3>
-        <a class="card-link" href="{{ '/mission' | relative_url }}">Découvrir</a>
+        <h3>Les groupes</h3>
+        <span class="card-link">Voir →</span>
       </div>
-      <p class="muted">Consulte les différents groupes avec leurs allures</p>
+      <p class="muted">Découvre nos groupes et trouve celui qui te correspond.</p>
+      <a class="card-stretched-link" href="{{ '/2026/03/27/chronique-gpmf.html' | relative_url }}" aria-label="Les groupes"></a>
     </div>
   </div>
 </div>
 
-<section class="map mt-16">
+<section class="map mt-32">
+  <div class="hr"></div>
   <h2>Point de rendez-vous</h2>
+
+  <div class="acces-grid">
+    <div class="acces-item">
+      <div class="acces-icon">🏃</div>
+      <div>
+        <div class="acces-title">Point de rendez-vous</div>
+        <div class="acces-desc">Chaque mercredi à 18h15 à l'entrée de la forêt de Moncor</div>
+        <a class="acces-link" href="https://maps.app.goo.gl/i4XP28NcWksEekY59" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+    <div class="acces-item">
+      <div class="acces-icon">🅿</div>
+      <div>
+        <div class="acces-title">Parking</div>
+        <div class="acces-desc">Places disponibles à proximité du point de RDV</div>
+        <a class="acces-link" href="https://maps.app.goo.gl/FL2U5CUn8HT7pboc9" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+    <div class="acces-item">
+      <div class="acces-icon">🚌</div>
+      <div>
+        <div class="acces-title">Arrêt TPF</div>
+        <div class="acces-desc">Villars-sur-Glâne, Moncor</div>
+        <a class="acces-link" href="https://maps.app.goo.gl/RRKnmkbUB4ZS5gFYA" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+  </div>
 
   <div id="map-rdv" class="map-box" style="height:360px;"></div>
 
   <p class="muted">
-    RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte.
+    RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte. 
   </p>
 
-  <div class="hr"></div>
-
-  <small>
-    <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
-  </small>
+  <div class="hr mt-32"></div>
 </section>
+
+<section class="strava-section">
+  <h3>Rejoins-nous sur Strava!</h3>
+  <p class="muted">Suis nos activités, partage tes sorties et rejoins la communauté GPMF sur Strava.</p>
+  <a class="strava-btn" href="https://www.strava.com/clubs/gpmf/discussion" target="_blank" rel="noopener noreferrer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+    Rejoindre le club GPMF
+  </a>
+</section>
+
+<div class="hr"></div>
+
 <h2>Nos sponsors</h2>
 <div class="sponsors-grid">
 
@@ -85,8 +124,6 @@ title: Accueil
     <figcaption>afc10000</figcaption>
   </figure>
 
- 
-
   <figure class="sponsor-card">
     <a href="https://www.givisiez.ch" target="_blank" rel="noopener noreferrer">
       <img src="{{ '/assets/sponsors/logos/CommuneGivisiez.jpg' | relative_url }}"
@@ -103,7 +140,6 @@ title: Accueil
     <figcaption>Commune de Granges-Paccot</figcaption>
   </figure>
 
-  
   <figure class="sponsor-card">
     <a href="https://www.groupe-e.ch/fr/" target="_blank" rel="noopener noreferrer">
       <img src="{{ '/assets/sponsors/logos/GroupeE.jpg' | relative_url }}"
@@ -119,7 +155,6 @@ title: Accueil
     </a>
     <figcaption>Loterie Romande</figcaption>
   </figure>
-
 
    <figure class="sponsor-card">
     <a href="https://demoncor.ch/" target="_blank" rel="noopener noreferrer">
@@ -143,10 +178,11 @@ title: Accueil
            alt="RAIFFEISEN Sarine-Ouest" />
     </a>
     <figcaption>RAIFFEISEN Sarine-Ouest</figcaption>
-  </figure>  
+  </figure>
 
 </div>
 
+<div class="hr mt-32"></div>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -192,8 +228,6 @@ title: Accueil
     // m1.openPopup();
   });
 </script>
-
-
 
 <script>
 (async () => {
@@ -268,8 +302,6 @@ title: Accueil
 })();
 </script>
 
-
-
 <section class="slideshow">
   <h2>Photos</h2>
 
@@ -288,9 +320,9 @@ title: Accueil
       <span id="slideshowMeta">Chargement des photos…</span>
       <a class="slideshow-cta" href="{{ '/photos/' | relative_url }}">Voir la galerie</a>
     </div>
+
   </div>
 </section>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
@@ -479,7 +511,3 @@ shuffle(photos);
   }
 });
 </script>
-
-
-
-

@@ -6,7 +6,7 @@ permalink: /programme/
 
 # Programme 2026
 
-<p data-i18n="pageDesc">Navigue mois par mois et clique sur une date pour afficher le détail de la séance.</p>
+<p data-i18n="pageDesc" class="muted">Navigue mois par mois et clique sur une date pour afficher le détail de la séance.</p>
 
 <div class="cal-toolbar">
   <button id="calPrev" class="btn btn-ghost" type="button" data-i18n="calPrev">◀ Mois précédent</button>
@@ -20,8 +20,13 @@ permalink: /programme/
 </div>
 
 <div class="cal-actions">
-  <button id="calDownloadIcs" class="btn btn-outline" type="button" data-i18n="icsDownload">Télécharger le programme (.ics)</button>
-  <span class="muted" data-i18n="icsDesc">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
+
+<a id="calDownloadIcs" class="btn btn-outline" href="#" download>
+  <span aria-hidden="true">⬇</span>
+  <span data-i18n="icsDownload">Télécharger le programme (.ics)</span>
+</a>
+<span class="muted" data-i18n="icsDesc">Importable dans Google Calendar, Apple Calendar, Outlook, etc.</span>
+
 </div>
 
 <div id="calGrid" class="cal-grid"></div>
@@ -29,6 +34,8 @@ permalink: /programme/
 <div id="calDetails" class="cal-details">
   <p>Sélectionne une date dans le calendrier.</p>
 </div>
+
+<div class="hr mt-32"></div>
 
 <section class="training-notes lang-fr">
   <h2>Conseils d’entraînement sur 20 semaines</h2>
@@ -75,6 +82,7 @@ permalink: /programme/
         sieste, yoga, etc.
       </p>
     </div>
+
   </div>
 
   <div class="note-card">
@@ -222,6 +230,7 @@ permalink: /programme/
         Mittagsschlaf, Yoga, usw.
       </p>
     </div>
+
   </div>
 
   <div class="note-card">
@@ -541,7 +550,8 @@ let currentMonth = new Date(y, m, 1);
 
   // --- ICS download ---
   if (btnIcs) {
-    btnIcs.addEventListener("click", () => {
+    btnIcs.addEventListener("click", (e) => {
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
       const ics = buildIcsCalendar(data, currentLang);
       downloadTextFile(ics, UI[currentLang].icsFilename, "text/calendar;charset=utf-8");
     });
