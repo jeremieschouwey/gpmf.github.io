@@ -862,7 +862,7 @@ table.borg tr:last-child td {
 /* Items */
 .site-nav a {
   text-decoration: none;
-  padding: 8px 10px;
+  padding: 5px 10px;
   border-radius: 10px;
   color: var(--text);
   border: 1px solid transparent;
@@ -880,7 +880,7 @@ table.borg tr:last-child td {
 .has-dropdown .dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 2px);
   left: 0;
   min-width: 200px;
   background: var(--card);
