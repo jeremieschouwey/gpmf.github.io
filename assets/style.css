@@ -399,7 +399,7 @@ a.badge:hover {
   font-weight: 600;
   text-decoration: none;
   margin-top: -30px;
-  font-size: 0.8em;
+  font-size: 14px;
 }
 .card-link:hover {
   text-decoration: underline;
@@ -984,7 +984,6 @@ table.borg tr:last-child td {
 
 .group-meta {
   font-size: 0.9em;
-
   padding: 12px 16px 12px;
 }
 
@@ -1487,18 +1486,18 @@ table.borg tr:last-child td {
 
 .acces-title {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 2px;
 }
 
 .acces-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   margin-bottom: 6px;
 }
 
 .acces-link {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--primary);
   text-decoration: none;
