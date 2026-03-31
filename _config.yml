@@ -19,5 +19,4 @@ strava_club_url: "https://www.strava.com/clubs/gpmf/discussion"
 
 # API endpoints — update here if URLs change
 worker_base_url: "https://weathered-math-a354.jeremieschouwey.workers.dev" # photos
-calendar_url: "https://gpmf-calendar.jeremieschouwey.workers.dev" # programme
 admin_url: "https://gpmf-admin.jeremieschouwey.workers.dev" # stats

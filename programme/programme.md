@@ -337,8 +337,8 @@ permalink: /programme/
 <script>
 (async () => {
   // --- Sources ---
-  const API_FR = GPMF.calendarUrl + "/api/programme.fr.json";
-  const API_DE = GPMF.calendarUrl + "/api/programme.de.json";
+  const API_FR = "{{ '/assets/programme2026.fr.json' | relative_url }}";
+  const API_DE = "{{ '/assets/programme2026.de.json' | relative_url }}";
   const START_DATE = "{{ site.programme_start_date_iso }}";
 
   const EXTRA_EVENTS = [
