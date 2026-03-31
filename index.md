@@ -1,163 +1,129 @@
 ---
 layout: default
 title: Accueil
+uses_map: true
 ---
 
 <div class="hero">
-  <div class="badge">Chaque mercredi • 18h15 • Préparation Morat-Fribourg</div>
+  <a class="badge-hero" href="{{ '/programme' | relative_url }}"><span class="badge-hero-dot"></span>Chaque mercredi · 18h15 · Préparation Morat-Fribourg</a>
 
   <h1>Groupes Préparer Morat Fribourg</h1>
   <p class="subtitle">
-    20 semaines pour préparer Morat-Fribourg !
+    → 20 semaines pour préparer Morat-Fribourg !
   </p>
 
-  <div class="kpi">
+{% if site.reprise_date %}
+
+  <p class="reprise-date">Reprise le {{ site.reprise_date }}</p>
+  {% endif %}
+
+  <div class="kpi mt-16">
     <span class="badge">Ouvert à tous niveaux</span>
     <span class="badge">Programme progressif</span>
     <span class="badge">Gratuit et sans inscription</span>
   </div>
 </div>
-<div class="hr"></div>
+<div class="hr mt-32"></div>
 
-<div class="grid mt-16">
+<div class="grid mt-32">
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
         <h3>Prochain entrainement</h3>
-        <a class="card-link" href="{{ '/programme' | relative_url }}">Détails</a>
+        <span class="card-link">Détails →</span>
       </div>
       <p class="muted">Consulte les détails du prochain entrainement.</p>
+      <a class="card-stretched-link" href="{{ '/programme' | relative_url }}" aria-label="Prochain entrainement"></a>
     </div>
   </div>
 
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
-        <h3>Les GPMF au fil du temps</h3>
-        <a class="card-link" href="{{ '/2026/03/27/chronique-gpmf.html' | relative_url }}">Lire</a>
+        <h3>C'est quoi le GPMF?</h3>
+        <span class="card-link">Découvrir →</span>
       </div>
-      <p class="muted">Chronique de l'histoire de l'association depuis 1989, par Marianne Baechler.</p>
+      <p class="muted">Apprends-en plus sur la mission et l'offre du GPMF.</p>
+      <a class="card-stretched-link" href="{{ '/mission' | relative_url }}" aria-label="C'est quoi le GPMF?"></a>
     </div>
   </div>
 
   <div class="col-4">
-    <div class="card">
+    <div class="card card-clickable">
       <div class="card-title">
-        <h3>Notre proposition</h3>
-        <a class="card-link" href="{{ '/mission' | relative_url }}">Découvrir</a>
+        <h3>Les groupes</h3>
+        <span class="card-link">Voir →</span>
       </div>
-      <p class="muted">Consulte les différents groupes avec leurs allures</p>
+      <p class="muted">Découvre nos groupes et trouve celui qui te correspond.</p>
+      <a class="card-stretched-link" href="{{ '/groupes' | relative_url }}" aria-label="Les groupes"></a>
     </div>
   </div>
 </div>
 
-<section class="map mt-16">
+<section class="map mt-32">
+  <div class="hr"></div>
   <h2>Point de rendez-vous</h2>
 
-  <div id="map-rdv" class="map-box" style="height:360px;"></div>
+  <div class="acces-grid">
+    <div class="acces-item">
+      <div class="acces-icon">🏃</div>
+      <div>
+        <div class="acces-title">Point de rendez-vous</div>
+        <div class="acces-desc">Chaque mercredi à 18h15 à l'entrée de la forêt de Moncor</div>
+        <a class="acces-link" href="{{ site.maps_rdv_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+    <div class="acces-item">
+      <div class="acces-icon">🅿</div>
+      <div>
+        <div class="acces-title">Parking</div>
+        <div class="acces-desc">Places disponibles à proximité du point de RDV</div>
+        <a class="acces-link" href="{{ site.maps_parking_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+    <div class="acces-item">
+      <div class="acces-icon">🚌</div>
+      <div>
+        <div class="acces-title">Arrêt TPF</div>
+        <div class="acces-desc">Villars-sur-Glâne, Moncor</div>
+        <a class="acces-link" href="{{ site.maps_tpf_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="map-rdv" class="map-box map-box--lg"></div>
 
   <p class="muted">
-    RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte.
+    RDV estival ici chaque mercredi à 18h15 — parking à disposition indiqué sur la carte. 
   </p>
 
-  <div class="hr"></div>
-
-  <small>
-    <a href="https://www.openstreetmap.org/?#map=19/46.798233/7.118851">Afficher une carte plus grande</a>
-  </small>
+  <div class="hr mt-32"></div>
 </section>
+
+<section class="strava-section">
+  <h3>Rejoins-nous sur Strava!</h3>
+  <p class="muted">Suis nos activités, partage tes sorties et rejoins la communauté GPMF sur Strava.</p>
+  <a class="strava-btn" href="{{ site.strava_club_url }}" target="_blank" rel="noopener noreferrer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+    Rejoindre le club GPMF
+  </a>
+</section>
+
+<div class="hr"></div>
+
 <h2>Nos sponsors</h2>
-<div class="sponsors-grid">
+{% include sponsors-grid.html %}
 
- <figure class="sponsor-card">
-    <a href="https://www.trilogiesport.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/TrilogieSport.jpg' | relative_url }}"
-           alt="Trilogie Sport Belfaux" />
-    </a>
-    <figcaption>Trilogie Sport Belfaux</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://afc10000.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/AFC10000.jpg' | relative_url }}"
-           alt="Amicale fribourgeoise des coureurs de 10'000m" />
-    </a>
-    <figcaption>afc10000</figcaption>
-  </figure>
-
- 
-
-  <figure class="sponsor-card">
-    <a href="https://www.givisiez.ch" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/CommuneGivisiez.jpg' | relative_url }}"
-           alt="Commune de Givisiez" />
-    </a>
-    <figcaption>Commune de Givisiez</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://granges-paccot.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/CommuneGrangePaccot.jpg' | relative_url }}"
-           alt="Commune de Granges-Paccot" />
-    </a>
-    <figcaption>Commune de Granges-Paccot</figcaption>
-  </figure>
-
-  
-  <figure class="sponsor-card">
-    <a href="https://www.groupe-e.ch/fr/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/GroupeE.jpg' | relative_url }}"
-           alt="Groupe E" />
-    </a>
-    <figcaption>Groupe E</figcaption>
-  </figure>
-
-   <figure class="sponsor-card">
-    <a href="https://soutien-loro.ch/fr" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/LoterieRomande.jpg' | relative_url }}"
-           alt="Loterie Romande" />
-    </a>
-    <figcaption>Loterie Romande</figcaption>
-  </figure>
-
-
-   <figure class="sponsor-card">
-    <a href="https://demoncor.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/RestaurantDeMoncor.jpg' | relative_url }}"
-           alt="Restaurant De Moncor" />
-    </a>
-    <figcaption>Restaurant De Moncor</figcaption>
-  </figure>
-
-   <figure class="sponsor-card">
-    <a href="https://www.villars-sur-glane.ch/" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/VillarsSurGlane.png' | relative_url }}"
-           alt="Commune de Villars-sur-Glâne" />
-    </a>
-    <figcaption>Commune de Villars-sur-Glâne</figcaption>
-  </figure>
-
-  <figure class="sponsor-card">
-    <a href="https://www.raiffeisen.ch/sarine-ouest/fr/ueber-uns/ihre-bank-vor-ort.html" target="_blank" rel="noopener noreferrer">
-      <img src="{{ '/assets/sponsors/logos/raiffeisen.png' | relative_url }}"
-           alt="RAIFFEISEN Sarine-Ouest" />
-    </a>
-    <figcaption>RAIFFEISEN Sarine-Ouest</figcaption>
-  </figure>  
-
-</div>
-
+<div class="hr mt-32"></div>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Coordonnées
-    const rdv = [46.798062, 7.118103];
+    const rdv     = [46.798062, 7.118103];
     const parking = [46.799089633236605, 7.120852356673644];
+    const bus     = [46.797898, 7.120691];
 
-    // Centre: milieu entre les 2 points
-    const center = [(rdv[0] + parking[0]) / 2, (rdv[1] + parking[1]) / 2];
-
-    const map = L.map("map-rdv", { scrollWheelZoom: false }).setView(center, 17);
+    const map = L.map("map-rdv", { scrollWheelZoom: false });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -174,101 +140,66 @@ title: Accueil
       html: '<div class="map-pin map-pin--parking">P</div>',
       iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
     });
+    const iconBus = L.divIcon({
+      className: '',
+      html: '<div class="map-pin map-pin--bus">🚌</div>',
+      iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
+    });
 
-    const m1 = L.marker(rdv, { icon: iconRdv }).addTo(map)
+    L.marker(rdv, { icon: iconRdv }).addTo(map)
       .bindTooltip("Rendez-vous", { permanent: true, direction: 'top', className: 'map-label map-label--rdv' })
       .bindPopup("<b>Point de rendez-vous</b><br>RDV estival chaque mercredi à 18h15 !");
 
-    const m2 = L.marker(parking, { icon: iconParking }).addTo(map)
+    L.marker(parking, { icon: iconParking }).addTo(map)
       .bindTooltip("Parking", { permanent: true, direction: 'top', className: 'map-label map-label--parking' })
       .bindPopup("<b>Parking à disposition</b><br>Places limitées !");
 
-    // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
-    const bounds = L.latLngBounds([rdv, parking]);
-    map.fitBounds(bounds, { padding: [30, 30] });
-    map.zoomOut(1);
+    L.marker(bus, { icon: iconBus }).addTo(map)
+      .bindTooltip("Arrêt TPF", { permanent: true, direction: 'top', className: 'map-label map-label--bus' })
+      .bindPopup("<b>Arrêt TPF</b><br>Villars-sur-Glâne, Moncor");
 
-    // Optionnel: ouvre la popup RDV par défaut
-    // m1.openPopup();
+    // Ajuste le zoom pour inclure les 3 marqueurs
+    const bounds = L.latLngBounds([rdv, parking, bus]);
+    map.fitBounds(bounds, { padding: [60, 60] });
+
+    // Bouton plein écran (style natif Leaflet)
+    const el = document.getElementById("map-rdv");
+    const FullscreenControl = L.Control.extend({
+      onAdd() {
+        const btn = L.DomUtil.create("button", "leaflet-bar leaflet-control map-fullscreen-btn");
+        btn.type = "button";
+        btn.title = "Plein écran";
+        btn.setAttribute("aria-label", "Plein écran");
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>`;
+        L.DomEvent.disableClickPropagation(btn);
+        L.DomEvent.on(btn, "click", () => {
+          if (!document.fullscreenElement) {
+            el.requestFullscreen();
+          } else {
+            document.exitFullscreen();
+          }
+        });
+        document.addEventListener("fullscreenchange", () => {
+          const isFs = !!document.fullscreenElement;
+          btn.title = isFs ? "Quitter le plein écran" : "Plein écran";
+          btn.setAttribute("aria-label", btn.title);
+          btn.innerHTML = isFs
+            ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+               </svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+               </svg>`;
+          map.invalidateSize();
+        });
+        return btn;
+      }
+    });
+    new FullscreenControl({ position: "topleft" }).addTo(map);
   });
 </script>
-
-
-
-<script>
-(async () => {
-  const container = document.getElementById("calendarUpcoming");
-
-  try {
-    const res = await fetch("https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
-
-    const items = data.upcoming || [];
-    if (!items.length) {
-      container.innerHTML = "<p>Aucune séance à afficher.</p>";
-      return;
-    }
-
-    // On n'affiche que la prochaine séance
-    const ev = items[0];
-    const meta = ev.meta || {};
-    const levels = Array.isArray(meta.levels) ? meta.levels : [];
-
-    const intensity = meta.intensity || null;
-    const mercredi = meta.mercredi || {};
-    const conseil = meta.conseil || "";
-
-    const intensityHtml = intensity && (intensity.I || intensity.percent)
-      ? `<p><strong>Intensité :</strong> ${[intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""].filter(Boolean).join(" — ")}</p>`
-      : "";
-
-    const seanceMercrediHtml = levels.length
-      ? `
-        <h4>Séance du mercredi</h4>
-        <ul>
-          ${levels.map(lvl => {
-            const txt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
-            return `<li><strong>${escapeHtml(lvl.label)} :</strong> ${escapeHtml(txt || "À définir")}</li>`;
-          }).join("")}
-        </ul>
-      `
-      : "";
-
-    const conseilHtml = conseil
-      ? `<p><strong>Conseil :</strong> ${escapeHtml(conseil)}</p>`
-      : "";
-
-    container.innerHTML = `
-      <article class="calendar-item">
-        <h3>${escapeHtml(ev.title || "Prochaine séance")}</h3>
-        <div class="meta">
-          <strong>${escapeHtml(ev.date_human)}</strong> — ${escapeHtml(ev.time)} (${escapeHtml(String(ev.duration_minutes))} min)<br/>
-          ${escapeHtml(ev.location || "")}
-        </div>
-
-        ${intensityHtml}
-        ${seanceMercrediHtml}
-        ${conseilHtml}
-
-        <p class="mt-16">
-          <a class="btn btn-outline" href="https://gpmf-calendar.jeremieschouwey.workers.dev/api/calendar.ics" download>
-            Télécharger le calendrier (.ics)
-          </a>
-        </p>
-      </article>
-    `;
-  } catch (e) {
-    container.innerHTML = "<p>Impossible de charger la prochaine séance.</p>";
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[c]));
-  }
-})();
-</script>
-
-
 
 <section class="slideshow">
   <h2>Photos</h2>
@@ -288,17 +219,17 @@ title: Accueil
       <span id="slideshowMeta">Chargement des photos…</span>
       <a class="slideshow-cta" href="{{ '/photos/' | relative_url }}">Voir la galerie</a>
     </div>
+
   </div>
 </section>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  const WORKER_BASE = "https://weathered-math-a354.jeremieschouwey.workers.dev";
+  const WORKER_BASE = GPMF.workerBase;
   const INTERVAL_MS = 6000;
   const MAX_PHOTOS = 300;
-  const PER_FOLDER = 12;   // nb max de photos prises par dossier
-const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
+  const PER_FOLDER = 12;
+  const SHUFFLE_FOLDERS = true;
 
 
   const imgEl  = document.getElementById("slideshowImg");
@@ -310,19 +241,8 @@ const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
     return;
   }
 
-  const shuffle = (arr) => {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  };
-
-  async function fetchJSON(url) {
-    const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`HTTP ${r.status} – ${url}`);
-    return r.json();
-  }
+  const shuffle = GPMF.shuffle;
+  const fetchJSON = GPMF.fetchJSON;
 
   function normalizeFiles(payload) {
     if (payload && typeof payload === "object") {
@@ -368,7 +288,6 @@ const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
     metaEl.textContent = "Chargement des dossiers…";
 
     const foldersRaw = await fetchJSON(`${WORKER_BASE}/api/folders`);
-    console.log("[slideshow] /api/folders raw =", foldersRaw);
 
     let folders = [];
     if (Array.isArray(foldersRaw)) {
@@ -387,8 +306,6 @@ const SHUFFLE_FOLDERS = true; // mélange l'ordre des dossiers
     folders = folders
       .map(f => (typeof f === "string" ? f : (f.prefix || f.name || f.folder || "")))
       .filter(Boolean);
-
-    console.log("[slideshow] folders normalized =", folders);
 
     if (!folders.length) {
       metaEl.textContent = "Aucun dossier retourné par /api/folders (voir console).";
@@ -432,8 +349,6 @@ for (const folder of foldersWork) {
   // 4) garde-fou global
   if (photos.length >= MAX_PHOTOS) break;
 }
-
-console.log("[slideshow] photos chargées =", photos.length, photos[0]);
 
 if (!photos.length) {
   metaEl.textContent = "Aucune photo trouvée (voir logs /api/list en console).";
@@ -479,7 +394,3 @@ shuffle(photos);
   }
 });
 </script>
-
-
-
-

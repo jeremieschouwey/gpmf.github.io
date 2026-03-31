@@ -2,6 +2,7 @@
 layout: default
 title: Tracées hivernaux
 permalink: /tracehiver/
+uses_map: true
 ---
 
 # Tracées hivernaux
@@ -32,25 +33,26 @@ Choisis un tracé pour l'afficher sur la carte, puis télécharge le fichier GPX
 
     <div id="map" class="map-box"></div>
     <div id="elevationChart" class="elevation-chart"></div>
+
   </section>
 </div>
 
 <script>
-const API_BASE = 'https://gpmf-admin.jeremieschouwey.workers.dev';
+const TRACES = [
+  {% for trace in site.data.gpx_traces %}
+  {
+    title:      {{ trace.title | jsonify }},
+    url:        {{ trace.file | prepend: '/assets/gpx/' | jsonify }},
+    difficulty: {{ trace.difficulty | jsonify }},
+    description:{{ trace.description | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-let TRACES = [];
-try {
-  const res = await fetch(API_BASE + '/api/gpx', { cache: 'no-store' });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  const data = await res.json();
-  TRACES = data.traces || [];
-  document.getElementById('tracesSubtitle').textContent =
-    TRACES.length + ' tracé' + (TRACES.length > 1 ? 's' : '') + ' disponible' + (TRACES.length > 1 ? 's' : '');
-} catch (e) {
-  document.getElementById('tracesSubtitle').textContent = 'Impossible de charger les tracés.';
-}
+document.getElementById('tracesSubtitle').textContent =
+  TRACES.length + ' tracé' + (TRACES.length > 1 ? 's' : '') + ' disponible' + (TRACES.length > 1 ? 's' : '');
 
 const elList      = document.getElementById('tracesList');
 const elTitle     = document.getElementById('traceTitle');
@@ -72,9 +74,6 @@ let currentDistPoints  = [];
 
 /* ---- Helpers ---- */
 
-function gpxUrl(trace) {
-  return trace.url || (API_BASE + '/api/gpx/' + encodeURIComponent(trace.filename));
-}
 
 function haversineKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -287,11 +286,11 @@ function setActive(btn) {
 async function loadTrace(trace, btn) {
   if (btn) setActive(btn);
 
-  elTitle.textContent = trace.title || trace.file;
+  elTitle.textContent = trace.title || trace.filename;
   elStats.innerHTML = '<span class="muted">Chargement…</span>';
   elElevChart.innerHTML = '';
 
-  const url = gpxUrl(trace);
+  const url = trace.url;
   elDl.href = url;
   elDl.style.pointerEvents = 'auto';
   elDl.style.opacity = '1';

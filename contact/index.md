@@ -17,27 +17,30 @@ permalink: /contact/
 
   <li>
     <strong>Physiothérapie Séverine Nager Monnard</strong><br>
-    <a href="#">Site Internet</a><br>
-    Tél. <a href="https://www.severinenager.ch/">026 321 23 15</a>
+    <a href="https://www.severinenager.ch/" target="_blank" rel="noopener">Site Internet</a><br>
+    Tél. <a href="tel:+41263212315">026 321 23 15</a>
   </li>
 
   <li>
     <strong>CarpeDiem – Massages thérapeutiques</strong> (Quentin Gillard)<br>
-    Tél. <a href="https://www.carpediem-wellness.ch/">077 462 84 92</a>
+    <a href="https://www.carpediem-wellness.ch/" target="_blank" rel="noopener">Site Internet</a><br>
+    Tél. <a href="tel:+41774628492">077 462 84 92</a>
   </li>
 
   <li>
     <strong>Institut Peauaime</strong> (Cindy Gobet)<br>
-    Tél. <a href="http://www.institut-peauaime.ch/">079 709 70 05</a>
+    <a href="http://www.institut-peauaime.ch/" target="_blank" rel="noopener">Site Internet</a><br>
+    Tél. <a href="tel:+41797097005">079 709 70 05</a>
   </li>
 
   <li>
     <strong>Trilogie Sport – Belfaux</strong><br>
-    Tél. <a href="http://www.trilogiesport.com/">026 475 10 15</a>
+    <a href="http://www.trilogiesport.com/" target="_blank" rel="noopener">Site Internet</a><br>
+    Tél. <a href="tel:+41264751015">026 475 10 15</a>
   </li>
 
   <li>
-    <a href='http://www.freikaufmann.ch/' target="_blank" rel="noopener"> Bureau d’avocats Frei / Kaufmann</strong></a>
+    <a href='http://www.freikaufmann.ch/' target="_blank" rel="noopener"> Bureau d’avocats Frei / Kaufmann</a>
   </li>
 
   <li>
