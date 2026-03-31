@@ -225,17 +225,16 @@ p {
   background:
     radial-gradient(
       900px 420px at 10% 10%,
-      rgba(217, 50, 0, 0.18),
+      rgba(217, 50, 0, 0.1),
       transparent 60%
     ),
     radial-gradient(
       900px 420px at 90% 10%,
       rgba(209, 232, 246, 0.9),
       transparent 60%
-    ),
-    var(--card);
-  border: 1px solid var(--border);
+    );
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .hero .subtitle {
@@ -1382,12 +1381,37 @@ table.borg tr:last-child td {
 }
 
 .map-box--lg {
-  height: 360px;
+  height: 440px;
 }
 
 /* =========================
    Marqueurs carte RDV
    ========================= */
+
+.map-fullscreen-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+.map-fullscreen-btn:hover {
+  background: #f4f4f4;
+}
+.map-fullscreen-btn svg {
+  display: block;
+  fill: currentColor;
+}
+#map-rdv:fullscreen,
+#map-rdv:-webkit-full-screen {
+  height: 100vh !important;
+  width: 100vw !important;
+}
 
 .map-pin {
   width: 36px;
@@ -1430,6 +1454,12 @@ table.borg tr:last-child td {
 }
 .map-label--parking {
   border-color: rgba(26, 86, 219, 0.35) !important;
+}
+.map-pin--bus {
+  background: #047857;
+}
+.map-label--bus {
+  border-color: rgba(4, 120, 87, 0.35) !important;
 }
 
 .acces-grid {
@@ -1707,4 +1737,34 @@ table.borg tr:last-child td {
 }
 .strava-btn:hover {
   filter: brightness(0.93);
+}
+
+/* =========================
+   Diaporama accueil
+   ========================= */
+
+.slideshow-frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.slideshow-frame a {
+  display: block;
+}
+
+.slideshow-frame img {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.slideshow-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
 }

@@ -70,7 +70,7 @@ uses_map: true
       <div>
         <div class="acces-title">Point de rendez-vous</div>
         <div class="acces-desc">Chaque mercredi à 18h15 à l'entrée de la forêt de Moncor</div>
-        <a class="acces-link" href="https://maps.app.goo.gl/i4XP28NcWksEekY59" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+        <a class="acces-link" href="{{ site.maps_rdv_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
       </div>
     </div>
     <div class="acces-item">
@@ -78,7 +78,7 @@ uses_map: true
       <div>
         <div class="acces-title">Parking</div>
         <div class="acces-desc">Places disponibles à proximité du point de RDV</div>
-        <a class="acces-link" href="https://maps.app.goo.gl/FL2U5CUn8HT7pboc9" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+        <a class="acces-link" href="{{ site.maps_parking_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
       </div>
     </div>
     <div class="acces-item">
@@ -86,7 +86,7 @@ uses_map: true
       <div>
         <div class="acces-title">Arrêt TPF</div>
         <div class="acces-desc">Villars-sur-Glâne, Moncor</div>
-        <a class="acces-link" href="https://maps.app.goo.gl/RRKnmkbUB4ZS5gFYA" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
+        <a class="acces-link" href="{{ site.maps_tpf_url }}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps →</a>
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@ uses_map: true
 <section class="strava-section">
   <h3>Rejoins-nous sur Strava!</h3>
   <p class="muted">Suis nos activités, partage tes sorties et rejoins la communauté GPMF sur Strava.</p>
-  <a class="strava-btn" href="https://www.strava.com/clubs/gpmf/discussion" target="_blank" rel="noopener noreferrer">
+  <a class="strava-btn" href="{{ site.strava_club_url }}" target="_blank" rel="noopener noreferrer">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
     Rejoindre le club GPMF
   </a>
@@ -119,13 +119,11 @@ uses_map: true
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Coordonnées
-    const rdv = [46.798062, 7.118103];
+    const rdv     = [46.798062, 7.118103];
     const parking = [46.799089633236605, 7.120852356673644];
+    const bus     = [46.797898, 7.120691];
 
-    // Centre: milieu entre les 2 points
-    const center = [(rdv[0] + parking[0]) / 2, (rdv[1] + parking[1]) / 2];
-
-    const map = L.map("map-rdv", { scrollWheelZoom: false }).setView(center, 17);
+    const map = L.map("map-rdv", { scrollWheelZoom: false });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -142,92 +140,65 @@ uses_map: true
       html: '<div class="map-pin map-pin--parking">P</div>',
       iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
     });
+    const iconBus = L.divIcon({
+      className: '',
+      html: '<div class="map-pin map-pin--bus">🚌</div>',
+      iconSize: [36, 36], iconAnchor: [18, 18], tooltipAnchor: [0, -22]
+    });
 
-    const m1 = L.marker(rdv, { icon: iconRdv }).addTo(map)
+    L.marker(rdv, { icon: iconRdv }).addTo(map)
       .bindTooltip("Rendez-vous", { permanent: true, direction: 'top', className: 'map-label map-label--rdv' })
       .bindPopup("<b>Point de rendez-vous</b><br>RDV estival chaque mercredi à 18h15 !");
 
-    const m2 = L.marker(parking, { icon: iconParking }).addTo(map)
+    L.marker(parking, { icon: iconParking }).addTo(map)
       .bindTooltip("Parking", { permanent: true, direction: 'top', className: 'map-label map-label--parking' })
       .bindPopup("<b>Parking à disposition</b><br>Places limitées !");
 
-    // Ajuste automatiquement le zoom pour inclure les 2 marqueurs
-    const bounds = L.latLngBounds([rdv, parking]);
-    map.fitBounds(bounds, { padding: [30, 30] });
-    map.zoomOut(1);
+    L.marker(bus, { icon: iconBus }).addTo(map)
+      .bindTooltip("Arrêt TPF", { permanent: true, direction: 'top', className: 'map-label map-label--bus' })
+      .bindPopup("<b>Arrêt TPF</b><br>Villars-sur-Glâne, Moncor");
 
-    // Optionnel: ouvre la popup RDV par défaut
-    // m1.openPopup();
+    // Ajuste le zoom pour inclure les 3 marqueurs
+    const bounds = L.latLngBounds([rdv, parking, bus]);
+    map.fitBounds(bounds, { padding: [60, 60] });
+
+    // Bouton plein écran (style natif Leaflet)
+    const el = document.getElementById("map-rdv");
+    const FullscreenControl = L.Control.extend({
+      onAdd() {
+        const btn = L.DomUtil.create("button", "leaflet-bar leaflet-control map-fullscreen-btn");
+        btn.type = "button";
+        btn.title = "Plein écran";
+        btn.setAttribute("aria-label", "Plein écran");
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>`;
+        L.DomEvent.disableClickPropagation(btn);
+        L.DomEvent.on(btn, "click", () => {
+          if (!document.fullscreenElement) {
+            el.requestFullscreen();
+          } else {
+            document.exitFullscreen();
+          }
+        });
+        document.addEventListener("fullscreenchange", () => {
+          const isFs = !!document.fullscreenElement;
+          btn.title = isFs ? "Quitter le plein écran" : "Plein écran";
+          btn.setAttribute("aria-label", btn.title);
+          btn.innerHTML = isFs
+            ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+               </svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+               </svg>`;
+          map.invalidateSize();
+        });
+        return btn;
+      }
+    });
+    new FullscreenControl({ position: "topleft" }).addTo(map);
   });
-</script>
-
-<script>
-(async () => {
-  const container = document.getElementById("calendarUpcoming");
-
-  try {
-    const data = await GPMF.fetchJSON(GPMF.calendarUrl + "/api/calendar.json");
-
-    const items = data.upcoming || [];
-    if (!items.length) {
-      container.innerHTML = "<p>Aucune séance à afficher.</p>";
-      return;
-    }
-
-    // On n'affiche que la prochaine séance
-    const ev = items[0];
-    const meta = ev.meta || {};
-    const levels = Array.isArray(meta.levels) ? meta.levels : [];
-
-    const intensity = meta.intensity || null;
-    const mercredi = meta.mercredi || {};
-    const conseil = meta.conseil || "";
-
-    const intensityHtml = intensity && (intensity.I || intensity.percent)
-      ? `<p><strong>Intensité :</strong> ${[intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""].filter(Boolean).join(" — ")}</p>`
-      : "";
-
-    const seanceMercrediHtml = levels.length
-      ? `
-        <h4>Séance du mercredi</h4>
-        <ul>
-          ${levels.map(lvl => {
-            const txt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
-            return `<li><strong>${escapeHtml(lvl.label)} :</strong> ${escapeHtml(txt || "À définir")}</li>`;
-          }).join("")}
-        </ul>
-      `
-      : "";
-
-    const conseilHtml = conseil
-      ? `<p><strong>Conseil :</strong> ${escapeHtml(conseil)}</p>`
-      : "";
-
-    container.innerHTML = `
-      <article class="calendar-item">
-        <h3>${escapeHtml(ev.title || "Prochaine séance")}</h3>
-        <div class="meta">
-          <strong>${escapeHtml(ev.date_human)}</strong> — ${escapeHtml(ev.time)} (${escapeHtml(String(ev.duration_minutes))} min)<br/>
-          ${escapeHtml(ev.location || "")}
-        </div>
-
-        ${intensityHtml}
-        ${seanceMercrediHtml}
-        ${conseilHtml}
-
-        <p class="mt-16">
-          <a class="btn btn-outline" href="${GPMF.calendarUrl}/api/calendar.ics" download>
-            Télécharger le calendrier (.ics)
-          </a>
-        </p>
-      </article>
-    `;
-  } catch (e) {
-    container.innerHTML = "<p>Impossible de charger la prochaine séance.</p>";
-  }
-
-  function escapeHtml(s) { return GPMF.escapeHtml(s); }
-})();
 </script>
 
 <section class="slideshow">
@@ -317,7 +288,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     metaEl.textContent = "Chargement des dossiers…";
 
     const foldersRaw = await fetchJSON(`${WORKER_BASE}/api/folders`);
-    console.log("[slideshow] /api/folders raw =", foldersRaw);
 
     let folders = [];
     if (Array.isArray(foldersRaw)) {
@@ -336,8 +306,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     folders = folders
       .map(f => (typeof f === "string" ? f : (f.prefix || f.name || f.folder || "")))
       .filter(Boolean);
-
-    console.log("[slideshow] folders normalized =", folders);
 
     if (!folders.length) {
       metaEl.textContent = "Aucun dossier retourné par /api/folders (voir console).";
@@ -381,8 +349,6 @@ for (const folder of foldersWork) {
   // 4) garde-fou global
   if (photos.length >= MAX_PHOTOS) break;
 }
-
-console.log("[slideshow] photos chargées =", photos.length, photos[0]);
 
 if (!photos.length) {
   metaEl.textContent = "Aucune photo trouvée (voir logs /api/list en console).";

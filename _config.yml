@@ -6,6 +6,18 @@ logo: /assets/images/logoGPMF_orig.png
 # Date de reprise — affiché sur la page d'accueil (commenter une fois la reprise effectuée)
 reprise_date: "mercredi 20 mai 2026"
 
+# Date du 1er entraînement du programme (mercredi de la semaine 1)
+programme_start_date_iso: "2026-05-20"
+
+# Point de rendez-vous — liens Google Maps
+maps_rdv_url: "https://maps.app.goo.gl/i4XP28NcWksEekY59"
+maps_parking_url: "https://maps.app.goo.gl/FL2U5CUn8HT7pboc9"
+maps_tpf_url: "https://maps.app.goo.gl/RRKnmkbUB4ZS5gFYA"
+
+# Strava
+strava_club_url: "https://www.strava.com/clubs/gpmf/discussion"
+
 # API endpoints — update here if URLs change
-worker_base_url: "https://weathered-math-a354.jeremieschouwey.workers.dev"
-calendar_url: "https://gpmf-calendar.jeremieschouwey.workers.dev"
+worker_base_url: "https://weathered-math-a354.jeremieschouwey.workers.dev" # photos
+calendar_url: "https://gpmf-calendar.jeremieschouwey.workers.dev" # programme
+admin_url: "https://gpmf-admin.jeremieschouwey.workers.dev" # stats

@@ -337,31 +337,26 @@ permalink: /programme/
 <script>
 (async () => {
   // --- Sources ---
+  // TODO: switch to API once endpoints are ready:
+  //   const API_FR = GPMF.calendarUrl + "/api/programme.fr.json";
+  //   const API_DE = GPMF.calendarUrl + "/api/programme.de.json";
   const API_FR = "{{ '/assets/programme2026.fr.json' | relative_url }}";
   const API_DE = "{{ '/assets/programme2026.de.json' | relative_url }}";
-  // Date du 1er entraînement (mercredi) du programme
-const START_DATE = "2026-05-20"; // <-- à adapter
+  const START_DATE = "{{ site.programme_start_date_iso }}";
 
   const EXTRA_EVENTS = [
-  {
-    date_iso: "2026-10-04",
-    time: "09:00",
-    duration_minutes: 180,
-    title: "Course Morat–Fribourg",
-    location: "Morat → Fribourg",
-    description: "Course Morat–Fribourg (date fixe).",
-    kind: "race"
-  },
-  {
-    date_iso: "2026-10-14",
-    time: "19:00",
-    duration_minutes: 180,
-    title: "21ème — Souper après la course",
-    location: "Salle La grange, Villars-sur-glane",
-    description: "Souper après la course (21ème).",
-    kind: "social"
-  }
-];
+    {% for ev in site.data.programme_events %}
+    {
+      date_iso: {{ ev.date_iso | jsonify }},
+      time: {{ ev.time | jsonify }},
+      duration_minutes: {{ ev.duration_minutes }},
+      title: {{ ev.title | jsonify }},
+      location: {{ ev.location | jsonify }},
+      description: {{ ev.description | jsonify }},
+      kind: {{ ev.kind | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
 
   // --- DOM ---
   const elTitle = document.getElementById("calTitle");
@@ -507,8 +502,6 @@ function formatDateHuman(dt, lang) {
 
   
   rebuildIndex();
-  console.log("[programme] indexed dates =", byDate.size, "sample keys =", [...byDate.keys()].slice(0, 5));
-console.log("[programme] first week object =", (data.weeks || [])[0]);
   
 
   // Mois courant affiché (par défaut : mois de la prochaine séance si elle existe, sinon mois actuel)
@@ -808,96 +801,16 @@ function renderEventDetails(ev) {
     void elDetails.offsetWidth;
     elDetails.classList.add("cal-details--fresh");
     elDetails.innerHTML = events.map(ev => renderEventDetails(ev)).join("");
-    return;
-
-    const meta = ev.meta || {};
-    const levels = Array.isArray(meta.levels) ? meta.levels : [];
-    const intensity = meta.intensity || null;
-    const mercredi = meta.mercredi || {};
-    const supplementaires = meta.supplementaires || {};
-    const conseil = meta.conseil || "";
-
-    const intensityHtml =
-      intensity && (intensity.I || intensity.percent)
-        ? `<div class="badge-row">
-             <span class="badge">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span>
-             <span class="badge badge-soft">${escapeHtml(UI[currentLang].intensity)}: ${
-               [intensity.I ? `I ${escapeHtml(intensity.I)}` : "", intensity.percent ? escapeHtml(intensity.percent) : ""]
-                 .filter(Boolean).join(" — ")
-             }</span>
-           </div>`
-        : `<div class="badge-row"><span class="badge">${escapeHtml(UI[currentLang].week)} ${escapeHtml(ev.week)}</span></div>`;
-
-    const levelCards = levels.length
-      ? levels.map(lvl => {
-          const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
-          const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
-
-          return `
-            <div class="level-card">
-              <div class="level-title">${escapeHtml(lvl.label)}</div>
-
-              <div class="block">
-                <div class="block-title">${escapeHtml(UI[currentLang].wedSession)}</div>
-                <div class="block-body">${formatMultiline(wTxt || UI[currentLang].toDefine)}</div>
-              </div>
-
-              <div class="block">
-                <div class="block-title">${escapeHtml(UI[currentLang].extraSessions)}</div>
-                <div class="block-body">${formatMultiline(sTxt || UI[currentLang].toDefine)}</div>
-              </div>
-            </div>
-          `;
-        }).join("")
-      : "";
-
-    const conseilHtml = conseil
-      ? `
-        <div class="advice">
-          <div class="advice-title">${escapeHtml(UI[currentLang].advice)}</div>
-          <div class="advice-body">${formatMultiline(conseil)}</div>
-        </div>
-      `
-      : "";
-
-    const fallbackDescription = (!levels.length && ev.description)
-      ? `<div class="block">
-           <div class="block-title">${escapeHtml(UI[currentLang].details)}</div>
-           <div class="block-body">${formatMultiline(ev.description)}</div>
-         </div>`
-      : "";
-
-    elDetails.innerHTML = `
-      <h2>${escapeHtml(ev.title || "Séance")}</h2>
-
-      ${intensityHtml}
-
-      <div class="details-meta">
-        <div><strong>${escapeHtml(ev.date_human || "")}</strong></div>
-        <div>${escapeHtml(ev.time || "")} (${escapeHtml(String(ev.duration_minutes || ""))} min)</div>
-        <div>${escapeHtml(ev.location || "")}</div>
-      </div>
-
-      ${levelCards ? `<div class="levels-grid">${levelCards}</div>` : ""}
-      ${conseilHtml}
-      ${fallbackDescription}
-    `;
   }
 
   // --- Load per language ---
   async function loadDataForLang(lang) {
   const url = (lang === "de") ? API_DE : API_FR;
-
-  console.log("[programme] loading lang =", lang, "url =", url);
-
   const res = await fetch(url, { cache: "no-store" });
-  console.log("[programme] fetch status =", res.status);
 
   if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText} for ${url}`);
 
   const txt = await res.text();
-  console.log("[programme] first chars =", txt.slice(0, 60));
-
   let obj;
   try {
     obj = JSON.parse(txt);
@@ -905,7 +818,6 @@ function renderEventDetails(ev) {
     throw new Error(`Invalid JSON: ${err.message}`);
   }
 
-  console.log("[programme] data OK, weeks =", (obj.weeks || []).length);
   return obj;
 }
 
@@ -1069,48 +981,6 @@ function buildEventDescription(ev, lang) {
   return parts.join("\n").trim();
 }
   
-
-  function buildDescription(ev, lang) {
-    const meta = ev.meta || {};
-    const intensity = meta.intensity || {};
-    const levels = Array.isArray(meta.levels) ? meta.levels : [];
-    const mercredi = meta.mercredi || {};
-    const supplementaires = meta.supplementaires || {};
-    const conseil = meta.conseil || "";
-
-    const parts = [];
-    if (ev.date_human) parts.push(ev.date_human);
-    if (ev.time) parts.push(`${UI[lang].timeLabel}: ${ev.time}`);
-    if (ev.duration_minutes) parts.push(`${UI[lang].durationLabel}: ${ev.duration_minutes} min`);
-    if (intensity && (intensity.I || intensity.percent)) {
-      const i = intensity.I ? `I ${intensity.I}` : "";
-      const p = intensity.percent ? `${intensity.percent}` : "";
-      parts.push(`${UI[lang].intensity}: ${[i,p].filter(Boolean).join(" — ")}`);
-    }
-
-    if (levels.length) {
-      parts.push("");
-      for (const lvl of levels) {
-        const wTxt = typeof mercredi[lvl.id] === "string" ? mercredi[lvl.id] : "";
-        const sTxt = typeof supplementaires[lvl.id] === "string" ? supplementaires[lvl.id] : "";
-        parts.push(`${lvl.label}:`);
-        parts.push(`- ${UI[lang].wedSession}: ${oneLine(wTxt || UI[lang].toDefine)}`);
-        parts.push(`- ${UI[lang].extraSessions}: ${oneLine(sTxt || UI[lang].toDefine)}`);
-        parts.push("");
-      }
-    } else if (ev.description) {
-      parts.push("");
-      parts.push(oneLine(ev.description));
-    }
-
-    if (conseil) {
-      parts.push("");
-      parts.push(`${UI[lang].advice}:`);
-      parts.push(oneLine(conseil));
-    }
-
-    return parts.join("\n").trim();
-  }
 
   function oneLine(s) {
     return String(s).replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();

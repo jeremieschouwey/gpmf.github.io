@@ -1,0 +1,15 @@
+- date_iso: "2026-10-04"
+  time: "09:00"
+  duration_minutes: 180
+  title: "Course Morat–Fribourg"
+  location: "Morat → Fribourg"
+  description: "Course Morat–Fribourg (date fixe)."
+  kind: race
+
+- date_iso: "2026-10-14"
+  time: "19:00"
+  duration_minutes: 180
+  title: "21ème — Souper après la course"
+  location: "Salle La grange, Villars-sur-Glâne"
+  description: "Souper après la course (21ème)."
+  kind: social

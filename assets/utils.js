@@ -1,5 +1,4 @@
 // Shared GPMF utilities — loaded globally via default.html
-// window.GPMF.workerBase and window.GPMF.calendarUrl are injected
 // by default.html from _config.yml values.
 window.GPMF = window.GPMF || {};
 
@@ -23,7 +22,14 @@ GPMF.fetchJSON = async function (url) {
 GPMF.escapeHtml = function (s) {
   return String(s).replace(
     /[&<>"']/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c])
+    (c) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      })[c],
   );
 };
 

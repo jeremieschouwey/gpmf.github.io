@@ -42,7 +42,6 @@ const TRACES = [
   {% for trace in site.data.gpx_traces %}
   {
     title:      {{ trace.title | jsonify }},
-    filename:   {{ trace.file | jsonify }},
     url:        {{ trace.file | prepend: '/assets/gpx/' | jsonify }},
     difficulty: {{ trace.difficulty | jsonify }},
     description:{{ trace.description | jsonify }}
@@ -75,9 +74,6 @@ let currentDistPoints  = [];
 
 /* ---- Helpers ---- */
 
-function gpxUrl(trace) {
-  return trace.url || (API_BASE + '/api/gpx/' + encodeURIComponent(trace.filename));
-}
 
 function haversineKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -294,7 +290,7 @@ async function loadTrace(trace, btn) {
   elStats.innerHTML = '<span class="muted">Chargement…</span>';
   elElevChart.innerHTML = '';
 
-  const url = gpxUrl(trace);
+  const url = trace.url;
   elDl.href = url;
   elDl.style.pointerEvents = 'auto';
   elDl.style.opacity = '1';

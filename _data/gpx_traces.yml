@@ -1,6 +1,4 @@
-# Deux formats acceptés pour "file" :
-#   - nom de fichier seul  → cherche dans /assets/gpx/
-#   - URL complète         → https://raw.githubusercontent.com/user/repo/main/fichier.gpx
+# "file" : nom de fichier dans /assets/gpx/ (ex: trace-hiver-1.gpx)
 
 - title: "Tracée hivernal 1"
   file: "trace-hiver-1.gpx"
@@ -12,12 +10,11 @@
   difficulty: "facile"
   description: "Boucle classique en hiver"
 
-  
 - title: "Tracée hivernal 3"
   file: "trace-hiver-3.gpx"
   difficulty: "facile"
   description: "Boucle classique en hiver"
-    
+
 - title: "Tracée hivernal 4"
   file: "trace-hiver-4.gpx"
   difficulty: "facile"
