@@ -12,7 +12,8 @@ uses_map: true
     → 20 semaines pour préparer Morat-Fribourg !
   </p>
 
-  {% if site.reprise_date %}
+{% if site.reprise_date %}
+
   <p class="reprise-date">Reprise le {{ site.reprise_date }}</p>
   {% endif %}
 
@@ -54,7 +55,7 @@ uses_map: true
         <span class="card-link">Voir →</span>
       </div>
       <p class="muted">Découvre nos groupes et trouve celui qui te correspond.</p>
-      <a class="card-stretched-link" href="{{ '/2026/03/27/chronique-gpmf.html' | relative_url }}" aria-label="Les groupes"></a>
+      <a class="card-stretched-link" href="{{ '/groupes' | relative_url }}" aria-label="Les groupes"></a>
     </div>
   </div>
 </div>

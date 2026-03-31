@@ -431,6 +431,7 @@ const START_DATE = "2026-05-20"; // <-- à adapter
   let currentLang = getLangFromUrlOrStorage();
   let data = null;
   let byDate = new Map();
+  let selectedKey = null;
 
   // --- Init UI ---
   setLangButtonsActive(currentLang);
@@ -645,9 +646,11 @@ function pushEvent(dateKey, ev) {
         const dateObj = new Date(year, month, day);
         const key = ymdLocal(dateObj);
         const hasEvent = (byDate.get(key) || []).length > 0;
+        const isToday = key === todayKey;
+        const isSelected = key === selectedKey;
 
         rowHtml += `
-          <button class="cal-cell cal-day ${hasEvent ? "cal-event" : ""}" type="button" data-date="${key}">
+          <button class="cal-cell cal-day ${hasEvent ? "cal-event" : ""} ${isToday ? "cal-today" : ""} ${isSelected ? "cal-selected" : ""}" type="button" data-date="${key}">
             <div class="cal-daynum">${day}</div>
             ${hasEvent ? `<div class="cal-dot" aria-label="Event"></div>` : ``}
           </button>
@@ -665,13 +668,20 @@ function pushEvent(dateKey, ev) {
       btn.addEventListener("click", () => showDetails(btn.getAttribute("data-date")));
     });
 
-    // Afficher automatiquement la première séance du mois si elle existe
-    const firstEventKeyInMonth = [...byDate.keys()].find(k => {
-      const d = new Date(k + "T00:00:00");
-      return d.getFullYear() === year && d.getMonth() === month;
-    });
+    // Auto-sélection : prochaine séance >= aujourd'hui dans ce mois,
+    // ou à défaut la première séance du mois (si on navigue dans le passé).
+    const keysInMonth = [...byDate.keys()]
+      .filter(k => {
+        const d = new Date(k + "T00:00:00");
+        return d.getFullYear() === year && d.getMonth() === month;
+      })
+      .sort();
 
-    if (firstEventKeyInMonth) showDetails(firstEventKeyInMonth);
+    const autoKey =
+      keysInMonth.find(k => k >= todayKey) || // prochaine séance dans ce mois
+      keysInMonth[0];                          // sinon la première (mois passé)
+
+    if (autoKey) showDetails(autoKey);
     else elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneThisMonth)}</p>`;
   }
 
@@ -768,9 +778,9 @@ function renderEventDetails(ev) {
       ${intensityHtml}
 
       <div class="details-meta">
-        <div><strong>${escapeHtml(ev.date_human || "")}</strong></div>
-        <div>${escapeHtml(time)} ${duration ? `(${escapeHtml(String(duration))} min)` : ""}</div>
-        <div>${escapeHtml(location)}</div>
+        ${ev.date_human ? `<div class="details-meta-row"><span class="details-meta-icon">📅&ensp;</span><strong>${escapeHtml(ev.date_human)}</strong></div>` : ""}
+        ${time ? `<div class="details-meta-row"><span class="details-meta-icon">🕐&ensp;</span>${escapeHtml(time)}${duration ? ` · ${escapeHtml(String(duration))} min` : ""}</div>` : ""}
+        ${location ? `<div class="details-meta-row"><span class="details-meta-icon">📍&ensp;</span>${escapeHtml(location)}</div>` : ""}
       </div>
 
       ${levelCards ? `<div class="levels-grid">${levelCards}</div>` : ""}
@@ -781,15 +791,24 @@ function renderEventDetails(ev) {
 }
   
   function showDetails(key) {
-    const events = byDate.get(key) || [];
-if (!events.length) {
-  elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneOnDate(escapeHtml(key)))}</p>`;
-  return;
-}
+    // Mettre à jour la sélection visuellement
+    selectedKey = key;
+    elGrid.querySelectorAll(".cal-selected").forEach(b => b.classList.remove("cal-selected"));
+    const selectedBtn = elGrid.querySelector(`[data-date="${key}"]`);
+    if (selectedBtn) selectedBtn.classList.add("cal-selected");
 
-// S'il y a plusieurs événements ce jour-là, on les affiche tous
-elDetails.innerHTML = events.map(ev => renderEventDetails(ev)).join("");
-return;
+    const events = byDate.get(key) || [];
+    if (!events.length) {
+      elDetails.innerHTML = `<p>${escapeHtml(UI[currentLang].noneOnDate(escapeHtml(key)))}</p>`;
+      return;
+    }
+
+    // S'il y a plusieurs événements ce jour-là, on les affiche tous
+    elDetails.classList.remove("cal-details--fresh");
+    void elDetails.offsetWidth;
+    elDetails.classList.add("cal-details--fresh");
+    elDetails.innerHTML = events.map(ev => renderEventDetails(ev)).join("");
+    return;
 
     const meta = ev.meta || {};
     const levels = Array.isArray(meta.levels) ? meta.levels : [];

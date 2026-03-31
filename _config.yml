@@ -3,7 +3,7 @@ description: "Site internet de l'association"
 theme: jekyll-theme-minimal
 logo: /assets/images/logoGPMF_orig.png
 
-# Date de reprise — affiché sur la page d'accueil
+# Date de reprise — affiché sur la page d'accueil (commenter une fois la reprise effectuée)
 reprise_date: "mercredi 20 mai 2026"
 
 # API endpoints — update here if URLs change
