@@ -13,32 +13,30 @@ Définis dans `_config.yml` et injectés dans toutes les pages via `window.GPMF`
 | Variable          | Worker                                            | Rôle                                 |
 | ----------------- | ------------------------------------------------- | ------------------------------------ |
 | `worker_base_url` | `weathered-math-a354.jeremieschouwey.workers.dev` | Photos (R2) — liste dossiers, images |
-| `calendar_url`    | `gpmf-calendar.jeremieschouwey.workers.dev`       | Programme (futur endpoint API)       |
+| `calendar_url`    | `gpmf-calendar.jeremieschouwey.workers.dev`       | Programme (endpoints API)            |
 | `admin_url`       | `gpmf-admin.jeremieschouwey.workers.dev`          | Statistiques (`/api/stats`)          |
 
 ### Sources de données par page
 
-| Page             | Source                                                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Statistiques     | API : `GPMF.adminUrl + '/api/stats'`                                                                                |
-| Programme        | Fichiers locaux : `assets/programme2026.fr.json` / `assets/programme2026.de.json` _(TODO → API `GPMF.calendarUrl`)_ |
-| Photos / Accueil | API : `GPMF.workerBase + '/api/folders'` + `/api/list`                                                              |
-| Traces hivernaux | Fichiers locaux : `assets/gpx/` + `_data/gpx_traces.yml`                                                            |
-| Actualités       | Fichiers locaux : `_posts/`                                                                                         |
+| Page             | Source                                                                           |
+| ---------------- | -------------------------------------------------------------------------------- |
+| Statistiques     | API : `GPMF.adminUrl + '/api/stats'`                                             |
+| Programme        | API : `GPMF.calendarUrl + '/api/programme.fr.json'` / `'/api/programme.de.json'` |
+| Photos / Accueil | API : `GPMF.workerBase + '/api/folders'` + `/api/list`                           |
+| Traces hivernaux | Fichiers locaux : `assets/gpx/` + `_data/gpx_traces.yml`                         |
+| Actualités       | Fichiers locaux : `_posts/`                                                      |
 
 ### Données statiques
 
-| Fichier / Dossier              | Contenu                                 |
-| ------------------------------ | --------------------------------------- |
-| `_config.yml`                  | URLs des Workers, dates clés, Strava    |
-| `_data/navigation.yml`         | Menus de navigation                     |
-| `_data/sponsors.yml`           | Liste des sponsors                      |
-| `_data/gpx_traces.yml`         | Métadonnées des tracés GPX hivernaux    |
-| `_data/programme_events.yml`   | Evénements supplémentaires du programme |
-| `assets/gpx/`                  | Fichiers GPX des tracés                 |
-| `assets/documents/`            | Documents divers                        |
-| `assets/programme2026.fr.json` | Programme 20 semaines (FR)              |
-| `assets/programme2026.de.json` | Programme 20 semaines (DE)              |
+| Fichier / Dossier            | Contenu                                 |
+| ---------------------------- | --------------------------------------- |
+| `_config.yml`                | URLs des Workers, dates clés, Strava    |
+| `_data/navigation.yml`       | Menus de navigation                     |
+| `_data/sponsors.yml`         | Liste des sponsors                      |
+| `_data/gpx_traces.yml`       | Métadonnées des tracés GPX hivernaux    |
+| `_data/programme_events.yml` | Evénements supplémentaires du programme |
+| `assets/gpx/`                | Fichiers GPX des tracés                 |
+| `assets/documents/`          | Documents divers                        |
 
 ---
 
@@ -66,9 +64,9 @@ Après chaque entraînement :
 
 ### Modifier le programme
 
-- Éditer `assets/programme2026.fr.json` (et `.de.json` pour l'allemand)
+- Les données proviennent de l'API : `GPMF.calendarUrl + '/api/programme.fr.json'` / `'/api/programme.de.json'`
 - La date de début de saison est dans `_config.yml` → `programme_start_date_iso`
-- Commit / push → c'est live
+- Les événements supplémentaires (non issus de l'API) restent dans `_data/programme_events.yml`
 
 ### Ajouter une trace hivernal
 
