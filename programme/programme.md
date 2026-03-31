@@ -769,7 +769,7 @@ function renderEventDetails(ev) {
 
       <div class="details-meta">
         ${ev.date_human ? `<div class="details-meta-row"><span class="details-meta-icon">📅&ensp;</span><strong>${escapeHtml(ev.date_human)}</strong></div>` : ""}
-        ${time ? `<div class="details-meta-row"><span class="details-meta-icon">🕐&ensp;</span>${escapeHtml(time)}${duration ? ` · ${escapeHtml(String(duration))} min` : ""}</div>` : ""}
+        ${time ? `<div class="details-meta-row"><span class="details-meta-icon">🕐&ensp;</span>${escapeHtml(time)}${duration ? ` • ${escapeHtml(String(duration))} min` : ""}</div>` : ""}
         ${location ? `<div class="details-meta-row"><span class="details-meta-icon">📍&ensp;</span>${escapeHtml(location)}</div>` : ""}
       </div>
 

@@ -27,17 +27,18 @@ Définis dans `_config.yml` et injectés dans toutes les pages via `window.GPMF`
 
 ### Données statiques
 
-| Fichier / Dossier              | Contenu                                 |
-| ------------------------------ | --------------------------------------- |
-| `_config.yml`                  | URLs des Workers, dates clés, Strava    |
-| `_data/navigation.yml`         | Menus de navigation                     |
-| `_data/sponsors.yml`           | Liste des sponsors                      |
-| `_data/gpx_traces.yml`         | Métadonnées des tracés GPX hivernaux    |
-| `_data/programme_events.yml`   | Evénements supplémentaires du programme |
-| `assets/gpx/`                  | Fichiers GPX des tracés                 |
-| `assets/documents/`            | Documents divers                        |
-| `assets/programme2026.fr.json` | Programme 20 semaines (FR)              |
-| `assets/programme2026.de.json` | Programme 20 semaines (DE)              |
+| Fichier / Dossier              | Contenu                                   |
+| ------------------------------ | ----------------------------------------- |
+| `_config.yml`                  | URLs des Workers, dates clés, Strava      |
+| `_data/navigation.yml`         | Menus de navigation                       |
+| `_data/sponsors.yml`           | Liste des sponsors                        |
+| `_data/gpx_traces.yml`         | Métadonnées des tracés GPX hivernaux      |
+| `_data/programme_events.yml`   | Evénements supplémentaires du programme   |
+| `_data/groupes.yml`            | Groupes d'entraînement et leurs moniteurs |
+| `assets/gpx/`                  | Fichiers GPX des tracés                   |
+| `assets/documents/`            | Documents divers                          |
+| `assets/programme2026.fr.json` | Programme 20 semaines (FR)                |
+| `assets/programme2026.de.json` | Programme 20 semaines (DE)                |
 
 ---
 

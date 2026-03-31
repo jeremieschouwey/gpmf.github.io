@@ -5,7 +5,7 @@ uses_map: true
 ---
 
 <div class="hero">
-  <a class="badge-hero" href="{{ '/programme' | relative_url }}"><span class="badge-hero-dot"></span>Chaque mercredi · 18h15 · Préparation Morat-Fribourg</a>
+  <a class="badge-hero" href="{{ '/programme' | relative_url }}"><span class="badge-hero-dot"></span>Chaque mercredi • 18h15 • Préparation Morat-Fribourg</a>
 
   <h1>Groupes Préparer Morat-Fribourg</h1>
   <p class="subtitle">

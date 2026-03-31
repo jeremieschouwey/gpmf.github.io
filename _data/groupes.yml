@@ -1,0 +1,103 @@
+- title: "Groupe 1"
+  allure: "< 1:15' au MF | ~4'10/km"
+  chip: "Confirmés et compétiteurs"
+  meta_time: "< 1:15'"
+  meta_pace: "~4'10/km"
+  moniteurs:
+    - Fanus Beckeret
+
+- title: "Groupe 2"
+  allure: "1:15' – 1:20' au MF | 4'20 – 4'50/km"
+  chip: "Confirmés et compétiteurs"
+  meta_time: "1:15' – 1:20'"
+  meta_pace: "4'20 – 4'50/km"
+  moniteurs:
+    - Jérémie Schouwey
+    - Patrick Audriaz
+
+- title: "Groupe 3"
+  allure: "1:20' – 1:30' au MF | 4'50 – 5'20/km"
+  chip: "Confirmés et compétiteurs"
+  meta_time: "1:20' – 1:30'"
+  meta_pace: "4'50 – 5'20/km"
+  moniteurs:
+    - Augustin Berset
+    - Alexandre Mooser
+    - Patrick Audriaz
+
+- title: "Groupe 4"
+  allure: "1:30' – 1:40' au MF | 5'20 – 5'50/km"
+  chip: "Réguliers et Confirmés"
+  meta_time: "1:30' – 1:40'"
+  meta_pace: "5'20 – 5'50/km"
+  moniteurs:
+    - Christian Baechler
+    - Jérôme Dick
+    - Claudia Dubey
+    - Michel Mertenat
+
+- title: "Groupe 5"
+  allure: "1:40' – 1:50' au MF | 5'50 – 6'25/km"
+  chip: "Occasionnels et Réguliers"
+  meta_time: "1:40' – 1:50'"
+  meta_pace: "5'50 – 6'25/km"
+  moniteurs:
+    - Claire Barbier
+    - Jérôme Dick
+    - Claudia Dubey
+    - Carole Macheret
+    - Michel Rémy
+    - Jacques Rast
+    - Gilles Rosset
+
+- title: "Groupe 6"
+  allure: "1:50' – 2:00' au MF | 6'25 – 7'00/km"
+  chip: "Occasionnels"
+  meta_time: "1:50' – 2:00'"
+  meta_pace: "6'25 – 7'00/km"
+  moniteurs:
+    - Claire Barbier
+    - Carole Macheret
+    - Gilles Rosset
+    - Mélanie Stempfel
+
+- title: "Groupe 7"
+  allure: "2:00' – 2:10' au MF | 7'00 – 7'40/km"
+  chip: "Occasionnels"
+  meta_time: "2:00' – 2:10'"
+  meta_pace: "7'00 – 7'40/km"
+  moniteurs:
+    - Jean-Pierre Buttigieg
+    - Fanny Legrand
+    - Isabelle Mussoi
+    - Caroline Perini
+    - Augusto Soares
+    - Jean-Pierre Volery
+
+- title: "Groupe 8"
+  allure: "> 2:10' au MF | > 7'40/km"
+  chip: "Débutants"
+  meta_time: "plus que 2:10'"
+  meta_pace: "> 7'40/km"
+  moniteurs:
+    - Sélène Altwegg
+    - Marianne Baechler
+    - Jean-Pierre Dorand
+    - Marie-Christine Dorand
+    - Georges Wolf
+
+- title: "Nordic Walking avancés"
+  chip: "Marcheurs"
+  description: "Marcheurs avancés, avec ou sans batons"
+  moniteurs:
+    - Werner Altwegg
+    - Anne-Claude Jeckelmann
+
+- title: "Nordic Walking débutants"
+  chip: "Marcheurs"
+  description: "Marcheurs débutants, avec ou sans batons"
+  moniteurs:
+    - Sélène Altwegg
+    - Joël Jeckelmann
+    - Roland Maklhouf
+    - Gerda Tuck
