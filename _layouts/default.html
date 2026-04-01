@@ -97,6 +97,7 @@
         </div>
       </div>
     </footer>
+    {% if page.url == "/" %}{% include flyer-popup.html %}{% endif %}
     <script>
       (function () {
         var toggle = document.getElementById("nav-toggle");

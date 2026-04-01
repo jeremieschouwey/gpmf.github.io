@@ -1761,3 +1761,108 @@ table.borg tr:last-child td {
   font-size: 0.85rem;
   color: var(--muted);
 }
+
+/* ── Flyer popup — temporaire jusqu'au 2026-05-20 ─────────────────────────── */
+.flyer-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 200;
+}
+.flyer-modal.open {
+  display: flex;
+}
+body.flyer-modal-open {
+  overflow: hidden;
+}
+.flyer-modal-inner {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.flyer-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.flyer-modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.flyer-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 0 4px;
+  transition: color 0.15s;
+}
+.flyer-modal-close:hover {
+  color: var(--text);
+}
+.flyer-modal-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.flyer-tab {
+  padding: 5px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.flyer-tab:hover {
+  background: var(--primary-bg-hover);
+  border-color: var(--primary-border);
+}
+.flyer-tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.flyer-modal-body {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+.flyer-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  border: none;
+  display: none;
+}
+.flyer-iframe.active {
+  display: block;
+}
+@media (max-width: 600px) {
+  .flyer-modal-inner {
+    max-height: 92vh;
+  }
+  .flyer-iframe {
+    min-height: 65vh;
+  }
+}
