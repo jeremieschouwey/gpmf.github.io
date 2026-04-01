@@ -1771,7 +1771,7 @@ table.borg tr:last-child td {
   justify-content: center;
   padding: 16px;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 200;
+  z-index: 9000;
 }
 .flyer-modal.open {
   display: flex;
