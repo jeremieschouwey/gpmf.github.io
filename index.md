@@ -314,18 +314,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     metaEl.textContent = "Chargement des photos…";
 
-let photos = [];
-
-// Optionnel: mélanger l’ordre des dossiers pour varier encore plus
+// Mélanger les dossiers
 const foldersWork = SHUFFLE_FOLDERS ? shuffle([...folders]) : [...folders];
 
-for (const folder of foldersWork) {
-  const listRaw = await fetchJSON(
-    `${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`
-  );
+// Récupérer tous les dossiers en parallèle
+const folderResults = await Promise.all(
+  foldersWork.map(folder =>
+    fetchJSON(`${WORKER_BASE}/api/list?prefix=${encodeURIComponent(folder)}`)
+      .then(listRaw => ({ folder, files: normalizeFiles(listRaw) }))
+      .catch(() => ({ folder, files: [] }))
+  )
+);
 
-  const files = normalizeFiles(listRaw);
+let photos = [];
 
+for (const { folder, files } of folderResults) {
   // 1) transforme les fichiers en URLs
   let folderPhotos = [];
   for (const file of files) {
@@ -345,9 +348,6 @@ for (const folder of foldersWork) {
 
   // 3) ajoute au pool global
   photos.push(...folderPhotos);
-
-  // 4) garde-fou global
-  if (photos.length >= MAX_PHOTOS) break;
 }
 
 if (!photos.length) {
