@@ -1,18 +1,48 @@
-<div id="flyer-modal" class="flyer-modal" role="dialog" aria-modal="true" aria-labelledby="flyer-modal-title">
+<div
+  id="flyer-modal"
+  class="flyer-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="flyer-modal-title"
+>
   <div class="flyer-modal-inner">
     <div class="flyer-modal-header">
       <h2 id="flyer-modal-title" class="flyer-modal-title">Saison 2026</h2>
-      <button class="flyer-modal-close" id="flyer-modal-close" aria-label="Fermer">&times;</button>
+      <button
+        class="flyer-modal-close"
+        id="flyer-modal-close"
+        aria-label="Fermer"
+      >
+        &times;
+      </button>
     </div>
     <div class="flyer-modal-tabs" role="tablist">
-      <button class="flyer-tab" id="tab-fr" role="tab" aria-controls="panel-fr" aria-selected="true" data-lang="fr">Français</button>
-      <button class="flyer-tab" id="tab-de" role="tab" aria-controls="panel-de" aria-selected="false" data-lang="de">Deutsch</button>
+      <button
+        class="flyer-tab"
+        id="tab-fr"
+        role="tab"
+        aria-controls="panel-fr"
+        aria-selected="true"
+        data-lang="fr"
+      >
+        Français
+      </button>
+      <button
+        class="flyer-tab"
+        id="tab-de"
+        role="tab"
+        aria-controls="panel-de"
+        aria-selected="false"
+        data-lang="de"
+      >
+        Deutsch
+      </button>
     </div>
     <div class="flyer-modal-body">
       <iframe
         id="flyer-fr"
         class="flyer-iframe"
-        src="{{ '/assets/flyers/flyer-fr.pdf' | relative_url }}"
+        src="{{ '/assets/flyers/flyer-fr.pdf' | relative_url }}#view=Fit"
         title="Flyer GPMF 2026 — Français"
         role="tabpanel"
         aria-labelledby="tab-fr"
@@ -20,7 +50,7 @@
       <iframe
         id="flyer-de"
         class="flyer-iframe"
-        src="{{ '/assets/flyers/flyer-de.pdf' | relative_url }}"
+        src="{{ '/assets/flyers/flyer-de.pdf' | relative_url }}#view=Fit"
         title="Flyer GPMF 2026 — Deutsch"
         role="tabpanel"
         aria-labelledby="tab-de"
@@ -30,63 +60,64 @@
 </div>
 
 <script>
-(function () {
-  var EXPIRY = new Date('2026-05-20');
-  var SESSION_KEY = 'gpmf-flyer-2026';
+  (function () {
+    var EXPIRY = new Date("2026-05-20");
+    var SESSION_KEY = "gpmf-flyer-2026";
 
-  // Expiration automatique dès le premier entraînement
-  if (new Date() >= EXPIRY) return;
-  // Déjà vu dans cette session
-  if (sessionStorage.getItem(SESSION_KEY)) return;
+    // Expiration automatique dès le premier entraînement
+    if (new Date() >= EXPIRY) return;
+    // Déjà vu dans cette session
+    if (sessionStorage.getItem(SESSION_KEY)) return;
 
-  var modal = document.getElementById('flyer-modal');
-  var closeBtn = document.getElementById('flyer-modal-close');
-  var tabs = modal.querySelectorAll('.flyer-tab');
-  var iframes = modal.querySelectorAll('.flyer-iframe');
+    var modal = document.getElementById("flyer-modal");
+    var closeBtn = document.getElementById("flyer-modal-close");
+    var tabs = modal.querySelectorAll(".flyer-tab");
+    var iframes = modal.querySelectorAll(".flyer-iframe");
 
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.classList.remove('flyer-modal-open');
-    sessionStorage.setItem(SESSION_KEY, '1');
-  }
+    function closeModal() {
+      modal.classList.remove("open");
+      document.body.classList.remove("flyer-modal-open");
+      sessionStorage.setItem(SESSION_KEY, "1");
+    }
 
-  function switchTab(lang) {
-    tabs.forEach(function (t) {
-      var active = t.dataset.lang === lang;
-      t.classList.toggle('active', active);
-      t.setAttribute('aria-selected', String(active));
+    function switchTab(lang) {
+      tabs.forEach(function (t) {
+        var active = t.dataset.lang === lang;
+        t.classList.toggle("active", active);
+        t.setAttribute("aria-selected", String(active));
+      });
+      iframes.forEach(function (f) {
+        f.classList.toggle("active", f.id === "flyer-" + lang);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Détection langue navigateur
+      var lang =
+        navigator.language && navigator.language.startsWith("de") ? "de" : "fr";
+      switchTab(lang);
+
+      modal.classList.add("open");
+      document.body.classList.add("flyer-modal-open");
     });
-    iframes.forEach(function (f) {
-      f.classList.toggle('active', f.id === 'flyer-' + lang);
+
+    closeBtn.addEventListener("click", closeModal);
+
+    // Clic sur l'overlay (pas sur la carte)
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal();
     });
-  }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Détection langue navigateur
-    var lang = navigator.language && navigator.language.startsWith('de') ? 'de' : 'fr';
-    switchTab(lang);
-
-    modal.classList.add('open');
-    document.body.classList.add('flyer-modal-open');
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-
-  // Clic sur l'overlay (pas sur la carte)
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) closeModal();
-  });
-
-  // Touche Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  // Onglets
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      switchTab(tab.dataset.lang);
+    // Touche Escape
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
     });
-  });
-})();
+
+    // Onglets
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        switchTab(tab.dataset.lang);
+      });
+    });
+  })();
 </script>
