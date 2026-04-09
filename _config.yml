@@ -1,6 +1,9 @@
 title: "GPMF"
-description: "Site internet de l'association"
+description: "Groupes Préparer Morat-Fribourg — association de course à pied à Fribourg"
+url: "https://gpmf.ch"
 theme: jekyll-theme-minimal
+plugins:
+  - jekyll-sitemap
 logo: /assets/images/logoGPMF_orig.png
 
 # Date de reprise — affiché sur la page d'accueil (commenter une fois la reprise effectuée)
