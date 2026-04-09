@@ -36,7 +36,7 @@ permalink: /membres-honneur/
 
   <div class="membre-card">
     <div class="membre-name">René-Michel Dubey</div>
-    <div class="membre-desc">Ancien webmaster</div>
+    <div class="membre-desc">Ancien webmaster — Ancien moniteur du groupe 3</div>
   </div>
 
 </div>
