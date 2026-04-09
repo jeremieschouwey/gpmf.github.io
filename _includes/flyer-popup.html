@@ -55,6 +55,14 @@
         role="tabpanel"
         aria-labelledby="tab-de"
       ></iframe>
+      <div id="flyer-mobile-fr" class="flyer-mobile-fallback" role="tabpanel" aria-labelledby="tab-fr">
+        <p>Le flyer ne peut pas s'afficher directement sur Android.</p>
+        <a class="btn" href="{{ '/assets/flyers/flyer-fr.pdf' | relative_url }}" target="_blank" rel="noopener">Ouvrir le flyer (PDF)</a>
+      </div>
+      <div id="flyer-mobile-de" class="flyer-mobile-fallback" role="tabpanel" aria-labelledby="tab-de">
+        <p>Der Flyer kann auf Android nicht direkt angezeigt werden.</p>
+        <a class="btn" href="{{ '/assets/flyers/flyer-de.pdf' | relative_url }}" target="_blank" rel="noopener">Flyer öffnen (PDF)</a>
+      </div>
     </div>
   </div>
 </div>
@@ -73,6 +81,14 @@
     var closeBtn = document.getElementById("flyer-modal-close");
     var tabs = modal.querySelectorAll(".flyer-tab");
     var iframes = modal.querySelectorAll(".flyer-iframe");
+    var mobileFallbacks = modal.querySelectorAll(".flyer-mobile-fallback");
+    var isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+      iframes.forEach(function (f) { f.style.display = "none"; });
+    } else {
+      mobileFallbacks.forEach(function (f) { f.style.display = "none"; });
+    }
 
     function closeModal() {
       modal.classList.remove("open");
@@ -86,9 +102,15 @@
         t.classList.toggle("active", active);
         t.setAttribute("aria-selected", String(active));
       });
-      iframes.forEach(function (f) {
-        f.classList.toggle("active", f.id === "flyer-" + lang);
-      });
+      if (isAndroid) {
+        mobileFallbacks.forEach(function (f) {
+          f.classList.toggle("active", f.id === "flyer-mobile-" + lang);
+        });
+      } else {
+        iframes.forEach(function (f) {
+          f.classList.toggle("active", f.id === "flyer-" + lang);
+        });
+      }
     }
 
     document.addEventListener("DOMContentLoaded", function () {
