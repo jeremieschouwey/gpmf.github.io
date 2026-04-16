@@ -4,7 +4,8 @@
   meta_time: "< 1:15'"
   meta_pace: "~4'10/km"
   moniteurs:
-    - Fanus Beckeret
+    - Fanus Bereket
+    - Jérémie Schouwey
 
 - title: "Groupe 2"
   allure: "1:15' – 1:20' au MF | 4'20 – 4'50/km"
@@ -12,6 +13,7 @@
   meta_time: "1:15' – 1:20'"
   meta_pace: "4'20 – 4'50/km"
   moniteurs:
+    - Fanus Bereket
     - Jérémie Schouwey
     - Patrick Audriaz
 
@@ -21,7 +23,7 @@
   meta_time: "1:20' – 1:30'"
   meta_pace: "4'50 – 5'20/km"
   moniteurs:
-    - Augustin Berset
+    - Valentin Baeriswyl
     - Alexandre Mooser
     - Patrick Audriaz
 
@@ -32,8 +34,9 @@
   meta_pace: "5'20 – 5'50/km"
   moniteurs:
     - Christian Baechler
+    - Valentin Baeriswyl
+    - Filipe Da Silva
     - Jérôme Dick
-    - Claudia Dubey
     - Michel Mertenat
 
 - title: "Groupe 5"
@@ -42,13 +45,12 @@
   meta_time: "1:40' – 1:50'"
   meta_pace: "5'50 – 6'25/km"
   moniteurs:
+    - Henri Angéloz
+    - Christian Baechler
     - Claire Barbier
-    - Jérôme Dick
-    - Claudia Dubey
-    - Carole Macheret
-    - Michel Rémy
+    - Claudia Marie Dubey
+    - Michel Mertenat
     - Jacques Rast
-    - Gilles Rosset
 
 - title: "Groupe 6"
   allure: "1:50' – 2:00' au MF | 6'25 – 7'00/km"
@@ -56,9 +58,9 @@
   meta_time: "1:50' – 2:00'"
   meta_pace: "6'25 – 7'00/km"
   moniteurs:
-    - Claire Barbier
     - Carole Macheret
     - Gilles Rosset
+    - Augusto Soares
     - Mélanie Stempfel
 
 - title: "Groupe 7"
@@ -67,10 +69,11 @@
   meta_time: "2:00' – 2:10'"
   meta_pace: "7'00 – 7'40/km"
   moniteurs:
-    - Jean-Pierre Buttigieg
-    - Fanny Legrand
+    - Filipe Da Silva
+    - Fred Jonin
     - Isabelle Mussoi
     - Caroline Perini
+    - Jacques Rast
     - Augusto Soares
     - Jean-Pierre Volery
 
@@ -80,16 +83,16 @@
   meta_time: "plus que 2:10'"
   meta_pace: "> 7'40/km"
   moniteurs:
-    - Sélène Altwegg
     - Marianne Baechler
     - Jean-Pierre Dorand
     - Marie-Christine Dorand
-    - Georges Wolf
+    - Roland Makhlouf
 
 - title: "Nordic Walking avancés"
   chip: "Marcheurs"
   description: "Marcheurs avancés, avec ou sans batons"
   moniteurs:
+    - Sélène Altwegg
     - Werner Altwegg
     - Anne-Claude Jeckelmann
 
@@ -97,7 +100,5 @@
   chip: "Marcheurs"
   description: "Marcheurs débutants, avec ou sans batons"
   moniteurs:
-    - Sélène Altwegg
     - Joël Jeckelmann
-    - Roland Maklhouf
-    - Gerda Tuck
+    - Georges Wolf
