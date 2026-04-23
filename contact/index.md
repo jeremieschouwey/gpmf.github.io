@@ -11,6 +11,7 @@ permalink: /contact/
 
   <li>
     <strong>Augustin Berset – Coach sportif</strong><br>
+    <a href="https://www.sportcoach-augustin.ch/" target="_blank" rel="noopener">Site Internet</a><br>
     <a href="mailto:contact@sportcoach-augustin.ch">contact@sportcoach-augustin.ch</a><br>
     Tél. <a href="tel:+41793358567">079 335 85 67</a>
   </li>
