@@ -14,7 +14,7 @@ title: "NW Hiver 2025–2026 — Statistiques et photos du Bois de Moncor"
   </header>
 
   <p>
-    Notre membre et photographe <strong>Georges Wolf</strong> a pris l'initiative de récolter les statistiques et les photos de la saison de marche nordique hivernale 2025–2026 au Bois de Moncor. Un beau travail de mémoire et de documentation pour notre association !
+    Notre membre et photographe <strong>Georges Wolf</strong> a pris l'initiative de récolter les statistiques et les photos de la saison de marche nordique hivernale 2025–2026 au Bois de Moncor. Un beau travail de mémoire et de documentation pour les GPMF !
   </p>
 
   <p>
