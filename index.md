@@ -5,21 +5,22 @@ uses_map: true
 ---
 
 <div class="hero">
-  <a class="badge-hero" href="{{ '/programme' | relative_url }}"><span class="badge-hero-dot"></span>Chaque mercredi • 18h15</a>
+  <a class="badge-hero" href="{{ '/tracehiver' | relative_url }}"><span class="badge-hero-dot"></span>Entraînements d'hiver • Chaque mercredi • 18h15</a>
 
   <h1>Groupes Préparer Morat-Fribourg</h1>
   <p class="subtitle">
-    → 20 semaines pour préparer Morat-Fribourg!
+    La préparation à Morat-Fribourg est terminée, place aux entraînements d'hiver dès le mercredi 14 octobre 2026!<br>
+    RDV sur le parking derrière l'arrêt de bus Villars-sur-Glâne, Petit-Moncor.
   </p>
 
 {% if site.reprise_date %}
 
-  <p class="reprise-date">Reprise le {{ site.reprise_date }}</p>
+  <p class="reprise-date">Reprise des entraînements spécifiques Morat-Fribourg {{ site.reprise_date }}</p>
   {% endif %}
 
   <div class="kpi mt-16">
     <span class="badge">Ouvert à tous niveaux</span>
-    <span class="badge">Programme progressif</span>
+    <span class="badge">Tracés hivernaux</span>
     <span class="badge">Gratuit et sans inscription</span>
   </div>
 </div>
