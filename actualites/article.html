@@ -1,0 +1,89 @@
+---
+layout: default
+title: Actualité
+permalink: /actualites/article/
+sitemap: false
+---
+
+<!-- Affiche une actualité publiée depuis l'admin : /actualites/article/?id=12 -->
+
+<a class="news-back" href="{{ '/actualites/' | relative_url }}">← Toutes les actualités</a>
+
+<article class="article" id="news-article" aria-busy="true">
+  <p class="muted">Chargement…</p>
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
+<script>
+  (async function () {
+    const root = document.getElementById("news-article");
+    const esc = GPMF.escapeHtml;
+    const id = new URLSearchParams(location.search).get("id");
+
+    function showError(message) {
+      root.removeAttribute("aria-busy");
+      root.innerHTML = `<p class="muted">${message}</p>`;
+    }
+
+    if (!/^\d+$/.test(id || "")) {
+      return showError("Cette actualité est introuvable.");
+    }
+
+    let news;
+    try {
+      news = (await GPMF.fetchJSON(GPMF.adminUrl + "/api/news/" + id)).news;
+    } catch (e) {
+      return showError(
+        String(e.message).includes("HTTP 404")
+          ? "Cette actualité est introuvable ou n'est plus disponible."
+          : "Impossible de charger l'actualité pour le moment. Réessaie plus tard.",
+      );
+    }
+
+    // Liens externes du texte : nouvel onglet
+    DOMPurify.addHook("afterSanitizeAttributes", (node) => {
+      if (node.tagName === "A" && /^https?:/i.test(node.getAttribute("href") || "")) {
+        node.setAttribute("target", "_blank");
+        node.setAttribute("rel", "noopener");
+      }
+    });
+
+    const [y, m, d] = news.date.split("-").map(Number);
+    const longDate = new Date(y, m - 1, d).toLocaleDateString("fr-CH", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
+    let attachment = "";
+    const file = news.attachment;
+    if (file && file.type === "application/pdf") {
+      attachment = `
+        <div class="news-attachment-actions">
+          <a class="btn btn-primary" href="${esc(file.url)}" target="_blank" rel="noopener">Ouvrir le PDF</a>
+          <a class="btn btn-outline" href="${esc(file.url)}?download">Télécharger</a>
+        </div>
+        <object class="news-pdf" data="${esc(file.url)}" type="application/pdf" aria-label="${esc(file.name || news.title)}"></object>`;
+    } else if (file) {
+      attachment = `
+        <figure class="article-hero">
+          <a href="${esc(file.url)}" target="_blank" rel="noopener">
+            <img src="${esc(file.url)}" alt="${esc(news.title)}" />
+          </a>
+        </figure>`;
+    }
+
+    document.title = news.title + " — GPMF";
+    root.removeAttribute("aria-busy");
+    root.innerHTML = `
+      <header>
+        <h1>${esc(news.title)}</h1>
+        <p class="meta">
+          ${news.author ? `<strong>${esc(news.author)}</strong><br>` : ""}
+          <time datetime="${esc(news.date)}">${longDate}</time>
+        </p>
+      </header>
+      <div class="news-body">${DOMPurify.sanitize(news.body_html || "")}</div>
+      ${attachment}`;
+  })();
+</script>

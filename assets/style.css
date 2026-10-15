@@ -1894,3 +1894,67 @@ body.flyer-modal-open {
     border-radius: var(--radius-sm);
   }
 }
+
+/* Actualités */
+.news-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+.news-date {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.news-title {
+  font-size: 1.2rem;
+  margin: 2px 0 6px;
+}
+.news-excerpt {
+  margin: 0;
+}
+.news-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.news-tags .badge {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+.news-back {
+  display: inline-block;
+  margin: 8px 0 4px;
+}
+.news-body img {
+  display: block;
+  margin: 1.25rem auto;
+  border-radius: 12px;
+}
+.news-body blockquote {
+  margin: 16px 0;
+  padding: 10px 16px;
+  border-left: 4px solid var(--primary-border);
+  background: var(--primary-bg-subtle);
+  border-radius: 8px;
+}
+.news-attachment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 12px;
+}
+.news-pdf {
+  display: block;
+  width: 100%;
+  height: 80vh;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+/* Les PDF intégrés s'affichent mal sur mobile : on garde seulement les boutons */
+@media (max-width: 700px) {
+  .news-pdf {
+    display: none;
+  }
+}

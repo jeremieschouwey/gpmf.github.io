@@ -13,7 +13,7 @@ Définis dans `_config.yml` et injectés dans toutes les pages via `window.GPMF`
 | Variable          | Worker                                            | Rôle                                 |
 | ----------------- | ------------------------------------------------- | ------------------------------------ |
 | `worker_base_url` | `weathered-math-a354.jeremieschouwey.workers.dev` | Photos (R2) — liste dossiers, images |
-| `admin_url`       | `gpmf-admin.jeremieschouwey.workers.dev`          | Statistiques (`/api/stats`)          |
+| `admin_url`       | `gpmf-admin.jeremieschouwey.workers.dev`          | Statistiques (`/api/stats`), actualités (`/api/news`) |
 
 ### Sources de données par page
 
@@ -23,7 +23,7 @@ Définis dans `_config.yml` et injectés dans toutes les pages via `window.GPMF`
 | Programme        | Fichiers locaux: `assets/programme2026.fr.json` / `assets/programme2026.de.json` |
 | Photos / Accueil | API: `GPMF.workerBase + '/api/folders'` + `/api/list`                            |
 | Traces hivernaux | Fichiers locaux: `assets/gpx/` + `_data/gpx_traces.yml`                          |
-| Actualités       | Fichiers locaux: `_posts/`                                                       |
+| Actualités       | Fichiers locaux: `_posts/` + API: `GPMF.adminUrl + '/api/news'`                  |
 
 ### Données statiques
 
@@ -97,6 +97,16 @@ Se connecter sur **Cloudflare R2** et ajouter un dossier avec les nouvelles phot
 > Dashboard → R2 → `gpmf-photos`
 
 ### Ajouter une actualité
+
+**Méthode recommandée — via l'admin :**
+
+1. Aller sur `https://gpmf-admin.jeremieschouwey.workers.dev/news` et se connecter
+2. « + Nouvelle actualité » : titre, date, texte (éditeur) et/ou un fichier joint (PDF ou image)
+3. Enregistrer → c'est live sur `/actualites/` (pas de commit nécessaire)
+
+Les actualités de l'admin s'affichent sur `/actualites/article/?id=…`. Décocher « Publier » garde l'actualité en brouillon.
+
+**Méthode historique — article Jekyll :**
 
 1. Créer un fichier dans `_posts/`: `YYYY-MM-DD-titre.md`
 2. S'inspirer d'un fichier existant pour le front matter

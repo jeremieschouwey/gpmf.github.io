@@ -1,0 +1,77 @@
+---
+layout: default
+title: Actualités
+permalink: /actualites/
+---
+
+<h1>Actualités</h1>
+
+<!-- Articles Jekyll (_posts/) affichés tels quels si l'API est indisponible ;
+     remplacés par la liste fusionnée (posts + actualités de l'admin) une fois l'API chargée. -->
+<div class="news-list" id="news-list">
+{% for post in site.posts %}
+  <article class="card card-clickable news-item">
+    <p class="news-date muted"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d.%m.%Y" }}</time></p>
+    <h2 class="news-title">{{ post.title }}</h2>
+    <a class="card-stretched-link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}"></a>
+  </article>
+{% endfor %}
+</div>
+
+<script type="application/json" id="jekyll-posts">
+[{% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "excerpt": {{ post.content | split: "</header>" | last | strip_html | normalize_whitespace | strip | truncate: 220 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}{% endfor %}
+]
+</script>
+
+<script>
+  (async function () {
+    const list = document.getElementById("news-list");
+    const esc = GPMF.escapeHtml;
+    const articleUrl = "{{ '/actualites/article/' | relative_url }}";
+
+    let apiNews;
+    try {
+      apiNews = (await GPMF.fetchJSON(GPMF.adminUrl + "/api/news")).news || [];
+    } catch (e) {
+      console.warn("Actualités admin indisponibles", e);
+      return; // la liste statique reste affichée
+    }
+
+    const posts = JSON.parse(document.getElementById("jekyll-posts").textContent);
+    const items = [
+      ...posts.map((p) => ({ ...p, tags: [] })),
+      ...apiNews.map((n) => ({
+        title: n.title,
+        date: n.date,
+        url: articleUrl + "?id=" + n.id,
+        excerpt: n.excerpt,
+        tags: n.attachment
+          ? [n.attachment.type === "application/pdf" ? "📄 PDF" : "🖼 Image"]
+          : [],
+      })),
+    ].sort((a, b) => b.date.localeCompare(a.date));
+
+    const formatDate = (iso) => iso.split("-").reverse().join(".");
+
+    list.innerHTML = items.length
+      ? items
+          .map(
+            (it) => `
+      <article class="card card-clickable news-item">
+        <p class="news-date muted"><time datetime="${esc(it.date)}">${formatDate(it.date)}</time></p>
+        <h2 class="news-title">${esc(it.title)}</h2>
+        ${it.excerpt ? `<p class="news-excerpt muted">${esc(it.excerpt)}</p>` : ""}
+        ${it.tags.length ? `<div class="news-tags">${it.tags.map((t) => `<span class="badge">${t}</span>`).join("")}</div>` : ""}
+        <a class="card-stretched-link" href="${esc(it.url)}" aria-label="${esc(it.title)}"></a>
+      </article>`,
+          )
+          .join("")
+      : '<p class="muted">Aucune actualité pour le moment.</p>';
+  })();
+</script>
